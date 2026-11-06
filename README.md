@@ -50,7 +50,7 @@
 
 1. 既存サイト8 URLのバックアップ、DNSレコードの控え、GSC/GA4の現状記録。
 2. 旧URLの扱い（共存・アーカイブ・301）をGSCデータに基づいて決定。
-3. 本番ビルドをVercel等へデプロイし、`SITE_INDEXING_ENABLED=true`・`NEXT_PUBLIC_DEMO_MODE=false` を確認。
+3. 本番ビルドをVercel等へデプロイし、`NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com`・`SITE_INDEXING_ENABLED=true`・`NEXT_PUBLIC_DEMO_MODE=false` を設定してビルドする（canonical/OGPが本番URLになることを確認）。
 4. DNS切替（A/CNAMEのみ。MX/TXTは触らない）→ HTTPS/主要URL/robots/sitemap/計測のスモーク。
 5. 問題時は旧デプロイとDNSに戻す。詳細は [ドメイン移行計画](docs/06_DOMAIN_MIGRATION.md)。
 
@@ -58,6 +58,7 @@
 
 - 外部Preview（Vercelトークン未設定）、実ASPリンク・報酬データ、Buffer公式API接続、GA4/GSC実データ、既存サイトの実バックアップ、本番DNS切替。
 - 条件入力によるインタラクティブ比較、週次の通知連携、DB移行（PostgreSQL）。
+- Vercel等のサーバーレス環境ではファイル書き込みができないため、クリック計測と承認キューは外部ストレージ（KV/DB）への移行が必要。ローカル/常駐サーバーでは `var/` に保存される（Git管理外）。
 - 運営者情報・お問い合わせ窓口・特商法表記は本番公開前に確定が必要。
 
 ## ドキュメント一覧

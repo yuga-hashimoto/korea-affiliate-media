@@ -43,6 +43,14 @@ export async function generateMetadata({
       description: article.description,
       publishedTime: article.publishedAt ?? undefined,
       modifiedTime: article.updatedAt,
+      images: [
+        {
+          url: "/og-default.png",
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
     },
   };
 }
@@ -77,6 +85,19 @@ export default async function ArticlePage({
           mainEntityOfPage: `${siteUrl()}/articles/${article.slug}`,
         }}
       />
+      {article.faq.length > 0 ? (
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: article.faq.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }}
+        />
+      ) : null}
       <JsonLd
         data={{
           "@context": "https://schema.org",

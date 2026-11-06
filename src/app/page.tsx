@@ -59,6 +59,16 @@ export default function HomePage() {
       <JsonLd
         data={{
           "@context": "https://schema.org",
+          "@type": "Organization",
+          name: SITE.name,
+          url: siteUrl(),
+          logo: `${siteUrl()}/icon.svg`,
+          description: SITE.description,
+        }}
+      />
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
           "@type": "WebSite",
           name: SITE.name,
           url: siteUrl(),

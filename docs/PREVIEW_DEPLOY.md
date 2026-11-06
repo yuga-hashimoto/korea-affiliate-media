@@ -12,7 +12,8 @@
 2. Project Settings → Environment Variables に以下を設定する（Preview環境のみ）。
    - `SITE_INDEXING_ENABLED=false`（**必須**: Previewをnoindexにする）
    - `NEXT_PUBLIC_DEMO_MODE=true`（サンプル価格を表示する場合）
-   - `NEXT_PUBLIC_SITE_URL` は自動設定される `VERCEL_URL` を利用（未設定で可）
+   - `NEXT_PUBLIC_SITE_URL` は自動設定される `VERCEL_URL` を利用（未設定で可）。本番は `https://sougakuhikaku.com` を明示する。
+   - サーバーレスのファイルシステムは読み取り専用のため、クリック計測は外部ストレージへの置き換えが必要（現状は計測失敗時も遷移は継続）。
 3. GitHubリポジトリの Secrets に `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` を登録する。
 4. PRを作成すると `.github/workflows/preview-deploy.yml` がPreviewをデプロイし、URLをPRにコメントする。
 

@@ -52,3 +52,8 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 検出された違反を修正: ロゴリンクのアクセシブル名と可視テキストの不一致、本文中リンクの色のみによる区別（下線追加）。
 - [x] 最終テスト: unit 73件 / E2E 30件（smoke 22 + a11y 8）すべて成功。`pnpm lint` / `pnpm typecheck` / `pnpm build` 成功。
 - [x] CI: run `42248160998` success（verify / e2e）。追加コミット分もCIで検証中。
+
+## 2026-11-06 — コンテンツ更新フロー（鮮度監査）
+- [x] `scripts/audit-content.ts` / `src/lib/content/audit.ts`: 記事・出典・オファーの鮮度を監査し、更新候補（high/medium/low）を `var/reports/content-audit.json` に出力。自動書き換えは行わない。
+- [x] 初回実行: high 0 / medium 15（公開記事の出典が未レビューのため）。出典の再確認が次の更新作業であることを可視化。
+- [x] content-bot ワークフローに監査ステップを追加。
