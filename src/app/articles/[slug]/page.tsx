@@ -156,7 +156,7 @@ export default async function ArticlePage({
 
           {article.hubPath ? (
             <p className="mt-8 text-sm">
-              <Link href={article.hubPath} className="text-brand-700">
+              <Link href={article.hubPath} className="text-brand-700 underline">
                 比較ページを見る →
               </Link>
             </p>
@@ -164,7 +164,7 @@ export default async function ArticlePage({
 
           <p className="mt-8 rounded-xl bg-slate-100 p-4 text-xs leading-5 text-slate-600">
             掲載内容に誤りや古い情報を見つけた場合は、
-            <Link href="/contact" className="text-brand-700">
+            <Link href="/contact" className="text-brand-700 underline">
               お問い合わせ
             </Link>
             からご連絡ください。確認のうえ更新します。当サイトは現地取材・購入体験を装ったレビューを掲載しません。

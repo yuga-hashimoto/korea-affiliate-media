@@ -46,3 +46,9 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] テスト: unit 73件 / E2E 22件（desktop + mobile 375px）すべて成功。`pnpm lint` / `pnpm typecheck` / `pnpm build` 成功。
 - [ ] ブロッカー（資格情報・承認）: Vercel Previewデプロイ、Buffer公式API接続、実ASPリンク・報酬データ、GA4/GSC実データ、既存サイトのバックアップ、本番DNS切替。
 - [ ] 次の安全な作業: 記事の継続追加（根拠が取れたもの）、条件入力による比較UI、GSC/GA4連携コードの実装（資格情報なしでdry-run可能な形）、アクセシビリティの自動検査（axe）追加。
+
+## 2026-11-06 — アクセシビリティ検査・最終検証（AIエージェント）
+- [x] `@axe-core/playwright` によるWCAG 2.1 AA（A/AA）検査をE2Eに追加。トップ・eSIM・記事・比較手法の4ページ×desktop/mobile。
+- [x] 検出された違反を修正: ロゴリンクのアクセシブル名と可視テキストの不一致、本文中リンクの色のみによる区別（下線追加）。
+- [x] 最終テスト: unit 73件 / E2E 30件（smoke 22 + a11y 8）すべて成功。`pnpm lint` / `pnpm typecheck` / `pnpm build` 成功。
+- [x] CI: run `42248160998` success（verify / e2e）。追加コミット分もCIで検証中。

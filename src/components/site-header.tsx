@@ -15,7 +15,6 @@ export function SiteHeader() {
         <Link
           href="/"
           className="flex items-baseline gap-2 no-underline"
-          aria-label="総額比較 トップページ"
         >
           <span className="text-lg font-bold tracking-tight text-slate-900">
             総額比較

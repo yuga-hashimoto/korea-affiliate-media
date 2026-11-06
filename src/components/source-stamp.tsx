@@ -15,7 +15,7 @@ export function SourceStamp({
         href={evidence.sourceUrl}
         rel="noopener noreferrer nofollow"
         target="_blank"
-        className="break-all text-brand-700"
+        className="break-all text-brand-700 underline"
       >
         {evidence.sourceUrl}
       </a>

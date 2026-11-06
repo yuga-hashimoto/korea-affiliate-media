@@ -38,7 +38,7 @@
   }
 
   a {
-    @apply underline-offset-2;
+    text-underline-offset: 2px;
   }
 
   :focus-visible {
@@ -63,6 +63,10 @@
 
   .prose-jp p {
     @apply mb-4 leading-8 text-slate-700;
+  }
+
+  .prose-jp a {
+    text-decoration: underline;
   }
 
   .prose-jp h2 {

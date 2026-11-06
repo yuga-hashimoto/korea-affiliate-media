@@ -151,7 +151,7 @@ export default function HomePage() {
             ))}
           </div>
           <p className="mt-4 text-sm">
-            <Link href="/methodology" className="text-brand-700">
+            <Link href="/methodology" className="text-brand-700 underline">
               計算式・比較条件の詳細を見る
             </Link>
           </p>

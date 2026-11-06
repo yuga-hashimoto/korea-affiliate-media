@@ -72,7 +72,7 @@ export default function AirportTransportPage() {
               href="https://www.arex.or.kr/"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="text-brand-700"
+              className="text-brand-700 underline"
             >
               空港鉄道 AREX 公式サイト
             </a>

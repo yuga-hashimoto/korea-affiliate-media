@@ -67,7 +67,7 @@ export default function BeautyPage() {
               href="https://www.customs.go.jp/"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="text-brand-700"
+              className="text-brand-700 underline"
             >
               税関の公式情報
             </a>

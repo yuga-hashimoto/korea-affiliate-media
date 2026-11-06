@@ -97,7 +97,7 @@ export default function EsimPage() {
         <p className="mt-8 text-xs leading-5 text-slate-500">
           このページの構造化データは、実際のページ内容（FAQ）に対応しています。
           価格の構造化データ（Offer）は、提携・価格の確認が取れるまで出力しません。
-          参照: <a href={`${siteUrl()}/methodology`} className="text-brand-700">比較手法</a>
+          参照: <a href={`${siteUrl()}/methodology`} className="text-brand-700 underline">比較手法</a>
         </p>
       </div>
     </>

@@ -64,7 +64,7 @@ export default function EditorialPolicyPage() {
                 href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brand-700"
+                className="text-brand-700 underline"
               >
                 消費者庁: ステルスマーケティングに関する考え方
               </a>
@@ -74,7 +74,7 @@ export default function EditorialPolicyPage() {
                 href="https://www.customs.go.jp/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brand-700"
+                className="text-brand-700 underline"
               >
                 税関: 輸出入の手続き・税に関する情報
               </a>
@@ -84,7 +84,7 @@ export default function EditorialPolicyPage() {
                 href="https://help.x.com/ja/rules-and-policies/paid-partnerships-policy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brand-700"
+                className="text-brand-700 underline"
               >
                 X: 有料パートナーシップポリシー
               </a>
