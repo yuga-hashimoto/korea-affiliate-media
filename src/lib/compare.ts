@@ -95,6 +95,14 @@ function evidenceBlocker(
  * 同一条件グループのオファーを総額比較する。
  * 未確認項目があるオファーは 0 円扱いせず、順位付けから除外する。
  */
+/** 公開ページに表示してよいオファー。サンプルはデモモード時のみ表示する。 */
+export function selectDisplayableOffers(
+  offers: readonly Offer[],
+  allowSample: boolean,
+): Offer[] {
+  return allowSample ? [...offers] : offers.filter((offer) => !offer.sample);
+}
+
 export function compareOffers(
   offers: readonly Offer[],
   options: CompareOptions,

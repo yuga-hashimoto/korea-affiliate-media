@@ -29,10 +29,19 @@ export const metadata: Metadata = {
     title: `${SITE.name}｜韓国旅行・韓国コスメの総額比較`,
     description: SITE.description,
     url: siteUrl(),
+    images: [
+      {
+        url: "/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: "総額比較｜韓国旅行・韓国コスメの総額比較",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     site: SITE.xHandle,
+    images: ["/og-default.png"],
   },
 };
 

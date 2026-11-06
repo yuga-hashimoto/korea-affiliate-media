@@ -1,5 +1,9 @@
 import type { Offer, SourceEvidence } from "@/lib/domain";
-import { compareOffers, type PricedOffer } from "@/lib/compare";
+import {
+  compareOffers,
+  selectDisplayableOffers,
+  type PricedOffer,
+} from "@/lib/compare";
 import { demoMode } from "@/lib/env";
 import { evidenceList, getMerchant, fxRateList, programList } from "@/data";
 import { formatMoney, formatMoneyOrUnknown } from "@/lib/money";
@@ -8,6 +12,7 @@ import { Badge } from "./badge";
 import { SourceStamp } from "./source-stamp";
 import { SampleBanner } from "./sample-banner";
 import { DisclosureNote } from "./disclosure-note";
+import { EmptyState } from "./empty-state";
 
 const PRICE_BASIS_LABEL: Record<Offer["priceBasis"], string> = {
   live: "ライブ取得",
@@ -187,7 +192,27 @@ export function ComparisonSection({
   now?: Date;
 }) {
   const allowSample = demoMode();
-  const result = compareOffers(offers, {
+  const displayable = selectDisplayableOffers(offers, allowSample);
+
+  if (displayable.length === 0) {
+    return (
+      <section aria-labelledby="comparison-heading" className="mt-8">
+        <h2 id="comparison-heading" className="text-xl sm:text-2xl">
+          総額比較（{scenarioTitle}）
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-slate-600">{scenarioDetail}</p>
+        <div className="mt-4">
+          <EmptyState title="比較できる確認済みの価格がまだありません">
+            提携・引用の許諾が確認できた公式価格が揃うまで、比較表は掲載しません。
+            推測の価格やサンプル値を実価格として表示することはありません。
+          </EmptyState>
+        </div>
+        <DisclosureNote />
+      </section>
+    );
+  }
+
+  const result = compareOffers(displayable, {
     now,
     rates: fxRateList,
     evidence: evidenceList,
@@ -309,7 +334,7 @@ export function ComparisonSection({
                     <p className="mt-0.5 text-xs text-slate-500">
                       {priced.offer.productName}
                     </p>
-                    <p className="mt-0.5 text-[11px] text-slate-400">
+                    <p className="mt-0.5 text-[11px] text-slate-500">
                       {priced.offer.condition.label}
                     </p>
                     <div className="mt-1 flex flex-wrap gap-1">

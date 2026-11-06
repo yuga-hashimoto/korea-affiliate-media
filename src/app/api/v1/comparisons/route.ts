@@ -6,7 +6,7 @@ import {
   offerList,
   programList,
 } from "@/data";
-import { compareOffers } from "@/lib/compare";
+import { compareOffers, selectDisplayableOffers } from "@/lib/compare";
 import { getMerchant } from "@/data";
 import { demoMode } from "@/lib/env";
 
@@ -53,7 +53,7 @@ export async function GET(request: Request) {
       (gb ? offer.condition.gb === gb : true),
   );
 
-  const result = compareOffers(offers, {
+  const result = compareOffers(selectDisplayableOffers(offers, demoMode()), {
     now: new Date(),
     rates: fxRateList,
     evidence: evidenceList,

@@ -15,7 +15,10 @@ import { fxRates } from "./fx";
 import { travelArticles } from "@/content/travel";
 import { beautyArticles } from "@/content/beauty";
 import { generalArticles } from "@/content/general";
-import { generatedPublishedArticles } from "./generated";
+import {
+  generatedPublishedArticles,
+  generatedRecords,
+} from "./generated";
 
 /**
  * データの検証。不正なデータ（税金の二重計上、存在しない証跡ID、
@@ -70,6 +73,8 @@ for (const article of articleList) {
   }
   slugs.add(article.slug);
 }
+
+export { generatedRecords };
 
 export const publishedArticles = articleList
   .filter((a) => a.status === "published")

@@ -42,6 +42,8 @@ export function summarizeClicks(clicks: readonly ClickRecord[]): ClickSummary {
 
 export interface DailyReportInput {
   date: string;
+  /** 既定は「日次レポート」。週次では上書きする。 */
+  title?: string;
   clicks: readonly ClickRecord[];
   conversions: { rows: readonly AspRow[]; summary: ConversionSummary } | null;
   staleOffers: number;
@@ -53,7 +55,7 @@ export function buildDailyReport(input: DailyReportInput): string {
   const clicks = summarizeClicks(input.clicks);
   const lines: string[] = [];
 
-  lines.push(`# 日次レポート ${formatJstDate(input.date)}`);
+  lines.push(`# ${input.title ?? "日次レポート"} ${formatJstDate(input.date)}`);
   lines.push("");
   lines.push("## 外部クリック");
   lines.push(`- 合計: ${clicks.total}件`);

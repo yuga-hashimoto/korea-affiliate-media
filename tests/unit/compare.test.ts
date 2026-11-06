@@ -169,3 +169,23 @@ describe("compareOffers", () => {
     expect(result.priced[0]?.blockers).toContain("evidence_stale");
   });
 });
+
+describe("selectDisplayableOffers", () => {
+  it("本番モードではサンプルを表示しない", async () => {
+    const { selectDisplayableOffers } = await import("@/lib/compare");
+    const visible = selectDisplayableOffers(
+      [offer({ id: "real" }), offer({ id: "sample", sample: true, priceBasis: "sample" })],
+      false,
+    );
+    expect(visible.map((o) => o.id)).toEqual(["real"]);
+  });
+
+  it("デモモードではサンプルを表示する", async () => {
+    const { selectDisplayableOffers } = await import("@/lib/compare");
+    const visible = selectDisplayableOffers(
+      [offer({ id: "real" }), offer({ id: "sample", sample: true, priceBasis: "sample" })],
+      true,
+    );
+    expect(visible).toHaveLength(2);
+  });
+});

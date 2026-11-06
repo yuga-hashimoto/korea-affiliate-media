@@ -21,6 +21,13 @@
 - 有料APIやモデルの予算上限、契約形態。
 - 投稿データの自動公開がXのPaid Partnership開示で技術的に可能か。
 
+## 2026-11-06 の決定（AIエージェント）
+- 技術スタック: Next.js 16 / React 19 / TypeScript 5.9 / Tailwind 4 / Zod 4 / Vitest / Playwright。詳細は `docs/adr/0002-tech-stack.md`。
+- 既存サイト: 段階的共存（旧URLは保全、本番切替時に個別判断）。詳細は `docs/adr/0001-content-migration.md`。
+- AI記事・X投稿: 生成は自動、公開・投稿は既定OFF。PR投稿はPaid Partnership開示を保証できるまで手動。詳細は `docs/adr/0003-content-automation.md`。
+- データ: MVPはGit管理の型付きデータ＋`var/`のJSONL。DBは未契約（PostgreSQL + Drizzle/Prismaを候補）。
+- Preview: Vercelワークフローを用意。トークン未設定時はスキップし、ローカル本番ビルドで検証する。
+
 ## 意思決定の記録形式（ADRテンプレ）
 日付 / 論点 / 判断 / 根拠（公式出典） / 代替案 / 影響 / 費用 / ロールバック / 最終承認者。
 不可逆な作業は承認内容と実行ログを残す。

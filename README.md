@@ -2,7 +2,7 @@
 
 > 本番ドメイン候補: **https://sougakuhikaku.com/**  
 > GitHub: **yuga-hashimoto/korea-affiliate-media** （Private）  
-> ステータス: **MVP実装・ローカルPreview検証済み（2026-11-06）** / 本番公開は未承認
+> ステータス: **MVP実装・自動化パイプライン・CI/E2E検証済み（2026-11-06）** / 本番公開は未承認
 
 韓国旅行・ホテル・交通・eSIM、韓国コスメ・ファッションの**実際に支払う総額**を比較し、日本人が選びやすい情報メディアをAI主体で構築する。特定芸能グループへの依存は初期対象外。Xアカウント @bts_95_y を初期の集客チャネルとし、検索流入の独立したサイト資産を育てる。
 
@@ -41,6 +41,11 @@
 | [12_AGENT_HANDOFF](docs/12_AGENT_HANDOFF.md) | AI開発エージェントへの最短引き継ぎ |
 | [13_UI_CONTENT_DESIGN](docs/13_UI_CONTENT_DESIGN.md) | UI/UXと比較コンポーネント |
 | [14_DECISIONS_AND_OPEN_ITEMS](docs/14_DECISIONS_AND_OPEN_ITEMS.md) | 仮の技術判断と未確定項目/ADR |
+| [ADR-0001](docs/adr/0001-content-migration.md) | 既存サイトとの共存・移行方針 |
+| [ADR-0002](docs/adr/0002-tech-stack.md) | 技術スタック・ホスティング・コスト |
+| [ADR-0003](docs/adr/0003-content-automation.md) | AI生成・X投稿の自動化と承認ゲート |
+| [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md) | Preview環境のデプロイ手順 |
+| [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md) | 記事生成・X投稿・取り込みの運用手順 |
 | [PROGRESS](docs/PROGRESS.md) | 作業ログ、済/未着手 |
 | [.env.example](.env.example) | 秘密情報を含まない設定キー一覧 |
 
@@ -79,3 +84,24 @@ pnpm e2e                              # desktop + mobile 375px
 - サンプル価格は `NEXT_PUBLIC_DEMO_MODE=true` のときだけ表示されます。`pnpm build`（本番相当）では表示されません。
 - Preview/ステージングは `SITE_INDEXING_ENABLED=false`（既定）で全面 `noindex` です。
 - 環境変数は [.env.example](.env.example) を参照。秘密情報はコミットしません。
+
+## 自動化（AI記事・X投稿）
+
+```bash
+pnpm jobs:article-draft      # トピックから下書き生成（キーなしはモック / review止まり）
+pnpm jobs:social-draft       # 記事からX下書きを生成（needs_review）
+pnpm social:approve --id ... --actor ...   # 人手承認
+pnpm social:publish          # SOCIAL_PUBLISH_ENABLED=true + Webhook設定時のみ送信
+pnpm jobs:report             # 日次レポート（var/reports/）
+pnpm jobs:weekly-report      # 週次レポート
+pnpm jobs:ingest             # 許諾済みフィードの取り込み（既定OFF）
+```
+
+- 生成物の公開は既定で停止しています（`CONTENT_AUTO_PUBLISH_ENABLED=false` / `SOCIAL_PUBLISH_ENABLED=false`）。
+- 品質ゲート: Zodスキーマ、禁止表現、根拠のない数値、出典ID、広告開示。詳細は [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md)。
+- CI: `.github/workflows/content-bot.yml` が毎日06:00 JSTに実行し、PRでレビューします。
+
+## デプロイ
+
+- Preview: [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md)（Vercelトークン未設定時はワークフローが自動スキップ）。
+- 本番: `sougakuhikaku.com` のDNS切替は**未実施**。既存サイトのバックアップ・GSC確認・ユーザー承認後に別途実施します。
