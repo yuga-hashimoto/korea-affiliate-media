@@ -1,0 +1,43 @@
+{
+  "name": "korea-affiliate-media",
+  "version": "0.1.0",
+  "private": true,
+  "description": "総額比較｜韓国旅行・韓国コスメの総支払額比較メディア",
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "e2e": "playwright test",
+    "jobs:ingest": "tsx scripts/run-ingestion.ts",
+    "jobs:social-draft": "tsx scripts/generate-social-drafts.ts",
+    "jobs:report": "tsx scripts/daily-report.ts",
+    "jobs:fx": "tsx scripts/refresh-fx.ts"
+  },
+  "dependencies": {
+    "next": "16.4.5",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.5",
+    "tailwindcss": "4.3.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "vitest": "5.1.0"
+  }
+}

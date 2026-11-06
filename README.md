@@ -2,7 +2,7 @@
 
 > 本番ドメイン候補: **https://sougakuhikaku.com/**  
 > GitHub: **yuga-hashimoto/korea-affiliate-media** （Private）  
-> ステータス: **詳細計画書の整備完了・アプリケーション実装前（2026-11-06）**
+> ステータス: **MVP実装・ローカルPreview検証済み（2026-11-06）** / 本番公開は未承認
 
 韓国旅行・ホテル・交通・eSIM、韓国コスメ・ファッションの**実際に支払う総額**を比較し、日本人が選びやすい情報メディアをAI主体で構築する。特定芸能グループへの依存は初期対象外。Xアカウント @bts_95_y を初期の集客チャネルとし、検索流入の独立したサイト資産を育てる。
 
@@ -61,6 +61,21 @@
 - [x] GitHubリポジトリ作成
 - [x] ドメイン公開状態の読み取り確認
 - [x] AI向け実装計画・マスタープロンプト・運用/移行計画
-- [ ] Next.js/DB/CIの実装
-- [ ] Preview公開と受入テスト
+- [x] Next.js/TypeScript/Tailwind の実装、比較エンジン、SEO、テスト、GitHub Actions
+- [x] ローカルPreviewビルドとE2E（desktop / mobile 375px）
+- [x] AI記事・X投稿の下書き生成パイプライン（品質ゲート付き・既定はレビュー必須）
+- [ ] Vercel等へのPreviewデプロイ（アカウント連携が必要）
 - [ ] 提携審査/実リンク/本番DNS切替（承認後）
+
+## ローカルでの確認
+
+```bash
+pnpm install
+NEXT_PUBLIC_DEMO_MODE=true pnpm dev   # サンプルデータを表示
+pnpm lint && pnpm typecheck && pnpm test && pnpm build
+pnpm e2e                              # desktop + mobile 375px
+```
+
+- サンプル価格は `NEXT_PUBLIC_DEMO_MODE=true` のときだけ表示されます。`pnpm build`（本番相当）では表示されません。
+- Preview/ステージングは `SITE_INDEXING_ENABLED=false`（既定）で全面 `noindex` です。
+- 環境変数は [.env.example](.env.example) を参照。秘密情報はコミットしません。

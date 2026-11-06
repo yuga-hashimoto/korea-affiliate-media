@@ -7,6 +7,7 @@
 # Node / Next.js
 node_modules/
 .next/
+.next-e2e/
 out/
 dist/
 build/
@@ -18,6 +19,9 @@ test-results/
 .DS_Store
 .idea/
 .vscode/settings.json
+# Generated runtime data (never commit private analytics / evidence dumps)
+var/
+data/generated/
 # Python
 __pycache__/
 *.pyc

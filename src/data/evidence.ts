@@ -1,0 +1,102 @@
+import type { SourceEvidence } from "@/lib/domain";
+
+const CHECKED_AT = "2026-11-06T09:00:00.000Z";
+
+function sampleEvidence(id: string, label: string): SourceEvidence {
+  return {
+    id,
+    sourceUrl: `https://example.com/sample/${id}`,
+    sourceType: "manual_observation",
+    accessPermitted: "yes",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: `SAMPLE: ${label}。表示検証用の架空データで、実在の価格・在庫ではありません。`,
+    reviewStatus: "verified",
+    sample: true,
+  };
+}
+
+export const evidence: SourceEvidence[] = [
+  sampleEvidence("ev-sample-esim", "eSIM比較UIの検証用サンプル"),
+  sampleEvidence("ev-sample-hotel", "ホテル比較UIの検証用サンプル"),
+  sampleEvidence("ev-sample-beauty", "コスメ比較UIの検証用サンプル"),
+  sampleEvidence("ev-sample-transport", "空港交通比較UIの検証用サンプル"),
+  {
+    id: "ev-airalo-official",
+    sourceUrl: "https://www.airalo.com/",
+    sourceType: "official_page",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "公式トップのみ確認。料金表・提携条件・API仕様は未確認のため自動取得しない。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-arex-official",
+    sourceUrl: "https://www.arex.or.kr/",
+    sourceType: "official_page",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "空港鉄道の公式サイト。運賃・時刻表は公式で確認する。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-customs-jp",
+    sourceUrl: "https://www.customs.go.jp/",
+    sourceType: "public_regulation",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "輸入時の税・手続きの一次情報。制度は変更されるため最新の公式情報を確認する。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-tripcom-official",
+    sourceUrl: "https://jp.trip.com/",
+    sourceType: "official_page",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "Trip.comの公式ページ。手数料・税の表示条件は確定画面で確認する。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-caa-stealth",
+    sourceUrl:
+      "https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing",
+    sourceType: "public_regulation",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "ステルスマーケティング規制（景品表示法）の公式解説。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-x-paid-partnership",
+    sourceUrl: "https://help.x.com/ja/rules-and-policies/paid-partnerships-policy",
+    sourceType: "official_page",
+    accessPermitted: "unknown",
+    checkedAt: CHECKED_AT,
+    observedTextHash: null,
+    note: "Xの有料パートナーシップ開示ポリシー。自動投稿の可否判定に使用。",
+    reviewStatus: "unreviewed",
+    sample: false,
+  },
+  {
+    id: "ev-stale-oliveyoung",
+    sourceUrl: "https://global.oliveyoung.com/",
+    sourceType: "official_page",
+    accessPermitted: "unknown",
+    checkedAt: "2026-09-01T00:00:00.000Z",
+    observedTextHash: null,
+    note: "確認が古い証跡の例。再確認まで順位付けに使用しない。",
+    reviewStatus: "stale",
+    sample: false,
+  },
+];

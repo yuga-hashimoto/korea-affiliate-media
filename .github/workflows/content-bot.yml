@@ -1,0 +1,70 @@
+name: Content Bot (AI drafting)
+
+# 記事・X投稿の下書きを自動生成するパイプライン。
+# OPENROUTER_API_KEY が未設定の場合はモックで実行し、公開は行わない。
+on:
+  schedule:
+    - cron: "0 21 * * *" # 06:00 JST
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "generate | social | report"
+        required: false
+        default: generate
+
+concurrency:
+  group: content-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Generate AI drafts
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          CONTENT_AUTO_PUBLISH_ENABLED: "false"
+          SOCIAL_PUBLISH_ENABLED: "false"
+          INGESTION_ENABLED: "false"
+        run: pnpm jobs:article-draft
+
+      - name: Generate social drafts
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
+          SOCIAL_PUBLISH_ENABLED: "false"
+        run: pnpm jobs:social-draft
+
+      - name: Daily report
+        run: pnpm jobs:report
+
+      - name: Open PR with generated drafts
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore(content): 自動生成した下書き"
+          title: "content: AI生成の下書き（自動）"
+          body: |
+            AIが生成した記事・X投稿の下書きです。
+            - 数値は検証済みデータとの照合に合格したものだけを含みます。
+            - 公開（記事のpublished化 / X投稿）はこのPRのレビュー後に別途行います。
+          branch: content-bot/drafts
+          add-paths: |
+            content/generated/**
+            data/generated/**
+          delete-branch: true
