@@ -1,5 +1,11 @@
 # テスト計画と受け入れ基準
 
+## 2026-11-06 実行結果サマリ
+- 合格: unit 73件（計算・UNKNOWN・クーポン・為替・順位・リダイレクト・冪等・CSV・取り込み・生成検証）、E2E 30件（desktop/mobile 375px、smoke 22 + axe 8）、lint/typecheck/build。
+- 合格: Preview noindex、`/go` のallowlist、サンプル価格の本番非表示、法的表示ページの存在。
+- BLOCKED（資格情報・承認が必要）: 外部Previewデプロイ、GA4/GSC実データ検証、ASP成果の実連携、Buffer公式API、本番DNS切替、旧サイトの実バックアップ。
+- NOT RUN: Lighthouse実測（CI環境のため）、実端末スクリーンリーダー、負荷試験。
+
 ## 原則
 単体/統合/E2E/セキュリティ/SEO/視覚/運用テストを各PRで実行。外部API・サービスに資格情報がない場合は、実データとモックを明確に分ける。テスト未実行を成功と記載しない。
 

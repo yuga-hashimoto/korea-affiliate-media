@@ -20,6 +20,46 @@
 
 [エージェントへの短い実行指示](docs/12_AGENT_HANDOFF.md) も用意。
 
+![トップページ](docs/screenshots/home-desktop.jpg)
+
+## 動作する機能（2026-11-06 時点）
+
+- 総額比較エンジン: 税込/税別、送料、手数料、クーポン（閾値・上限・会員・期限）、外貨の円換算、UNKNOWNの非ゼロ扱い、条件不一致時の順位付け停止。
+- 比較ページ: トップ、韓国旅行、eSIM、ホテル、空港交通、韓国コスメ、ファッション（データ未取得時の空状態）、記事一覧・詳細、比較手法、編集方針、広告表記、運営者、プライバシー、問い合わせ。
+- SEO: ページ別metadata、canonical、OGP（1200×630画像）、sitemap.xml、robots.txt、JSON-LD（WebSite/Article/FAQPage/BreadcrumbList）、Previewのnoindex。
+- 計測: `/go/<offerId>` のallowlistリダイレクト、匿名クリックJSONL、ASP成果CSVの集計（見込/確定/却下/返金の分離）。
+- 自動化: AI記事下書き（品質ゲート付き）、X投稿下書き、人手承認、署名付きWebhook配信（既定OFF）、日次/週次レポート、停止スイッチ。
+- 管理画面（`ADMIN_UI_ENABLED=true` のときのみ）: `/admin`, `/admin/promotions`, `/admin/articles`, `/admin/affiliates`。
+
+## 必要なシークレット / 設定
+
+| 変数 | 用途 | 未設定時の挙動 |
+|---|---|---|
+| `OPENROUTER_API_KEY` / `OPENROUTER_MODEL` | AI記事生成 | モックで動作（公開しない） |
+| `SOCIAL_WEBHOOK_URL` / `SOCIAL_WEBHOOK_SECRET` | X投稿の配信 | 送信しない（blocked） |
+| `SOCIAL_PAID_PARTNERSHIP_SUPPORTED` | Paid Partnership開示の保証 | false の間はPR投稿を自動配信しない |
+| `AFFILIATE_LINKS_ENABLED` | 成果リンク配信 | 公式リンクのみ |
+| `INGESTION_FEED_URL` / `INGESTION_ALLOWED_HOSTS` | 許諾フィード取り込み | 取り込まない |
+| `FX_API_URL` / `FX_API_KEY` / `FX_ALLOWED_HOSTS` | 為替更新 | 更新しない（サンプルのみ） |
+| `DATABASE_URL` | 将来のDB接続 | 未使用（ファイル保存） |
+| `CLICK_HASH_SALT` | クリック匿名化 | 開発用ソルト（本番では必ず設定） |
+| `SITE_INDEXING_ENABLED` | index許可 | noindex |
+| `NEXT_PUBLIC_DEMO_MODE` | サンプル価格の表示 | 本番ビルドでは非表示 |
+
+## 本番切替手順（未実施・承認必須）
+
+1. 既存サイト8 URLのバックアップ、DNSレコードの控え、GSC/GA4の現状記録。
+2. 旧URLの扱い（共存・アーカイブ・301）をGSCデータに基づいて決定。
+3. 本番ビルドをVercel等へデプロイし、`SITE_INDEXING_ENABLED=true`・`NEXT_PUBLIC_DEMO_MODE=false` を確認。
+4. DNS切替（A/CNAMEのみ。MX/TXTは触らない）→ HTTPS/主要URL/robots/sitemap/計測のスモーク。
+5. 問題時は旧デプロイとDNSに戻す。詳細は [ドメイン移行計画](docs/06_DOMAIN_MIGRATION.md)。
+
+## 未完事項
+
+- 外部Preview（Vercelトークン未設定）、実ASPリンク・報酬データ、Buffer公式API接続、GA4/GSC実データ、既存サイトの実バックアップ、本番DNS切替。
+- 条件入力によるインタラクティブ比較、週次の通知連携、DB移行（PostgreSQL）。
+- 運営者情報・お問い合わせ窓口・特商法表記は本番公開前に確定が必要。
+
 ## ドキュメント一覧
 
 | ファイル | 内容 |
