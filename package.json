@@ -19,7 +19,10 @@
     "jobs:ingest": "tsx scripts/run-ingestion.ts",
     "jobs:social-draft": "tsx scripts/generate-social-drafts.ts",
     "jobs:report": "tsx scripts/daily-report.ts",
-    "jobs:fx": "tsx scripts/refresh-fx.ts"
+    "jobs:fx": "tsx scripts/refresh-fx.ts",
+    "jobs:article-draft": "tsx scripts/generate-article-drafts.ts",
+    "social:approve": "tsx scripts/approve-promotion.ts",
+    "social:publish": "tsx scripts/publish-approved.ts"
   },
   "dependencies": {
     "next": "16.4.5",

@@ -15,6 +15,7 @@ import { fxRates } from "./fx";
 import { travelArticles } from "@/content/travel";
 import { beautyArticles } from "@/content/beauty";
 import { generalArticles } from "@/content/general";
+import { generatedPublishedArticles } from "./generated";
 
 /**
  * データの検証。不正なデータ（税金の二重計上、存在しない証跡ID、
@@ -40,7 +41,12 @@ export const programList = parseAll(AffiliateProgramSchema, programs, "programs"
 export const offerList: Offer[] = parseAll(OfferSchema, offers, "offers");
 export const fxRateList = parseAll(FxRateSchema, fxRates, "fxRates");
 
-const allArticles = [...travelArticles, ...beautyArticles, ...generalArticles];
+const allArticles = [
+  ...travelArticles,
+  ...beautyArticles,
+  ...generalArticles,
+  ...generatedPublishedArticles,
+];
 export const articleList: Article[] = parseAll(ArticleSchema, allArticles, "articles");
 
 // 参照整合性の検証

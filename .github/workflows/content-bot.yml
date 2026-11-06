@@ -42,6 +42,7 @@ jobs:
           CONTENT_AUTO_PUBLISH_ENABLED: "false"
           SOCIAL_PUBLISH_ENABLED: "false"
           INGESTION_ENABLED: "false"
+          NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
         run: pnpm jobs:article-draft
 
       - name: Generate social drafts
@@ -49,6 +50,7 @@ jobs:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           OPENROUTER_MODEL: ${{ vars.OPENROUTER_MODEL }}
           SOCIAL_PUBLISH_ENABLED: "false"
+          NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
         run: pnpm jobs:social-draft
 
       - name: Daily report

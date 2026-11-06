@@ -1,0 +1,44 @@
+{
+  "topics": [
+    {
+      "id": "kr-esim-compare-2026",
+      "category": "esim",
+      "titleHint": "韓国eSIMは「総額」で選ぶ｜比較条件の揃え方",
+      "summary": "韓国旅行用eSIMの総額比較で見落としやすい条件を整理する",
+      "checklist": ["日数", "データ容量", "テザリング可否", "対応端末", "為替と決済通貨", "返金条件"],
+      "evidenceIds": ["ev-airalo-official"],
+      "keywords": ["韓国 eSIM", "総額比較"],
+      "status": "queued"
+    },
+    {
+      "id": "kr-hotel-fees-2026",
+      "category": "hotel",
+      "titleHint": "韓国ホテルの予約で総額が変わる理由｜税金と手数料",
+      "summary": "ホテル予約時の税・サービス料・現地徴収の確認手順を整理する",
+      "checklist": ["税込/税別", "サービス料", "清掃料", "現地徴収", "キャンセル期限", "通貨"],
+      "evidenceIds": ["ev-tripcom-official"],
+      "keywords": ["韓国 ホテル 総額", "ホテル 手数料"],
+      "status": "queued"
+    },
+    {
+      "id": "kr-cosmetics-shipping-2026",
+      "category": "beauty",
+      "titleHint": "韓国コスメ通販の送料と関税｜総額の確認手順",
+      "summary": "韓国コスメを通販で買う際の送料・関税・為替の確認手順を整理する",
+      "checklist": ["送料無料条件", "関税", "輸入消費税", "為替", "返品送料", "クーポン条件"],
+      "evidenceIds": ["ev-customs-jp"],
+      "keywords": ["韓国コスメ 送料", "関税"],
+      "status": "queued"
+    },
+    {
+      "id": "kr-airport-transport-2026",
+      "category": "transport",
+      "titleHint": "仁川空港からソウルへ｜交通費を総額で比べる",
+      "summary": "空港から市内への移動を運賃・時間・荷物で比較する",
+      "checklist": ["運賃", "所要時間", "乗り換え", "深夜運行", "荷物", "決済手数料"],
+      "evidenceIds": ["ev-arex-official"],
+      "keywords": ["仁川空港 交通", "AREX"],
+      "status": "queued"
+    }
+  ]
+}
