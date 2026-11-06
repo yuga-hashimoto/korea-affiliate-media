@@ -1,0 +1,23 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+.playwright/
+playwright-report/
+test-results/
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/settings.json
+# Python
+__pycache__/
+*.pyc
