@@ -25,3 +25,6 @@ data/generated/
 # Python
 __pycache__/
 *.pyc
+
+# TypeScript build info
+*.tsbuildinfo
