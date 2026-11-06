@@ -36,7 +36,6 @@ GCPのみで完結させる案も比較し、安価で運用負荷の低い方�
 `CONTENT_AUTO_PUBLISH_ENABLED=false`
 `SOCIAL_PUBLISH_ENABLED=false`
 `AFFILIATE_LINKS_ENABLED=false`
-`INGESTION_ENABLED=false`
 設定変更で即停止でき、停止時は既に公開された不正価格のキャッシュを無効化する運用を持つ。
 
 ## 未取得の権限
