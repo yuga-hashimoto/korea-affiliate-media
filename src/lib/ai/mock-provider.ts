@@ -1,4 +1,4 @@
-import type { ArticleDraft, SocialDraft } from "./schema";
+import type { ArticleDraft } from "./schema";
 import type { ArticleTopic } from "./topics";
 
 /**
@@ -57,15 +57,5 @@ export function mockArticleDraft(topic: ArticleTopic): ArticleDraft {
       "本記事はアフィリエイト広告を含む場合があります。広告の有無は記事内容に影響しません。",
     risks: [],
     confidence: "medium",
-  };
-}
-
-export function mockSocialDraft(topic: ArticleTopic): SocialDraft {
-  return {
-    text: `【韓国旅行ノート】${topic.titleHint}\n移動時間と営業時間を先に確認すると、当日の予定が組みやすくなります。\n#韓国旅行 #ソウル\nPR`,
-    articleSlug: null,
-    disclosureMode: "pr_label",
-    sourceIds: topic.evidenceIds,
-    risks: [],
   };
 }

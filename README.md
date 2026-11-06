@@ -27,6 +27,8 @@
 - **管理画面**（`ADMIN_UI_ENABLED=true` のときのみ）: `/admin`, `/admin/promotions`, `/admin/articles`, `/admin/affiliates`。
 - **旧URL**: `/korea/travel/esim` → 通信ガイド記事、`/korea/travel/airport-transport` → 空港アクセス記事、`/methodology` → 編集方針へ308転送。
 
+![ソウルのカテゴリページ（モバイル）](docs/screenshots/seoul-mobile.jpg)
+
 ## カテゴリ
 
 | カテゴリ | パス | 内容 |

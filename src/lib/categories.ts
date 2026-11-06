@@ -99,13 +99,3 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
       "サイズ表記の違い、試着と返品の条件、日本への持ち帰りと関税の注意点を紹介します。",
   },
 };
-
-export const NAV_CATEGORIES: Category[] = [
-  "seoul",
-  "busan",
-  "jeju",
-  "food",
-  "cafe",
-  "shopping",
-  "prepare",
-];
