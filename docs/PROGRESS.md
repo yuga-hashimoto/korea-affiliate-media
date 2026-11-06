@@ -57,3 +57,11 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] `scripts/audit-content.ts` / `src/lib/content/audit.ts`: 記事・出典・オファーの鮮度を監査し、更新候補（high/medium/low）を `var/reports/content-audit.json` に出力。自動書き換えは行わない。
 - [x] 初回実行: high 0 / medium 15（公開記事の出典が未レビューのため）。出典の再確認が次の更新作業であることを可視化。
 - [x] content-bot ワークフローに監査ステップを追加。
+
+## 2026-11-06 — 最終検証
+- [x] 最終CI: commit `10a6b6b` で `verify`（lint / typecheck / unit / build）と `e2e`（desktop + mobile 375px、a11y含む）が success。Playwrightブラウザのキャッシュとapt依存省略で実行時間を短縮。
+- [x] unit 78件 / E2E 30件（smoke 22 + axe 8）成功。
+- [x] SEO: 記事にFAQPage、トップにOrganization、記事OGP画像を追加。canonical/OGP/JSON-LDのE2E検証あり。
+- [x] 本番相当ビルドでサンプル価格がDOMに出ないこと、Previewがnoindexであることを確認。
+- [ ] 外部に影響する未承認作業: 本番DNS切替、既存サイトの削除/上書き、有料契約、ASP規約同意、Xへの実投稿、外部Previewデプロイ。いずれも未実施。
+- [ ] 次の推奨作業: (1) Vercelトークン設定後にPreview URLを確認 (2) 出典の再確認（監査medium 15件） (3) ASP承認後の実リンク・報酬データ投入 (4) GA4/GSC接続 (5) 条件入力による比較UI。
