@@ -5,6 +5,10 @@
 import { readJsonFile, writeJsonAtomic, appendJsonl } from "../src/lib/store";
 import { deliverPromotion } from "../src/lib/social/delivery";
 import type { Promotion } from "../src/lib/domain";
+import {
+  paidPartnershipSupported,
+  socialPublishEnabled,
+} from "../src/lib/env";
 
 async function main(): Promise<void> {
   const queue = await readJsonFile<Promotion[]>("promotions/queue.json", []);
@@ -16,11 +20,10 @@ async function main(): Promise<void> {
   }
 
   const config = {
-    enabled: process.env.SOCIAL_PUBLISH_ENABLED === "true",
+    enabled: socialPublishEnabled(),
     webhookUrl: process.env.SOCIAL_WEBHOOK_URL ?? null,
     webhookSecret: process.env.SOCIAL_WEBHOOK_SECRET ?? null,
-    paidPartnershipSupported:
-      process.env.SOCIAL_PAID_PARTNERSHIP_SUPPORTED === "true",
+    paidPartnershipSupported: paidPartnershipSupported(),
   };
 
   for (const promotion of approved) {

@@ -63,5 +63,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: `Preview deploy: ${url}\n\n- この環境は \`SITE_INDEXING_ENABLED=false\`（noindex）です。\n- サンプル価格の表示は \`NEXT_PUBLIC_DEMO_MODE\` で制御します。`
+              body: `Preview deploy: ${url}\n\n- この環境は \`SITE_INDEXING_ENABLED=false\`（noindex）です。\n- 記事・出典・広告表記と、旧URLの308転送を確認してください。`
             });

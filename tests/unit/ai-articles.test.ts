@@ -8,12 +8,12 @@ import type { ArticleTopic } from "@/lib/ai/topics";
 import { evidence } from "@/data/evidence";
 
 const topic: ArticleTopic = {
-  id: "kr-esim-compare-2026",
-  category: "esim",
-  titleHint: "韓国eSIMは「総額」で選ぶ｜比較条件の揃え方",
-  summary: "韓国旅行用eSIMの総額比較で見落としやすい条件を整理する",
-  checklist: ["日数", "データ容量", "為替と決済通貨"],
-  evidenceIds: ["ev-airalo-official"],
+  id: "seoul-area-2026",
+  category: "seoul",
+  titleHint: "ソウルのエリア選び｜明洞と弘大の違い",
+  summary: "ソウル旅行の拠点選びで見落としやすい点を整理する",
+  checklist: ["移動時間", "食事", "治安"],
+  evidenceIds: ["ev-visitkorea"],
   keywords: [],
   status: "queued",
 };
@@ -31,7 +31,7 @@ describe("validateDraft", () => {
 
   it("根拠のない数値（価格）を検出する", () => {
     const draft = mockArticleDraft(topic);
-    draft.sections[0]!.paragraphs.push("このプランは税込1,980円です。");
+    draft.sections[0]!.paragraphs.push("このプランは1,980円です。");
     const result = validateDraft(draft, topic, topicEvidence);
     expect(result.unsupportedNumbers).toContain("1,980");
     expect(result.ok).toBe(false);
@@ -65,6 +65,6 @@ describe("draftToArticle", () => {
     expect(article.status).toBe("review");
     expect(article.aiGenerated).toBe(true);
     expect(article.publishedAt).toBeNull();
-    expect(article.slug).toBe("kr-esim-compare-2026");
+    expect(article.slug).toBe("seoul-area-2026");
   });
 });

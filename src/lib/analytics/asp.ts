@@ -1,20 +1,20 @@
 import { z } from "zod";
-import type { Currency, FxRate } from "@/lib/domain";
-import { convertToJpy } from "@/lib/fx";
-import { roundMoney } from "@/lib/money";
 
 /**
  * ASP成果CSVの取り込み。
- * CSVは「見込・承認・却下・返金・支払済」を区別したまま集計する。
- * 確定報酬と見込報酬を合算しない。
+ * 「見込・承認・却下・返金・支払済」を区別したまま、通貨ごとに集計する。
+ * 為替レートを持たないため、通貨をまたいだ合算は行わない。
  */
+
+export const ASP_CURRENCIES = ["JPY", "USD", "KRW"] as const;
+export type AspCurrency = (typeof ASP_CURRENCIES)[number];
 
 export const AspRowSchema = z.object({
   externalConversionId: z.string().min(1),
   programId: z.string().min(1),
   amount: z.coerce.number().nonnegative(),
   commissionAmount: z.coerce.number().nonnegative(),
-  currency: z.enum(["JPY", "KRW", "USD"]),
+  currency: z.enum(ASP_CURRENCIES),
   status: z.enum(["pending", "approved", "rejected", "reversed", "paid"]),
   eventAt: z.string().datetime(),
   confirmedAt: z.string().datetime().nullable().default(null),
@@ -127,40 +127,48 @@ export function parseAspCsv(text: string): ParsedAspCsv {
   return { rows, errors };
 }
 
+export type CurrencyTotals = {
+  approved: number;
+  paid: number;
+  pending: number;
+  rejected: number;
+};
+
 export interface ConversionSummary {
   counts: Record<AspRow["status"], number>;
-  /** ASP通貨ごとの確定・支払済報酬（円換算） */
-  approvedJpy: number;
-  paidJpy: number;
-  pendingJpy: number;
-  rejectedJpy: number;
-  revenueJpyByProgram: Record<string, number>;
+  byCurrency: Partial<Record<AspCurrency, CurrencyTotals>>;
+  revenueByProgram: Record<string, Partial<Record<AspCurrency, number>>>;
   duplicates: string[];
-  unconvertible: Array<{ externalConversionId: string; reason: string }>;
 }
 
+const emptyTotals = (): CurrencyTotals => ({
+  approved: 0,
+  paid: 0,
+  pending: 0,
+  rejected: 0,
+});
+
 /**
- * 重複（同一 conversion_id）を排除し、確定報酬を集計する。
- * approved と paid は「確定」として扱うが、二重計上しないよう優先順位を付ける。
+ * 重複（同一 conversion_id）を排除し、通貨ごとに確定報酬を集計する。
+ * 承認状態が進んでいる行を優先する。
  */
 export function summarizeConversions(
   rows: readonly AspRow[],
-  rates: readonly FxRate[],
 ): ConversionSummary {
   const seen = new Map<string, AspRow>();
   const duplicates: string[] = [];
+  const priority: Record<AspRow["status"], number> = {
+    rejected: 0,
+    reversed: 1,
+    pending: 2,
+    approved: 3,
+    paid: 4,
+  };
+
   for (const row of rows) {
     const existing = seen.get(row.externalConversionId);
     if (existing) {
       duplicates.push(row.externalConversionId);
-      // 承認状態が進んでいる方を優先
-      const priority: Record<AspRow["status"], number> = {
-        rejected: 0,
-        reversed: 1,
-        pending: 2,
-        approved: 3,
-        paid: 4,
-      };
       if (priority[row.status] > priority[existing.status]) {
         seen.set(row.externalConversionId, row);
       }
@@ -176,51 +184,30 @@ export function summarizeConversions(
     reversed: 0,
     paid: 0,
   };
-  const revenueJpyByProgram: Record<string, number> = {};
-  const unconvertible: ConversionSummary["unconvertible"] = [];
-  let approvedJpy = 0;
-  let paidJpy = 0;
-  let pendingJpy = 0;
-  let rejectedJpy = 0;
+  const byCurrency: ConversionSummary["byCurrency"] = {};
+  const revenueByProgram: ConversionSummary["revenueByProgram"] = {};
 
   for (const row of seen.values()) {
     counts[row.status] += 1;
-    const converted = convertToJpy(row.commissionAmount, row.currency, rates);
-    if (!converted.ok) {
-      unconvertible.push({
-        externalConversionId: row.externalConversionId,
-        reason: converted.reason,
-      });
-      continue;
-    }
-    const value = roundMoney(converted.amountJpy, "JPY");
+    const totals = byCurrency[row.currency] ?? emptyTotals();
+    byCurrency[row.currency] = totals;
+
     if (row.status === "approved") {
-      approvedJpy += value;
-      revenueJpyByProgram[row.programId] =
-        (revenueJpyByProgram[row.programId] ?? 0) + value;
+      totals.approved += row.commissionAmount;
+      const program = revenueByProgram[row.programId] ?? {};
+      program[row.currency] = (program[row.currency] ?? 0) + row.commissionAmount;
+      revenueByProgram[row.programId] = program;
     } else if (row.status === "paid") {
-      paidJpy += value;
-      revenueJpyByProgram[row.programId] =
-        (revenueJpyByProgram[row.programId] ?? 0) + value;
+      totals.paid += row.commissionAmount;
+      const program = revenueByProgram[row.programId] ?? {};
+      program[row.currency] = (program[row.currency] ?? 0) + row.commissionAmount;
+      revenueByProgram[row.programId] = program;
     } else if (row.status === "pending") {
-      pendingJpy += value;
-    } else if (row.status === "rejected" || row.status === "reversed") {
-      rejectedJpy += value;
+      totals.pending += row.commissionAmount;
+    } else {
+      totals.rejected += row.commissionAmount;
     }
   }
 
-  return {
-    counts,
-    approvedJpy,
-    paidJpy,
-    pendingJpy,
-    rejectedJpy,
-    revenueJpyByProgram,
-    duplicates,
-    unconvertible,
-  };
-}
-
-export function assertCurrency(value: string): Currency {
-  return z.enum(["JPY", "KRW", "USD"]).parse(value);
+  return { counts, byCurrency, revenueByProgram, duplicates };
 }

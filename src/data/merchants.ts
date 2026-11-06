@@ -1,9 +1,9 @@
 import type { Merchant } from "@/lib/domain";
 
 /**
- * 事業者マスタ。
- * 実在事業者は「公式ページへのリンクのみ」。価格・在庫・提携条件は未確認。
- * サンプル事業者は表示検証専用で、実在の企業ではない。
+ * 事業者マスタ。提携プログラムの対象になり得る事業者と、
+ * 記事の参照元として使う公的・公式サイトを記録する。
+ * 提携条件・料率・掲載許可はすべて未確認。
  */
 export const merchants: Merchant[] = [
   {
@@ -12,7 +12,7 @@ export const merchants: Merchant[] = [
     siteUrl: "https://www.airalo.com/",
     country: "SG",
     dataPolicy: "unknown",
-    notes: "提携プログラムの条件・掲載可否は未確認（docs/04）。",
+    notes: "提携プログラムの条件・掲載可否は未確認。",
   },
   {
     id: "klook",
@@ -79,6 +79,22 @@ export const merchants: Merchant[] = [
     notes: "観光情報の参照元。転載許諾は別途確認。",
   },
   {
+    id: "seoulmetro",
+    name: "ソウル交通公社",
+    siteUrl: "https://www.seoulmetro.co.kr/jp/",
+    country: "KR",
+    dataPolicy: "link_only",
+    notes: "路線・運賃の参照元。",
+  },
+  {
+    id: "korail",
+    name: "KORAIL（韓国鉄道公社）",
+    siteUrl: "https://www.letskorail.com/",
+    country: "KR",
+    dataPolicy: "link_only",
+    notes: "KTX・列車の予約と時刻の参照元。",
+  },
+  {
     id: "customs-jp",
     name: "税関（財務省）",
     siteUrl: "https://www.customs.go.jp/",
@@ -93,77 +109,5 @@ export const merchants: Merchant[] = [
     country: "JP",
     dataPolicy: "link_only",
     notes: "ステルスマーケティング規制などの一次情報。",
-  },
-  {
-    id: "sample-esim-a",
-    name: "サンプルeSIM事業者A",
-    siteUrl: "https://example.com/sample/esim-a",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-esim-b",
-    name: "サンプルeSIM事業者B",
-    siteUrl: "https://example.com/sample/esim-b",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-esim-c",
-    name: "サンプルeSIM事業者C",
-    siteUrl: "https://example.com/sample/esim-c",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-hotel-a",
-    name: "サンプルホテル予約A",
-    siteUrl: "https://example.com/sample/hotel-a",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-hotel-b",
-    name: "サンプルホテル予約B",
-    siteUrl: "https://example.com/sample/hotel-b",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-store-a",
-    name: "サンプルコスメ通販A",
-    siteUrl: "https://example.com/sample/store-a",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-store-b",
-    name: "サンプルコスメ通販B",
-    siteUrl: "https://example.com/sample/store-b",
-    country: "JP",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-transport-a",
-    name: "サンプル空港交通A",
-    siteUrl: "https://example.com/sample/transport-a",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
-  },
-  {
-    id: "sample-transport-b",
-    name: "サンプル空港交通B",
-    siteUrl: "https://example.com/sample/transport-b",
-    country: "KR",
-    dataPolicy: "unknown",
-    notes: "SAMPLE: 表示検証用の架空事業者。実在しない。",
   },
 ];

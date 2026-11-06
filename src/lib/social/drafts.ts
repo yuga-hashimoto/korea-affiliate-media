@@ -29,9 +29,9 @@ export function buildSocialDraft(
   const { article, siteUrl } = input;
   const maxLength = options.maxLength ?? MAX_LENGTH;
   const url = `${siteUrl}/articles/${article.slug}`;
-  const prefix = "【総額比較】";
+  const prefix = "【韓国旅行ノート】";
   const pr = "\nPR";
-  const hashtags = "\n#韓国旅行 #総額比較";
+  const hashtags = "\n#韓国旅行 #ソウル";
 
   const available = maxLength - prefix.length - pr.length - hashtags.length - url.length - 4;
   const bodySource = `${article.title}。${article.description}`;

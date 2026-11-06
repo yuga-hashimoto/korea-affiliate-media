@@ -2,49 +2,44 @@ import { describe, expect, it } from "vitest";
 import {
   articleList,
   evidenceList,
-  offerList,
+  merchantList,
   programList,
-  fxRateList,
   publishedArticles,
 } from "@/data";
+import { CATEGORY_META } from "@/lib/categories";
+import { BANNED_PHRASES } from "@/lib/ai/policy";
 
 describe("データ整合性", () => {
-  it("オファーIDが重複しない", () => {
-    const ids = offerList.map((o) => o.id);
-    expect(new Set(ids).size).toBe(ids.length);
+  it("記事スラッグが重複しない", () => {
+    const slugs = articleList.map((a) => a.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
   });
 
-  it("全てのオファーが実在する証跡を参照する", () => {
+  it("全ての記事が実在する出典を参照する", () => {
     const ids = new Set(evidenceList.map((e) => e.id));
-    for (const o of offerList) {
-      expect(ids.has(o.evidenceId), o.id).toBe(true);
+    for (const article of articleList) {
+      for (const id of article.evidenceIds) {
+        expect(ids.has(id), `${article.slug}: ${id}`).toBe(true);
+      }
     }
   });
 
-  it("サンプル価格には sample=true が付く", () => {
-    for (const o of offerList.filter((x) => x.priceBasis === "sample")) {
-      expect(o.sample, o.id).toBe(true);
-    }
-  });
-
-  it("公開記事は出典と更新日時を持つ", () => {
+  it("公開記事はレビュー日時・更新日時・説明を持つ", () => {
     for (const article of publishedArticles) {
-      expect(article.evidenceIds.length, article.slug).toBeGreaterThan(0);
-      expect(article.updatedAt, article.slug).toBeTruthy();
       expect(article.reviewedAt, article.slug).not.toBeNull();
+      expect(article.updatedAt, article.slug).toBeTruthy();
+      expect(article.description.length, article.slug).toBeGreaterThan(20);
+      expect(article.sections.length, article.slug).toBeGreaterThanOrEqual(2);
     }
   });
 
-  it("下書き記事は公開一覧に含まれない", () => {
-    const drafts = articleList.filter((a) => a.status === "draft");
-    expect(drafts.length).toBeGreaterThan(0);
-    for (const draft of drafts) {
-      expect(publishedArticles.some((a) => a.slug === draft.slug)).toBe(false);
+  it("カテゴリはすべて表示メタデータを持つ", () => {
+    for (const article of articleList) {
+      expect(CATEGORY_META[article.category], article.category).toBeDefined();
     }
   });
 
-  it("公開記事に禁止表現（未検証の「最安」等）が含まれない", () => {
-    const banned = ["最安値", "必ず稼げる", "No.1", "実際に使ってみた", "絶対"];
+  it("公開記事に禁止表現（未検証の断定など）が含まれない", () => {
     for (const article of publishedArticles) {
       const text = [
         article.title,
@@ -52,7 +47,7 @@ describe("データ整合性", () => {
         ...article.sections.flatMap((s) => [s.heading, ...s.paragraphs]),
         ...article.faq.flatMap((f) => [f.question, f.answer]),
       ].join("\n");
-      for (const word of banned) {
+      for (const word of BANNED_PHRASES) {
         expect(text.includes(word), `${article.slug} に「${word}」`).toBe(false);
       }
     }
@@ -66,9 +61,15 @@ describe("データ整合性", () => {
     }
   });
 
-  it("為替レートは正の値", () => {
-    for (const rate of fxRateList) {
-      expect(rate.rate).toBeGreaterThan(0);
+  it("事業者IDは一意で、プログラムの参照先が存在する", () => {
+    const ids = new Set(merchantList.map((m) => m.id));
+    expect(ids.size).toBe(merchantList.length);
+    for (const program of programList) {
+      expect(ids.has(program.merchantId), program.merchantId).toBe(true);
     }
+  });
+
+  it("記事は1件以上公開されている", () => {
+    expect(publishedArticles.length).toBeGreaterThanOrEqual(10);
   });
 });

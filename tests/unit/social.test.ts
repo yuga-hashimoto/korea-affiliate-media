@@ -11,7 +11,7 @@ const article: Article = {
   title: "韓国eSIMの総額比較｜価格だけで選ばないための確認項目",
   description:
     "韓国旅行用eSIMを「表示価格」ではなく総支払額で比べる方法を解説。為替・税・手数料・有効期限・端末対応の確認手順をまとめます。",
-  category: "esim",
+  category: "seoul",
   status: "published",
   aiGenerated: false,
   reviewedAt: "2026-11-06T09:00:00.000Z",
@@ -21,7 +21,9 @@ const article: Article = {
   sections: [{ heading: "見出し", paragraphs: ["本文です。"] }],
   faq: [],
   related: [],
+  tags: [],
   hubPath: null,
+  imageAlt: null,
 };
 
 function promotion(overrides: Partial<Promotion> = {}): Promotion {
@@ -30,7 +32,6 @@ function promotion(overrides: Partial<Promotion> = {}): Promotion {
     channel: "x",
     content: "【総額比較】テスト投稿\nhttps://sougakuhikaku.com/articles/x\nPR",
     articleSlug: "x",
-    offerIds: [],
     disclosureMode: "pr_label",
     status: "approved",
     scheduledAt: null,

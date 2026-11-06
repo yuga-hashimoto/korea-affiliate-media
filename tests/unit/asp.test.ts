@@ -1,17 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { parseAspCsv, parseCsv, summarizeConversions } from "@/lib/analytics/asp";
-import type { FxRate } from "@/lib/domain";
-
-const rates: FxRate[] = [
-  {
-    base: "USD",
-    quote: "JPY",
-    rate: 150,
-    observedAt: "2026-11-06T00:00:00.000Z",
-    source: "test",
-    sourceUrl: null,
-  },
-];
 
 const csv = `conversion_id,program_id,amount,commission,currency,status,event_at,confirmed_at
 c1,prog-a,10000,500,JPY,approved,2026-11-01T00:00:00.000Z,2026-11-03T00:00:00.000Z
@@ -43,28 +31,32 @@ describe("summarizeConversions", () => {
   const parsed = parseAspCsv(csv);
 
   it("重複IDを排除し、状態の進んだ行を優先する", () => {
-    const summary = summarizeConversions(parsed.rows, rates);
+    const summary = summarizeConversions(parsed.rows);
     expect(summary.duplicates).toContain("c1");
     expect(summary.counts.paid).toBe(1);
     expect(summary.counts.approved).toBe(1);
   });
 
-  it("確定報酬・見込・却下を分けて集計する", () => {
-    const summary = summarizeConversions(parsed.rows, rates);
-    // c4: USD 6 × 150 = 900円（approved）, c1 は paid を優先
-    expect(summary.approvedJpy).toBe(900);
-    expect(summary.paidJpy).toBe(500);
-    expect(summary.pendingJpy).toBe(1000);
-    expect(summary.rejectedJpy).toBe(1500);
-    expect(summary.revenueJpyByProgram["prog-a"]).toBe(500);
-    expect(summary.revenueJpyByProgram["prog-b"]).toBe(900);
+  it("通貨ごとに確定・見込・却下を分けて集計する", () => {
+    const summary = summarizeConversions(parsed.rows);
+    expect(summary.byCurrency.JPY).toEqual({
+      approved: 0,
+      paid: 500,
+      pending: 1000,
+      rejected: 1500,
+    });
+    expect(summary.byCurrency.USD).toEqual({
+      approved: 6,
+      paid: 0,
+      pending: 0,
+      rejected: 0,
+    });
+    expect(summary.revenueByProgram["prog-a"]?.JPY).toBe(500);
+    expect(summary.revenueByProgram["prog-b"]?.USD).toBe(6);
   });
 
-  it("為替がない通貨は未換算として残し、0円にしない", () => {
-    const summary = summarizeConversions(parsed.rows, []);
-    expect(summary.unconvertible.map((item) => item.externalConversionId)).toContain("c4");
-    // USDの承認分は換算できないため0円として扱わない（paidのJPY分のみ）
-    expect(summary.approvedJpy).toBe(0);
-    expect(summary.paidJpy).toBe(500);
+  it("通貨をまたいだ合算をしない", () => {
+    const summary = summarizeConversions(parsed.rows);
+    expect(Object.keys(summary.byCurrency).sort()).toEqual(["JPY", "USD"]);
   });
 });

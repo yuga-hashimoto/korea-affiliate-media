@@ -1,9 +1,11 @@
+> **2026-11-06 方針更新**: 「総額比較エンジン」は廃止し、韓国旅行メディアへ転換しました（[ADR-0004](adr/0004-pivot-to-korea-travel-media.md)）。本文の比較前提は履歴として参照し、現行仕様は README・ADR-0004・`src/` を参照してください。
+
 # テスト計画と受け入れ基準
 
-## 2026-11-06 実行結果サマリ
-- 合格: unit 73件（計算・UNKNOWN・クーポン・為替・順位・リダイレクト・冪等・CSV・取り込み・生成検証）、E2E 30件（desktop/mobile 375px、smoke 22 + axe 8）、lint/typecheck/build。
-- 合格: Preview noindex、`/go` のallowlist、サンプル価格の本番非表示、法的表示ページの存在。
-- BLOCKED（資格情報・承認が必要）: 外部Previewデプロイ、GA4/GSC実データ検証、ASP成果の実連携、Buffer公式API、本番DNS切替、旧サイトの実バックアップ。
+## 2026-11-06 実行結果サマリ（旅行メディア版）
+- 合格: unit 36件（ASP集計・レポート・AI生成検証・鮮度監査・記事データ整合性・SNS配信）、E2E 32件（desktop/mobile 375px、smoke 24 + axe 8）、lint/typecheck/build。
+- 合格: Preview noindex、旧URLの308転送、記事の出典・確認日時表示、カテゴリ絞り込み・検索、375pxの横スクロールなし。
+- BLOCKED（資格情報・承認が必要）: 外部Previewデプロイ、GA4/GSC実データ検証、ASP成果の実連携、Buffer公式API、本番DNS切替、旧サイトの実バックアップ・記事削除。
 - NOT RUN: Lighthouse実測（CI環境のため）、実端末スクリーンリーダー、負荷試験。
 
 ## 原則

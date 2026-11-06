@@ -3,9 +3,9 @@ import { PageHeader } from "@/components/page-header";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "プライバシーポリシー｜総額比較",
+  title: "プライバシーポリシー",
   description:
-    "総額比較のプライバシーポリシー。取得する情報、利用目的、アクセス解析、Cookie、匿名クリック計測、お問い合わせ情報の扱いを説明します。",
+    "韓国旅行ノートのプライバシーポリシー。取得する情報、利用目的、アクセス解析、Cookie、お問い合わせ情報の扱いを説明します。",
   alternates: { canonical: "/privacy" },
 };
 
@@ -31,13 +31,6 @@ export default function PrivacyPage() {
             Google Analytics 4 を利用する場合、Cookie等により匿名の利用状況を計測します。
             IPアドレスの匿名化設定を行い、個人を特定する目的では利用しません。
             ブラウザの設定によりCookieを無効化できます。
-          </p>
-
-          <h2>外部リンクのクリック計測</h2>
-          <p>
-            外部リンクのクリック時に、リンク先の識別子・参照ページ・日付・匿名化したセッションキーを記録します。
-            IPアドレスやUser-Agentそのものは保存せず、日替わりのソルトを用いたハッシュのみを保持します。
-            この計測は、外部サイトへの遷移を妨げません。
           </p>
 
           <h2>アフィリエイトプログラム</h2>

@@ -3,28 +3,28 @@ import { PageHeader } from "@/components/page-header";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "編集方針｜総額比較",
+  title: "編集方針",
   description:
-    "総額比較の編集方針。一次情報の確認、AI生成コンテンツの扱い、広告と編集の分離、訂正と更新のルールを公開します。",
+    "韓国旅行ノートの編集方針。情報の確認方法、AI生成コンテンツの扱い、広告と編集の分離、訂正と更新のルールを公開します。",
   alternates: { canonical: "/editorial-policy" },
 };
 
 const policies = [
   {
     title: "一次情報を優先する",
-    body: "価格・条件・制度は、販売事業者や公的機関の公式情報を優先します。出典URLと確認日時を記録し、確認できない値は掲載しません。",
+    body: "営業時間・料金・交通・制度は、事業者や公的機関の公式情報を優先します。出典URLと確認日時を記録し、確認できない情報は掲載しません。",
   },
   {
     title: "体験を装わない",
-    body: "現地取材・購入・利用をしていないサービスについて「使ってみた」「実際に泊まった」などの表現を使いません。体験談が必要な記事は、実際の確認が取れるまで公開しません。",
+    body: "現地取材・購入・利用をしていない場所について「実際に行ってみた」「泊まってみた」などの表現を使いません。体験談が必要な記事は、実際の確認が取れるまで公開しません。",
   },
   {
     title: "AI生成コンテンツの扱い",
-    body: "AIは下書き・要約・検査の補助に使用します。AIが生成した数値は、検証済みデータと照合できない限り公開しません。AI生成の記事には表示を行い、公開前に人的レビューを必須とします。",
+    body: "AIは下書き・要約・検査の補助に使用します。AIが生成した内容は、検証済みの情報と照合できない限り公開しません。AI生成の記事には表示を行い、公開前に人のレビューを必須とします。",
   },
   {
     title: "広告と編集の分離",
-    body: "アフィリエイト報酬は順位に影響しません。広告リンクには広告であることを示し、PR表記を行います。広告主の都合による事実の書き換えは行いません。",
+    body: "アフィリエイト報酬は記事内容や紹介順に影響しません。広告リンクには広告であることを示し、PR表記を行います。広告主の都合による事実の書き換えは行いません。",
   },
   {
     title: "訂正と更新",
@@ -32,7 +32,7 @@ const policies = [
   },
   {
     title: "表現の制約",
-    body: "化粧品の効能効果について医療的な断定表現を用いません。価格・割引についても、確認できた範囲を超えた「最安」「必ず」といった表現を使いません。",
+    body: "化粧品の効能効果について医療的な断定表現を用いません。飲食店・観光地についても、確認できた範囲を超えた「必ず」「日本一」といった表現を使いません。",
   },
 ];
 
@@ -41,8 +41,8 @@ export default function EditorialPolicyPage() {
     <>
       <PageHeader
         eyebrow="編集方針"
-        title="読者の判断に使える情報だけを載せる"
-        lead="当サイトは、価格の安さだけでなく、条件・根拠・更新日時を重視します。不確実な情報は公開せず、確認できた範囲を明示します。"
+        title="読者の旅に役立つ情報だけを載せる"
+        lead="当サイトは、アクセスの多さより、情報の正確さ・更新日時・前提条件を重視します。不確実な情報は公開せず、確認できた範囲を明示します。"
         meta={<span>最終更新: 2026-11-06</span>}
       />
       <div className="container-page py-8">
@@ -61,12 +61,32 @@ export default function EditorialPolicyPage() {
           <ul className="mt-3 space-y-2">
             <li>
               <a
-                href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing"
+                href="https://japanese.visitkorea.or.kr/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-700 underline"
               >
-                消費者庁: ステルスマーケティングに関する考え方
+                韓国観光公社（VisitKorea）
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.airport.kr/ap_jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-700 underline"
+              >
+                仁川国際空港 公式サイト
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.seoulmetro.co.kr/jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brand-700 underline"
+              >
+                ソウル交通公社
               </a>
             </li>
             <li>
@@ -76,17 +96,17 @@ export default function EditorialPolicyPage() {
                 rel="noopener noreferrer"
                 className="text-brand-700 underline"
               >
-                税関: 輸出入の手続き・税に関する情報
+                税関（財務省）
               </a>
             </li>
             <li>
               <a
-                href="https://help.x.com/ja/rules-and-policies/paid-partnerships-policy"
+                href="https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-brand-700 underline"
               >
-                X: 有料パートナーシップポリシー
+                消費者庁: ステルスマーケティングに関する考え方
               </a>
             </li>
           </ul>

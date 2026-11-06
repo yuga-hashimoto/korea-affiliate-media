@@ -13,7 +13,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl()),
   title: {
-    default: `${SITE.name}｜韓国旅行・韓国コスメの総額比較`,
+    default: `${SITE.name}｜ソウル・釜山・済州の旅行ガイド`,
     template: `%s｜${SITE.name}`,
   },
   description: SITE.description,
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ja_JP",
     siteName: SITE.name,
-    title: `${SITE.name}｜韓国旅行・韓国コスメの総額比較`,
+    title: `${SITE.name}｜ソウル・釜山・済州の旅行ガイド`,
     description: SITE.description,
     url: siteUrl(),
     images: [
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         url: "/og-default.png",
         width: 1200,
         height: 630,
-        alt: "総額比較｜韓国旅行・韓国コスメの総額比較",
+        alt: "韓国旅行ノート｜ソウル・釜山・済州の旅行ガイド",
       },
     ],
   },

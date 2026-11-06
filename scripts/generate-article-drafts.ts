@@ -7,7 +7,10 @@
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { openRouterConfig } from "../src/lib/env";
+import {
+  contentAutoPublishEnabled,
+  openRouterConfig,
+} from "../src/lib/env";
 import { evidenceList } from "../src/data/index";
 import { ArticleTopicSchema, type ArticleTopic } from "../src/lib/ai/topics";
 import {
@@ -56,7 +59,7 @@ async function readGenerated(): Promise<GeneratedRecord[]> {
 }
 
 async function main(): Promise<void> {
-  const autoPublish = process.env.CONTENT_AUTO_PUBLISH_ENABLED === "true";
+  const autoPublish = contentAutoPublishEnabled();
   const limit = Number(process.env.ARTICLE_DRAFTS_PER_RUN ?? "2");
   const config = openRouterConfig();
   const provider = config ? "openrouter" : "mock";
@@ -110,7 +113,7 @@ async function main(): Promise<void> {
         provider !== "mock" &&
         validation.ok &&
         validation.score >= 85 &&
-        evidence.every((e) => e.reviewStatus === "verified" && !e.sample);
+        evidence.every((e) => e.reviewStatus === "verified");
 
       const record: GeneratedRecord = {
         topicId: topic.id,

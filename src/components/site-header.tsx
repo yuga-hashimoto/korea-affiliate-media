@@ -1,11 +1,13 @@
 import Link from "next/link";
 
 const nav = [
-  { href: "/korea/travel", label: "韓国旅行" },
-  { href: "/korea/beauty", label: "韓国コスメ" },
-  { href: "/korea/fashion", label: "ファッション" },
-  { href: "/articles", label: "記事" },
-  { href: "/methodology", label: "比較手法" },
+  { href: "/korea/travel/seoul", label: "ソウル" },
+  { href: "/korea/travel/busan", label: "釜山" },
+  { href: "/korea/travel/jeju", label: "済州島" },
+  { href: "/korea/food", label: "グルメ" },
+  { href: "/korea/cafe", label: "カフェ" },
+  { href: "/korea/shopping", label: "買い物" },
+  { href: "/korea/travel/prepare", label: "旅の準備" },
 ];
 
 export function SiteHeader() {
@@ -17,10 +19,10 @@ export function SiteHeader() {
           className="flex items-baseline gap-2 no-underline"
         >
           <span className="text-lg font-bold tracking-tight text-slate-900">
-            総額比較
+            韓国旅行ノート
           </span>
-          <span className="hidden text-xs text-slate-500 sm:inline">
-            韓国旅行・韓国コスメ
+          <span className="hidden text-xs text-slate-500 lg:inline">
+            SEOUL / BUSAN / JEJU
           </span>
         </Link>
 

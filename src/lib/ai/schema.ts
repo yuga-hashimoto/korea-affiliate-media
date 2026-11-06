@@ -4,7 +4,19 @@ import { z } from "zod";
 export const ArticleDraftSchema = z.object({
   title: z.string().min(10).max(80),
   description: z.string().min(40).max(160),
-  category: z.enum(["esim", "hotel", "transport", "beauty", "fashion", "experience"]),
+  category: z.enum([
+    "seoul",
+    "busan",
+    "jeju",
+    "food",
+    "cafe",
+    "shopping",
+    "transport",
+    "hotel",
+    "prepare",
+    "beauty",
+    "fashion",
+  ]),
   sections: z
     .array(
       z.object({

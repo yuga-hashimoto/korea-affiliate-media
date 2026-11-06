@@ -6,15 +6,15 @@ import type { ArticleTopic } from "./topics";
 
 export const PROMPT_VERSION = "2026-11-06.1";
 
-export const ARTICLE_SYSTEM_PROMPT = `あなたは日本の旅行・コスメ比較メディアの編集者です。
-与えられた「事実データ」だけを根拠に、日本語の記事下書きをJSONで作成してください。
+export const ARTICLE_SYSTEM_PROMPT = `あなたは日本の韓国旅行メディアの編集者です。
+与えられた「事実データ」だけを根拠に、日本語の旅行記事の下書きをJSONで作成してください。
 
 厳守事項:
-- 事実データにない価格・割引率・在庫・体験談・数値を一切書かない。
-- 「最安」「No.1」「必ず」「実際に使ってみた」など、根拠のない断定や体験の装いを書かない。
+- 事実データにない料金・営業時間・日程・体験談・数値を一切書かない。
+- 「絶対に行くべき」「必ず楽しめる」「実際に行ってみた」など、根拠のない断定や体験の装いを書かない。
 - 医療・美容の効能効果を断定しない（薬機法・景表法に配慮）。
-- 比較条件（日程・人数・容量・通貨・税の扱い）を本文で明示する。
-- 不明な項目はUNKNOWNとして扱い、0円と書かない。
+- 移動時間・営業時間・料金は変動する前提で書き、公式情報の確認を促す。
+- 読者が次の行動を取れるように、持ち物・順番・注意点を具体的に示す。
 - 広告・アフィリエイトに関する説明を disclosure に含める。
 - 出力は指定JSONスキーマのみ。前後に文章を付けない。`;
 
@@ -23,7 +23,7 @@ export function buildUserPrompt(
   evidence: readonly SourceEvidence[],
 ): string {
   return JSON.stringify({
-    task: "記事下書きの作成",
+    task: "韓国旅行ガイドの下書き作成",
     topic: {
       id: topic.id,
       category: topic.category,
@@ -37,7 +37,7 @@ export function buildUserPrompt(
       sourceUrl: e.sourceUrl,
       checkedAt: e.checkedAt,
       note: e.note,
-      sample: e.sample,
+      reviewStatus: e.reviewStatus,
     })),
     outputSchema: {
       title: "string(10-80)",
@@ -118,7 +118,7 @@ export function validateDraft(
   if (totalParagraphs >= 6) score += 20;
   if (draft.faq.length >= 2) score += 15;
   if (draft.sourceIds.length >= 1) score += 15;
-  if (evidence.length >= 1 && evidence.every((e) => !e.sample)) score += 5;
+  if (evidence.length >= 1 && evidence.every((e) => e.reviewStatus === "verified")) score += 5;
   if (draft.risks.length === 0) score += 10;
   if (draft.confidence === "high") score += 5;
   if (issues.length > 0) score = Math.min(score, 40);
@@ -160,7 +160,9 @@ export function draftToArticle(
     sections: draft.sections,
     faq: draft.faq,
     related: [],
+    tags: [],
     hubPath: null,
+    imageAlt: null,
   };
 }
 

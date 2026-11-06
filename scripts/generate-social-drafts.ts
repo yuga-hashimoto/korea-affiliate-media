@@ -42,7 +42,6 @@ async function main(): Promise<void> {
       channel: "x",
       content: draft.text,
       articleSlug: article.slug,
-      offerIds: [],
       disclosureMode: "pr_label",
       status: "needs_review",
       scheduledAt: null,

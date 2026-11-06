@@ -10,10 +10,11 @@ function flag(name: string, fallback = false): boolean {
 }
 
 export const SITE = {
-  name: "総額比較",
-  tagline: "韓国旅行・韓国コスメの「実際に払う額」を比較",
+  /** 暫定ブランド名。正式名称は公開前に決定できる（1箇所の変更で反映）。 */
+  name: "韓国旅行ノート",
+  tagline: "ソウル・釜山・済州をもっと楽しむ旅行メディア",
   description:
-    "韓国旅行・ホテル・eSIM・韓国コスメの総支払額を、送料・税金・手数料・為替まで含めて比較する日本語メディアです。UNKNOWNはUNKNOWNのまま表示し、出典と確認日時を明記します。",
+    "韓国旅行をもっと楽しくする日本語メディア。ソウル・釜山・済州のエリアガイド、グルメ、カフェ、買い物、交通、宿泊、旅の準備を、確認日時つきで紹介します。",
   productionUrl: "https://sougakuhikaku.com",
   xHandle: "@bts_95_y",
 } as const;
@@ -32,11 +33,6 @@ export function indexingEnabled(): boolean {
   return flag("SITE_INDEXING_ENABLED", false);
 }
 
-/** 提携リンクを実際に配信するか。承認 + 明示設定が必要。 */
-export function affiliateLinksEnabled(): boolean {
-  return flag("AFFILIATE_LINKS_ENABLED", false);
-}
-
 export function socialPublishEnabled(): boolean {
   return flag("SOCIAL_PUBLISH_ENABLED", false);
 }
@@ -45,23 +41,8 @@ export function contentAutoPublishEnabled(): boolean {
   return flag("CONTENT_AUTO_PUBLISH_ENABLED", false);
 }
 
-export function ingestionEnabled(): boolean {
-  return flag("INGESTION_ENABLED", false);
-}
-
 export function adminUiEnabled(): boolean {
   return flag("ADMIN_UI_ENABLED", false);
-}
-
-/**
- * 表示検証用のサンプル価格を描画するか。
- * 本番では明示的に true にしない限り無効。
- */
-export function demoMode(): boolean {
-  const raw = process.env.NEXT_PUBLIC_DEMO_MODE;
-  if (raw === "true") return true;
-  if (raw === "false") return false;
-  return process.env.NODE_ENV !== "production";
 }
 
 export function ga4MeasurementId(): string | null {
@@ -76,20 +57,10 @@ export function openRouterConfig(): { apiKey: string; model: string } | null {
   return { apiKey, model };
 }
 
-export function bufferConfig(): {
-  accessToken: string;
-  xChannelId: string;
-} | null {
-  const accessToken = process.env.BUFFER_ACCESS_TOKEN;
-  const xChannelId = process.env.BUFFER_X_CHANNEL_ID;
-  if (!accessToken || !xChannelId) return null;
-  return { accessToken, xChannelId };
-}
-
 /**
  * X の Paid Partnership 開示設定を API 経由で保証できることが
  * 確認できるまで false。true にするには公式仕様の確認が必要。
  */
 export function paidPartnershipSupported(): boolean {
-  return flag("BUFFER_PAID_PARTNERSHIP_SUPPORTED", false);
+  return flag("SOCIAL_PAID_PARTNERSHIP_SUPPORTED", false);
 }

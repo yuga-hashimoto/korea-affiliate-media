@@ -1,70 +1,61 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("主要ページ", () => {
-  test("トップページが表示される", async ({ page }) => {
+  test("トップページが旅行メディアとして表示される", async ({ page }) => {
     await page.goto("/");
-    await expect(page).toHaveTitle(/総額比較/);
+    await expect(page).toHaveTitle(/韓国旅行ノート/);
     await expect(
-      page.getByRole("heading", { level: 1, name: /実際に払う総額/ }),
+      page.getByRole("heading", { level: 1, name: /次の休みは/ }),
     ).toBeVisible();
-    await expect(page.getByRole("navigation", { name: "メインナビゲーション" })).toHaveCount(
-      page.viewportSize() && page.viewportSize()!.width >= 768 ? 1 : 0,
+    await expect(page.getByRole("link", { name: /ソウル旅行ガイド/ })).toBeVisible();
+    await expect(page.getByText("目的地から探す")).toBeVisible();
+  });
+
+  test("ソウルカテゴリに記事が表示される", async ({ page }) => {
+    await page.goto("/korea/travel/seoul");
+    await expect(
+      page.getByRole("heading", { level: 1, name: "ソウル" }),
+    ).toBeVisible();
+    await expect(page.getByRole("article").first()).toBeVisible();
+  });
+
+  test("記事ページに本文・出典・関連記事が表示される", async ({ page }) => {
+    await page.goto("/articles/korea-travel-checklist");
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(
+      "韓国旅行チェックリスト",
+    );
+    await expect(page.getByText(/参照元・確認日時/)).toBeVisible();
+    await expect(page.getByText(/よくある質問/)).toBeVisible();
+  });
+
+  test("記事一覧をカテゴリで絞り込める", async ({ page }) => {
+    await page.goto("/articles?category=cafe");
+    await expect(page.getByText(/件$/).first()).toBeVisible();
+    const cards = page.getByRole("article");
+    expect(await cards.count()).toBeGreaterThan(0);
+    await expect(
+      page
+        .getByRole("navigation", { name: "カテゴリで絞り込む" })
+        .getByRole("link", { name: "カフェ" }),
+    ).toHaveAttribute("aria-current", "page");
+  });
+
+  test("記事検索が機能する", async ({ page }) => {
+    await page.goto("/articles?q=カフェ");
+    await expect(page.getByText(/「カフェ」の検索結果/)).toBeVisible();
+  });
+
+  test("旧・通信ページは記事へリダイレクトされる", async ({ request }) => {
+    const response = await request.get("/korea/travel/esim", { maxRedirects: 0 });
+    expect([307, 308]).toContain(response.status());
+    expect(response.headers()["location"]).toContain(
+      "/articles/korea-esim-wifi-guide",
     );
   });
 
-  test("eSIM比較ページに総額・内訳・出典が表示される", async ({ page }, testInfo) => {
-    await page.goto("/korea/travel/esim");
-    await expect(
-      page.getByRole("heading", { level: 1, name: /韓国eSIMの総額比較/ }),
-    ).toBeVisible();
-    await expect(page.getByText("サンプル").first()).toBeVisible();
-    if (testInfo.project.name === "desktop-chromium") {
-      await expect(page.getByRole("table")).toBeVisible();
-    } else {
-      await expect(page.getByRole("article").first()).toBeVisible();
-    }
-    await expect(page.getByText("UNKNOWN").first()).toBeVisible();
-    const detail = page.getByRole("main").locator("details:visible").first();
-    await detail.locator("summary").click();
-    await expect(detail.getByText(/計算式:/)).toBeVisible();
-    await expect(detail.getByText(/確認日時:/)).toBeVisible();
-  });
-
-  test("サンプルデータでは「総額最安」と断定しない", async ({ page }) => {
-    await page.goto("/korea/travel/esim");
-    await expect(page.getByText("この条件での総額最安は")).toHaveCount(0);
-  });
-
-  test("記事ページが表示され、下書きは404になる", async ({ page }) => {
-    await page.goto("/articles/korea-esim-total-cost");
-    await expect(page.getByRole("heading", { level: 1 })).toContainText("韓国eSIM");
-    const response = await page.goto("/articles/korea-sale-calendar");
+  test("存在しない記事は404", async ({ page }) => {
+    const response = await page.goto("/articles/not-a-real-article");
     expect(response?.status()).toBe(404);
-  });
-
-  test("比較APIがJSONを返す", async ({ request }) => {
-    const response = await request.get("/api/v1/comparisons?category=esim");
-    expect(response.status()).toBe(200);
-    const body = await response.json();
-    expect(body.category).toBe("esim");
-    expect(Array.isArray(body.offers)).toBe(true);
-    expect(body.demoMode).toBe(true);
-  });
-
-  test("/go の外部リダイレクトが登録済みオファーで307になる", async ({ request }) => {
-    const response = await request.get("/go/off-esim-a", { maxRedirects: 0 });
-    expect(response.status()).toBe(307);
-    expect(response.headers()["location"]).toMatch(/^https:\/\//);
-    expect(response.headers()["x-robots-tag"]).toContain("noindex");
-  });
-
-  test("未登録の /go は404、外部URLを指定できない", async ({ request }) => {
-    const response = await request.get("/go/../../etc/passwd", { maxRedirects: 0 });
-    expect([400, 404]).toContain(response.status());
-    const open = await request.get("/go/off-esim-a?url=https://evil.example", {
-      maxRedirects: 0,
-    });
-    expect(open.headers()["location"]).not.toContain("evil.example");
   });
 
   test("Previewではnoindex", async ({ page }) => {
@@ -82,21 +73,28 @@ test.describe("主要ページ", () => {
       /127\.0\.0\.1:4400/,
     );
     await expect(page.locator('meta[property="og:title"]')).toHaveCount(1);
+    await expect(page.locator('meta[property="og:image"]')).toHaveCount(1);
     const jsonLd = await page.locator('script[type="application/ld+json"]').count();
     expect(jsonLd).toBeGreaterThan(0);
+  });
+
+  test("robots.txt は Preview で全面Disallow", async ({ request }) => {
+    const response = await request.get("/robots.txt");
+    const body = await response.text();
+    expect(body).toContain("Disallow: /");
   });
 });
 
 test.describe("レスポンシブ", () => {
   test("モバイル幅で横スクロールが発生しない", async ({ page }, testInfo) => {
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto("/korea/travel/esim");
-    const overflow = await page.evaluate(() => {
-      return document.documentElement.scrollWidth - window.innerWidth;
-    });
+    await page.goto("/korea/travel/seoul");
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth,
+    );
     expect(overflow).toBeLessThanOrEqual(1);
     await page.screenshot({
-      path: testInfo.outputPath("esim-mobile.png"),
+      path: testInfo.outputPath("seoul-mobile.png"),
       fullPage: true,
     });
   });

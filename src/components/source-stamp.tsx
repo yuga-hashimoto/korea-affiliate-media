@@ -21,11 +21,6 @@ export function SourceStamp({
       </a>
       <span className="mx-1">/</span>
       確認日時: <time dateTime={evidence.checkedAt}>{formatJstDateTime(evidence.checkedAt)}</time>
-      {evidence.sample ? (
-        <span className="ml-2 rounded bg-amber-100 px-1.5 py-0.5 font-semibold text-amber-900">
-          SAMPLE
-        </span>
-      ) : null}
       {stale ? (
         <span className="ml-2 rounded bg-red-100 px-1.5 py-0.5 font-semibold text-red-800">
           要再確認

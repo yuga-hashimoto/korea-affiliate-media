@@ -1,36 +1,46 @@
 import { describe, expect, it } from "vitest";
-import { buildDailyReport, summarizeClicks } from "@/lib/analytics/report";
-import type { ClickRecord } from "@/lib/analytics/report";
+import { buildDailyReport } from "@/lib/analytics/report";
+import type { AspRow } from "@/lib/analytics/asp";
+import { summarizeConversions } from "@/lib/analytics/asp";
 
-const clicks: ClickRecord[] = [
-  { offerId: "a", articleId: null, channel: "x", day: "2026-11-05", createdAt: "" },
-  { offerId: "a", articleId: null, channel: "search", day: "2026-11-05", createdAt: "" },
-  { offerId: "b", articleId: null, channel: "x", day: "2026-11-06", createdAt: "" },
+const conversions: AspRow[] = [
+  {
+    externalConversionId: "c1",
+    programId: "prog-a",
+    amount: 10000,
+    commissionAmount: 500,
+    currency: "JPY",
+    status: "approved",
+    eventAt: "2026-11-05T00:00:00.000Z",
+    confirmedAt: "2026-11-06T00:00:00.000Z",
+    source: "test",
+  },
 ];
-
-describe("summarizeClicks", () => {
-  it("オファー・チャネル・日別に集計する", () => {
-    const summary = summarizeClicks(clicks);
-    expect(summary.total).toBe(3);
-    expect(summary.byOffer[0]).toEqual({ offerId: "a", count: 2 });
-    expect(summary.byChannel[0]).toEqual({ channel: "x", count: 2 });
-    expect(summary.byDay.map((d) => d.day)).toEqual(["2026-11-05", "2026-11-06"]);
-  });
-});
 
 describe("buildDailyReport", () => {
   it("成果CSV未取り込みを0円と表現しない", () => {
     const report = buildDailyReport({
       date: "2026-11-06",
-      clicks,
       conversions: null,
-      staleOffers: 1,
+      staleContent: 1,
       pendingPromotions: 2,
-      ingestionStatus: "未実行",
     });
     expect(report).toContain("成果CSVが未取り込み");
-    expect(report).toContain("合計: 3件");
-    expect(report).toContain("再確認が必要なオファー: 1件");
-    expect(report).not.toContain("確定報酬（approved+paid）: ¥0");
+    expect(report).toContain("再確認が必要な記事・出典: 1件");
+    expect(report).not.toContain("確定 0");
+  });
+
+  it("通貨ごとに確定・見込を分けて表示する", () => {
+    const report = buildDailyReport({
+      date: "2026-11-06",
+      conversions: {
+        rows: conversions,
+        summary: summarizeConversions(conversions),
+      },
+      staleContent: 0,
+      pendingPromotions: 0,
+    });
+    expect(report).toContain("JPY: 確定 500 / 見込 0 / 却下・返金 0");
+    expect(report).toContain("通貨が異なる成果は合算していません");
   });
 });

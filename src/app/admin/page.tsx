@@ -4,11 +4,7 @@ import { notFound } from "next/navigation";
 import { adminUiEnabled } from "@/lib/env";
 import { readJsonFile } from "@/lib/store";
 import type { Promotion } from "@/lib/domain";
-import {
-  programList,
-  offerList,
-  generatedRecords,
-} from "@/data";
+import { programList, publishedArticles, generatedRecords } from "@/data";
 
 export const dynamic = "force-dynamic";
 
@@ -64,7 +60,7 @@ export default async function AdminIndexPage() {
         ))}
       </div>
       <p className="mt-8 text-xs text-slate-500">
-        登録オファー数: {offerList.length} ／ 停止スイッチの状態は環境変数で確認してください。
+        公開記事数: {publishedArticles.length} ／ 停止スイッチの状態は環境変数で確認してください。
       </p>
     </div>
   );

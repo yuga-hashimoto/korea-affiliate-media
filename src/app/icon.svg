@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="総額比較">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="韓国旅行ノート">
   <rect width="64" height="64" rx="14" fill="#0f766e"/>
-  <path d="M16 44V20h7.5l6 12 6-12H43v24h-6.5V31.5L31 43h-3l-5.5-11.5V44H16z" fill="#ffffff"/>
+  <path d="M32 12c8.3 0 15 6.7 15 15 0 10.5-15 25-15 25S17 37.5 17 27c0-8.3 6.7-15 15-15z" fill="#ffffff"/>
+  <circle cx="32" cy="27" r="5.5" fill="#0f766e"/>
+  <path d="M22 46l7-7 4 4 9-10" fill="none" stroke="#5eead4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { SITE } from "@/lib/env";
 
 const links = [
-  { href: "/methodology", label: "比較手法・計算式" },
+  { href: "/korea/travel", label: "旅行ガイド" },
+  { href: "/articles", label: "記事一覧" },
   { href: "/editorial-policy", label: "編集方針" },
   { href: "/disclosure", label: "広告表記" },
   { href: "/about", label: "運営者情報" },
@@ -17,12 +18,11 @@ export function SiteFooter() {
         <div>
           <p className="text-base font-bold text-slate-900">{SITE.name}</p>
           <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-            韓国旅行・韓国コスメの「実際に支払う総額」を比較するメディアです。
-            価格・在庫・割引は変動するため、必ずリンク先の最新条件をご確認ください。
-            未確認の項目は UNKNOWN として表示し、0円としては扱いません。
+            ソウル・釜山・済州の旅をもっと楽しくする日本語メディアです。
+            営業時間・料金・交通情報は変動するため、お出かけ前に公式サイトで最新情報をご確認ください。
           </p>
           <p className="mt-3 text-xs text-slate-500">
-            本サイトはアフィリエイト広告を利用する場合があります。広告の有無は比較順位の根拠ではありません。
+            本サイトはアフィリエイト広告を利用する場合があります。広告の有無は記事内容や紹介順の根拠ではありません。
           </p>
         </div>
         <nav aria-label="フッターナビゲーション">

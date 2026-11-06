@@ -2,101 +2,100 @@ import type { SourceEvidence } from "@/lib/domain";
 
 const CHECKED_AT = "2026-11-06T09:00:00.000Z";
 
-function sampleEvidence(id: string, label: string): SourceEvidence {
+function official(
+  id: string,
+  sourceUrl: string,
+  sourceType: SourceEvidence["sourceType"],
+  note: string,
+): SourceEvidence {
   return {
     id,
-    sourceUrl: `https://example.com/sample/${id}`,
-    sourceType: "manual_observation",
-    accessPermitted: "yes",
+    sourceUrl,
+    sourceType,
+    accessPermitted: "unknown",
     checkedAt: CHECKED_AT,
     observedTextHash: null,
-    note: `SAMPLE: ${label}。表示検証用の架空データで、実在の価格・在庫ではありません。`,
-    reviewStatus: "verified",
-    sample: true,
+    note,
+    reviewStatus: "unreviewed",
   };
 }
 
+/**
+ * 参照元。記事の事実確認に使う公式サイトを記録する。
+ * accessPermitted=unknown は「引用・取得の許諾を確認していない」意味で、
+ * 本文の転載や自動収集には使わない（リンクと要約のみ）。
+ */
 export const evidence: SourceEvidence[] = [
-  sampleEvidence("ev-sample-esim", "eSIM比較UIの検証用サンプル"),
-  sampleEvidence("ev-sample-hotel", "ホテル比較UIの検証用サンプル"),
-  sampleEvidence("ev-sample-beauty", "コスメ比較UIの検証用サンプル"),
-  sampleEvidence("ev-sample-transport", "空港交通比較UIの検証用サンプル"),
-  {
-    id: "ev-airalo-official",
-    sourceUrl: "https://www.airalo.com/",
-    sourceType: "official_page",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "公式トップのみ確認。料金表・提携条件・API仕様は未確認のため自動取得しない。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-arex-official",
-    sourceUrl: "https://www.arex.or.kr/",
-    sourceType: "official_page",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "空港鉄道の公式サイト。運賃・時刻表は公式で確認する。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-customs-jp",
-    sourceUrl: "https://www.customs.go.jp/",
-    sourceType: "public_regulation",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "輸入時の税・手続きの一次情報。制度は変更されるため最新の公式情報を確認する。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-tripcom-official",
-    sourceUrl: "https://jp.trip.com/",
-    sourceType: "official_page",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "Trip.comの公式ページ。手数料・税の表示条件は確定画面で確認する。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-caa-stealth",
-    sourceUrl:
-      "https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing",
-    sourceType: "public_regulation",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "ステルスマーケティング規制（景品表示法）の公式解説。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-x-paid-partnership",
-    sourceUrl: "https://help.x.com/ja/rules-and-policies/paid-partnerships-policy",
-    sourceType: "official_page",
-    accessPermitted: "unknown",
-    checkedAt: CHECKED_AT,
-    observedTextHash: null,
-    note: "Xの有料パートナーシップ開示ポリシー。自動投稿の可否判定に使用。",
-    reviewStatus: "unreviewed",
-    sample: false,
-  },
-  {
-    id: "ev-stale-oliveyoung",
-    sourceUrl: "https://global.oliveyoung.com/",
-    sourceType: "official_page",
-    accessPermitted: "unknown",
-    checkedAt: "2026-09-01T00:00:00.000Z",
-    observedTextHash: null,
-    note: "確認が古い証跡の例。再確認まで順位付けに使用しない。",
-    reviewStatus: "stale",
-    sample: false,
-  },
+  official(
+    "ev-visitkorea",
+    "https://japanese.visitkorea.or.kr/",
+    "official_page",
+    "韓国観光公社の公式観光情報。エリア・イベント・交通の確認に使用。",
+  ),
+  official(
+    "ev-visitkorea-busan",
+    "https://japanese.visitkorea.or.kr/",
+    "official_page",
+    "釜山の観光情報。公式ページで最新の営業・イベント情報を確認する。",
+  ),
+  official(
+    "ev-visit-jeju",
+    "https://www.visitjeju.net/jp",
+    "official_page",
+    "済州観光公社の公式サイト。アクセス・観光地の確認に使用。",
+  ),
+  official(
+    "ev-incheon-airport",
+    "https://www.airport.kr/ap_jp/",
+    "official_page",
+    "仁川国際空港の公式サイト。ターミナル・交通・施設の確認に使用。",
+  ),
+  official(
+    "ev-arex",
+    "https://www.arex.or.kr/",
+    "official_page",
+    "空港鉄道AREXの公式サイト。運賃・時刻は公式で確認する。",
+  ),
+  official(
+    "ev-seoulmetro",
+    "https://www.seoulmetro.co.kr/jp/",
+    "official_page",
+    "ソウル交通公社の公式サイト。路線・運賃・利用案内の確認に使用。",
+  ),
+  official(
+    "ev-korail",
+    "https://www.letskorail.com/",
+    "official_page",
+    "韓国鉄道公社（KORAIL）の公式サイト。KTX・列車の予約と時刻の確認に使用。",
+  ),
+  official(
+    "ev-kma",
+    "https://www.kma.go.kr/",
+    "official_page",
+    "韓国気象庁。季節・気温・降水の確認に使用（旅行日の天気は直前に確認）。",
+  ),
+  official(
+    "ev-oliveyoung",
+    "https://global.oliveyoung.com/",
+    "official_page",
+    "OLIVE YOUNG Globalの公式サイト。取扱商品・配送条件の確認に使用。",
+  ),
+  official(
+    "ev-customs-jp",
+    "https://www.customs.go.jp/",
+    "public_regulation",
+    "税関の公式情報。輸入品の税・手続きの確認に使用（制度は変更される）。",
+  ),
+  official(
+    "ev-caa-stealth",
+    "https://www.caa.go.jp/policies/policy/representation/fair_labeling/faq/stealth_marketing",
+    "public_regulation",
+    "消費者庁のステルスマーケティング規制に関する解説。",
+  ),
+  official(
+    "ev-x-paid-partnership",
+    "https://help.x.com/ja/rules-and-policies/paid-partnerships-policy",
+    "official_page",
+    "Xの有料パートナーシップ開示ポリシー。",
+  ),
 ];

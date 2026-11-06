@@ -1,22 +1,15 @@
 import Link from "next/link";
 import type { Article } from "@/lib/domain";
+import { CATEGORY_META } from "@/lib/categories";
 import { formatJstDate } from "@/lib/dates";
 import { Badge } from "./badge";
 
-const CATEGORY_LABEL: Record<Article["category"], string> = {
-  esim: "eSIM",
-  hotel: "ホテル",
-  transport: "交通",
-  beauty: "コスメ",
-  fashion: "ファッション",
-  experience: "旅行準備",
-};
-
 export function ArticleCard({ article }: { article: Article }) {
+  const meta = CATEGORY_META[article.category];
   return (
     <article className="card flex h-full flex-col p-5">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge tone="brand">{CATEGORY_LABEL[article.category]}</Badge>
+        <Badge tone="brand">{meta.short}</Badge>
         {article.status === "draft" ? <Badge tone="amber">下書き</Badge> : null}
         {article.aiGenerated ? <Badge tone="slate">AI下書き</Badge> : null}
       </div>

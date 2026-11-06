@@ -3,9 +3,9 @@ import { PageHeader } from "@/components/page-header";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ｜総額比較",
+  title: "お問い合わせ",
   description:
-    "総額比較へのお問い合わせ、掲載情報の訂正依頼、取材・提携に関するご連絡について。",
+    "韓国旅行ノートへのお問い合わせ、掲載情報の訂正依頼、取材・提携に関するご連絡について。",
   alternates: { canonical: "/contact" },
 };
 
@@ -15,7 +15,7 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="お問い合わせ"
         title="掲載情報の訂正・ご意見をお寄せください"
-        lead="価格や条件の誤り、リンク切れ、掲載に関するご指摘を受け付けます。確認のうえ、必要に応じて記事を更新します。"
+        lead="営業時間・料金・交通などの誤り、リンク切れ、掲載に関するご指摘を受け付けます。確認のうえ、必要に応じて記事を更新します。"
       />
       <div className="container-page py-8">
         <Breadcrumbs items={[{ href: "/contact", label: "お問い合わせ" }]} />

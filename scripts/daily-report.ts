@@ -3,29 +3,22 @@
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
-import { readJsonl, readJsonFile } from "../src/lib/store";
-import { offerList, evidenceList, fxRateList } from "../src/data/index";
-import {
-  parseAspCsv,
-  summarizeConversions,
-  type AspRow,
-  type ConversionSummary,
-} from "../src/lib/analytics/asp";
-import {
-  buildDailyReport,
-  type ClickRecord,
-} from "../src/lib/analytics/report";
-import { isPast, isStale, tokyoDayKey } from "../src/lib/dates";
+import { readJsonFile } from "../src/lib/store";
+import { articleList, evidenceList } from "../src/data/index";
+import { parseAspCsv, summarizeConversions } from "../src/lib/analytics/asp";
+import { buildDailyReport } from "../src/lib/analytics/report";
+import { tokyoDayKey } from "../src/lib/dates";
+import { auditContent } from "../src/lib/content/audit";
 import type { Promotion } from "../src/lib/domain";
 
 async function main(): Promise<void> {
   const now = new Date();
   const day = tokyoDayKey(now);
-  const month = day.slice(0, 7);
 
-  const clicks = await readJsonl<ClickRecord>(`analytics/clicks-${month}.jsonl`);
-
-  let conversions: { rows: AspRow[]; summary: ConversionSummary } | null = null;
+  let conversions: {
+    rows: ReturnType<typeof parseAspCsv>["rows"];
+    summary: ReturnType<typeof summarizeConversions>;
+  } | null = null;
   try {
     const csv = await readFile(
       path.join(process.env.DATA_DIR ?? path.join(process.cwd(), "var"), "asp/conversions.csv"),
@@ -34,7 +27,7 @@ async function main(): Promise<void> {
     const parsed = parseAspCsv(csv);
     conversions = {
       rows: parsed.rows,
-      summary: summarizeConversions(parsed.rows, fxRateList),
+      summary: summarizeConversions(parsed.rows),
     };
     if (parsed.errors.length > 0) {
       console.warn(`[report] ASP CSV に ${parsed.errors.length}件のエラー行があります`);
@@ -43,33 +36,20 @@ async function main(): Promise<void> {
     if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
   }
 
-  const staleOffers = offerList.filter((offer) => {
-    const evidence = evidenceList.find((item) => item.id === offer.evidenceId);
-    return (
-      isPast(offer.expiresAt, now) ||
-      (evidence ? evidence.reviewStatus === "stale" || isStale(evidence.checkedAt, now) : true)
-    );
-  }).length;
+  const staleContent = auditContent(articleList, evidenceList, { now }).filter(
+    (finding) => finding.severity !== "low",
+  ).length;
 
   const promotions = await readJsonFile<Promotion[]>("promotions/queue.json", []);
   const pendingPromotions = promotions.filter(
     (promotion) => promotion.status === "needs_review",
   ).length;
 
-  const ingestion = await readJsonFile<{ status: string; at: string } | null>(
-    "ingestion/last-run.json",
-    null,
-  );
-
   const report = buildDailyReport({
     date: day,
-    clicks,
     conversions,
-    staleOffers,
+    staleContent,
     pendingPromotions,
-    ingestionStatus: ingestion
-      ? `${ingestion.status}（${ingestion.at}）`
-      : "未実行（INGESTION_ENABLED=false）",
   });
 
   const dir = path.join(

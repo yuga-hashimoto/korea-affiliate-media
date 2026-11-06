@@ -2,7 +2,7 @@
   "name": "korea-affiliate-media",
   "version": "0.1.0",
   "private": true,
-  "description": "総額比較｜韓国旅行・韓国コスメの総支払額比較メディア",
+  "description": "韓国旅行ノート — ソウル・釜山・済州の旅行メディア",
   "packageManager": "pnpm@10.28.2",
   "engines": {
     "node": ">=20.9.0"
@@ -16,10 +16,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e": "playwright test",
-    "jobs:ingest": "tsx scripts/run-ingestion.ts",
     "jobs:social-draft": "tsx scripts/generate-social-drafts.ts",
     "jobs:report": "tsx scripts/daily-report.ts",
-    "jobs:fx": "tsx scripts/refresh-fx.ts",
     "jobs:article-draft": "tsx scripts/generate-article-drafts.ts",
     "social:approve": "tsx scripts/approve-promotion.ts",
     "social:publish": "tsx scripts/publish-approved.ts",

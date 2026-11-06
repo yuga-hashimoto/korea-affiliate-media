@@ -3,12 +3,12 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { articleList, evidenceList, offerList } from "../src/data/index";
+import { articleList, evidenceList } from "../src/data/index";
 import { auditContent } from "../src/lib/content/audit";
 
 async function main(): Promise<void> {
   const now = new Date();
-  const findings = auditContent(articleList, evidenceList, offerList, { now });
+  const findings = auditContent(articleList, evidenceList, { now });
   const summary = {
     generatedAt: now.toISOString(),
     counts: {
@@ -32,7 +32,7 @@ async function main(): Promise<void> {
   );
   for (const finding of findings.slice(0, 20)) {
     console.log(
-      `- [${finding.severity}] ${finding.kind} ${finding.slug ?? finding.offerId}: ${finding.message}`,
+      `- [${finding.severity}] ${finding.kind} ${finding.slug ?? "（記事なし）"}: ${finding.message}`,
     );
   }
 }

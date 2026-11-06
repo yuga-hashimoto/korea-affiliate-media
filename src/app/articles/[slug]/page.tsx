@@ -13,9 +13,9 @@ import { DisclosureNote } from "@/components/disclosure-note";
 import { SourceStamp } from "@/components/source-stamp";
 import { ArticleCard } from "@/components/article-card";
 import { JsonLd } from "@/components/json-ld";
+import { CATEGORY_META } from "@/lib/categories";
 import { formatJstDate } from "@/lib/dates";
-import { siteUrl } from "@/lib/env";
-import { SITE } from "@/lib/env";
+import { SITE, siteUrl } from "@/lib/env";
 
 export const dynamicParams = false;
 
@@ -64,6 +64,7 @@ export default async function ArticlePage({
   const article = getPublishedArticle(slug);
   if (!article) notFound();
 
+  const meta = CATEGORY_META[article.category];
   const evidence = article.evidenceIds
     .map((id) => evidenceList.find((e) => e.id === id))
     .filter((e): e is NonNullable<typeof e> => Boolean(e));
@@ -110,7 +111,13 @@ export default async function ArticlePage({
               name: "記事",
               item: `${siteUrl()}/articles`,
             },
-            { "@type": "ListItem", position: 3, name: article.title },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: meta.label,
+              item: `${siteUrl()}${meta.href}`,
+            },
+            { "@type": "ListItem", position: 4, name: article.title },
           ],
         }}
       />
@@ -118,13 +125,16 @@ export default async function ArticlePage({
         <Breadcrumbs
           items={[
             { href: "/articles", label: "記事" },
+            { href: meta.href, label: meta.label },
             { href: `/articles/${article.slug}`, label: article.title },
           ]}
         />
 
         <article className="mx-auto max-w-3xl">
           <div className="flex flex-wrap gap-2">
-            <Badge tone="brand">韓国{article.category === "beauty" ? "コスメ" : article.category === "hotel" ? "ホテル" : article.category === "esim" ? "eSIM" : article.category === "fashion" ? "ファッション" : "旅行"}</Badge>
+            <Link href={meta.href} className="no-underline">
+              <Badge tone="brand">{meta.label}</Badge>
+            </Link>
             {article.aiGenerated ? <Badge tone="slate">AI生成（レビュー済み）</Badge> : null}
           </div>
           <h1 className="mt-3 text-2xl leading-tight sm:text-3xl">{article.title}</h1>
@@ -162,9 +172,25 @@ export default async function ArticlePage({
             </section>
           ) : null}
 
+          {article.tags.length > 0 ? (
+            <section className="mt-8">
+              <h2 className="text-sm font-semibold text-slate-600">タグ</h2>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {article.tags.map((tag) => (
+                  <li key={tag}>
+                    <Badge tone="slate">{tag}</Badge>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           {evidence.length > 0 ? (
             <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-5">
               <h2 className="text-base">参照元・確認日時</h2>
+              <p className="mt-1 text-xs leading-5 text-slate-500">
+                本文は公式情報を確認して作成しています。内容の転載は行わず、リンクと要約で紹介します。
+              </p>
               <ul className="mt-3 space-y-3">
                 {evidence.map((item) => (
                   <li key={item.id}>
@@ -178,7 +204,7 @@ export default async function ArticlePage({
           {article.hubPath ? (
             <p className="mt-8 text-sm">
               <Link href={article.hubPath} className="text-brand-700 underline">
-                比較ページを見る →
+                関連するガイドを見る →
               </Link>
             </p>
           ) : null}

@@ -1,7 +1,12 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const pages = ["/", "/korea/travel/esim", "/articles/korea-esim-total-cost", "/methodology"];
+const pages = [
+  "/",
+  "/korea/travel/seoul",
+  "/articles/korea-travel-checklist",
+  "/editorial-policy",
+];
 
 for (const path of pages) {
   test(`${path} に重大なアクセシビリティ違反がない`, async ({ page }) => {

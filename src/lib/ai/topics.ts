@@ -2,7 +2,19 @@ import { z } from "zod";
 
 export const ArticleTopicSchema = z.object({
   id: z.string().min(1),
-  category: z.enum(["esim", "hotel", "transport", "beauty", "fashion", "experience"]),
+  category: z.enum([
+    "seoul",
+    "busan",
+    "jeju",
+    "food",
+    "cafe",
+    "shopping",
+    "transport",
+    "hotel",
+    "prepare",
+    "beauty",
+    "fashion",
+  ]),
   titleHint: z.string().min(10).max(80),
   summary: z.string().min(20),
   checklist: z.array(z.string().min(2)).min(2),

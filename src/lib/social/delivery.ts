@@ -34,7 +34,6 @@ export interface DeliveryPayload {
   disclosure: Promotion["disclosureMode"];
   idempotencyKey: string;
   articleSlug: string | null;
-  offerIds: string[];
 }
 
 export function buildPayload(promotion: Promotion): DeliveryPayload {
@@ -45,7 +44,6 @@ export function buildPayload(promotion: Promotion): DeliveryPayload {
     disclosure: promotion.disclosureMode,
     idempotencyKey: `promo:${promotion.contentHash}`,
     articleSlug: promotion.articleSlug,
-    offerIds: promotion.offerIds,
   };
 }
 
