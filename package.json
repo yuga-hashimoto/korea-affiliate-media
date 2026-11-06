@@ -23,7 +23,8 @@
     "jobs:article-draft": "tsx scripts/generate-article-drafts.ts",
     "social:approve": "tsx scripts/approve-promotion.ts",
     "social:publish": "tsx scripts/publish-approved.ts",
-    "jobs:weekly-report": "tsx scripts/weekly-report.ts"
+    "jobs:weekly-report": "tsx scripts/weekly-report.ts",
+    "jobs:audit": "tsx scripts/audit-content.ts"
   },
   "dependencies": {
     "next": "16.4.5",

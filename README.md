@@ -135,6 +135,7 @@ pnpm social:publish          # SOCIAL_PUBLISH_ENABLED=true + Webhook設定時の
 pnpm jobs:report             # 日次レポート（var/reports/）
 pnpm jobs:weekly-report      # 週次レポート
 pnpm jobs:ingest             # 許諾済みフィードの取り込み（既定OFF）
+pnpm jobs:audit              # 公開記事・出典・オファーの鮮度監査（更新候補の出力）
 ```
 
 - 生成物の公開は既定で停止しています（`CONTENT_AUTO_PUBLISH_ENABLED=false` / `SOCIAL_PUBLISH_ENABLED=false`）。

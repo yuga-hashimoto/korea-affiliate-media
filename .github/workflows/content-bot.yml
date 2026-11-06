@@ -51,6 +51,9 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
         run: pnpm jobs:social-draft
 
+      - name: Content freshness audit
+        run: pnpm jobs:audit
+
       - name: Daily report
         run: pnpm jobs:report
 
