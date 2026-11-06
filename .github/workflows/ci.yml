@@ -60,8 +60,15 @@ jobs:
           cache: pnpm
       - name: Install
         run: pnpm install --frozen-lockfile
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps chromium
+        timeout-minutes: 10
+        run: pnpm exec playwright install chromium
       - name: E2E (desktop + mobile 375px)
         run: pnpm e2e
       - name: Upload Playwright report
