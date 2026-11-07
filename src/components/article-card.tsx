@@ -9,8 +9,8 @@ export function ArticleCard({ article }: { article: Article }) {
     <article className="card group flex h-full flex-col border-2 border-ink p-5 transition hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-ink)]">
       <div className="flex items-center justify-between gap-2">
         <span className="rounded-full border border-ink bg-butter px-3 py-1 text-[11px] font-black text-ink">
-          <span className="kr">{meta.kr}</span>
-          <span className="ml-1 text-[10px] text-ink/75">{meta.short}</span>
+          {meta.short}
+          <span className="kr ml-1 text-[10px] font-bold text-ink/75">{meta.kr}</span>
         </span>
         {article.aiGenerated ? (
           <span className="text-[10px] font-semibold text-slate-600">AI下書き</span>
@@ -29,8 +29,8 @@ export function ArticleCard({ article }: { article: Article }) {
       </p>
       <div className="mt-4 flex items-center justify-between gap-2 text-[11px] text-slate-600">
         <span>更新: {formatJstDate(article.updatedAt)}</span>
-        <span className="kr text-xs font-black text-brand-700" aria-hidden="true">
-          보기 →
+        <span className="text-xs font-black text-brand-700" aria-hidden="true">
+          読む <span className="kr">→</span>
         </span>
       </div>
     </article>

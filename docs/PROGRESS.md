@@ -127,3 +127,16 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] unit 38件 / E2E 30件 / lint / typecheck / build / 静的export 成功。
 - [x] Preview: https://preview.sougakuhikaku.pages.dev （deployment `c3bf817b`）。
 - [x] 本番: https://sougakuhikaku.com （deployment `ca9b99d4`）。フォント・画像・旧URL308・robotsを確認。
+
+## 2026-11-07 — 言語バランス調整（日本語主体・韓国語アクセント）
+- ユーザー指摘: 「韓国語が多すぎる。ヘッダーが韓国語しかないのはダメ」。
+- [x] ヘッダーを日本語主導に変更: ナビは「ソウル／釜山／済州島／グルメ／カフェ／買い物／旅の準備」を主表示、韓国語（서울 등）は小さなアクセントに。
+- [x] トップバー・ロゴ・モバイルメニュー・フッターも日本語を主、韓国語を従に変更。
+- [x] ヒーローのステッカーを「週末はソウル」＋韓国語小さく、サブコピーも日本語を主に。
+- [x] セクション見出しは「旅行先」「今週のおすすめ」「テーマ」「はじめての韓国」「新着」など日本語＋韓国語アクセントに。
+- [x] カテゴリタイル・記事カードのタグも日本語を主、韓国語を小さく。
+- [x] 装飾のハングル（巨大ウォーターマーク・ロゴの「한」）は aria-hidden の装飾として維持。
+- [x] コントラスト調整（opacityを外す）を行い、axe（WCAG AA）主要4ページで違反0件。
+- [x] unit 38件 / E2E 30件 / lint / typecheck / build / 静的export 成功。
+- [x] Preview: https://preview.sougakuhikaku.pages.dev （deployment `402c9107`）。
+- [x] 本番: https://sougakuhikaku.com （deployment `1463bb4f`）。

@@ -47,19 +47,19 @@ const quickCategories: Array<{ category: Category; bg: string }> = [
 
 const facts = [
   { kr: "통화", label: "通貨", value: "KRW", note: "韓国ウォン" },
-  { kr: "시차", label: "時差", value: "없음", note: "日本と同じ" },
+  { kr: "시차", label: "時差", value: "なし", note: "日本と同じ" },
   { kr: "전압", label: "電圧", value: "220V", note: "C・Fタイプ" },
-  { kr: "언어", label: "言語", value: "한국어", note: "韓国語" },
+  { kr: "언어", label: "言語", value: "韓国語", note: "한국어" },
 ];
 
 const ticker = [
   "SEOUL",
-  "부산",
+  "釜山",
   "JEJU",
-  "맛집",
-  "카페",
-  "쇼핑",
-  "여행 준비",
+  "グルメ",
+  "カフェ",
+  "ショッピング",
+  "旅の準備",
   "KOREA TRAVEL",
 ];
 
@@ -122,16 +122,19 @@ export default function HomePage() {
 
         <div className="container-page relative flex min-h-[560px] flex-col justify-end pb-24 pt-20 sm:min-h-[640px] sm:pb-28">
           <span className="sticker w-fit -rotate-3 bg-sun text-ink">
-            <span className="kr">주말엔 서울</span>
-            <span className="text-[9px] text-ink/75">WEEKEND IN SEOUL</span>
+            <span>週末はソウル</span>
+            <span className="kr text-[9px] font-bold text-ink/75">주말엔 서울</span>
           </span>
           <h1 className="mt-5 max-w-2xl text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
             週末は、
             <br />
             ソウル。
           </h1>
-          <p className="kr mt-3 text-sm font-bold text-brand-200 sm:text-base">
-            서울에서 만나요 · ソウルで会いましょう
+          <p className="mt-3 text-sm font-bold text-brand-200 sm:text-base">
+            ソウルで会いましょう
+            <span className="kr ml-2 text-[11px] font-semibold text-brand-200/80">
+              서울에서 만나요
+            </span>
           </p>
           <p className="mt-4 max-w-xl text-sm leading-7 text-cream/85 sm:text-base">
             初めての韓国旅行から、週末のリピートまで。
@@ -142,15 +145,15 @@ export default function HomePage() {
               href="/korea/travel/seoul"
               className="sticker !px-6 !py-3.5 !text-sm bg-brand-700 text-white hover:bg-brand-600"
             >
-              <span className="kr">서울 가이드</span>
-              <span className="text-[10px] text-white">ソウル旅行ガイド</span>
+              <span>ソウル旅行ガイド</span>
+              <span className="kr text-[10px] text-white">서울 가이드</span>
             </Link>
             <Link
               href="/articles/seoul-2nights-3days-model-course"
               className="sticker !px-6 !py-3.5 !text-sm bg-cobalt text-white hover:bg-cobalt-dark"
             >
-              <span className="kr">2박 3일 코스</span>
-              <span className="text-[10px] text-white">2泊3日モデルコース</span>
+              <span>2泊3日モデルコース</span>
+              <span className="kr text-[10px] text-white">2박 3일 코스</span>
             </Link>
           </div>
         </div>
@@ -164,9 +167,11 @@ export default function HomePage() {
               key={fact.kr}
               className="border-l-2 border-ink/10 pl-4 first:border-l-0 first:pl-0 sm:pl-5"
             >
-              <p className="kr text-[11px] font-black text-cobalt">{fact.kr}</p>
+              <p className="text-[11px] font-black text-cobalt">{fact.label}</p>
               <p className="mt-1 text-lg font-black text-ink">{fact.value}</p>
-              <p className="text-[10px] font-semibold text-slate-600">{fact.label} / {fact.note}</p>
+              <p className="text-[10px] font-semibold text-slate-600">
+                <span className="kr">{fact.kr}</span> / {fact.note}
+              </p>
             </div>
           ))}
         </div>
@@ -194,8 +199,9 @@ export default function HomePage() {
       <section className="container-page py-14" aria-labelledby="destinations">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
-              여행지 <span className="text-slate-600">DESTINATIONS</span>
+            <p className="text-xs font-black tracking-[0.2em] text-cobalt">
+              旅行先 <span className="kr">여행지</span>{" "}
+              <span className="text-slate-600">DESTINATIONS</span>
             </p>
             <h2 id="destinations" className="mt-2 text-2xl font-black sm:text-3xl">
               今日行くなら、どこ？
@@ -226,17 +232,18 @@ export default function HomePage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent" />
                   <span className="sticker absolute left-4 top-4 -rotate-3 bg-sun text-ink">
-                    <span className="kr">인기</span>
+                    <span>人気</span>
+                    <span className="kr text-[9px] text-ink/70">인기</span>
                   </span>
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-5">
                   <div className="flex items-baseline gap-2">
-                    <span className="kr text-2xl font-black text-brand-200">{meta.kr}</span>
                     <span className="text-xl font-black text-white">{meta.label}</span>
+                    <span className="kr text-sm font-bold text-brand-200">{meta.kr}</span>
                   </div>
                   <p className="mt-2 text-xs leading-6 text-cream/85">{destination.copy}</p>
                   <p className="mt-3 inline-flex items-center gap-1 text-xs font-black text-sun">
-                    <span className="kr">가이드 보기</span> →
+                    ガイドを見る <span className="kr text-[10px] opacity-80">가이드 보기</span> →
                   </p>
                 </div>
               </Link>
@@ -249,8 +256,9 @@ export default function HomePage() {
       {featured ? (
         <section className="border-y-2 border-ink bg-[#FDF1E7] py-14" aria-labelledby="features">
           <div className="container-page">
-            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
-              이번 주 추천 <span className="text-slate-600">FEATURES</span>
+            <p className="text-xs font-black tracking-[0.2em] text-cobalt">
+              今週のおすすめ <span className="kr">이번 주 추천</span>{" "}
+              <span className="text-slate-600">FEATURES</span>
             </p>
             <h2 id="features" className="mt-2 text-2xl font-black sm:text-3xl">
               編集部の特集
@@ -270,8 +278,8 @@ export default function HomePage() {
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
                   <span className="sticker absolute left-4 top-4 -rotate-2 bg-brand-700 text-white">
-                    <span className="kr">필수</span>
-                    <span className="text-[9px] text-white">グルメ特集</span>
+                    <span>グルメ特集</span>
+                    <span className="kr text-[9px] text-white">필수</span>
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col justify-end bg-navy p-6 text-cream">
@@ -294,8 +302,11 @@ export default function HomePage() {
                       0{index + 1}
                     </span>
                     <span>
-                      <span className="kr text-[10px] font-black tracking-widest text-brand-700">
-                        {CATEGORY_META[article.category].kr}
+                      <span className="text-[10px] font-black tracking-widest text-brand-700">
+                        {CATEGORY_META[article.category].short}
+                        <span className="kr ml-1">
+                          {CATEGORY_META[article.category].kr}
+                        </span>
                       </span>
                       <span className="mt-1 block text-base font-bold leading-7 text-ink group-hover:text-cobalt">
                         {article.title}
@@ -307,20 +318,20 @@ export default function HomePage() {
                   </Link>
                 ))}
                 <div className="rounded-3xl border-2 border-ink bg-cobalt p-6 text-white shadow-[4px_4px_0_var(--color-ink)]">
-                  <p className="kr text-[10px] font-black tracking-[0.2em] text-sky">
-                    여행 팁
+                  <p className="text-[10px] font-black tracking-[0.2em] text-sky">
+                    旅のヒント <span className="kr">여행 팁</span>
                   </p>
                   <p className="mt-2 text-lg font-black leading-7">
                     はじめての韓国旅行、何から決める？
                   </p>
-                  <p className="mt-2 text-xs leading-6 text-white/85">
+                  <p className="mt-2 text-xs leading-6 text-white">
                     エリア・通信・持ち物・予算を、順番にチェックできます。
                   </p>
                   <Link
                     href="/korea/travel/prepare"
                     className="mt-4 inline-block rounded-full border-2 border-ink bg-sun px-4 py-2 text-xs font-black text-ink no-underline"
                   >
-                    준비 가이드
+                    準備ガイド
                   </Link>
                 </div>
               </div>
@@ -331,8 +342,9 @@ export default function HomePage() {
 
       {/* Categories */}
       <section className="container-page py-14" aria-labelledby="categories">
-        <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
-          테마 <span className="text-slate-600">CATEGORIES</span>
+        <p className="text-xs font-black tracking-[0.2em] text-cobalt">
+          テーマ <span className="kr">테마</span>{" "}
+          <span className="text-slate-600">CATEGORIES</span>
         </p>
         <h2 id="categories" className="mt-2 text-2xl font-black sm:text-3xl">
           テーマから探す
@@ -346,8 +358,8 @@ export default function HomePage() {
                 href={meta.href}
                 className={`group flex h-full flex-col justify-between rounded-2xl border-2 border-ink ${bg} p-5 no-underline shadow-[3px_3px_0_var(--color-ink)] transition hover:-translate-y-1 hover:rotate-1`}
               >
-                <span className="kr text-2xl font-black text-ink">{meta.kr}</span>
-                <span className="mt-6 block text-sm font-black text-ink">{meta.label}</span>
+                <span className="text-base font-black text-ink">{meta.label}</span>
+                <span className="kr mt-1 block text-xs font-bold text-ink/75">{meta.kr}</span>
                 <span className="mt-1 text-[11px] font-semibold leading-5 text-ink/75">
                   {meta.description}
                 </span>
@@ -360,8 +372,9 @@ export default function HomePage() {
       {/* Steps */}
       <section className="border-y-2 border-ink bg-sky/60 py-14" aria-labelledby="steps">
         <div className="container-page">
-          <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
-            처음 가는 한국 <span className="text-slate-600">FIRST TRIP</span>
+          <p className="text-xs font-black tracking-[0.2em] text-cobalt">
+            はじめての韓国 <span className="kr">처음 가는 한국</span>{" "}
+            <span className="text-slate-600">FIRST TRIP</span>
           </p>
           <h2 id="steps" className="mt-2 text-2xl font-black sm:text-3xl">
             はじめての韓国旅行、3ステップ
@@ -392,8 +405,11 @@ export default function HomePage() {
             ].map((step, index) => (
               <div key={step.title} className="card border-2 border-ink p-6 shadow-[4px_4px_0_var(--color-ink)]">
                 <div className="flex items-center justify-between">
-                  <span className="kr text-sm font-black text-brand-700">{step.kr}</span>
-                  <span className="kr text-3xl font-black text-cobalt">0{index + 1}</span>
+                  <span className="text-sm font-black text-brand-700">
+                    {step.kr === "지역" ? "エリア" : step.kr === "준비" ? "準備" : "当日"}
+                    <span className="kr ml-1 text-[10px] font-bold">{step.kr}</span>
+                  </span>
+                  <span className="text-3xl font-black text-cobalt">0{index + 1}</span>
                 </div>
                 <h3 className="mt-3 text-lg font-black">{step.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">{step.body}</p>
@@ -410,15 +426,16 @@ export default function HomePage() {
       <section className="container-page py-14" aria-labelledby="latest">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
-              새 글 <span className="text-slate-600">NEW POSTS</span>
+            <p className="text-xs font-black tracking-[0.2em] text-cobalt">
+              新着 <span className="kr">새 글</span>{" "}
+              <span className="text-slate-600">NEW POSTS</span>
             </p>
             <h2 id="latest" className="mt-2 text-2xl font-black sm:text-3xl">
               新着記事
             </h2>
           </div>
           <Link href="/articles" className="text-sm font-black text-cobalt underline">
-            전체 보기
+            すべて見る
           </Link>
         </div>
         <div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -436,8 +453,8 @@ export default function HomePage() {
           </span>
           <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="kr text-[10px] font-black tracking-[0.22em] text-white">
-                FOLLOW US
+              <p className="text-[10px] font-black tracking-[0.22em] text-white">
+                FOLLOW US <span className="kr">· 팔로우</span>
               </p>
               <h2 className="mt-2 text-2xl font-black text-white">
                 ソウル旅のヒントを、毎週。

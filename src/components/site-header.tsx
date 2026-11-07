@@ -20,7 +20,7 @@ function LogoMark() {
           "conic-gradient(from 180deg, var(--color-brand-600) 0 50%, var(--color-cobalt) 50% 100%)",
       }}
     >
-      <span className="kr text-lg font-black">한</span>
+      <span className="kr text-lg font-black" lang="ko">한</span>
     </span>
   );
 }
@@ -30,12 +30,15 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40">
       <div className="bg-cobalt text-white">
         <div className="container-page flex h-8 items-center justify-between text-[11px]">
-          <p className="kr font-bold tracking-wide">
-            서울 · 부산 · 제주 <span className="mx-1 opacity-60">|</span> 한국 여행 가이드
+          <p className="font-bold tracking-wide">
+            ソウル・釜山・済州の旅行ガイド
+            <span className="kr ml-2 text-[10px] font-semibold opacity-75">
+              서울 · 부산 · 제주
+            </span>
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/korea/travel/prepare" className="kr font-bold no-underline hover:underline">
-              여행 준비
+            <Link href="/korea/travel/prepare" className="font-bold no-underline hover:underline">
+              旅の準備
             </Link>
             <a
               href="https://x.com/bts_95_y"
@@ -54,11 +57,11 @@ export function SiteHeader() {
           <Link href="/" className="flex items-center gap-3 no-underline">
             <LogoMark />
             <span className="flex flex-col leading-tight">
-              <span className="kr text-[1.15rem] font-black tracking-tight text-ink">
-                한국여행노트
-              </span>
-              <span className="text-[10px] font-bold tracking-[0.14em] text-cobalt">
+              <span className="text-[1.05rem] font-black tracking-tight text-ink">
                 韓国旅行ノート
+              </span>
+              <span className="kr text-[10px] font-bold tracking-[0.14em] text-cobalt">
+                한국여행노트
               </span>
             </span>
           </Link>
@@ -71,11 +74,11 @@ export function SiteHeader() {
                     href={item.href}
                     className="group flex min-w-[3.6rem] flex-col items-center rounded-xl px-2 py-1.5 no-underline hover:bg-butter"
                   >
-                    <span className="kr text-[15px] font-black leading-none text-ink group-hover:text-cobalt">
-                      {item.kr}
-                    </span>
-                    <span className="mt-1 text-[10px] font-semibold text-slate-600">
+                    <span className="text-[13px] font-black leading-none text-ink group-hover:text-cobalt">
                       {item.label}
+                    </span>
+                    <span className="kr mt-1 text-[9px] font-bold text-slate-600">
+                      {item.kr}
                     </span>
                   </Link>
                 </li>
@@ -101,8 +104,8 @@ export function SiteHeader() {
                       href={item.href}
                       className="flex items-center justify-between rounded-xl px-3 py-2.5 no-underline hover:bg-butter"
                     >
-                      <span className="kr text-base font-black text-ink">{item.kr}</span>
-                      <span className="text-[11px] text-slate-600">{item.label}</span>
+                      <span className="text-sm font-bold text-ink">{item.label}</span>
+                      <span className="kr text-[10px] text-slate-600">{item.kr}</span>
                     </Link>
                   </li>
                 ))}

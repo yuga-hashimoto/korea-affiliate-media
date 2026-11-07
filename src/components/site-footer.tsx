@@ -29,8 +29,8 @@ export function SiteFooter() {
               <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-cream bg-brand-600">
                 <span className="kr text-sm">한</span>
               </span>
-              <span className="kr text-xl">한국여행노트</span>
-              <span className="text-xs font-semibold text-cream/60">韓国旅行ノート</span>
+              <span className="text-xl font-black">韓国旅行ノート</span>
+              <span className="kr text-xs font-semibold text-cream/60">한국여행노트</span>
             </p>
             <p className="mt-4 max-w-md text-sm leading-7 text-cream/75">
               ソウル・釜山・済州の旅をもっと楽しくする日本語メディアです。
@@ -56,8 +56,8 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="フッターナビゲーション">
-            <p className="kr text-[11px] font-black tracking-[0.18em] text-sky">
-              메뉴 · MENU
+            <p className="text-[11px] font-black tracking-[0.18em] text-sky">
+              MENU <span className="kr opacity-70">· 메뉴</span>
             </p>
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2.5 text-sm">
               {links.map((link) => (
