@@ -207,4 +207,103 @@ export const foodCafeArticles: Article[] = [
     hubPath: "/korea/cafe",
     imageAlt: null,
   },
+  {
+    slug: "seoul-cafe-area-guide",
+    title: "ソウルカフェのエリア別ガイド｜弘大・三清洞・江南",
+    description:
+      "ソウルのカフェをエリア別に紹介。弘大・延南洞、三清洞・仁寺洞、江南・聖水の特徴と、混雑を避ける時間帯をまとめます。",
+    category: "cafe",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-visitkorea", "ev-seoulmetro"],
+    sections: [
+      {
+        heading: "弘大・延南洞",
+        paragraphs: [
+          "弘大と延南洞は、個性的なカフェと小さな商店が集まるエリアです。昼から夕方にかけて賑わい、週末は人気店に行列ができます。",
+          "駅から少し離れた路地にも店があるため、地図アプリで位置を確認しながら歩くと効率的です。",
+        ],
+      },
+      {
+        heading: "三清洞・仁寺洞",
+        paragraphs: [
+          "伝統的な街並みとカフェが調和するエリアです。観光と組み合わせやすく、午前中は比較的落ち着いています。",
+          "坂道や石畳の道があるため、歩きやすい靴を選んでください。",
+        ],
+      },
+      {
+        heading: "江南・聖水",
+        paragraphs: [
+          "江南は大型カフェやベーカリーが多く、聖水は倉庫を改装したような店が集まります。休日は混雑するため、開店直後を狙うとよいでしょう。",
+          "店舗によっては滞在時間の制限や1人1ドリンク制があります。案内を確認してから着席してください。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "ソウルのカフェは予約できますか？",
+        answer:
+          "店舗によります。人気店は予約や待機リストを導入している場合があるため、公式情報を確認してください。",
+      },
+      {
+        question: "電源やWi-Fiはありますか？",
+        answer:
+          "店舗によります。作業目的の場合は、電源・Wi-Fiの表示がある店を選ぶと確実です。",
+      },
+    ],
+    related: ["seoul-cafe-guide", "hongdae-guide", "korean-dessert-cafe"],
+    tags: ["ソウル", "カフェ", "弘大", "三清洞", "江南"],
+    hubPath: "/korea/cafe",
+    imageAlt: null,
+  },
+  {
+    slug: "korean-dessert-cafe",
+    title: "韓国カフェのスイーツガイド｜注文と楽しみ方",
+    description:
+      "韓国のカフェで楽しめるスイーツの種類と注文のコツ。季節限定メニュー、テイクアウト、アレルギー確認のポイントをまとめます。",
+    category: "cafe",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-visitkorea"],
+    sections: [
+      {
+        heading: "ケーキ・ベーカリー・かき氷",
+        paragraphs: [
+          "韓国のカフェでは、ケーキや焼き菓子、季節限定のかき氷などが人気です。メニューは写真付きのことが多く、サイズも確認できます。",
+          "季節限定メニューは店舗や時期によって変わります。訪問時にメニューを確認してください。",
+        ],
+      },
+      {
+        heading: "注文の流れ",
+        paragraphs: [
+          "レジでケースの商品を指差し、飲み物と一緒に注文するのが一般的です。テイクアウトの場合は容器代がかかる場合があります。",
+          "アレルギーがある場合は、素材を確認できる範囲で店員に伝えましょう。",
+        ],
+      },
+      {
+        heading: "楽しみ方とマナー",
+        paragraphs: [
+          "店内で食べる場合は、席を確保してから注文する店と、注文後に席を探す店があります。案内に従ってください。",
+          "混雑時は長居を控え、次の客が使えるように配慮しましょう。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "テイクアウトはできますか？",
+        answer:
+          "多くの店で可能ですが、商品によっては店内限定の場合があります。注文時に確認してください。",
+      },
+    ],
+    related: ["seoul-cafe-guide", "seoul-cafe-area-guide", "korea-cafe-order-guide"],
+    tags: ["カフェ", "スイーツ", "韓国", "注文"],
+    hubPath: "/korea/cafe",
+    imageAlt: null,
+  },
 ];

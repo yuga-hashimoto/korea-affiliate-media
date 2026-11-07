@@ -299,4 +299,107 @@ export const seoulArticles: Article[] = [
     hubPath: "/korea/travel/hotels",
     imageAlt: null,
   },
+  {
+    slug: "seoul-autumn-guide",
+    title: "ソウルの秋ガイド｜紅葉と服装、混雑を避ける歩き方",
+    description:
+      "ソウルの秋を楽しむための気温・服装・紅葉スポット・混雑対策をまとめます。9月から11月の旅計画に役立つ情報です。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-kma", "ev-visitkorea"],
+    sections: [
+      {
+        heading: "秋の気温と服装",
+        paragraphs: [
+          "9月はまだ暑さが残り、10月から11月にかけて朝晩が冷え込みます。日中と夜の気温差が大きいため、薄手の羽織りものを用意してください。",
+          "年によって気温の変化が異なります。出発前に天気予報を確認し、服装を調整しましょう。",
+        ],
+      },
+      {
+        heading: "紅葉を楽しむ場所",
+        paragraphs: [
+          "宮殿・公園・山沿いの散策路は紅葉の名所として人気です。見頃は年によって前後するため、公式の紅葉情報を確認してください。",
+          "週末は混雑します。朝早い時間帯を選ぶとゆっくり歩けます。",
+        ],
+      },
+      {
+        heading: "秋の旅の注意点",
+        paragraphs: [
+          "日没が早くなるため、夕方以降の予定は余裕を持って組みましょう。屋内の美術館やカフェを雨天時の代替案にしておくと安心です。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "紅葉の見頃はいつですか？",
+        answer:
+          "年によって異なります。韓国気象庁や観光公社の情報を旅行前に確認してください。",
+      },
+      {
+        question: "秋でも半袖で大丈夫ですか？",
+        answer:
+          "9月は半袖が活躍しますが、10月以降は羽織りものが必要です。朝晩の冷え込みに備えてください。",
+      },
+    ],
+    related: ["seoul-winter-illumination", "korea-season-and-packing", "seoul-2nights-3days-model-course"],
+    tags: ["ソウル", "秋", "紅葉", "服装"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
+  {
+    slug: "seoul-winter-illumination",
+    title: "ソウルの冬ガイド｜イルミネーションと防寒のポイント",
+    description:
+      "ソウルの冬旅行に向けた気温・服装・イルミネーションの楽しみ方。夜間の移動と屋内での過ごし方もまとめます。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-kma", "ev-visitkorea"],
+    sections: [
+      {
+        heading: "冬の気温と防寒",
+        paragraphs: [
+          "ソウルの冬は気温が低く、風が強い日があります。コート・手袋・マフラーなど、防寒具をしっかり用意してください。",
+          "室内は暖房が効いていることが多いため、脱ぎ着しやすい服装が便利です。",
+        ],
+      },
+      {
+        heading: "イルミネーション",
+        paragraphs: [
+          "冬のソウルでは、街路や商業施設でイルミネーションが楽しめます。点灯期間・時間は年や施設によって異なるため、公式情報を確認してください。",
+          "夜間は冷え込むため、長時間の屋外滞在は避け、カフェや施設で休憩を挟みましょう。",
+        ],
+      },
+      {
+        heading: "移動の注意",
+        paragraphs: [
+          "路面が凍結する場合があります。滑りにくい靴を選び、階段や坂道では手すりを利用してください。",
+          "深夜の移動は公共交通の終電時刻を確認し、必要に応じてタクシーを使いましょう。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "冬にソウルへ行くなら何を着ればよいですか？",
+        answer:
+          "厚手のコート、手袋、マフラーがあると安心です。室内との温度差に備えて重ね着をしましょう。",
+      },
+      {
+        question: "イルミネーションはいつまでですか？",
+        answer:
+          "施設や年によって異なります。訪問前に公式情報を確認してください。",
+      },
+    ],
+    related: ["seoul-autumn-guide", "korea-season-and-packing", "seoul-cafe-guide"],
+    tags: ["ソウル", "冬", "イルミネーション", "防寒"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
 ];

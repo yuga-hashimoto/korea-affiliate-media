@@ -46,6 +46,13 @@ export function ga4MeasurementId(): string | null {
   return id && /^G-[A-Z0-9]+$/.test(id) ? id : null;
 }
 
+/** 公開用の問い合わせメール（未設定なら空）。 */
+export function contactEmail(): string | null {
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL;
+  if (!email) return null;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : null;
+}
+
 export function openRouterConfig(): { apiKey: string; model: string } | null {
   const apiKey = process.env.OPENROUTER_API_KEY;
   const model = process.env.OPENROUTER_MODEL;

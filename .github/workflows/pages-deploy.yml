@@ -50,6 +50,7 @@ jobs:
         env:
           STATIC_EXPORT: "true"
           NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
+          NEXT_PUBLIC_GA4_MEASUREMENT_ID: G-C4CJ11GEDH
           SITE_INDEXING_ENABLED: ${{ inputs.branch == 'main' && 'true' || 'false' }}
         run: pnpm build
 

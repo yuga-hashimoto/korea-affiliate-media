@@ -1,8 +1,8 @@
-# 韓国旅行ノート — 韓国旅行メディア
+# 韓国旅行ノート — 韓国旅行メディア（正式名称）
 
 > 本番URL: **https://sougakuhikaku.com/**（公開中・Cloudflare Pages）
 > GitHub: **yuga-hashimoto/korea-affiliate-media**（Private）
-> ステータス: **本番公開済み（2026-11-07）** / CI・E2E検証済み
+> ステータス: **本番公開済み（2026-11-07）** / GSC 52 URL検出・GA4接続済み / CI・E2E検証済み
 
 コーラル×コバルト、日本語主体＋韓国語アクセント、CC0写真で構成した、ソウル・釜山・済州の旅行メディアです。
 エリアガイド、モデルコース、グルメ、カフェ、買い物、交通、宿泊、旅の準備を、公式情報の確認日時つきで紹介します。
@@ -24,7 +24,7 @@
 ## 動作する機能（2026-11-06 時点）
 
 - **ページ**: トップ、旅行ガイド、ソウル、釜山、済州島、グルメ、カフェ、買い物、韓国コスメ、韓国ファッション、交通、宿泊、旅の準備、記事一覧・記事詳細、編集方針、広告表記、運営者、プライバシー、問い合わせ。
-- **記事**: 公開23本（ソウル5、宿泊1、釜山1、済州1、交通3、グルメ2、カフェ2、コスメ2、ファッション1、買い物1、旅の準備4）。AIによる追加下書きは `review` 状態で保持。
+- **記事**: 公開33本（ソウル7、宿泊1、釜山4、済州2、交通3、カフェ6、グルメ2、コスメ2、ファッション1、買い物1、旅の準備4）。AIによる追加下書きは `review` 状態で保持。
 - **SEO**: ページ別metadata、canonical、OGP（1200×630）、sitemap.xml、robots.txt、JSON-LD（WebSite/Organization/Article/FAQPage/BreadcrumbList）。Previewはnoindex。
 - **自動化**: AI記事下書き（品質ゲート付き）、鮮度監査、X投稿下書き、人手承認、署名付きWebhook配信（既定OFF）、日次/週次レポート、停止スイッチ。
 - **配信**: Cloudflare Pages（静的書き出し）。管理画面は静的配信に含めず、レビューはCLIで行います。
@@ -69,6 +69,7 @@ pnpm e2e                              # desktop + mobile 375px + axe
 | `AFFILIATE_LINKS_ENABLED` | 将来の成果リンク配信 | 未使用（承認後に実装） |
 | `SITE_INDEXING_ENABLED` | index許可 | noindex |
 | `NEXT_PUBLIC_SITE_URL` | canonical/OGPの基準URL | `http://localhost:3000` |
+| `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | GA4測定ID（公開値） | 計測タグを出力しない |
 
 ## 自動化（AI記事・X投稿）
 
@@ -120,6 +121,7 @@ npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 | [10_QA_ACCEPTANCE](docs/10_QA_ACCEPTANCE.md) | テスト計画と受入基準 |
 | [11_COMPLIANCE](docs/11_COMPLIANCE.md) | 広告表示、著作権、個人情報 |
 | [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md) | 記事生成・X投稿の運用手順 |
+| [AFFILIATE_APPLICATION](docs/AFFILIATE_APPLICATION.md) | ASP登録の準備・手順・必要な情報 |
 | [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md) | Preview環境のデプロイ手順 |
 | [CREDITS](docs/CREDITS.md) | 使用写真・フォントの出典とライセンス |
 | [PROGRESS](docs/PROGRESS.md) | 作業ログ、テスト結果、残課題 |
@@ -127,7 +129,7 @@ npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 
 ## 未実施・承認待ち
 
-- ASP申請・規約同意・成果リンク、Buffer公式API接続、GA4/GSC実データ。
+- ASP申請・規約同意・成果リンク（手順は [AFFILIATE_APPLICATION](docs/AFFILIATE_APPLICATION.md)）、Buffer公式API接続。
 - GSCのサイトマップ再送信・所有確認（ユーザー権限）。
 - 運営者情報・お問い合わせ窓口・特商法表記の確定。
 - 正式ブランド名の決定（暫定: 韓国旅行ノート）。

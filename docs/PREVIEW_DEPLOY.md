@@ -15,11 +15,11 @@
 pnpm install
 
 # プレビュー（noindex）
-STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=false pnpm build
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com NEXT_PUBLIC_GA4_MEASUREMENT_ID=G-C4CJ11GEDH SITE_INDEXING_ENABLED=false pnpm build
 npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 
 # 本番（index許可）
-STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=true pnpm build
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com NEXT_PUBLIC_GA4_MEASUREMENT_ID=G-C4CJ11GEDH SITE_INDEXING_ENABLED=true pnpm build
 npx wrangler pages deploy out --project-name=sougakuhikaku --branch=main
 ```
 

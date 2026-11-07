@@ -5,9 +5,20 @@
       "category": "cafe",
       "titleHint": "ソウルのカフェ巡り｜初めてでも入りやすい店の選び方",
       "summary": "ソウルのカフェ文化と、初めてでも入りやすい店の選び方を整理する",
-      "checklist": ["営業時間", "注文方法", "電源とWi-Fi", "混雑時間", "滞在マナー"],
-      "evidenceIds": ["ev-visitkorea"],
-      "keywords": ["ソウル カフェ", "カフェ巡り"],
+      "checklist": [
+        "営業時間",
+        "注文方法",
+        "電源とWi-Fi",
+        "混雑時間",
+        "滞在マナー"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "ソウル カフェ",
+        "カフェ巡り"
+      ],
       "status": "queued"
     },
     {
@@ -15,9 +26,19 @@
       "category": "busan",
       "titleHint": "釜山の食事ガイド｜市場と食堂の楽しみ方",
       "summary": "釜山の市場・食堂・屋台を楽しむための基本を整理する",
-      "checklist": ["市場の営業時間", "注文方法", "現金とカード", "混雑時間"],
-      "evidenceIds": ["ev-visitkorea-busan"],
-      "keywords": ["釜山 グルメ", "市場"],
+      "checklist": [
+        "市場の営業時間",
+        "注文方法",
+        "現金とカード",
+        "混雑時間"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea-busan"
+      ],
+      "keywords": [
+        "釜山 グルメ",
+        "市場"
+      ],
       "status": "queued"
     },
     {
@@ -25,9 +46,20 @@
       "category": "jeju",
       "titleHint": "済州島の雨の日の過ごし方｜屋内スポットと旅程の組み替え",
       "summary": "済州島で雨に当たったときの代替案と旅程の組み替え方を整理する",
-      "checklist": ["天気予報", "屋内施設", "レンタカーの運転", "フェリーの欠航"],
-      "evidenceIds": ["ev-visit-jeju", "ev-kma"],
-      "keywords": ["済州島 雨", "屋内スポット"],
+      "checklist": [
+        "天気予報",
+        "屋内施設",
+        "レンタカーの運転",
+        "フェリーの欠航"
+      ],
+      "evidenceIds": [
+        "ev-visit-jeju",
+        "ev-kma"
+      ],
+      "keywords": [
+        "済州島 雨",
+        "屋内スポット"
+      ],
       "status": "queued"
     },
     {
@@ -35,9 +67,20 @@
       "category": "seoul",
       "titleHint": "ソウルの秋を歩く｜服装と紅葉の楽しみ方",
       "summary": "ソウルの秋の気温・服装・紅葉を楽しむポイントを整理する",
-      "checklist": ["気温", "服装", "紅葉の時期", "日没時刻"],
-      "evidenceIds": ["ev-kma", "ev-visitkorea"],
-      "keywords": ["ソウル 秋", "紅葉"],
+      "checklist": [
+        "気温",
+        "服装",
+        "紅葉の時期",
+        "日没時刻"
+      ],
+      "evidenceIds": [
+        "ev-kma",
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "ソウル 秋",
+        "紅葉"
+      ],
       "status": "queued"
     },
     {
@@ -45,9 +88,19 @@
       "category": "transport",
       "titleHint": "ソウル地下鉄の乗り方｜迷わないための準備",
       "summary": "ソウル地下鉄を初めて使う人向けの準備と注意点を整理する",
-      "checklist": ["交通カード", "乗り換え", "出口番号", "終電"],
-      "evidenceIds": ["ev-seoulmetro"],
-      "keywords": ["ソウル 地下鉄", "交通カード"],
+      "checklist": [
+        "交通カード",
+        "乗り換え",
+        "出口番号",
+        "終電"
+      ],
+      "evidenceIds": [
+        "ev-seoulmetro"
+      ],
+      "keywords": [
+        "ソウル 地下鉄",
+        "交通カード"
+      ],
       "status": "queued"
     },
     {
@@ -55,9 +108,18 @@
       "category": "seoul",
       "titleHint": "ソウル一人旅の楽しみ方｜食事と移動のコツ",
       "summary": "ソウルを一人で旅するときの食事・移動・安全面のコツを整理する",
-      "checklist": ["一人でも入りやすい店", "ホテルの立地", "夜間の移動", "両替"],
-      "evidenceIds": ["ev-visitkorea"],
-      "keywords": ["ソウル 一人旅"],
+      "checklist": [
+        "一人でも入りやすい店",
+        "ホテルの立地",
+        "夜間の移動",
+        "両替"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "ソウル 一人旅"
+      ],
       "status": "queued"
     },
     {
@@ -65,9 +127,20 @@
       "category": "beauty",
       "titleHint": "韓国コスメの買い方｜店舗と通販の使い分け",
       "summary": "韓国コスメを店舗と通販で買うときの違いと注意点を整理する",
-      "checklist": ["テスター", "免税", "返品条件", "送料", "持ち帰り制限"],
-      "evidenceIds": ["ev-oliveyoung"],
-      "keywords": ["韓国コスメ", "OLIVE YOUNG"],
+      "checklist": [
+        "テスター",
+        "免税",
+        "返品条件",
+        "送料",
+        "持ち帰り制限"
+      ],
+      "evidenceIds": [
+        "ev-oliveyoung"
+      ],
+      "keywords": [
+        "韓国コスメ",
+        "OLIVE YOUNG"
+      ],
       "status": "queued"
     },
     {
@@ -75,9 +148,98 @@
       "category": "prepare",
       "titleHint": "韓国旅行の予算の立て方｜項目別に試算する",
       "summary": "韓国旅行の予算を項目別に試算する方法を整理する",
-      "checklist": ["航空券", "宿泊", "交通", "食費", "買い物", "予備費"],
-      "evidenceIds": ["ev-visitkorea"],
-      "keywords": ["韓国旅行 予算"],
+      "checklist": [
+        "航空券",
+        "宿泊",
+        "交通",
+        "食費",
+        "買い物",
+        "予備費"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "韓国旅行 予算"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "busan-hotel-area-2026",
+      "category": "hotel",
+      "titleHint": "釜山のホテル選び｜海雲台と南浦洞の違い",
+      "summary": "釜山旅行の拠点選びとホテル予約前の確認項目を整理する",
+      "checklist": [
+        "エリア",
+        "空港からのアクセス",
+        "チェックイン時間",
+        "キャンセル条件"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea-busan"
+      ],
+      "keywords": [
+        "釜山 ホテル"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "jeju-food-2026",
+      "category": "jeju",
+      "titleHint": "済州島の食の楽しみ方｜海の幸と郷土料理",
+      "summary": "済州島で食事を楽しむための基本と注意点を整理する",
+      "checklist": [
+        "市場",
+        "営業時間",
+        "現金とカード",
+        "アレルギー"
+      ],
+      "evidenceIds": [
+        "ev-visit-jeju"
+      ],
+      "keywords": [
+        "済州島 グルメ"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "korea-payment-2026",
+      "category": "prepare",
+      "titleHint": "韓国旅行の決済ガイド｜カード・現金・両替",
+      "summary": "韓国旅行の支払い方法と両替の考え方を整理する",
+      "checklist": [
+        "カード手数料",
+        "両替",
+        "現金の必要性",
+        "タッチ決済"
+      ],
+      "evidenceIds": [
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "韓国 決済",
+        "両替"
+      ],
+      "status": "queued"
+    },
+    {
+      "id": "seoul-rainy-day-2026",
+      "category": "seoul",
+      "titleHint": "ソウルの雨の日の過ごし方｜屋内スポットと旅程の変更",
+      "summary": "ソウルで雨に当たったときの代替案を整理する",
+      "checklist": [
+        "天気予報",
+        "屋内施設",
+        "移動手段",
+        "傘"
+      ],
+      "evidenceIds": [
+        "ev-kma",
+        "ev-visitkorea"
+      ],
+      "keywords": [
+        "ソウル 雨"
+      ],
       "status": "queued"
     }
   ]

@@ -140,3 +140,15 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] unit 38件 / E2E 30件 / lint / typecheck / build / 静的export 成功。
 - [x] Preview: https://preview.sougakuhikaku.pages.dev （deployment `402c9107`）。
 - [x] 本番: https://sougakuhikaku.com （deployment `1463bb4f`）。
+
+## 2026-11-07 — GSC再送信・GA4接続・記事拡充
+- [x] Search Console: プロパティ `https://sougakuhikaku.com/` を確認し、`/sitemap.xml` を再送信（「サイトマップを送信しました」を確認）。ページレポートは処理中（1日後に再確認）。
+- [x] 旧URLの実測: `/articles/premium-water-*` と `/methodology/` は404だったため、`_redirects` に末尾スラッシュ付きの転送を追加（`/methodology/` など）。旧記事2件は404のまま（承認済みの破棄）。
+- [x] GA4: プロパティ「韓国旅行ノート」（アカウント Default Account for Firebase）とウェブストリーム `https://sougakuhikaku.com` を作成。測定ID **G-C4CJ11GEDH** を取得し、`NEXT_PUBLIC_GA4_MEASUREMENT_ID` でビルドに埋め込み。
+- [x] 記事を23本→33本に拡充: 釜山（海雲台・グルメ・カフェ・夜景）、済州（東西・カフェ）、ソウル（カフェエリア・スイーツ・秋・冬）。
+- [x] AI生成トピックを12件に拡充（釜山ホテル、済州グルメ、決済、雨の日など）。
+- [x] unit 38件 / E2E 30件 / lint / typecheck / build 成功。GA4タグの出力と旧URL308を本番で確認。
+- [x] 正式ブランド名を「韓国旅行ノート」に決定（docs/14）。
+- [x] お問い合わせメールの環境変数対応（`NEXT_PUBLIC_CONTACT_EMAIL`）。未設定時は「確定後に掲載」と表示。
+- [x] アフィリエイト登録の準備資料 `docs/AFFILIATE_APPLICATION.md` を作成（登録順・必要情報・申請文・承認後の実装）。
+- [x] Search Console: 再送信後、`/sitemap.xml` が **52 URL検出・成功** に更新されたことを確認。

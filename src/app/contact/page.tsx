@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/page-header";
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { contactEmail } from "@/lib/env";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const email = contactEmail();
   return (
     <>
       <PageHeader
@@ -23,9 +25,20 @@ export default function ContactPage() {
           <div className="card p-6">
             <h2 className="text-lg">お問い合わせ窓口</h2>
             <p className="mt-3 text-sm leading-7 text-slate-600">
-              お問い合わせフォームおよびメールアドレスは、本番公開前に確定して掲載します。
-              プレビュー段階では外部からの送信を受け付けていません。
-              公開後は、以下を含めてご連絡いただける窓口を用意します。
+              {email ? (
+                <>
+                  お問い合わせは{" "}
+                  <a href={`mailto:${email}`} className="text-brand-700 underline">
+                    {email}
+                  </a>{" "}
+                  までお願いします。以下の内容を添えてください。
+                </>
+              ) : (
+                <>
+                  お問い合わせ用のメールアドレスは、運営者情報の確定後に掲載します。
+                  公開までは外部からの送信を受け付けていません。確定後は以下を添えてご連絡いただける窓口を用意します。
+                </>
+              )}
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-700">
               <li>訂正したいページのURL</li>
