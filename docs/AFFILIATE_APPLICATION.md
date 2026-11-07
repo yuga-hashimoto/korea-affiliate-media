@@ -6,13 +6,16 @@
 既存のASP（A8.net / もしも / バリューコマース / 楽天 / Amazon）は登録済み・利用可能。
 ただし韓国特化で優先するのは、次の**直接提携5プログラム**です。
 
-| 優先 | プログラム | 公式入口 | 用途 | 現状 |
+| 優先 | プログラム | 登録ページ（確認済み） | 用途 | 媒体の注意 |
 |---|---|---|---|---|
-| 1 | **Klook** | https://www.klook.com/ja/blog/klook-kreator-program-japan/ | 現地体験・空港送迎・eSIM | 未申請（要確認） |
-| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | 未申請（要確認） |
-| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | 未申請（要確認） |
-| 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | 未申請（要確認） |
-| 5 | **YesStyle Influencer** | https://web.yesstyle.com/en/influencers.html | コスメ・ファッション | 未申請（要確認） |
+| 1 | **Klook アフィリエイト** | https://affiliate.klook.com/ | 現地体験・空港送迎・ホテル・鉄道 | **Webサイト向け**（Sign Upから登録） |
+| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | Webサイト向け（最大7%表示） |
+| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | Webサイト向け |
+| 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | アフィリエイトプログラム（最大13%・$20以上） |
+| 5 | **YesStyle** | https://www.yesstyle.com/en/influencers.html | コスメ・ファッション | **SNS限定の可能性**。Web可の制度はASP側で要確認 |
+
+> Klookの「Klook Kreator」はSNS向けの別制度です。Webサイトは `affiliate.klook.com` のアフィリエイトプログラムを使います。
+> YesStyleのInfluencer Programは対象チャネルがInstagram/YouTube/TikTok/X/Pinterestと表示されています。**Webサイトでの提携可否を必ず確認**し、不可の場合はA8.net等でWeb向け案件を探してください。
 
 補完（既存ASP内）:
 - 楽天トラベル（海外ホテル）
@@ -23,10 +26,24 @@
 **サイト側は登録できる状態です。運営者情報と問い合わせメールが決まり次第、今週中に優先5件の申請を開始**してください。
 登録・規約同意・本人確認・口座登録は本人しか実行できません。AIは申請文・媒体情報・リンク実装を担当します。
 
+## 運営者情報・連絡先の「公開」と「提出」は分けて考える
+ASPの審査では、運営者の本人確認・連絡先・振込口座が必要です。これは**ASPへの非公開の提出**であり、サイトに住所や電話番号をそのまま公開する必要はありません。
+
+| 項目 | ASPへの提出 | サイトでの公開 |
+|---|---|---|
+| 氏名・屋号 | 必要 | 屋号またはペンネームで可 |
+| 所在地・電話番号 | 必要（ASPによる） | 原則不要（特商法の要件がある場合を除く） |
+| メールアドレス | 必要 | 専用アドレスまたは問い合わせフォームで可 |
+| 銀行口座 | 必要 | 公開しない |
+| 本人確認書類 | 必要 | 公開しない |
+
+サイト側は「運営者名（屋号）」「お問い合わせ手段」「プライバシーポリシー」「広告表記」があれば審査上整います。
+住所・電話の公開を避けたい場合は、**問い合わせフォーム**（Formspree等）か**専用メールアドレス**を用意するのがおすすめです。
+
 ## 申請前に必要なもの
-- 運営者名（個人名または屋号）
-- 所在地・電話番号
-- 連絡先メールアドレス
+- 運営者名（個人名または屋号）— ASPには本名、サイトには屋号でも可
+- 所在地・電話番号 — ASPへの提出のみ
+- 連絡先メールアドレス — 専用アドレスで可
 - 銀行口座（報酬振込先）
 - 本人確認書類
 - サイトURL: https://sougakuhikaku.com
@@ -36,8 +53,8 @@
 
 ## 申請の順番とポイント
 ### 1. Klook
-- Klook Kreator（SNS）とアフィリエイト（Web）で条件が異なるため、**Webサイト掲載が可能な制度**かを確認する。
-- フォロワー条件・最低支払額・クーポン利用条件は変更されるため、申請画面で最新条件を確認。
+- 登録: https://affiliate.klook.com/ の「Sign Up」。
+- Webサイト向けのアフィリエイトプログラム。Klook Kreator（SNS）とは別制度。
 - 承認されたら、体験・送迎・eSIMの記事末CTAにリンクを設定。
 
 ### 2. Trip.com Partners
@@ -54,9 +71,11 @@
 - コスメ記事（OLIVE YOUNG、韓国コスメ買い物）に配置。
 - 商品画像・価格の利用条件を確認し、無断転載しない。
 
-### 5. YesStyle Influencer
-- サイト掲載可否、対象商品、クーポン条件を確認。
-- ファッション・コスメ記事に配置。
+### 5. YesStyle
+- 登録: https://www.yesstyle.com/en/influencers.html の「JOIN NOW」。
+- 表示上の対象チャネルはSNS。**Webサイトが対象か事前に確認**する。
+- Web不可の場合は、A8.net / もしも / バリューコマースでYesStyleまたは韓国ファッション案件を探す。
+- 承認されたらファッション・コスメ記事に配置。
 
 ## 承認後の作業（AIが担当）
 1. 発行された成果リンクを `AFFILIATE_LINKS_JSON` に設定（[AFFILIATE_LINKS_SETUP](AFFILIATE_LINKS_SETUP.md)）。
