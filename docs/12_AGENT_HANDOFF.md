@@ -24,7 +24,7 @@
 - 本番は公開済み。旧サイトの破棄も完了（ADR-0004/0005）。
 - ASPの登録・規約同意・承認リンク、Buffer/Paid Partnershipの運用可否。
 - 運営者情報・問い合わせ窓口・特商法表記。
-- 外部ホスティング（Vercel等）の契約/トークン設定。
+- CIからのデプロイ用に `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` をGitHub Secretsへ登録する（任意）。
 
 ## 次にやるべき安全な作業
 1. 釜山・済州・ソウルの記事拡充（公式情報の確認が取れたもの）。

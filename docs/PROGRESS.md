@@ -99,3 +99,4 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 本番確認: トップ/各カテゴリ/記事一覧/記事詳細 200、旧URL 308、robots Allow、sitemap 42 URL、OGP画像、セキュリティヘッダー、モバイル表示。
 - [x] CI: 静的exportビルドを検証に追加。`pages-deploy.yml` を追加（手動実行・Cloudflareトークン必要）。
 - [ ] 未実施（権限）: GSCサイトマップ再送信、GA4接続、ASP成果リンク、X実投稿。
+- [x] 最終CI: commit `18ecb7f` で `verify`（静的export含む）と `e2e` が success。

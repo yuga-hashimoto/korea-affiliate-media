@@ -43,7 +43,7 @@ pnpm jobs:social-draft                 # 下書き生成（PR表記付き）
 pnpm social:approve --id promo-xxxx --actor "担当者名"   # 人手承認
 pnpm social:publish                    # Webhook設定 + SOCIAL_PUBLISH_ENABLED=true のときのみ
 ```
-- 承認待ちは `/admin/promotions`（`ADMIN_UI_ENABLED=true` のときのみ）で確認できる。
+- 承認待ちは `var/promotions/queue.json`（または `pnpm social:approve` の一覧）で確認できる。管理画面は静的配信のため公開していない。
 - 同一内容は `contentHash` で二重送信を防止する。
 - Paid Partnership開示を保証できない間は、PR投稿は**手動投稿**に回す。
 

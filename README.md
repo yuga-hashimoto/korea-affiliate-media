@@ -68,7 +68,7 @@ pnpm e2e                              # desktop + mobile 375px + axe
 | `SOCIAL_PAID_PARTNERSHIP_SUPPORTED` | Paid Partnership開示の保証 | false の間はPR投稿を自動配信しない |
 | `AFFILIATE_LINKS_ENABLED` | 将来の成果リンク配信 | 未使用（承認後に実装） |
 | `SITE_INDEXING_ENABLED` | index許可 | noindex |
-| `NEXT_PUBLIC_SITE_URL` | canonical/OGPの基準URL | Vercel URL / localhost |
+| `NEXT_PUBLIC_SITE_URL` | canonical/OGPの基準URL | `http://localhost:3000` |
 
 ## 自動化（AI記事・X投稿）
 
