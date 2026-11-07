@@ -8,8 +8,8 @@
 
 | 優先 | プログラム | 登録ページ（確認済み） | 用途 | 媒体の注意 |
 |---|---|---|---|---|
-| 1 | **Klook アフィリエイト** | https://affiliate.klook.com/ | 現地体験・空港送迎・ホテル・鉄道 | **Webサイト向け**（Sign Upから登録） |
-| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | Webサイト向け（最大7%表示） |
+| 1 | **Klook アフィリエイト** | https://affiliate.klook.com/ | 現地体験・空港送迎・ホテル・鉄道 | **登録・承認済み**（2026-11-07） |
+| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | **アカウント作成済み・プロフィール有効化待ち**（電話番号・サブメールが必要） |
 | 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | Webサイト向け |
 | 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | アフィリエイトプログラム（最大13%・$20以上） |
 | 5 | **YesStyle** | https://www.yesstyle.com/en/influencers.html | コスメ・ファッション | **SNS限定の可能性**。Web可の制度はASP側で要確認 |

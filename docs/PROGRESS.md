@@ -167,3 +167,11 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 提携申請用の `/media-kit` ページを追加（サイト概要・記事数・広告フォーマット・編集方針・問い合わせ）。
 - [x] Search Console: 再送信後 **53 URL検出・成功**（media-kit追加分）。
 - [x] 障害: 本番ビルドが別プロセスのロックで失敗し、一時的にPreview用noindexビルドが配信された。`.next`/`out`を削除してindex許可ビルドを再作成・再配信し、robots Allow / meta index を確認。
+
+## 2026-11-07 — ブラウザで提携登録（Klook / Trip.com）
+- [x] Klook: Googleアカウント（soccer.hy620@gmail.com）でアフィリエイト登録。メール認証→「Affiliate」選択→サイト情報（Korea Travel Note / https://sougakuhikaku.com / JPY / 日本 / 旅行ブログ）を入力し送信。ダッシュボード表示を確認。
+- [x] Klook: リンクコンバーターで成果リンクを発行（`affiliate.klook.com/redirect?...`）。`.env.local`（Git管理外）に保存し、`AFFILIATE_LINKS_ENABLED=true` で本番ビルド・配信。記事CTAが `rel="sponsored"` ＋PR表記に切り替わり、302でKlookへ遷移することを確認。
+- [x] Trip.com: Googleログインでアカウント作成。アフィリエイトパートナーを選択し、プロフィール有効化フォームまで到達。
+- [ ] Trip.com: 電話番号・2つ目のメールアドレス・住所などの入力が必要なため保留（本人情報）。
+- [ ] Airalo / OLIVE YOUNG Global / YesStyle: 未着手。
+- 注: Klook登録の途中、ブラウザのタブ状態が不安定になり、Googleログインをメール認証に切り替えて完了した。認証コードはGmailから取得（ユーザー承認済み）。
