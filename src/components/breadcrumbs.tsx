@@ -7,7 +7,7 @@ export interface Crumb {
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
-    <nav aria-label="パンくずリスト" className="mb-4 text-xs text-slate-500">
+    <nav aria-label="パンくずリスト" className="mb-4 text-xs text-slate-600">
       <ol className="flex flex-wrap items-center gap-1">
         <li>
           <Link href="/" className="hover:text-brand-700">

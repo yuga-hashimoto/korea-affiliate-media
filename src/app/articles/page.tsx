@@ -26,7 +26,7 @@ export default function ArticlesPage() {
 
         <Suspense
           fallback={
-            <p className="text-sm text-slate-500">記事を読み込んでいます…</p>
+            <p className="text-sm text-slate-600">記事を読み込んでいます…</p>
           }
         >
           <ArticlesExplorer articles={publishedArticles} />

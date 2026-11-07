@@ -2,11 +2,21 @@ import Link from "next/link";
 import type { Category } from "@/lib/domain";
 import { articlesByCategory, publishedArticles } from "@/data";
 import { CATEGORY_META } from "@/lib/categories";
+import type { Category as CategoryType } from "@/lib/domain";
 import { PageHeader } from "./page-header";
 import { Breadcrumbs } from "./breadcrumbs";
 import { ArticleCard } from "./article-card";
 import { JsonLd } from "./json-ld";
 import { siteUrl } from "@/lib/env";
+
+const CATEGORY_VISUAL: Partial<
+  Record<CategoryType, { image: string; kr: string; alt: string }>
+> = {
+  seoul: { image: "/images/seoul.jpg", kr: "서울", alt: "ソウル・明洞の街並み" },
+  busan: { image: "/images/busan.jpg", kr: "부산", alt: "釜山の市街地" },
+  jeju: { image: "/images/jeju.jpg", kr: "제주", alt: "済州島の海岸" },
+  food: { image: "/images/korean-food.jpg", kr: "맛집", alt: "韓国の食堂の料理" },
+};
 
 export function CategoryPage({
   category,
@@ -15,6 +25,7 @@ export function CategoryPage({
   category: Category;
   extraLinks?: Array<{ href: string; label: string }>;
 }) {
+  const visual = CATEGORY_VISUAL[category];
   const meta = CATEGORY_META[category];
   const articles = articlesByCategory(category);
   const others = publishedArticles.filter((a) => a.category !== category).slice(0, 3);
@@ -35,6 +46,9 @@ export function CategoryPage({
         title={meta.label}
         lead={meta.intro}
         meta={<span>記事 {articles.length}件</span>}
+        image={visual?.image}
+        imageAlt={visual?.alt}
+        kr={visual?.kr ?? meta.kr}
       />
       <div className="container-page py-8">
         <Breadcrumbs

@@ -1,21 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-50: #f0fdfa;
-  --color-brand-100: #ccfbf1;
-  --color-brand-200: #99f6e4;
-  --color-brand-300: #5eead4;
-  --color-brand-400: #2dd4bf;
-  --color-brand-500: #14b8a6;
-  --color-brand-600: #0d9488;
-  --color-brand-700: #0f766e;
-  --color-brand-800: #115e59;
-  --color-brand-900: #134e4a;
-  --color-ink: #0f172a;
-  --color-ink-muted: #475569;
-  --color-surface: #ffffff;
+  /* コーラル（韓国旅行メディアのアクセント） */
+  --color-brand-50: #fff2ec;
+  --color-brand-100: #ffe2d7;
+  --color-brand-200: #ffc6b3;
+  --color-brand-300: #ff9f84;
+  --color-brand-400: #f9755f;
+  --color-brand-500: #ed5252;
+  --color-brand-600: #de3f49;
+  --color-brand-700: #c9333d;
+  --color-brand-800: #a72932;
+  --color-brand-900: #7f2028;
+
+  /* ベース */
+  --color-cream: #fff7ef;
+  --color-paper: #fffdf9;
+  --color-ink: #241c1a;
+  --color-ink-muted: #6b5d57;
+  --color-sun: #ffc857;
+  --color-sky: #ddebf7;
+  --color-celadon: #7fae9b;
+
   --font-sans: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
     "Yu Gothic", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif-jp: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP",
+    "Times New Roman", serif;
+  --font-kr: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
   --font-mono: "SFMono-Regular", "Roboto Mono", "Courier New", monospace;
 }
 
@@ -26,14 +37,19 @@
   }
 
   body {
-    @apply bg-slate-50 text-ink antialiased;
+    background-color: var(--color-cream);
+    color: var(--color-ink);
     font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
   }
 
   h1,
   h2,
   h3 {
-    @apply font-bold tracking-tight text-slate-900;
+    font-family: var(--font-serif-jp);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
     text-wrap: balance;
   }
 
@@ -47,6 +63,11 @@
     border-radius: 2px;
   }
 
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-ink);
+  }
+
   .num {
     font-variant-numeric: tabular-nums;
   }
@@ -58,15 +79,26 @@
   }
 
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white shadow-sm;
+    background: var(--color-paper);
+    border: 1px solid #efdfd3;
+    border-radius: 1.25rem;
+    box-shadow: 0 10px 30px -24px rgba(36, 28, 26, 0.45);
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.18em] text-brand-700;
+  }
+
+  .kr {
+    font-family: var(--font-kr);
+  }
+
+  .serif {
+    font-family: var(--font-serif-jp);
   }
 
   .prose-jp p {
-    @apply mb-4 leading-8 text-slate-700;
-  }
-
-  .prose-jp a {
-    text-decoration: underline;
+    @apply mb-5 leading-8 text-slate-700;
   }
 
   .prose-jp h2 {
@@ -75,5 +107,17 @@
 
   .prose-jp h3 {
     @apply mt-6 mb-3 text-lg;
+  }
+
+  .prose-jp a {
+    text-decoration: underline;
+  }
+
+  .paper-grain {
+    background-image: radial-gradient(
+      rgba(36, 28, 26, 0.055) 0.6px,
+      transparent 0.6px
+    );
+    background-size: 7px 7px;
   }
 }

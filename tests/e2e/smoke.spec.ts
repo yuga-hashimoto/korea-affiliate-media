@@ -8,7 +8,7 @@ test.describe("主要ページ", () => {
       page.getByRole("heading", { level: 1, name: /次の休みは/ }),
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /ソウル旅行ガイド/ })).toBeVisible();
-    await expect(page.getByText("目的地から探す")).toBeVisible();
+    await expect(page.getByText("今日行くなら、どこ？")).toBeVisible();
   });
 
   test("ソウルカテゴリに記事が表示される", async ({ page }) => {

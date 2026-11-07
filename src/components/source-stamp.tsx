@@ -9,7 +9,7 @@ export function SourceStamp({
   stale?: boolean;
 }) {
   return (
-    <div className="mt-2 text-xs leading-5 text-slate-500">
+    <div className="mt-2 text-xs leading-5 text-slate-600">
       <span className="font-semibold text-slate-600">出典:</span>{" "}
       <a
         href={evidence.sourceUrl}
@@ -26,7 +26,7 @@ export function SourceStamp({
           要再確認
         </span>
       ) : null}
-      {evidence.note ? <p className="mt-1 text-slate-500">{evidence.note}</p> : null}
+      {evidence.note ? <p className="mt-1 text-slate-600">{evidence.note}</p> : null}
     </div>
   );
 }
