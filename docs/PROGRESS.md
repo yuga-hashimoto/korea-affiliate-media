@@ -152,3 +152,12 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] お問い合わせメールの環境変数対応（`NEXT_PUBLIC_CONTACT_EMAIL`）。未設定時は「確定後に掲載」と表示。
 - [x] アフィリエイト登録の準備資料 `docs/AFFILIATE_APPLICATION.md` を作成（登録順・必要情報・申請文・承認後の実装）。
 - [x] Search Console: 再送信後、`/sitemap.xml` が **52 URL検出・成功** に更新されたことを確認。
+
+## 2026-11-07 — GA4データ収集の実測とページ人気レポート取得の実装
+- [x] 実測（ブラウザ検証）: 本番 `https://sougakuhikaku.com/` のHTMLにGA4タグ（G-C4CJ11GEDH）が配信されていることを curl とブラウザの双方で確認。ブラウザで開くと `google-analytics.com/g/collect?...tid=G-C4CJ11GEDH&en=page_view` が **204** で送信された（計測は稼働中）。
+- [x] GA4（プロパティ **563135187**「韓国旅行ノート」）リアルタイムレポートで自訪問が反映: first_visit 2 / page_view 2 / session_start 2。標準レポート（ページとスクリーン）は測定開始直後のためデータ処理待ち（最大24時間程度）。
+- [x] `src/lib/analytics/ga4.ts`: GA4 Data API（batchRunReports）の読み取り専用クライアントを追加。サービスアカウントJWT→OAuth2を node:crypto で実装（依存追加なし）。
+- [x] `scripts/ga4-pages.ts` + `pnpm analytics:ga4-pages`: 「一番見られているページ（表示回数順）」をMarkdown出力。`GA4_PROPERTY_ID` と `GOOGLE_APPLICATION_CREDENTIALS` が未設定のときは手順を表示して安全に停止（dry-run確認済み）。
+- [x] `tests/unit/ga4.test.ts`（7件）追加。unit 51件 / E2E 30件 / lint / typecheck / build 成功。
+- [x] lint修正: `src/app/media-kit/page.tsx` の未使用import（SITE）を除去（並行作業のファイル、機能変更なし）。
+- [ ] 残課題（人と作業が必要）: ①GA4プロパティ563135187に `analytics.readonly` のサービスアカウントを閲覧者として追加し、`.env.local` に `GA4_PROPERTY_ID=563135187`＋`GOOGLE_APPLICATION_CREDENTIALS` を設定（これで `pnpm analytics:ga4-pages` が自動化できる）。②サイト公開当日のため実ユーザーのデータが未蓄積。「一番見られてるページ」の実数値は本日夕方〜翌日以降に判明。
