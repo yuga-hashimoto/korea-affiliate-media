@@ -402,4 +402,63 @@ export const seoulArticles: Article[] = [
     hubPath: "/korea/travel/seoul",
     imageAlt: null,
   },
+  {
+    slug: "seoul-klook-experiences",
+    title: "ソウルで予約できる体験の選び方｜Klook活用ガイド",
+    description:
+      "ソウル旅行で事前予約したい体験（空港送迎・展望台・宮殿・テーマパークなど）の選び方と、予約前の確認事項をまとめます。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-visitkorea", "ev-incheon-airport"],
+    sections: [
+      {
+        heading: "事前予約に向いている体験",
+        paragraphs: [
+          "空港送迎、展望台・入場チケット、宮殿の体験プログラム、テーマパーク、現地ツアーなどは、事前予約で当日の待ち時間を減らせる場合があります。",
+          "一方で、天候や営業状況で内容が変わるものもあります。予約前にキャンセル条件と集合場所を確認してください。",
+        ],
+      },
+      {
+        heading: "予約前に確認する項目",
+        paragraphs: [
+          "利用日時、集合場所、所要時間、対象年齢、言語、キャンセル期限、払い戻し条件を確認します。QRコードやバウチャーの提示方法も事前に把握しておきましょう。",
+          "料金・空き状況は時期や人数で変動します。表示額だけでなく、手数料や現地での追加費用の有無を確認してください。",
+        ],
+      },
+      {
+        heading: "Klookを使う場合",
+        paragraphs: [
+          "Klookでは、体験・送迎・ホテル・鉄道などをまとめて予約できます。日本語で予約でき、バウチャーをアプリで管理できる点が便利です。",
+          "利用規約・キャンセルポリシーは商品ごとに異なります。予約確定前に必ず確認してください。",
+        ],
+      },
+      {
+        heading: "当日の注意",
+        paragraphs: [
+          "集合場所は地図アプリで事前に確認し、余裕を持って向かってください。混雑期は現地での待ち時間が発生します。",
+          "天候による中止・変更の連絡方法を確認しておくと安心です。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Klookの予約は日本語でできますか？",
+        answer:
+          "日本語サイト・アプリが用意されています。商品ページの言語表記とサポート条件を確認してください。",
+      },
+      {
+        question: "当日予約でも大丈夫ですか？",
+        answer:
+          "空きがあれば可能な場合もありますが、人気商品は早めに埋まります。日程が決まったら早めの予約がおすすめです。",
+      },
+    ],
+    related: ["incheon-airport-to-seoul", "seoul-2nights-3days-model-course", "seoul-hotel-area-guide"],
+    tags: ["ソウル", "Klook", "体験", "予約"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
 ];

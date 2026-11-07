@@ -10,9 +10,9 @@
 |---|---|---|---|---|
 | 1 | **Klook アフィリエイト** | https://affiliate.klook.com/ | 現地体験・空港送迎・ホテル・鉄道 | **登録・承認済み**（2026-11-07） |
 | 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | **アカウント作成済み・プロフィール有効化待ち**（電話番号・サブメールが必要） |
-| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | Webサイト向け |
-| 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | アフィリエイトプログラム（最大13%・$20以上） |
-| 5 | **YesStyle** | https://www.yesstyle.com/en/influencers.html | コスメ・ファッション | **SNS限定の可能性**。Web可の制度はASP側で要確認 |
+| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | **Impact.com登録で電話番号が必要（保留）** |
+| 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | **会員登録（電話・住所）が必要（保留）** |
+| 5 | **YesStyle** | https://www.yesstyle.com/en/influencers.html | コスメ・ファッション | **SNS限定の可能性（Web不可のため保留）** |
 
 > Klookの「Klook Kreator」はSNS向けの別制度です。Webサイトは `affiliate.klook.com` のアフィリエイトプログラムを使います。
 > YesStyleのInfluencer Programは対象チャネルがInstagram/YouTube/TikTok/X/Pinterestと表示されています。**Webサイトでの提携可否を必ず確認**し、不可の場合はA8.net等でWeb向け案件を探してください。

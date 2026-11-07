@@ -323,4 +323,56 @@ export const prepareArticles: Article[] = [
     hubPath: "/korea/travel/prepare",
     imageAlt: null,
   },
+  {
+    slug: "incheon-airport-transfer-guide",
+    title: "仁川空港の送迎を事前予約する方法｜電車・バス・タクシーの使い分け",
+    description:
+      "仁川空港からソウル市内への移動を、事前予約できる送迎と公共交通に分けて解説。予約前の確認事項と注意点をまとめます。",
+    category: "transport",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-incheon-airport", "ev-arex"],
+    sections: [
+      {
+        heading: "送迎を予約するメリット",
+        paragraphs: [
+          "到着が深夜・早朝の場合や、荷物が多い場合、人数が多い場合は、事前に送迎を予約しておくと移動がスムーズです。",
+          "ただし、フライトの遅延や入国審査の待ち時間で合流時刻が変わることがあります。待機時間の条件を確認してください。",
+        ],
+      },
+      {
+        heading: "電車・バスとの使い分け",
+        paragraphs: [
+          "1人で荷物が少ない場合は、空港鉄道や空港バスが使いやすいです。料金と所要時間、乗り換え回数を比較します。",
+          "送迎はドアツードアに近い移動ができますが、渋滞の影響を受けます。到着時間に余裕を持たせてください。",
+        ],
+      },
+      {
+        heading: "予約前の確認事項",
+        paragraphs: [
+          "集合場所（到着ロビーのどの出口か）、運転手との連絡方法、待機時間、追加料金、キャンセル条件を確認します。",
+          "料金・車種・定員は業者によって異なります。公式の予約ページで最新条件を確認してください。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "深夜到着でも送迎は予約できますか？",
+        answer:
+          "業者によります。深夜割増や対応時間を確認し、事前に予約してください。",
+      },
+      {
+        question: "フライトが遅れた場合はどうなりますか？",
+        answer:
+          "待機時間の条件を超えると追加料金が発生する場合があります。予約時の案内を確認してください。",
+      },
+    ],
+    related: ["incheon-airport-to-seoul", "seoul-klook-experiences", "korea-travel-checklist"],
+    tags: ["仁川空港", "送迎", "交通", "予約"],
+    hubPath: "/korea/travel/transport",
+    imageAlt: null,
+  },
 ];
