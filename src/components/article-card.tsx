@@ -6,19 +6,20 @@ import { formatJstDate } from "@/lib/dates";
 export function ArticleCard({ article }: { article: Article }) {
   const meta = CATEGORY_META[article.category];
   return (
-    <article className="card group flex h-full flex-col p-5 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md">
+    <article className="card group flex h-full flex-col border-2 border-ink p-5 transition hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-ink)]">
       <div className="flex items-center justify-between gap-2">
-        <span className="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700">
-          {meta.label}
+        <span className="rounded-full border border-ink bg-butter px-3 py-1 text-[11px] font-black text-ink">
+          <span className="kr">{meta.kr}</span>
+          <span className="ml-1 text-[10px] text-ink/75">{meta.short}</span>
         </span>
         {article.aiGenerated ? (
-          <span className="text-[10px] font-semibold text-slate-400">AI下書き</span>
+          <span className="text-[10px] font-semibold text-slate-600">AI下書き</span>
         ) : null}
       </div>
-      <h2 className="mt-3 text-[1.05rem] leading-7">
+      <h2 className="mt-3 text-[1.05rem] font-bold leading-7">
         <Link
           href={`/articles/${article.slug}`}
-          className="text-ink no-underline group-hover:text-brand-700"
+          className="text-ink no-underline group-hover:text-cobalt"
         >
           {article.title}
         </Link>
@@ -28,8 +29,8 @@ export function ArticleCard({ article }: { article: Article }) {
       </p>
       <div className="mt-4 flex items-center justify-between gap-2 text-[11px] text-slate-600">
         <span>更新: {formatJstDate(article.updatedAt)}</span>
-        <span className="font-bold text-brand-700" aria-hidden="true">
-          →
+        <span className="kr text-xs font-black text-brand-700" aria-hidden="true">
+          보기 →
         </span>
       </div>
     </article>

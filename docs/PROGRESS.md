@@ -112,3 +112,18 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] テスト: unit 38件 / E2E 30件（axe含む）成功。lint / typecheck / build / 静的export 成功。
 - [x] Preview: https://preview.sougakuhikaku.pages.dev （deployment `0c4b4f33`）。
 - [x] 本番: https://sougakuhikaku.com （deployment `6e4855fe`）。画像・旧URL308・ヘッダーを確認。
+
+## 2026-11-07 — 「もっと韓国らしく」デザイン第2弾
+- 参考サイト（VISITKOREA / ソウルナビ / コネスト）に加え、韓国語タイポグラフィと赤×青（テグク色）の表現を採用。
+- [x] Noto Sans KR（Hangulサブセット, OFL）を自前配信。`public/fonts/` にフォントとライセンスを同梱。
+- [x] 見出しを極太サンセリフに変更。ナビを韓国語主導（서울/부산/제주/맛집/카페/쇼핑/준비）に。
+- [x] ロゴを赤×青の円形マーク＋한국여행노트に刷新。トップバーをコバルトに。
+- [x] ヒーローに韓国語ステッカー「주말엔 서울」、大型ハングル「서울」、韓国語サブコピーを追加。
+- [x] マーキー（SEOUL · 부산 · JEJU · 맛집 …）を追加。旅の基本情報を韓国語ラベル（통화/시차/전압/언어）に。
+- [x] 目的地カードに「인기」ステッカー、特集に「필수」、カテゴリをパステル＋ハードシャドウの韓国アプリ風タイルに。
+- [x] 記事カード・記事ページ・フッターを極太サンセリフ／ネイビー＋한국여행ウォーターマークに統一。
+- [x] コントラスト調整（白×コーラル、補助ラベル、パステル上の小文字）を実施し、axe（WCAG AA）主要4ページで違反0件。
+- [x] OG画像・faviconを韓国語タイポグラフィで再生成。
+- [x] unit 38件 / E2E 30件 / lint / typecheck / build / 静的export 成功。
+- [x] Preview: https://preview.sougakuhikaku.pages.dev （deployment `c3bf817b`）。
+- [x] 本番: https://sougakuhikaku.com （deployment `ca9b99d4`）。フォント・画像・旧URL308・robotsを確認。

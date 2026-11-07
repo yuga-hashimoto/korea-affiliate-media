@@ -15,3 +15,7 @@ CC0 のため表示義務はありませんが、出典を記録します。
 - 画像はトリミング・リサイズのみ行い、内容の改変はしていません。
 - 新たに画像を追加する場合は、CC0 / パブリックドメインなど利用条件を確認し、この表に追記する。
 - 人物が特定できる写真、店舗の商品写真、芸能人の写真は使用しない。
+
+## フォント
+- **Noto Sans KR**（Hangul サブセット）: SIL Open Font License 1.1。`public/fonts/NotoSansKR-subset.woff2`、ライセンス全文は `public/fonts/OFL.txt`。
+- 本文・見出しの日本語は端末のシステムフォント（Hiragino Sans / Noto Sans JP 等）を使用しています。

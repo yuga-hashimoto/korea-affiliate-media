@@ -5,7 +5,7 @@ test.describe("主要ページ", () => {
     await page.goto("/");
     await expect(page).toHaveTitle(/韓国旅行ノート/);
     await expect(
-      page.getByRole("heading", { level: 1, name: /次の休みは/ }),
+      page.getByRole("heading", { level: 1, name: /週末は/ }),
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /ソウル旅行ガイド/ })).toBeVisible();
     await expect(page.getByText("今日行くなら、どこ？")).toBeVisible();

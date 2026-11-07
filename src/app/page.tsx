@@ -17,47 +17,50 @@ export const metadata: Metadata = {
 const destinations: Array<{
   category: Category;
   image: string;
-  kr: string;
-  en: string;
   copy: string;
 }> = [
   {
     category: "seoul",
     image: "/images/seoul.jpg",
-    kr: "서울",
-    en: "SEOUL",
     copy: "明洞の夜、弘大のカフェ、宮殿の朝。初めてでも迷わないソウル。",
   },
   {
     category: "busan",
     image: "/images/busan.jpg",
-    kr: "부산",
-    en: "BUSAN",
     copy: "海と山と市場の街。1泊2日で楽しむ釜山の歩き方。",
   },
   {
     category: "jeju",
     image: "/images/jeju.jpg",
-    kr: "제주",
-    en: "JEJU",
     copy: "黒い岩と青い海。レンタカーで巡る済州島の自然。",
   },
 ];
 
-const quickCategories: Array<{ category: Category; kr: string }> = [
-  { category: "food", kr: "맛집" },
-  { category: "cafe", kr: "카페" },
-  { category: "shopping", kr: "쇼핑" },
-  { category: "transport", kr: "교통" },
-  { category: "hotel", kr: "숙소" },
-  { category: "prepare", kr: "준비" },
+const quickCategories: Array<{ category: Category; bg: string }> = [
+  { category: "food", bg: "bg-peach" },
+  { category: "cafe", bg: "bg-lilac" },
+  { category: "shopping", bg: "bg-mint" },
+  { category: "transport", bg: "bg-sky" },
+  { category: "hotel", bg: "bg-butter" },
+  { category: "prepare", bg: "bg-[#FDE8E4]" },
 ];
 
 const facts = [
-  { label: "通貨", value: "KRW", note: "韓国ウォン" },
-  { label: "時差", value: "なし", note: "日本と同じ" },
-  { label: "電圧", value: "220V", note: "C・Fタイプ" },
-  { label: "言語", value: "韓国語", note: "英語も一部" },
+  { kr: "통화", label: "通貨", value: "KRW", note: "韓国ウォン" },
+  { kr: "시차", label: "時差", value: "없음", note: "日本と同じ" },
+  { kr: "전압", label: "電圧", value: "220V", note: "C・Fタイプ" },
+  { kr: "언어", label: "言語", value: "한국어", note: "韓国語" },
+];
+
+const ticker = [
+  "SEOUL",
+  "부산",
+  "JEJU",
+  "맛집",
+  "카페",
+  "쇼핑",
+  "여행 준비",
+  "KOREA TRAVEL",
 ];
 
 export default function HomePage() {
@@ -92,7 +95,7 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative isolate min-h-[540px] overflow-hidden sm:min-h-[620px]">
+      <section className="relative isolate min-h-[560px] overflow-hidden sm:min-h-[640px]">
         <Image
           src="/images/hero-seoul.jpg"
           alt="漢江から望むソウルの街並み"
@@ -101,57 +104,87 @@ export default function HomePage() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-cobalt/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" />
 
         <span
           aria-hidden="true"
-          className="kr absolute -bottom-10 right-2 select-none text-[10rem] font-bold leading-none text-cream/10 sm:text-[16rem]"
+          className="kr absolute -right-2 bottom-10 select-none text-[10rem] font-black leading-none text-white/10 sm:text-[17rem]"
         >
           서울
         </span>
+        <span
+          aria-hidden="true"
+          className="absolute right-6 top-28 hidden text-[10px] font-bold tracking-[0.5em] text-white/50 [writing-mode:vertical-rl] sm:block"
+        >
+          KOREA TRAVEL NOTE
+        </span>
 
-        <div className="container-page relative flex min-h-[540px] flex-col justify-end pb-24 pt-20 sm:min-h-[620px] sm:pb-28">
-          <p className="eyebrow !text-brand-200">Seoul · Busan · Jeju</p>
-          <h1 className="mt-4 max-w-2xl text-4xl leading-[1.15] text-white sm:text-5xl lg:text-6xl">
-            次の休みは、
+        <div className="container-page relative flex min-h-[560px] flex-col justify-end pb-24 pt-20 sm:min-h-[640px] sm:pb-28">
+          <span className="sticker w-fit -rotate-3 bg-sun text-ink">
+            <span className="kr">주말엔 서울</span>
+            <span className="text-[9px] text-ink/75">WEEKEND IN SEOUL</span>
+          </span>
+          <h1 className="mt-5 max-w-2xl text-4xl font-black leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-7xl">
+            週末は、
             <br />
-            ソウルへ。
+            ソウル。
           </h1>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-cream/85 sm:text-base">
+          <p className="kr mt-3 text-sm font-bold text-brand-200 sm:text-base">
+            서울에서 만나요 · ソウルで会いましょう
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-7 text-cream/85 sm:text-base">
             初めての韓国旅行から、週末のリピートまで。
             エリアの選び方、モデルコース、グルメ、カフェ、買い物、旅の準備を日本語でまとめています。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/korea/travel/seoul"
-              className="rounded-full bg-brand-700 px-6 py-3.5 text-sm font-bold text-white no-underline shadow-lg shadow-brand-900/30 transition hover:bg-brand-600"
+              className="sticker !px-6 !py-3.5 !text-sm bg-brand-700 text-white hover:bg-brand-600"
             >
-              ソウル旅行ガイド
+              <span className="kr">서울 가이드</span>
+              <span className="text-[10px] text-white">ソウル旅行ガイド</span>
             </Link>
             <Link
               href="/articles/seoul-2nights-3days-model-course"
-              className="rounded-full border border-cream/70 bg-cream/10 px-6 py-3.5 text-sm font-bold text-cream no-underline backdrop-blur transition hover:bg-cream/20"
+              className="sticker !px-6 !py-3.5 !text-sm bg-cobalt text-white hover:bg-cobalt-dark"
             >
-              2泊3日モデルコース
+              <span className="kr">2박 3일 코스</span>
+              <span className="text-[10px] text-white">2泊3日モデルコース</span>
             </Link>
           </div>
         </div>
       </section>
 
       {/* 旅の基本情報 */}
-      <div className="container-page relative z-10 -mt-12">
-        <div className="card paper-grain grid grid-cols-2 gap-y-5 px-5 py-5 sm:grid-cols-4 sm:px-8">
+      <div className="container-page relative z-10 -mt-10">
+        <div className="card hard-shadow grid grid-cols-2 gap-y-5 border-2 border-ink px-5 py-5 sm:grid-cols-4 sm:px-8">
           {facts.map((fact) => (
             <div
-              key={fact.label}
-              className="border-l border-[#efdfd3] pl-4 first:border-l-0 first:pl-0 sm:pl-5"
+              key={fact.kr}
+              className="border-l-2 border-ink/10 pl-4 first:border-l-0 first:pl-0 sm:pl-5"
             >
-              <p className="text-[10px] font-bold tracking-widest text-brand-700">
-                {fact.label}
-              </p>
-              <p className="mt-1 text-lg font-bold text-ink">{fact.value}</p>
-              <p className="text-[10px] text-slate-600">{fact.note}</p>
+              <p className="kr text-[11px] font-black text-cobalt">{fact.kr}</p>
+              <p className="mt-1 text-lg font-black text-ink">{fact.value}</p>
+              <p className="text-[10px] font-semibold text-slate-600">{fact.label} / {fact.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* マーキー */}
+      <div className="overflow-hidden border-y-2 border-ink bg-navy py-2 text-cream">
+        <div className="marquee-track flex w-max gap-8 whitespace-nowrap text-[11px] font-black tracking-[0.2em]">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex gap-8" aria-hidden={copy === 1}>
+              {ticker.map((word) => (
+                <span key={`${copy}-${word}`} className="flex items-center gap-8">
+                  <span className={word === "SEOUL" || word === "KOREA TRAVEL" ? "" : "kr"}>
+                    {word}
+                  </span>
+                  <span className="text-brand-400">●</span>
+                </span>
+              ))}
             </div>
           ))}
         </div>
@@ -161,13 +194,16 @@ export default function HomePage() {
       <section className="container-page py-14" aria-labelledby="destinations">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">Destinations</p>
-            <h2 id="destinations" className="mt-2 text-2xl sm:text-3xl">
+            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
+              여행지 <span className="text-slate-600">DESTINATIONS</span>
+            </p>
+            <h2 id="destinations" className="mt-2 text-2xl font-black sm:text-3xl">
               今日行くなら、どこ？
             </h2>
+            <span className="mt-3 block h-1 w-12 bg-brand-600" aria-hidden="true" />
           </div>
-          <Link href="/korea/travel" className="text-sm font-semibold text-brand-700 underline">
-            旅行ガイド一覧
+          <Link href="/korea/travel" className="text-sm font-black text-cobalt underline">
+            전체 보기
           </Link>
         </div>
 
@@ -178,9 +214,9 @@ export default function HomePage() {
               <Link
                 key={destination.category}
                 href={meta.href}
-                className="group relative block overflow-hidden rounded-3xl no-underline shadow-sm ring-1 ring-black/5 transition hover:-translate-y-1 hover:shadow-xl"
+                className="group relative block overflow-hidden rounded-3xl border-2 border-ink no-underline shadow-[5px_5px_0_var(--color-ink)] transition hover:-translate-y-1"
               >
-                <div className="relative h-72 w-full">
+                <div className="relative h-80 w-full">
                   <Image
                     src={destination.image}
                     alt={`${meta.label}の街並み`}
@@ -188,21 +224,19 @@ export default function HomePage() {
                     sizes="(min-width: 768px) 33vw, 100vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
-                  <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink via-ink/90 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/45 to-transparent" />
+                  <span className="sticker absolute left-4 top-4 -rotate-3 bg-sun text-ink">
+                    <span className="kr">인기</span>
+                  </span>
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="text-[10px] font-bold tracking-[0.22em] text-cream/70">
-                    {destination.en}
-                  </p>
-                  <div className="mt-1 flex items-baseline gap-2">
-                    <span className="kr text-sm text-brand-200">{destination.kr}</span>
-                    <span className="text-2xl font-bold text-white">{meta.label}</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="kr text-2xl font-black text-brand-200">{meta.kr}</span>
+                    <span className="text-xl font-black text-white">{meta.label}</span>
                   </div>
-                  <p className="mt-2 text-xs leading-6 text-cream/80">{destination.copy}</p>
-                  <p className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-brand-200">
-                    ガイドを見る
-                    <span aria-hidden="true">→</span>
+                  <p className="mt-2 text-xs leading-6 text-cream/85">{destination.copy}</p>
+                  <p className="mt-3 inline-flex items-center gap-1 text-xs font-black text-sun">
+                    <span className="kr">가이드 보기</span> →
                   </p>
                 </div>
               </Link>
@@ -213,17 +247,19 @@ export default function HomePage() {
 
       {/* 特集 */}
       {featured ? (
-        <section className="bg-[#FDF1E7] py-14" aria-labelledby="features">
+        <section className="border-y-2 border-ink bg-[#FDF1E7] py-14" aria-labelledby="features">
           <div className="container-page">
-            <p className="eyebrow">Features</p>
-            <h2 id="features" className="mt-2 text-2xl sm:text-3xl">
+            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
+              이번 주 추천 <span className="text-slate-600">FEATURES</span>
+            </p>
+            <h2 id="features" className="mt-2 text-2xl font-black sm:text-3xl">
               編集部の特集
             </h2>
 
             <div className="mt-7 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
               <Link
                 href={`/articles/${featured.slug}`}
-                className="card group flex h-full flex-col overflow-hidden no-underline transition hover:-translate-y-0.5 hover:shadow-lg"
+                className="card group flex h-full flex-col overflow-hidden border-2 border-ink no-underline shadow-[5px_5px_0_var(--color-ink)] transition hover:-translate-y-1"
               >
                 <div className="relative h-72 w-full shrink-0 sm:h-80">
                   <Image
@@ -233,16 +269,17 @@ export default function HomePage() {
                     sizes="(min-width: 1024px) 60vw, 100vw"
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold tracking-wider text-white">
-                    グルメ特集
+                  <span className="sticker absolute left-4 top-4 -rotate-2 bg-brand-700 text-white">
+                    <span className="kr">필수</span>
+                    <span className="text-[9px] text-white">グルメ特集</span>
                   </span>
                 </div>
-                <div className="flex flex-1 flex-col justify-end bg-ink p-6 text-cream">
-                  <h3 className="text-xl text-white sm:text-2xl">{featured.title}</h3>
+                <div className="flex flex-1 flex-col justify-end bg-navy p-6 text-cream">
+                  <h3 className="text-xl font-black text-white sm:text-2xl">{featured.title}</h3>
                   <p className="mt-2 max-w-lg text-xs leading-6 text-cream/75">
                     {featured.description}
                   </p>
-                  <p className="mt-4 text-xs font-bold text-brand-200">記事を読む →</p>
+                  <p className="mt-4 text-xs font-black text-sun">記事を読む →</p>
                 </div>
               </Link>
 
@@ -251,16 +288,16 @@ export default function HomePage() {
                   <Link
                     key={article.slug}
                     href={`/articles/${article.slug}`}
-                    className="card group flex gap-4 p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-md"
+                    className="card group flex gap-4 border-2 border-ink p-5 no-underline transition hover:-translate-y-0.5 hover:shadow-[4px_4px_0_var(--color-ink)]"
                   >
-                    <span className="serif text-3xl font-bold text-brand-600">
+                    <span className="kr text-3xl font-black text-cobalt">
                       0{index + 1}
                     </span>
                     <span>
-                      <span className="text-[10px] font-bold tracking-widest text-brand-700">
-                        {CATEGORY_META[article.category].label}
+                      <span className="kr text-[10px] font-black tracking-widest text-brand-700">
+                        {CATEGORY_META[article.category].kr}
                       </span>
-                      <span className="mt-1 block text-base font-semibold leading-7 text-ink group-hover:text-brand-700">
+                      <span className="mt-1 block text-base font-bold leading-7 text-ink group-hover:text-cobalt">
                         {article.title}
                       </span>
                       <span className="mt-1 line-clamp-2 block text-xs leading-5 text-slate-600">
@@ -269,21 +306,21 @@ export default function HomePage() {
                     </span>
                   </Link>
                 ))}
-                <div className="rounded-3xl bg-brand-700 p-6 text-white">
-                  <p className="text-[10px] font-bold tracking-[0.2em] text-brand-50">
-                    TRAVEL TIP
+                <div className="rounded-3xl border-2 border-ink bg-cobalt p-6 text-white shadow-[4px_4px_0_var(--color-ink)]">
+                  <p className="kr text-[10px] font-black tracking-[0.2em] text-sky">
+                    여행 팁
                   </p>
-                  <p className="mt-2 text-lg font-semibold leading-7">
+                  <p className="mt-2 text-lg font-black leading-7">
                     はじめての韓国旅行、何から決める？
                   </p>
-                  <p className="mt-2 text-xs leading-6 text-white/90">
+                  <p className="mt-2 text-xs leading-6 text-white/85">
                     エリア・通信・持ち物・予算を、順番にチェックできます。
                   </p>
                   <Link
                     href="/korea/travel/prepare"
-                    className="mt-4 inline-block rounded-full bg-white px-4 py-2 text-xs font-bold text-brand-800 no-underline"
+                    className="mt-4 inline-block rounded-full border-2 border-ink bg-sun px-4 py-2 text-xs font-black text-ink no-underline"
                   >
-                    準備ガイドを見る
+                    준비 가이드
                   </Link>
                 </div>
               </div>
@@ -294,24 +331,24 @@ export default function HomePage() {
 
       {/* Categories */}
       <section className="container-page py-14" aria-labelledby="categories">
-        <p className="eyebrow">Categories</p>
-        <h2 id="categories" className="mt-2 text-2xl sm:text-3xl">
+        <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
+          테마 <span className="text-slate-600">CATEGORIES</span>
+        </p>
+        <h2 id="categories" className="mt-2 text-2xl font-black sm:text-3xl">
           テーマから探す
         </h2>
         <div className="mt-7 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {quickCategories.map(({ category, kr }) => {
+          {quickCategories.map(({ category, bg }) => {
             const meta = CATEGORY_META[category];
             return (
               <Link
                 key={category}
                 href={meta.href}
-                className="card group flex h-full flex-col justify-between p-5 no-underline transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md"
+                className={`group flex h-full flex-col justify-between rounded-2xl border-2 border-ink ${bg} p-5 no-underline shadow-[3px_3px_0_var(--color-ink)] transition hover:-translate-y-1 hover:rotate-1`}
               >
-                <span className="kr text-xs font-semibold text-brand-700">{kr}</span>
-                <span className="mt-6 block text-base font-bold text-ink group-hover:text-brand-700">
-                  {meta.label}
-                </span>
-                <span className="mt-1 text-[11px] leading-5 text-slate-600">
+                <span className="kr text-2xl font-black text-ink">{meta.kr}</span>
+                <span className="mt-6 block text-sm font-black text-ink">{meta.label}</span>
+                <span className="mt-1 text-[11px] font-semibold leading-5 text-ink/75">
                   {meta.description}
                 </span>
               </Link>
@@ -321,43 +358,46 @@ export default function HomePage() {
       </section>
 
       {/* Steps */}
-      <section className="bg-sky/50 py-14" aria-labelledby="steps">
+      <section className="border-y-2 border-ink bg-sky/60 py-14" aria-labelledby="steps">
         <div className="container-page">
-          <p className="eyebrow">First Trip</p>
-          <h2 id="steps" className="mt-2 text-2xl sm:text-3xl">
+          <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
+            처음 가는 한국 <span className="text-slate-600">FIRST TRIP</span>
+          </p>
+          <h2 id="steps" className="mt-2 text-2xl font-black sm:text-3xl">
             はじめての韓国旅行、3ステップ
           </h2>
           <div className="mt-7 grid gap-5 md:grid-cols-3">
             {[
               {
+                kr: "지역",
                 title: "エリアを決める",
                 body: "泊まる場所と行きたい場所が決まると、移動時間と予算が組みやすくなります。",
                 href: "/korea/travel/seoul",
                 cta: "ソウルのエリアを見る",
               },
               {
+                kr: "준비",
                 title: "旅の準備をする",
                 body: "パスポート・通信・決済・持ち物をチェック。初めての渡韓はここが肝心です。",
                 href: "/korea/travel/prepare",
                 cta: "準備リストを見る",
               },
               {
+                kr: "당일",
                 title: "当日を楽しむ",
                 body: "食堂・カフェ・市場の回り方と、困ったときの対処をまとめています。",
                 href: "/korea/food",
                 cta: "グルメガイドを見る",
               },
             ].map((step, index) => (
-              <div key={step.title} className="card p-6">
-                <span className="serif text-3xl font-bold text-brand-600">
-                  0{index + 1}
-                </span>
-                <h3 className="mt-3 text-lg">{step.title}</h3>
+              <div key={step.title} className="card border-2 border-ink p-6 shadow-[4px_4px_0_var(--color-ink)]">
+                <div className="flex items-center justify-between">
+                  <span className="kr text-sm font-black text-brand-700">{step.kr}</span>
+                  <span className="kr text-3xl font-black text-cobalt">0{index + 1}</span>
+                </div>
+                <h3 className="mt-3 text-lg font-black">{step.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">{step.body}</p>
-                <Link
-                  href={step.href}
-                  className="mt-4 inline-block text-xs font-bold text-brand-700 underline"
-                >
+                <Link href={step.href} className="mt-4 inline-block text-xs font-black text-cobalt underline">
                   {step.cta}
                 </Link>
               </div>
@@ -370,13 +410,15 @@ export default function HomePage() {
       <section className="container-page py-14" aria-labelledby="latest">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="eyebrow">New Posts</p>
-            <h2 id="latest" className="mt-2 text-2xl sm:text-3xl">
+            <p className="kr text-xs font-black tracking-[0.2em] text-cobalt">
+              새 글 <span className="text-slate-600">NEW POSTS</span>
+            </p>
+            <h2 id="latest" className="mt-2 text-2xl font-black sm:text-3xl">
               新着記事
             </h2>
           </div>
-          <Link href="/articles" className="text-sm font-semibold text-brand-700 underline">
-            すべて見る
+          <Link href="/articles" className="text-sm font-black text-cobalt underline">
+            전체 보기
           </Link>
         </div>
         <div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -388,13 +430,16 @@ export default function HomePage() {
 
       {/* X CTA */}
       <section className="container-page pb-4">
-        <div className="paper-grain overflow-hidden rounded-3xl bg-brand-700 px-6 py-9 text-white sm:px-10">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative overflow-hidden rounded-3xl border-2 border-ink bg-brand-700 px-6 py-9 text-white shadow-[5px_5px_0_var(--color-ink)] sm:px-10">
+          <span aria-hidden="true" className="kr absolute -right-4 -top-8 text-[7rem] font-black text-white/10">
+            여행
+          </span>
+          <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-[10px] font-bold tracking-[0.22em] text-brand-50">
+              <p className="kr text-[10px] font-black tracking-[0.22em] text-white">
                 FOLLOW US
               </p>
-              <h2 className="mt-2 text-2xl text-white">
+              <h2 className="mt-2 text-2xl font-black text-white">
                 ソウル旅のヒントを、毎週。
               </h2>
               <p className="mt-2 max-w-xl text-sm leading-6 text-white/90">
@@ -406,7 +451,7 @@ export default function HomePage() {
               href="https://x.com/bts_95_y"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="inline-flex shrink-0 items-center justify-center rounded-full bg-white px-6 py-3.5 text-sm font-bold text-brand-800 no-underline hover:bg-cream"
+              className="inline-flex shrink-0 items-center justify-center rounded-full border-2 border-ink bg-sun px-6 py-3.5 text-sm font-black text-ink no-underline hover:bg-butter"
             >
               Xで最新情報を見る
             </a>

@@ -4,7 +4,7 @@
 > GitHub: **yuga-hashimoto/korea-affiliate-media**（Private）
 > ステータス: **本番公開済み（2026-11-07）** / CI・E2E検証済み
 
-コーラルと写真を基調にした、ソウル・釜山・済州の旅行メディアです。
+コーラル×コバルト、韓国語タイポグラフィ、CC0写真で構成した、ソウル・釜山・済州の旅行メディアです。
 エリアガイド、モデルコース、グルメ、カフェ、買い物、交通、宿泊、旅の準備を、公式情報の確認日時つきで紹介します。
 
 ![トップページ](docs/screenshots/home-desktop.jpg)
@@ -121,7 +121,7 @@ npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 | [11_COMPLIANCE](docs/11_COMPLIANCE.md) | 広告表示、著作権、個人情報 |
 | [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md) | 記事生成・X投稿の運用手順 |
 | [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md) | Preview環境のデプロイ手順 |
-| [CREDITS](docs/CREDITS.md) | 使用写真の出典・ライセンス（CC0） |
+| [CREDITS](docs/CREDITS.md) | 使用写真・フォントの出典とライセンス |
 | [PROGRESS](docs/PROGRESS.md) | 作業ログ、テスト結果、残課題 |
 | [.env.example](.env.example) | 秘密情報を含まない設定キー一覧 |
 
