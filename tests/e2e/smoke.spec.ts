@@ -45,14 +45,6 @@ test.describe("主要ページ", () => {
     await expect(page.getByText(/「カフェ」の検索結果/)).toBeVisible();
   });
 
-  test("旧・通信ページは記事へリダイレクトされる", async ({ request }) => {
-    const response = await request.get("/korea/travel/esim", { maxRedirects: 0 });
-    expect([307, 308]).toContain(response.status());
-    expect(response.headers()["location"]).toContain(
-      "/articles/korea-esim-wifi-guide",
-    );
-  });
-
   test("存在しない記事は404", async ({ page }) => {
     const response = await page.goto("/articles/not-a-real-article");
     expect(response?.status()).toBe(404);

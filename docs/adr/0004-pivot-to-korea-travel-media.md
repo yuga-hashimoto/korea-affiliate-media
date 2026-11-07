@@ -1,7 +1,7 @@
 # ADR-0004: 「総額比較エンジン」廃止と韓国旅行メディアへの転換
 
 - 日付: 2026-11-06
-- 状態: 採用（ユーザー指示）
+- 状態: 採用・本番反映済み（2026-11-07）
 - 関連: `docs/00_PROJECT_CHARTER.md`, `docs/01_PRD.md`, ADR-0001/0002/0003
 
 ## 背景
@@ -26,6 +26,11 @@
 - 記事・出典（`SourceEvidence`）・編集状態、AI下書きと品質ゲート、X投稿の承認・配信
 - 提携プログラム（`AffiliateProgram`）とASP成果CSVの集計
 - SEO（sitemap/robots/canonical/OGP/JSON-LD）、アクセシビリティ、CI/E2E
+
+## 実施（2026-11-07）
+- Cloudflare Pages の既存プロジェクト `sougakuhikaku` に静的書き出しを配信し、カスタムドメイン `sougakuhikaku.com` を再利用した（ADR-0005）。
+- 旧サイトのコンテンツは上書きされ、旧ウォーターサーバー記事は404になった（ユーザー承認済み）。
+- 正式ブランド名は引き続き暫定（韓国旅行ノート）。
 
 ## 影響
 - 旧URLのうち `/korea/travel/esim` は通信ガイド記事へ、`/korea/travel/airport-transport` は空港アクセス記事へ308転送。

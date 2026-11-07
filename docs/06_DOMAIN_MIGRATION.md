@@ -1,53 +1,36 @@
-# sougakuhikaku.com 本番ドメイン移行計画
+# sougakuhikaku.com ドメイン再利用（実施済み）
 
-**2026-11-06 追記:** 運営者（ユーザー）の指示により、既存の「総額比較」サイトは機能しておらず、韓国旅行メディアへ転換する方針（ADR-0004）。**旧ウォーターサーバー記事2件は新サイト公開時に削除してよい**との承認を得た。ただし実行は、バックアップ・GSC確認・本番切替の明示承認後に行う。
+最終更新: 2026-11-07
 
-**重要:** ドメイン利用者は「使っていない」と考えているが、2026-11-06に既存の公開サイトを確認した。新サイトを**本番へ上書きする前に保全**が必要。本書は計画でありDNSやホスティングはまだ変更していない。
+## 結論
+- 旧サイト（運営者自身が制作した「総額比較」サイト）は、ユーザーの明示承認により**破棄**した。
+- ドメイン `sougakuhikaku.com` は、既存の Cloudflare Pages プロジェクト `sougakuhikaku` とカスタムドメインを**そのまま再利用**した。
+- **DNSレコードの変更は行っていない**（カスタムドメインが既存プロジェクトに紐づいていたため）。
+- 旧コンテンツのバックアップは取得していない（「デザイン・サイト・サーバーはすべて壊してよい」との指示による）。
 
-## 現状確認（2026-11-06）
-- `https://sougakuhikaku.com/` HTTP 200、サイト名「総額比較｜公式料金に基づく比較・試算」。
-- 公式料金や契約条件でウォーターサーバー等の24ヶ月総額を試算するサイト。未知値 `UNKNOWN` を尊重する方針が既にある。
-- サイトマップ `https://sougakuhikaku.com/sitemap.xml` に8 URL:
-  1. `/`
-  2. `/articles/`
-  3. `/methodology/`
-  4. `/editorial-policy/`
-  5. `/about/`
-  6. `/privacy/`
-  7. `/articles/premium-water-amadana-53b10b-24monthja-jp/`
-  8. `/articles/premium-water-famfit2-24monthja-jp/`
-- `robots.txt` は `/go/` をDisallowしている。移行後も広告リンク/追跡リンクの扱いを検証する。
-- CloudflareのNS `linda.ns.cloudflare.com`, `arch.ns.cloudflare.com` を観測。AレコードはCloudflareのIP。現在のDNS画面/ホスティングの原本には未アクセス。
-- `www.` は当時DNS解決できなかった。利用方針は非wwwを正規とし、必要に応じwwwを安全にリダイレクトする。
-- Search Console検証用メタタグの存在を確認。ただし**Search Consoleの所有アカウント・過去流入は未確認**。
-- デプロイ元/元リポジトリは不明。新リポジトリが既存サイトと同じデプロイパイプラインだと決めつけない。
+## 実施内容（2026-11-07）
+1. 新サイトを静的書き出し（`STATIC_EXPORT=true`）でビルド。
+2. `wrangler pages deploy out --project-name=sougakuhikaku --branch=preview` でプレビュー確認。
+3. `--branch=main` で本番配信。カスタムドメイン `sougakuhikaku.com` は維持。
+4. `public/_redirects` で新サイトに受け皿がある旧URLのみ308転送。
+5. 旧ウォーターサーバー記事URLは404（意図どおり）。
 
-## 移行前に取得する情報（read-only）
-- Cloudflareの現DNSレコード一覧、ゾーン設定、SSL/TLS、Workers/Pages、Redirect Rules、キャッシュルール。キー/個人情報をGitに置かない。
-- オリジンサーバー、アプリ/HTMLのソース、デプロイコマンド、旧記事のファイル/DB、バックアップ手段。
-- GSC: 検索クエリ/クリック/インデックス/サイトマップ、GA4: 既存訪問。旧記事への外部リンクと検索流入を確認。
-- バックアップ: ソース/DB/コンテンツ/現DNS設定/現公開HTMLと画像、リダイレクト一覧、作成日時。ローカル/私設保管で秘密情報を漏らさない。
-- `/robots.txt`, `/sitemap.xml`, `/.well-known/`, `/ads.txt` その他関連URLをチェック。
+## 確認結果
+- https://sougakuhikaku.com/ : 200、新サイト表示、canonical/OGP正常。
+- ソウル・釜山・済州・グルメ・カフェ・買い物・記事一覧・記事詳細 : 200。
+- `/korea/travel/esim` → `/articles/korea-esim-wifi-guide` 308。
+- `/korea/travel/airport-transport` → `/articles/incheon-airport-to-seoul` 308。
+- `/methodology` → `/editorial-policy` 308。
+- `robots.txt` : Allow、sitemap 42 URL。
+- 旧記事 `/articles/premium-water-amadana-53b10b-24monthja-jp/` : 404。
+- セキュリティヘッダー（`X-Frame-Options` 等）付与。
 
-## 移行方針の選択肢
-A. 旧コンテンツを `/archive/` に残し旧記事URLへ301（意味的に関連が薄い場合はトップへ全転送しない）。
-B. 旧URLはアーカイブ公開しないが、説明ある410（ユーザーがコンテンツ廃止を決定した時）。検索流入・被リンクがあるURLは慎重に判断。
-C. 新サイトのトップとカテゴリだけ先行追加し、旧記事を保全して段階移行（SEOリスクが低い場合に推奨）。
-**ユーザー承認前に既存記事を削除/301/410しない。**
+## ロールバック
+- Cloudflare Pages のデプロイ履歴から直前のデプロイへ切り替え可能。上書き前の本番デプロイは `ec9e2f1d-2da8-4b2b-bc62-38811e586d90`。
+- ただし旧サイトへの復帰はユーザーが不要と判断しているため、原則として行わない。
+- 新サイトの不具合時は、修正版を再デプロイするか、直前の新サイトデプロイへ戻す。
 
-## ステージング
-1. 新サイトを別プレビューURLで公開（認証かnoindexを検討）。
-2. 旧8 URLを含むリンク切れ・SEO移行テスト、canonical/OG/sitemap/robots、リダイレクトループ確認。
-3. DNSの現状/変更前/変更後を記録。SSL証明書、自動更新、HSTS、www正規化、CORS等を検証。
-4. GA4/GSCイベントとSearch Consoleサイトマップ登録手順を事前準備。
-5. バックアップ/ロールバックを演習し、保持期間を決める。
-
-## 本番切替（要承認）
-- 切替対象/時刻/予想ダウンタイム/コスト/復旧操作をユーザーに示し、明示的な承認を得る。
-- 必要なレコードだけ変更し、MX/TXT（メール・所有権）等に触れない。
-- HTTPS、ルート、主要ページ、広告表示、外部リンク、robots、sitemap、Search Console、DNS/証明書を確認。
-- インデックス対象の重複やリンク切れを監視。旧サイト復元の操作/期限/担当を記録する。
-- 切替後7日/30日でGSCのカバレッジと検索流入を評価。
-
-## ロールバック条件
-重大な5xx、TLS不正、既存コンテンツ喪失、違法/未承認広告リンク、計測/SEO重大障害等が発生したら新規公開を停止し、旧デプロイとDNSへ戻せること。
+## 残タスク（ユーザー権限が必要）
+- Search Console のサイトマップ再送信・インデックス状況の確認。
+- GA4 の測定ID設定とデータ確認。
+- 旧サイト由来の被リンク・検索流入のモニタリング（旧記事は404のため、必要なら後日リダイレクトを追加）。

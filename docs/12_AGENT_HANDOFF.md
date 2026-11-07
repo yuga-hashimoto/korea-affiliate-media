@@ -14,13 +14,14 @@
 ## 現在の状態（2026-11-06）
 - 韓国旅行メディア「韓国旅行ノート」（暫定）として実装済み。比較エンジンは廃止。
 - 公開記事23本。カテゴリは ソウル/釜山/済州/グルメ/カフェ/買い物/交通/宿泊/準備/コスメ/ファッション。
-- Preview: `http://127.0.0.1:4321`（ローカル本番ビルド）。外部PreviewはVercelトークン未設定のため未実施。
-- CI: `.github/workflows/ci.yml`（lint/typecheck/unit/build/E2E）。`content-bot.yml` が毎日06:00 JSTに記事・X下書きをPR。
+- 本番: https://sougakuhikaku.com （Cloudflare Pages・静的配信、2026-11-07公開）
+- Preview: https://preview.sougakuhikaku.pages.dev / ローカル `http://127.0.0.1:4321`
+- CI: `.github/workflows/ci.yml`（lint/typecheck/unit/build/静的export/E2E）。`content-bot.yml` が毎日06:00 JSTに記事・X下書きをPR。`pages-deploy.yml` は手動デプロイ（Cloudflareトークン必要）。
 - 停止スイッチ: `CONTENT_AUTO_PUBLISH_ENABLED` / `SOCIAL_PUBLISH_ENABLED`（既定false）。
 
 ## ユーザーの意思決定を待つ事項
 - 正式ブランド名（暫定「韓国旅行ノート」）。
-- 本番DNS切替と既存サイト（ウォーターサーバー記事2件）の削除実行。
+- 本番は公開済み。旧サイトの破棄も完了（ADR-0004/0005）。
 - ASPの登録・規約同意・承認リンク、Buffer/Paid Partnershipの運用可否。
 - 運営者情報・問い合わせ窓口・特商法表記。
 - 外部ホスティング（Vercel等）の契約/トークン設定。

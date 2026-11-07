@@ -41,10 +41,6 @@ export function contentAutoPublishEnabled(): boolean {
   return flag("CONTENT_AUTO_PUBLISH_ENABLED", false);
 }
 
-export function adminUiEnabled(): boolean {
-  return flag("ADMIN_UI_ENABLED", false);
-}
-
 export function ga4MeasurementId(): string | null {
   const id = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID;
   return id && /^G-[A-Z0-9]+$/.test(id) ? id : null;

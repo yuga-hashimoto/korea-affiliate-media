@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { indexingEnabled, siteUrl } from "@/lib/env";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   if (!indexingEnabled()) {
     // Preview / ステージングでは全面 noindex。

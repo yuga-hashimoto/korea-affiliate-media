@@ -1,0 +1,62 @@
+name: Deploy to Cloudflare Pages
+
+# 本番ドメイン（sougakuhikaku.com）へ配信する手動ワークフロー。
+# CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID が未設定の場合はスキップする。
+# 実行には明示的な操作（workflow_dispatch）を必要とする。
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "main = 本番 / preview = プレビュー"
+        required: true
+        default: preview
+        type: choice
+        options: [preview, main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Check configuration
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::notice::CLOUDFLARE_API_TOKEN が未設定のためスキップしました。"
+
+      - uses: actions/checkout@v5
+        if: env.CLOUDFLARE_API_TOKEN != ''
+
+      - uses: pnpm/action-setup@v4
+        if: env.CLOUDFLARE_API_TOKEN != ''
+
+      - uses: actions/setup-node@v5
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static export
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        env:
+          STATIC_EXPORT: "true"
+          NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
+          SITE_INDEXING_ENABLED: ${{ inputs.branch == 'main' && 'true' || 'false' }}
+        run: pnpm build
+
+      - name: Deploy
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=sougakuhikaku --branch=${{ inputs.branch }}

@@ -17,8 +17,8 @@
 - [x] TM-08 鮮度監査（出典・更新・下書き）を実装。
 - [x] TM-09 X投稿の下書き・承認・Webhook配信（Paid Partnership未保証のためPRは手動）。
 - [x] TM-10 テスト/CI: unit 36件、E2E 32件（desktop/375px/axe）、lint/typecheck/build。
-- [ ] TM-11 外部Previewデプロイ（Vercelトークン未設定）。
-- [ ] TM-12 本番DNS切替・旧ウォーターサーバー記事の削除（承認・バックアップ・GSC確認後）。
+- [x] TM-11 外部Previewデプロイ。→ Cloudflare Pages `preview.sougakuhikaku.pages.dev` に配信済み。
+- [x] TM-12 本番切替・旧サイト破棄。→ 2026-11-07 に Cloudflare Pages の既存プロジェクトへ配信し、ドメインを再利用。旧記事は404（ユーザー承認済み）。DNS変更なし。
 - [ ] TM-13 GA4/GSCの接続（測定ID・権限）。
 - [ ] TM-14 正式ブランド名の決定（暫定: 韓国旅行ノート）。
 - [ ] TM-15 釜山・済州・ソウルの記事拡充（公式情報の確認が取れたものから）。

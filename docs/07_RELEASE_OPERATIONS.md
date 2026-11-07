@@ -8,8 +8,9 @@
 - staging: 本番相当設定で確認。PR/広告投稿は外部公開禁止。
 - production: `sougakuhikaku.com`。移行の明示承認後に切替、運用パラメータの監査ログ保管。
 
-## デプロイ方式
-最初の候補: Next.jsをVercelのPreviewへ。定期処理はGCP Cloud Run Jobs + Cloud Scheduler。DBはPostgreSQLを管理サービスで。選定前に定額/従量費、リクエスト制限、ホスティング地域、サイト規模、独自ドメイン、データ転送、無料枠の契約条項を確認しADR化。
+## デプロイ方式（2026-11-07 更新）
+本番は **Cloudflare Pages** の静的配信（プロジェクト `sougakuhikaku`、本番URL https://sougakuhikaku.com）。`STATIC_EXPORT=true` で `out/` を生成し、`wrangler pages deploy` で配信する。詳細は `docs/adr/0005-cloudflare-pages-deployment.md` と `docs/PREVIEW_DEPLOY.md`。
+定期処理はGitHub Actionsで実行する（将来GCP Cloud Run Jobs等を検討）。選定前に定額/従量費、リクエスト制限、ホスティング地域、サイト規模、独自ドメイン、データ転送、無料枠の契約条項を確認しADR化。
 GCPのみで完結させる案も比較し、安価で運用負荷の低い方を採用。既存GCPアカウントの課金設定に推測で依存しない。
 
 ## 環境変数

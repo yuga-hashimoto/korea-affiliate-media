@@ -1,37 +1,48 @@
-# Preview環境のデプロイ手順
+# Preview / 本番デプロイ（Cloudflare Pages）
 
-最終更新: 2026-11-06（旅行メディア版）
+最終更新: 2026-11-07
 
-## 現状
-- ローカル本番ビルドを `http://127.0.0.1:4321` で起動し、トップ・カテゴリ・記事・モバイル表示とE2Eを確認済み。
-- 外部ホスティング（Vercel等）へのデプロイは、アカウント認証情報が無いため**未実施**。
-- デプロイ用ワークフロー `.github/workflows/preview-deploy.yml` は用意済みで、Secretsを設定するとPRごとにPreview URLが発行される。
+## 構成
+- ホスティング: Cloudflare Pages プロジェクト `sougakuhikaku`
+- 本番: https://sougakuhikaku.com （本番ブランチ `main`）
+- プレビュー: https://preview.sougakuhikaku.pages.dev （ブランチ `preview`）
+- ビルド: Next.js 静的書き出し（`STATIC_EXPORT=true` → `out/`）
+- 旧URL転送: `public/_redirects` / セキュリティヘッダー: `public/_headers`
 
-## Vercel Preview を有効化する（人間の作業）
-1. Vercel にログインし、`korea-affiliate-media` をインポートする（Framework: Next.js）。
-2. Project Settings → Environment Variables に以下を設定する（Preview環境のみ）。
-   - `SITE_INDEXING_ENABLED=false`（**必須**: Previewをnoindexにする）
-   - `NEXT_PUBLIC_SITE_URL` は自動設定される `VERCEL_URL` を利用（未設定で可）
-3. GitHubリポジトリの Secrets に `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` を登録する。
-4. PRを作成すると `.github/workflows/preview-deploy.yml` がPreviewをデプロイし、URLをPRにコメントする。
-
-> 本番ドメイン（sougakuhikaku.com）はVercelプロジェクトに**接続しない**。接続するとDNS変更を伴うため、明示承認まで行わない。
-
-## ローカルでの確認（認証不要）
+## 手元からデプロイ
 ```bash
+# 依存関係
 pnpm install
-NEXT_PUBLIC_SITE_URL=http://127.0.0.1:4321 pnpm build
-PORT=4321 pnpm start
+
+# プレビュー（noindex）
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=false pnpm build
+npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
+
+# 本番（index許可）
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=true pnpm build
+npx wrangler pages deploy out --project-name=sougakuhikaku --branch=main
 ```
 
-## Previewで必ず確認する項目
-- [ ] `robots.txt` が `Disallow: /` になっている（noindex）
-- [ ] トップ・ソウル・釜山・済州・グルメ・カフェ・買い物・準備の各ページが表示される
-- [ ] 旧URL（`/korea/travel/esim`, `/korea/travel/airport-transport`, `/methodology`）が308で転送される
-- [ ] 記事の出典・確認日時・広告表記が表示される
-- [ ] 375px幅で横スクロールが発生しない
-- [ ] 主要ページのLCP/CLS（実測条件を記録）
+## CIからデプロイ
+- `.github/workflows/pages-deploy.yml` を手動実行する（`preview` / `main` を選択）。
+- リポジトリ Secrets に `CLOUDFLARE_API_TOKEN` と `CLOUDFLARE_ACCOUNT_ID` を登録する。未設定時は自動でスキップする。
+- 本番（`main`）は手動実行のみ。PRではデプロイしない。
+
+## デプロイ後の確認
+- [ ] `https://sougakuhikaku.com/` が新サイト（韓国旅行ノート）を表示
+- [ ] `robots.txt` が Allow / `sitemap.xml` が42 URL
+- [ ] 旧URL3件が308で転送
+- [ ] 記事・カテゴリ・記事一覧の絞り込み・検索が動作
+- [ ] 375pxで横スクロールなし
+- [ ] セキュリティヘッダー（`X-Frame-Options` 等）
+- [ ] OGP画像（`/og-default.png`）が表示
 
 ## ロールバック
-- Vercel Previewは再デプロイ/削除で戻せる。本番ドメインは接続しないため影響なし。
-- 問題がある場合はデプロイを停止し、`SITE_INDEXING_ENABLED=false` を維持する。
+- Cloudflare Pages のデプロイ履歴から直前のデプロイへ切り替える。
+- 上書き前の旧サイト: `ec9e2f1d-2da8-4b2b-bc62-38811e586d90`（復帰は非推奨）。
+- 新サイトの不具合時は、修正版を再デプロイするか、直前の新サイトデプロイへ戻す。
+
+## 制約
+- 静的配信のため、サーバーサイド処理（管理画面・API・動的検索）は含まない。
+- 検索・絞り込みはクライアント側で処理する。
+- 動的処理が必要になった場合は Cloudflare Workers（OpenNext）等へ移行する。

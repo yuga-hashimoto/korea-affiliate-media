@@ -88,3 +88,14 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] スクリーンショット更新: `docs/screenshots/home-desktop.jpg` / `seoul-mobile.jpg`。
 - [x] READMEを旅行メディア版に全面更新（機能・カテゴリ・設定・デプロイ・未実施）。
 - [ ] 承認待ち: 本番DNS切替、既存ウォーターサーバー記事の削除、外部Preview、ASP申請・成果リンク、X実投稿。
+
+## 2026-11-07 — Cloudflare Pages へ本番配信（ドメイン再利用）
+- ユーザー承認: 「旧サイトのデザイン・サイト・サーバーはすべて壊してよい。ドメインだけ使い回したい」。
+- [x] 旧サイトの正体を確認: Cloudflare Pages プロジェクト `sougakuhikaku`（カスタムドメイン `sougakuhikaku.com`、上書き前の本番デプロイ `ec9e2f1d-2da8-4b2b-bc62-38811e586d90`）。
+- [x] 静的配信へ対応: `STATIC_EXPORT=true` で `output: "export"`、`trailingSlash`、`images.unoptimized`。`/admin` と `/api/health` を削除し、記事検索・絞り込みをクライアント側（`ArticlesExplorer`）へ移行。
+- [x] 旧URLは `public/_redirects` で308転送（`/korea/travel/esim`, `/korea/travel/airport-transport`, `/methodology`）。セキュリティヘッダーは `public/_headers`。
+- [x] Preview配信: https://preview.sougakuhikaku.pages.dev （deployment `ce78af83`）。
+- [x] 本番配信: https://sougakuhikaku.com （deployment `7d68c7ad`）。カスタムドメインは既存Pagesプロジェクトのまま、DNS変更なし。旧サイトは上書きされ、旧ウォーターサーバー記事は404。
+- [x] 本番確認: トップ/各カテゴリ/記事一覧/記事詳細 200、旧URL 308、robots Allow、sitemap 42 URL、OGP画像、セキュリティヘッダー、モバイル表示。
+- [x] CI: 静的exportビルドを検証に追加。`pages-deploy.yml` を追加（手動実行・Cloudflareトークン必要）。
+- [ ] 未実施（権限）: GSCサイトマップ再送信、GA4接続、ASP成果リンク、X実投稿。

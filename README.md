@@ -1,22 +1,25 @@
 # 韓国旅行ノート — 韓国旅行メディア
 
-> 本番ドメイン: **https://sougakuhikaku.com/**（既存サイトあり・DNS未切替）
+> 本番URL: **https://sougakuhikaku.com/**（公開中・Cloudflare Pages）
 > GitHub: **yuga-hashimoto/korea-affiliate-media**（Private）
-> ステータス: **旅行メディア版MVP・CI/E2E検証済み（2026-11-06）** / 本番公開は未承認
+> ステータス: **本番公開済み（2026-11-07）** / CI・E2E検証済み
 
 ソウル・釜山・済州を中心に、韓国旅行をもっと楽しくする日本語メディアです。
 エリアガイド、モデルコース、グルメ、カフェ、買い物、交通、宿泊、旅の準備を、公式情報の確認日時つきで紹介します。
 
 ![トップページ](docs/screenshots/home-desktop.jpg)
 
-## 重要：既存サイトとの関係
+## ドメイン再利用（実施済み）
 
-`sougakuhikaku.com` には、運営者自身が制作した「総額比較」サイト（ウォーターサーバー記事2件）が公開されています。
-このサイトは機能しておらず、**韓国旅行メディアへ転換する方針**です（[ADR-0004](docs/adr/0004-pivot-to-korea-travel-media.md)）。
+`sougakuhikaku.com` は、もともと運営者自身が制作した「総額比較」サイト（ウォーターサーバー記事2件）が稼働していました。
+ユーザーの明示承認（「旧サイトのデザイン・サイト・サーバーはすべて壊してよい。ドメインだけ使い回したい」）に基づき、
+**2026-11-07 に Cloudflare Pages の既存プロジェクトへ新サイトを配信し、ドメインを再利用**しました。
 
-- 比較エンジン・比較ページ・サンプル価格・`/go` 計測は**廃止**しました。
-- 既存のウォーターサーバー記事は「新サイト公開時に削除してよい」との承認を得ていますが、**削除・DNS切替は未実施**です。
-- 本番切替は、バックアップ・GSC確認・明示承認を経てから行います（[ドメイン移行計画](docs/06_DOMAIN_MIGRATION.md)）。
+- 比較エンジン・比較ページ・サンプル価格・`/go` 計測は廃止済みです。
+- 旧サイトのコンテンツは上書きされ、旧ウォーターサーバー記事は404になっています。
+- DNSレコードの変更は不要でした（カスタムドメインは既存プロジェクトに紐づいていたため）。
+- 旧デプロイは Cloudflare のデプロイ履歴に残っていますが、旧サイトへの復帰は原則行いません。
+- 詳細: [ADR-0004](docs/adr/0004-pivot-to-korea-travel-media.md) / [ADR-0005](docs/adr/0005-cloudflare-pages-deployment.md) / [ドメイン移行](docs/06_DOMAIN_MIGRATION.md)。
 
 ## 動作する機能（2026-11-06 時点）
 
@@ -24,10 +27,10 @@
 - **記事**: 公開23本（ソウル5、宿泊1、釜山1、済州1、交通3、グルメ2、カフェ2、コスメ2、ファッション1、買い物1、旅の準備4）。AIによる追加下書きは `review` 状態で保持。
 - **SEO**: ページ別metadata、canonical、OGP（1200×630）、sitemap.xml、robots.txt、JSON-LD（WebSite/Organization/Article/FAQPage/BreadcrumbList）。Previewはnoindex。
 - **自動化**: AI記事下書き（品質ゲート付き）、鮮度監査、X投稿下書き、人手承認、署名付きWebhook配信（既定OFF）、日次/週次レポート、停止スイッチ。
-- **管理画面**（`ADMIN_UI_ENABLED=true` のときのみ）: `/admin`, `/admin/promotions`, `/admin/articles`, `/admin/affiliates`。
+- **配信**: Cloudflare Pages（静的書き出し）。管理画面は静的配信に含めず、レビューはCLIで行います。
 - **旧URL**: `/korea/travel/esim` → 通信ガイド記事、`/korea/travel/airport-transport` → 空港アクセス記事、`/methodology` → 編集方針へ308転送。
 
-![ソウルのカテゴリページ（モバイル）](docs/screenshots/seoul-mobile.jpg)
+![モバイル表示](docs/screenshots/home-mobile.jpg)
 
 ## カテゴリ
 
@@ -66,7 +69,6 @@ pnpm e2e                              # desktop + mobile 375px + axe
 | `AFFILIATE_LINKS_ENABLED` | 将来の成果リンク配信 | 未使用（承認後に実装） |
 | `SITE_INDEXING_ENABLED` | index許可 | noindex |
 | `NEXT_PUBLIC_SITE_URL` | canonical/OGPの基準URL | Vercel URL / localhost |
-| `ADMIN_UI_ENABLED` | 管理画面 | 404 |
 
 ## 自動化（AI記事・X投稿）
 
@@ -84,10 +86,22 @@ pnpm jobs:weekly-report      # 週次レポート
 - 品質ゲート: Zodスキーマ、禁止表現、根拠のない数値、出典ID、広告開示。詳細は [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md)。
 - CI: `.github/workflows/content-bot.yml` が毎日06:00 JSTに実行し、PRでレビューします。
 
-## デプロイ
+## デプロイ（Cloudflare Pages）
 
-- Preview: [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md)（Vercelトークン未設定時はワークフローが自動スキップ）。
-- 本番: `sougakuhikaku.com` のDNS切替は**未実施**。既存サイトのバックアップ・GSC確認・ユーザー承認後に実施します。
+```bash
+# 本番
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=true pnpm build
+npx wrangler pages deploy out --project-name=sougakuhikaku --branch=main
+
+# プレビュー
+STATIC_EXPORT=true NEXT_PUBLIC_SITE_URL=https://sougakuhikaku.com SITE_INDEXING_ENABLED=false pnpm build
+npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
+```
+
+- 本番: https://sougakuhikaku.com / プレビュー: https://preview.sougakuhikaku.pages.dev
+- セキュリティヘッダーは `public/_headers`、旧URLの転送は `public/_redirects`。
+- CIからの配信は `.github/workflows/pages-deploy.yml`（手動実行・`CLOUDFLARE_API_TOKEN` が必要）。
+- 詳細: [ADR-0005](docs/adr/0005-cloudflare-pages-deployment.md) / [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md)。
 
 ## ドキュメント一覧
 
@@ -99,6 +113,7 @@ pnpm jobs:weekly-report      # 週次レポート
 | [ADR-0002](docs/adr/0002-tech-stack.md) | 技術スタック・ホスティング・コスト |
 | [ADR-0003](docs/adr/0003-content-automation.md) | AI生成・X投稿の自動化と承認ゲート |
 | [ADR-0004](docs/adr/0004-pivot-to-korea-travel-media.md) | 比較エンジン廃止と旅行メディアへの転換 |
+| [ADR-0005](docs/adr/0005-cloudflare-pages-deployment.md) | Cloudflare Pagesへの静的配信とドメイン再利用 |
 | [06_DOMAIN_MIGRATION](docs/06_DOMAIN_MIGRATION.md) | 既存サイトの保全、DNS/公開、復旧 |
 | [07_RELEASE_OPERATIONS](docs/07_RELEASE_OPERATIONS.md) | 環境、Secrets、CI/CD、運用 |
 | [08_IMPLEMENTATION_BACKLOG](docs/08_IMPLEMENTATION_BACKLOG.md) | バックログ（旅行メディア版を追記） |
@@ -111,13 +126,14 @@ pnpm jobs:weekly-report      # 週次レポート
 
 ## 未実施・承認待ち
 
-- 外部Preview（Vercelトークン未設定）、本番DNS切替、既存ウォーターサーバー記事の削除。
 - ASP申請・規約同意・成果リンク、Buffer公式API接続、GA4/GSC実データ。
+- GSCのサイトマップ再送信・所有確認（ユーザー権限）。
 - 運営者情報・お問い合わせ窓口・特商法表記の確定。
 - 正式ブランド名の決定（暫定: 韓国旅行ノート）。
 
 ## 方針
 
+本番は Cloudflare Pages の静的配信です。サーバーサイド処理が必要になった場合は Workers（OpenNext）等へ移行します。
 月額30万円は**確定アフィリエイト報酬（税・経費控除前）の長期目標**であり、保証ではありません。
 営業時間・料金・交通は変動するため、確認日時と公式情報へのリンクを明記し、未確認の情報は掲載しません。
 AI生成の記事は公開前にレビューし、現地体験を装う表現や根拠のない断定は行いません。

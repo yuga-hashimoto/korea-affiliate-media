@@ -28,6 +28,8 @@ const STATIC_ROUTES: ReadonlyArray<{
   { path: "/contact", priority: 0.3, changeFrequency: "yearly" },
 ];
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();
   const staticEntries = STATIC_ROUTES.map((route) => ({
