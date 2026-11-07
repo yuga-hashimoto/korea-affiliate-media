@@ -161,3 +161,9 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] `tests/unit/ga4.test.ts`（7件）追加。unit 51件 / E2E 30件 / lint / typecheck / build 成功。
 - [x] lint修正: `src/app/media-kit/page.tsx` の未使用import（SITE）を除去（並行作業のファイル、機能変更なし）。
 - [ ] 残課題（人と作業が必要）: ①GA4プロパティ563135187に `analytics.readonly` のサービスアカウントを閲覧者として追加し、`.env.local` に `GA4_PROPERTY_ID=563135187`＋`GOOGLE_APPLICATION_CREDENTIALS` を設定（これで `pnpm analytics:ga4-pages` が自動化できる）。②サイト公開当日のため実ユーザーのデータが未蓄積。「一番見られてるページ」の実数値は本日夕方〜翌日以降に判明。
+- [x] 重要5プログラム（Klook / Trip.com / Airalo / OLIVE YOUNG Global / YesStyle）を優先する方針に更新。既存ASP（A8/もしも/バリューコマース/楽天/Amazon）は補完。
+- [x] 記事末に「予約・購入先を探す」CTAを追加（カテゴリ別）。提携未承認時は公式リンク＋「公式」表示、承認後は成果リンク＋PR表記に自動切替。
+- [x] 成果リンク基盤: `AFFILIATE_LINKS_JSON` / `AFFILIATE_LINKS_ENABLED`、`rel="sponsored"`、GA4 `affiliate_click` / `outbound_click`。設定手順は `docs/AFFILIATE_LINKS_SETUP.md`。
+- [x] 提携申請用の `/media-kit` ページを追加（サイト概要・記事数・広告フォーマット・編集方針・問い合わせ）。
+- [x] Search Console: 再送信後 **53 URL検出・成功**（media-kit追加分）。
+- [x] 障害: 本番ビルドが別プロセスのロックで失敗し、一時的にPreview用noindexビルドが配信された。`.next`/`out`を削除してindex許可ビルドを再作成・再配信し、robots Allow / meta index を確認。

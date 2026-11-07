@@ -14,6 +14,7 @@ import { DisclosureNote } from "@/components/disclosure-note";
 import { SourceStamp } from "@/components/source-stamp";
 import { ArticleCard } from "@/components/article-card";
 import { JsonLd } from "@/components/json-ld";
+import { BookingCta } from "@/components/booking-cta";
 import { CATEGORY_META } from "@/lib/categories";
 import { formatJstDate } from "@/lib/dates";
 import type { Article } from "@/lib/domain";
@@ -230,6 +231,8 @@ export default async function ArticlePage({
               </ul>
             </section>
           ) : null}
+
+          <BookingCta category={article.category} articleSlug={article.slug} />
 
           {evidence.length > 0 ? (
             <section className="card mt-10 p-5">

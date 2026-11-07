@@ -9,6 +9,7 @@ const links = [
   { href: "/about", label: "運営者情報" },
   { href: "/privacy", label: "プライバシーポリシー" },
   { href: "/credits", label: "画像クレジット" },
+  { href: "/media-kit", label: "広告・提携" },
   { href: "/contact", label: "お問い合わせ" },
 ];
 

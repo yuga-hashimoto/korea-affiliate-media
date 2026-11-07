@@ -26,6 +26,7 @@ const STATIC_ROUTES: ReadonlyArray<{
   { path: "/about", priority: 0.4, changeFrequency: "yearly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/contact", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/media-kit", priority: 0.3, changeFrequency: "yearly" },
 ];
 
 export const dynamic = "force-static";

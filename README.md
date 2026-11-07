@@ -122,6 +122,7 @@ npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 | [11_COMPLIANCE](docs/11_COMPLIANCE.md) | 広告表示、著作権、個人情報 |
 | [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md) | 記事生成・X投稿の運用手順 |
 | [AFFILIATE_APPLICATION](docs/AFFILIATE_APPLICATION.md) | ASP登録の準備・手順・必要な情報 |
+| [AFFILIATE_LINKS_SETUP](docs/AFFILIATE_LINKS_SETUP.md) | 成果リンクの設定・デプロイ手順 |
 | [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md) | Preview環境のデプロイ手順 |
 | [CREDITS](docs/CREDITS.md) | 使用写真・フォントの出典とライセンス |
 | [PROGRESS](docs/PROGRESS.md) | 作業ログ、テスト結果、残課題 |

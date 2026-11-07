@@ -29,3 +29,6 @@ __pycache__/
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Affiliate links (never commit real tracking URLs)
+affiliate-links.json

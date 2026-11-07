@@ -110,4 +110,28 @@ export const merchants: Merchant[] = [
     dataPolicy: "link_only",
     notes: "ステルスマーケティング規制などの一次情報。",
   },
+  {
+    id: "qoo10",
+    name: "Qoo10",
+    siteUrl: "https://www.qoo10.jp/",
+    country: "JP",
+    dataPolicy: "unknown",
+    notes: "韓国コスメ・ファッションの取り扱いが多い。提携条件は未確認。",
+  },
+  {
+    id: "kkday",
+    name: "KKday",
+    siteUrl: "https://www.kkday.com/ja/",
+    country: "TW",
+    dataPolicy: "unknown",
+    notes: "現地体験・空港送迎の予約サイト。提携条件は未確認。",
+  },
+  {
+    id: "rakuten-travel",
+    name: "楽天トラベル",
+    siteUrl: "https://travel.rakuten.co.jp/",
+    country: "JP",
+    dataPolicy: "unknown",
+    notes: "海外ホテル・旅行商品。楽天アフィリエイトの対象条件は未確認。",
+  },
 ];

@@ -1,3 +1,5 @@
+> **2026-11-07 優先順位**: 韓国特化のため、Klook / Trip.com / Airalo / OLIVE YOUNG Global / YesStyle を優先。既存ASP（A8/もしも/バリューコマース/楽天/Amazon）は補完として使用。詳細は [AFFILIATE_APPLICATION](AFFILIATE_APPLICATION.md)。
+
 > **2026-11-06 方針更新**: 「総額比較エンジン」は廃止し、韓国旅行メディアへ転換しました（[ADR-0004](adr/0004-pivot-to-korea-travel-media.md)）。本文の比較前提は履歴として参照し、現行仕様は README・ADR-0004・`src/` を参照してください。
 
 # 収益化・提携プログラム / ライフサイクル

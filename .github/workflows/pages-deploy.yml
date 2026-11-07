@@ -51,6 +51,8 @@ jobs:
           STATIC_EXPORT: "true"
           NEXT_PUBLIC_SITE_URL: https://sougakuhikaku.com
           NEXT_PUBLIC_GA4_MEASUREMENT_ID: G-C4CJ11GEDH
+          AFFILIATE_LINKS_ENABLED: ${{ secrets.AFFILIATE_LINKS_ENABLED || 'false' }}
+          AFFILIATE_LINKS_JSON: ${{ secrets.AFFILIATE_LINKS_JSON }}
           SITE_INDEXING_ENABLED: ${{ inputs.branch == 'main' && 'true' || 'false' }}
         run: pnpm build
 
