@@ -51,6 +51,14 @@ export default function RootLayout({
   const ga4 = ga4MeasurementId();
   return (
     <html lang="ja">
+      <head>
+        {/* Impact.com（Airalo）のサイト所有権確認用。値は公開情報。 */}
+        <meta
+          name="impact-site-verification"
+          content="4bf80c31-5629-48ea-9cdb-e8e521d001b6"
+          {...{ value: "4bf80c31-5629-48ea-9cdb-e8e521d001b6" }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <a
           href="#main"
