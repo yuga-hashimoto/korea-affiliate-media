@@ -9,8 +9,8 @@
 | 優先 | プログラム | 登録ページ（確認済み） | 用途 | 媒体の注意 |
 |---|---|---|---|---|
 | 1 | **Klook アフィリエイト** | https://affiliate.klook.com/ | 現地体験・空港送迎・ホテル・鉄道 | **登録・承認済み**（2026-11-07） |
-| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | **アカウント作成済み・プロフィール有効化待ち**（電話番号・サブメールが必要） |
-| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | **Impact.com登録で電話番号が必要（保留）** |
+| 2 | **Trip.com Partners** | https://jp.trip.com/partners/index | ホテル・旅行商品 | **申請送信済み・審査中（1〜14営業日）** |
+| 3 | **Airalo Partners** | https://partners.airalo.com/ | eSIM | **Impact.comの登録フォームが送信できず保留** |
 | 4 | **OLIVE YOUNG Global** | https://global.oliveyoung.com/influencer/main | 韓国コスメ | **会員登録（電話・住所）が必要（保留）** |
 | 5 | **YesStyle** | https://www.yesstyle.com/en/influencers.html | コスメ・ファッション | **SNS限定の可能性（Web不可のため保留）** |
 
