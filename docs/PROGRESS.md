@@ -244,7 +244,7 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
   - 季節5本 → `korea-season-guide`、モデルコース2本 → `seoul-model-courses`、カフェ4本 → `seoul-cafe-guide`、夜景2本 → `korea-night-view-guide`、仁川空港2本 → `incheon-airport-to-seoul`。
 - [x] 削除した13URLは `public/_redirects` で統合先へ308転送。記事への転送先が公開中かを検証するテストも追加。
 - [x] `scripts/content-quality.ts` + `pnpm jobs:quality` を追加（本文文字数・見出し数・出典数・タイトル/説明の重複をレポート。`--strict` で閾値未満を失敗にできる）。
-- [x] 検証: 対象unit 17件（data-integrity / sitemap / redirects）成功、静的ビルド成功、サイトマップ **58 → 48URL**、E2E 30件成功。
+- [x] 検証: 対象unit 17件（data-integrity / sitemap / redirects）成功、E2E 30件成功、lint成功、静的ビルド成功、サイトマップ **58 → 48URL**。`tsc --noEmit` は並行作業中の `scripts/dashboard.ts` の1件のみエラー（今回の変更範囲外）。
 - [ ] 注意: 全体の `pnpm test` は並行作業中の `scripts/dashboard.ts` / `tests/unit/dashboard.test.ts`（ASPダッシュボード）の1件が失敗。今回の変更とは無関係で、`tsc` も同ファイルのみエラー。
 - [ ] 残（次フェーズ）: 統合後の記事に一次情報（空港・鉄道・公的機関・事業者公式）で確認した具体情報を足し、1本3,000字級にする。`korea-season-guide` など統合後も1,000字未満の記事が26本残っている。
 
