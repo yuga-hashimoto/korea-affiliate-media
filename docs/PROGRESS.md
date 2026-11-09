@@ -247,3 +247,18 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 検証: 対象unit 17件（data-integrity / sitemap / redirects）成功、静的ビルド成功、サイトマップ **58 → 48URL**、E2E 30件成功。
 - [ ] 注意: 全体の `pnpm test` は並行作業中の `scripts/dashboard.ts` / `tests/unit/dashboard.test.ts`（ASPダッシュボード）の1件が失敗。今回の変更とは無関係で、`tsc` も同ファイルのみエラー。
 - [ ] 残（次フェーズ）: 統合後の記事に一次情報（空港・鉄道・公的機関・事業者公式）で確認した具体情報を足し、1本3,000字級にする。`korea-season-guide` など統合後も1,000字未満の記事が26本残っている。
+
+## 2026-11-10 — アフィリエイト売上ダッシュボード（ASP成果CSVの1ページ集約）
+- ユーザー要望: 各アフィリエイトの売上をひとつのページで見たい。
+- 調査: ASP各社は管理画面が分かれており、横断の公式ダッシュボードは提供されていない。公開の成果APIも確認できない（Amazon・楽天は成果報酬を取得する公開APIなし）。→ 各ASPの成果CSVを正規化して取り込み、自前で1ページに集約する方式を採用。リンクは一切生成しない。
+- [x] `src/lib/analytics/dashboard.ts`: プログラム×通貨で「確定報酬 / 見込 / 却下・返金」と「売上(GMV) / 報酬」を分離して集計。未登録の `program_id` も金額を落とさず表示。提携済みだがCSVが無いプログラムは「0件ではなく未取込」として列挙。HTML生成は noindex・ローカル専用・HTMLエスケープ・サンプル警告つき。
+- [x] `src/lib/analytics/asp.ts`: 重複排除を `dedupeConversions` として共通化。`parseAspCsv` に取込元(`source`)指定を追加（既存の挙動・テストは維持）。
+- [x] `scripts/dashboard.ts` + `pnpm dashboard`: `var/asp/*.csv` を全件取り込み → `var/reports/dashboard.html` と `dashboard.json` を生成。`--since` / `--until` / `--input` / `--demo` / `--print-template`。CSVが無いときは空状態＋取込手順を表示（架空の数値は出さない）。
+- [x] サンプル: `docs/examples/asp-conversions.example.csv`（架空の数値。`--demo` のときだけ使用し、ページに「サンプルデータ」警告を表示）。
+- [x] テスト: `tests/unit/dashboard.test.ts` 17件（プログラム別集計・通貨分離・確定/見込分離・重複排除・未登録ID・未取込・期間・エスケープ・サンプル警告・空状態）。unit 75件 / lint / typecheck / build 成功。
+- [x] ドキュメント: `docs/AFFILIATE_DASHBOARD.md` を追加。README・`docs/04_AFFILIATES.md`・`docs/08_IMPLEMENTATION_BACKLOG.md`（P2-05）を更新。
+- [x] 動作確認: `pnpm dashboard -- --demo` でHTML生成・ブラウザ表示を確認（デモは架空値と明示）。
+- [ ] 残（実データ）: ASP管理画面から成果CSVを出力し、正規化して `var/asp/` に配置。ASPごとの列名変換表は実CSVを確認してから作成する（推測で列を当てない）。
+- [ ] 残: GA4 `affiliate_click` とASP成果の突合（クリック→CVR）は未実装。GA4 Data APIのサービスアカウント設定後に検討。
+- 注: ダッシュボードはローカル専用。公開サイト（Cloudflare Pages）には含めない。売上と成果報酬、見込と確定を混同しない。
+- [x] 本番反映（2026-11-10）: Cloudflare Pages `main` へデプロイ（deployment `2c424841`）。伝播後に本番の `sitemap.xml` が48URL、新記事（`/articles/korea-season-guide/` 等）が200、統合元11URLが**1ホップの308**で統合先へ転送されることを確認。
