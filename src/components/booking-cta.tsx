@@ -13,16 +13,19 @@ const CTAS: Partial<Record<Category, CtaTarget[]>> = {
   seoul: [
     { programId: "prog-rakuten-travel", merchant: "楽天トラベル", label: "楽天トラベルで宿を探す", officialUrl: "https://travel.rakuten.co.jp/" },
     { programId: "prog-tripcom", merchant: "Trip.com", label: "Trip.comでホテルを探す", officialUrl: "https://jp.trip.com/" },
+    { programId: "prog-rakuten-experience", merchant: "楽天トラベル観光体験", label: "楽天トラベル観光体験で探す", officialUrl: "https://experiences.travel.rakuten.co.jp/" },
     { programId: "prog-klook", merchant: "Klook", label: "Klookで体験を探す", officialUrl: "https://www.klook.com/ja/" },
   ],
   busan: [
     { programId: "prog-rakuten-travel", merchant: "楽天トラベル", label: "楽天トラベルで宿を探す", officialUrl: "https://travel.rakuten.co.jp/" },
     { programId: "prog-tripcom", merchant: "Trip.com", label: "Trip.comでホテルを探す", officialUrl: "https://jp.trip.com/" },
+    { programId: "prog-rakuten-experience", merchant: "楽天トラベル観光体験", label: "楽天トラベル観光体験で探す", officialUrl: "https://experiences.travel.rakuten.co.jp/" },
     { programId: "prog-klook", merchant: "Klook", label: "Klookで体験を探す", officialUrl: "https://www.klook.com/ja/" },
   ],
   jeju: [
     { programId: "prog-rakuten-travel", merchant: "楽天トラベル", label: "楽天トラベルで宿を探す", officialUrl: "https://travel.rakuten.co.jp/" },
     { programId: "prog-tripcom", merchant: "Trip.com", label: "Trip.comでホテルを探す", officialUrl: "https://jp.trip.com/" },
+    { programId: "prog-rakuten-experience", merchant: "楽天トラベル観光体験", label: "楽天トラベル観光体験で探す", officialUrl: "https://experiences.travel.rakuten.co.jp/" },
     { programId: "prog-klook", merchant: "Klook", label: "Klookで体験を探す", officialUrl: "https://www.klook.com/ja/" },
   ],
   hotel: [
@@ -44,16 +47,19 @@ const CTAS: Partial<Record<Category, CtaTarget[]>> = {
     { programId: "prog-qoo10", merchant: "Qoo10", label: "Qoo10で韓国コスメを探す", officialUrl: "https://www.qoo10.jp/" },
     { programId: "prog-oliveyoung", merchant: "OLIVE YOUNG", label: "OLIVE YOUNGで見る", officialUrl: "https://global.oliveyoung.com/" },
     { programId: "prog-yesstyle", merchant: "YesStyle", label: "YesStyleで韓国コスメを探す", officialUrl: "https://www.yesstyle.com/ja/" },
+    { programId: "prog-bqcell", merchant: "BQCELL", label: "BQCELLのハーブピーリングを見る", officialUrl: "https://meon-premier.gangnamdoll.jp/" },
   ],
   fashion: [
     { programId: "prog-rakuten", merchant: "楽天市場", label: "楽天市場で探す", officialUrl: "https://www.rakuten.co.jp/" },
     { programId: "prog-qoo10", merchant: "Qoo10", label: "Qoo10で探す", officialUrl: "https://www.qoo10.jp/" },
     { programId: "prog-yesstyle", merchant: "YesStyle", label: "YesStyleで見る", officialUrl: "https://www.yesstyle.com/ja/" },
+    { programId: "prog-sazo", merchant: "SAZO", label: "SAZOで韓国ファッションを探す", officialUrl: "https://sazo.shop/" },
   ],
   shopping: [
     { programId: "prog-rakuten", merchant: "楽天市場", label: "楽天市場で探す", officialUrl: "https://www.rakuten.co.jp/" },
     { programId: "prog-amazon", merchant: "Amazon", label: "Amazonで探す", officialUrl: "https://www.amazon.co.jp/" },
     { programId: "prog-qoo10", merchant: "Qoo10", label: "Qoo10で探す", officialUrl: "https://www.qoo10.jp/" },
+    { programId: "prog-sazo", merchant: "SAZO", label: "SAZOで韓国商品を探す", officialUrl: "https://sazo.shop/" },
   ],
 };
 

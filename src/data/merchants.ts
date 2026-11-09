@@ -134,4 +134,20 @@ export const merchants: Merchant[] = [
     dataPolicy: "unknown",
     notes: "海外ホテル・旅行商品。楽天アフィリエイトの対象条件は未確認。",
   },
+  {
+    id: "sazo",
+    name: "SAZO",
+    siteUrl: "https://sazo.shop/",
+    country: "JP",
+    dataPolicy: "unknown",
+    notes: "韓国商品の購入代行。A8.net経由で提携済み。",
+  },
+  {
+    id: "bqcell",
+    name: "BQCELL",
+    siteUrl: "https://meon-premier.gangnamdoll.jp/",
+    country: "JP",
+    dataPolicy: "unknown",
+    notes: "韓国コスメ（ハーブピーリング）。A8.net経由で提携済み。",
+  },
 ];
