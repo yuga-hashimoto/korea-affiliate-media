@@ -46,7 +46,7 @@ export const programs: AffiliateProgram[] = [
   {
     id: "prog-rakuten",
     merchantId: "rakuten",
-    status: "unapplied",
+    status: "approved",
     allowedMedia: [],
     termsUrl: "https://affiliate.rakuten.co.jp/",
     approvedAt: null,
@@ -70,7 +70,7 @@ export const programs: AffiliateProgram[] = [
   {
     id: "prog-amazon",
     merchantId: "amazon",
-    status: "unapplied",
+    status: "approved",
     allowedMedia: [],
     termsUrl: "https://affiliate.amazon.co.jp/",
     approvedAt: null,
