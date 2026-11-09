@@ -13,6 +13,7 @@ import { busanJejuArticles } from "@/content/busan-jeju";
 import { foodCafeArticles } from "@/content/food-cafe";
 import { shoppingArticles } from "@/content/shopping";
 import { prepareArticles } from "@/content/prepare";
+import { mergedArticles } from "@/content/merged";
 import {
   generatedPublishedArticles,
   generatedRecords,
@@ -46,6 +47,7 @@ const allArticles = [
   ...foodCafeArticles,
   ...shoppingArticles,
   ...prepareArticles,
+  ...mergedArticles,
   ...generatedPublishedArticles,
 ];
 export const articleList: Article[] = parseAll(ArticleSchema, allArticles, "articles");

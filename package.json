@@ -23,7 +23,8 @@
     "social:publish": "tsx scripts/publish-approved.ts",
     "jobs:weekly-report": "tsx scripts/weekly-report.ts",
     "jobs:audit": "tsx scripts/audit-content.ts",
-    "analytics:ga4-pages": "tsx scripts/ga4-pages.ts"
+    "analytics:ga4-pages": "tsx scripts/ga4-pages.ts",
+    "jobs:quality": "tsx scripts/content-quality.ts"
   },
   "dependencies": {
     "next": "16.4.5",

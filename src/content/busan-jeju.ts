@@ -51,7 +51,7 @@ export const busanJejuArticles: Article[] = [
           "海雲台はリゾート感、南浦洞は市場と観光地へのアクセスが強みです。旅程に合わせて選んでください。",
       },
     ],
-    related: ["busan-jeju-access", "seoul-2nights-3days-model-course", "korea-travel-checklist"],
+    related: ["busan-jeju-access", "seoul-model-courses", "korea-travel-checklist"],
     tags: ["釜山", "モデルコース", "1泊2日", "海雲台"],
     hubPath: "/korea/travel/busan",
     imageAlt: null,
@@ -102,7 +102,7 @@ export const busanJejuArticles: Article[] = [
           "博物館・美術館・カフェ・市場など屋内施設を中心に組み替えます。屋外の自然スポットは別日に回してください。",
       },
     ],
-    related: ["busan-jeju-access", "seoul-cafe-guide", "korea-season-and-packing"],
+    related: ["busan-jeju-access", "seoul-cafe-guide", "korea-season-guide"],
     tags: ["済州島", "モデルコース", "2泊3日", "レンタカー"],
     hubPath: "/korea/travel/jeju",
     imageAlt: null,
@@ -307,52 +307,6 @@ export const busanJejuArticles: Article[] = [
     related: ["busan-haeundae-guide", "busan-1night-2days-model-course", "seoul-cafe-guide"],
     tags: ["釜山", "カフェ", "海雲台", "広安里"],
     hubPath: "/korea/cafe",
-    imageAlt: null,
-  },
-  {
-    slug: "busan-night-view-guide",
-    title: "釜山の夜景ガイド｜広安大橋と街の灯りを楽しむ",
-    description:
-      "釜山の夜景を楽しむためのエリアと移動の注意点。広安里・海雲台・南浦洞周辺の見どころと、帰りの交通手段をまとめます。",
-    category: "busan",
-    status: "published",
-    aiGenerated: false,
-    reviewedAt: PUBLISHED_AT,
-    publishedAt: PUBLISHED_AT,
-    updatedAt: UPDATED_AT,
-    evidenceIds: ["ev-visitkorea-busan"],
-    sections: [
-      {
-        heading: "広安里からの眺め",
-        paragraphs: [
-          "広安大橋のライトアップは釜山を代表する夜景です。海岸沿いの遊歩道から眺められ、カフェや食堂も近くにあります。",
-          "ライトアップの時間は日没に合わせて変わるため、訪問前に公式情報を確認してください。",
-        ],
-      },
-      {
-        heading: "海雲台・南浦洞周辺",
-        paragraphs: [
-          "海雲台はホテルや商業施設の灯りが海沿いに広がります。南浦洞は街の賑わいと港の雰囲気を楽しめます。",
-          "夜間は人通りが多い場所を選び、路地に入る場合は明るい道を歩きましょう。",
-        ],
-      },
-      {
-        heading: "帰りの交通",
-        paragraphs: [
-          "地下鉄の終電時刻は日によって異なります。夜景を長く楽しむ場合は、タクシーの配車方法も確認しておくと安心です。",
-        ],
-      },
-    ],
-    faq: [
-      {
-        question: "夜景は何時ごろがきれいですか？",
-        answer:
-          "日没後から夜にかけてが見頃です。季節によって日没時刻が変わるため、訪問日の時間を確認してください。",
-      },
-    ],
-    related: ["busan-haeundae-guide", "busan-cafe-guide", "busan-1night-2days-model-course"],
-    tags: ["釜山", "夜景", "広安里", "海雲台"],
-    hubPath: "/korea/travel/busan",
     imageAlt: null,
   },
   {

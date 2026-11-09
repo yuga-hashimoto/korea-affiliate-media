@@ -67,7 +67,7 @@ export default function HomePage() {
   const articles = latestArticles(6);
   const featured = getPublishedArticle("seoul-food-guide");
   const subFeatures = [
-    getPublishedArticle("seoul-2nights-3days-model-course"),
+    getPublishedArticle("seoul-model-courses"),
     getPublishedArticle("busan-1night-2days-model-course"),
   ].filter((article): article is NonNullable<typeof article> => Boolean(article));
 
@@ -149,7 +149,7 @@ export default function HomePage() {
               <span className="kr text-[10px] text-white">서울 가이드</span>
             </Link>
             <Link
-              href="/articles/seoul-2nights-3days-model-course"
+              href="/articles/seoul-model-courses"
               className="sticker !px-6 !py-3.5 !text-sm bg-cobalt text-white hover:bg-cobalt-dark"
             >
               <span>2泊3日モデルコース</span>

@@ -236,3 +236,14 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 本番反映（2026-11-10）: Cloudflare Pages `main` へデプロイ（deployment `e799cdfa`）。本番 `sitemap.xml` 58URLすべて末尾スラッシュ付き、旧URL `/korea/travel/esim` は308で `/articles/korea-esim-wifi-guide/` へ1ホップで転送、robots Allow を確認。
 - [x] GSCサイトマップ再送信: 2026/11/10 送信・最終読み込み 2026/11/10・検出58ページ・ステータス成功を確認。
 - [ ] 残: URL検査から主要ページの「インデックス登録をリクエスト」（Chromeのタブ競合で今回は未実施）、「修正を検証」。
+
+## 2026-11-10 — コンテンツ再編（薄い記事の統合）と品質レポート
+- [x] 実測: 公開記事38本の本文は中央値315字（232〜439字）。GSCの「クロール済み - インデックス未登録58ページ」の主因は情報量不足と判断。
+- [x] 方針を `docs/CONTENT_PLAN.md` に記録（統合→一次情報で肉付け→ロングテール1本ずつ、量産しない）。
+- [x] 5クラスタを統合し、38記事 → **28記事**に再編（既存のレビュー済み本文のみを使用し、新規の事実は追加していない）。
+  - 季節5本 → `korea-season-guide`、モデルコース2本 → `seoul-model-courses`、カフェ4本 → `seoul-cafe-guide`、夜景2本 → `korea-night-view-guide`、仁川空港2本 → `incheon-airport-to-seoul`。
+- [x] 削除した13URLは `public/_redirects` で統合先へ308転送。記事への転送先が公開中かを検証するテストも追加。
+- [x] `scripts/content-quality.ts` + `pnpm jobs:quality` を追加（本文文字数・見出し数・出典数・タイトル/説明の重複をレポート。`--strict` で閾値未満を失敗にできる）。
+- [x] 検証: 対象unit 17件（data-integrity / sitemap / redirects）成功、静的ビルド成功、サイトマップ **58 → 48URL**、E2E 30件成功。
+- [ ] 注意: 全体の `pnpm test` は並行作業中の `scripts/dashboard.ts` / `tests/unit/dashboard.test.ts`（ASPダッシュボード）の1件が失敗。今回の変更とは無関係で、`tsc` も同ファイルのみエラー。
+- [ ] 残（次フェーズ）: 統合後の記事に一次情報（空港・鉄道・公的機関・事業者公式）で確認した具体情報を足し、1本3,000字級にする。`korea-season-guide` など統合後も1,000字未満の記事が26本残っている。

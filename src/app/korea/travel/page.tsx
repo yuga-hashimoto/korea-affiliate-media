@@ -83,8 +83,8 @@ export default function TravelHubPage() {
           <h2 className="text-lg">まず読むなら</h2>
           <ul className="mt-3 space-y-2 text-sm">
             <li>
-              <Link href="/articles/seoul-2nights-3days-model-course" className="text-brand-700 underline">
-                初めてのソウル2泊3日モデルコース
+              <Link href="/articles/seoul-model-courses" className="text-brand-700 underline">
+                ソウル2泊3日・3泊4日モデルコース
               </Link>
             </li>
             <li>
