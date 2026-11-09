@@ -83,7 +83,10 @@ const HEADER_ALIASES: Record<string, keyof AspRow> = {
   confirmed_at: "confirmedAt",
 };
 
-export function parseAspCsv(text: string): ParsedAspCsv {
+export function parseAspCsv(
+  text: string,
+  options: { source?: string } = {},
+): ParsedAspCsv {
   const table = parseCsv(text);
   if (table.length === 0) return { rows: [], errors: [{ line: 1, message: "空のCSV" }] };
 
@@ -113,7 +116,7 @@ export function parseAspCsv(text: string): ParsedAspCsv {
       status: record.status,
       eventAt: record.eventAt,
       confirmedAt: record.confirmedAt || null,
-      source: "asp_csv",
+      source: options.source ?? "asp_csv",
     });
     if (parsed.success) rows.push(parsed.data);
     else {
@@ -149,12 +152,13 @@ const emptyTotals = (): CurrencyTotals => ({
 });
 
 /**
- * 重複（同一 conversion_id）を排除し、通貨ごとに確定報酬を集計する。
- * 承認状態が進んでいる行を優先する。
+ * 重複（同一 conversion_id）を排除する。
+ * 承認状態が進んでいる行を優先し、同一IDの別レコードは重複として返す。
  */
-export function summarizeConversions(
-  rows: readonly AspRow[],
-): ConversionSummary {
+export function dedupeConversions(rows: readonly AspRow[]): {
+  rows: AspRow[];
+  duplicates: string[];
+} {
   const seen = new Map<string, AspRow>();
   const duplicates: string[] = [];
   const priority: Record<AspRow["status"], number> = {
@@ -177,6 +181,19 @@ export function summarizeConversions(
     }
   }
 
+  return { rows: [...seen.values()], duplicates };
+}
+
+/**
+ * 重複（同一 conversion_id）を排除し、通貨ごとに確定報酬を集計する。
+ * 承認状態が進んでいる行を優先する。
+ */
+export function summarizeConversions(
+  rows: readonly AspRow[],
+): ConversionSummary {
+  const unique = dedupeConversions(rows);
+  const duplicates = unique.duplicates;
+
   const counts: ConversionSummary["counts"] = {
     pending: 0,
     approved: 0,
@@ -187,7 +204,7 @@ export function summarizeConversions(
   const byCurrency: ConversionSummary["byCurrency"] = {};
   const revenueByProgram: ConversionSummary["revenueByProgram"] = {};
 
-  for (const row of seen.values()) {
+  for (const row of unique.rows) {
     counts[row.status] += 1;
     const totals = byCurrency[row.currency] ?? emptyTotals();
     byCurrency[row.currency] = totals;

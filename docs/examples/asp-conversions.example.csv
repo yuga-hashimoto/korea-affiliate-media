@@ -1,0 +1,7 @@
+conversion_id,program_id,amount,commission,currency,status,event_at,confirmed_at
+demo-klook-001,prog-klook,48000,1440,JPY,paid,2026-11-08T03:12:00.000Z,2026-11-09T01:00:00.000Z
+demo-klook-002,prog-klook,32000,960,JPY,approved,2026-11-08T09:40:00.000Z,2026-11-09T02:00:00.000Z
+demo-sazo-001,prog-sazo,7800,390,JPY,pending,2026-11-09T05:20:00.000Z,
+demo-amazon-001,prog-amazon,4200,126,JPY,approved,2026-11-09T06:05:00.000Z,2026-11-09T06:30:00.000Z
+demo-rakuten-experience-001,prog-rakuten-experience,15000,300,JPY,rejected,2026-11-08T11:00:00.000Z,
+demo-oliveyoung-001,prog-oliveyoung,120,4.8,USD,paid,2026-11-07T22:10:00.000Z,2026-11-09T00:20:00.000Z

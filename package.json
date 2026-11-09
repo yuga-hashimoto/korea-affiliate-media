@@ -24,6 +24,7 @@
     "jobs:weekly-report": "tsx scripts/weekly-report.ts",
     "jobs:audit": "tsx scripts/audit-content.ts",
     "analytics:ga4-pages": "tsx scripts/ga4-pages.ts",
+    "dashboard": "tsx scripts/dashboard.ts",
     "jobs:quality": "tsx scripts/content-quality.ts"
   },
   "dependencies": {

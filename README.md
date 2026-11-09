@@ -81,6 +81,7 @@ pnpm social:publish          # SOCIAL_PUBLISH_ENABLED=true + Webhook設定時の
 pnpm jobs:audit              # 記事・出典の鮮度監査（更新候補の出力）
 pnpm jobs:report             # 日次レポート（var/reports/）
 pnpm jobs:weekly-report      # 週次レポート
+pnpm dashboard               # ASP成果CSVを1ページに集約（ローカル専用・var/reports/）
 ```
 
 - 生成物の公開は既定で停止しています（`CONTENT_AUTO_PUBLISH_ENABLED=false` / `SOCIAL_PUBLISH_ENABLED=false`）。
