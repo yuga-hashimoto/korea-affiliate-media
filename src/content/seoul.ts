@@ -461,4 +461,160 @@ export const seoulArticles: Article[] = [
     hubPath: "/korea/travel/seoul",
     imageAlt: null,
   },
+  {
+    slug: "seoul-cherry-blossom-guide",
+    title: "ソウルの春ガイド｜桜の見頃と服装、混雑を避ける歩き方",
+    description:
+      "ソウルの春旅行に向けて、桜の見頃・気温・服装・混雑対策をまとめます。公園や宮殿を無理なく巡るポイントも紹介します。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-kma", "ev-visitkorea"],
+    sections: [
+      {
+        heading: "見頃は年によって変わる",
+        paragraphs: [
+          "ソウルの桜は例年3月下旬から4月中旬に開花・満開を迎えますが、時期は年によって前後します。出発前に韓国気象庁や観光公社の開花情報を確認してください。",
+          "開花直後はまだ寒い日もあり、満開時でも朝晩は冷え込みます。羽織りものを用意しておくと安心です。",
+        ],
+      },
+      {
+        heading: "桜を楽しみやすい場所",
+        paragraphs: [
+          "公園・宮殿・川沿いの散策路は桜の名所として人気です。週末は混雑するため、朝の早い時間帯を選ぶとゆっくり歩けます。",
+          "宮殿や施設は入場時間・休館日が定められています。公式サイトで最新情報を確認してください。",
+        ],
+      },
+      {
+        heading: "服装と持ち物",
+        paragraphs: [
+          "日中と朝晩の気温差が大きいため、重ね着が便利です。歩く時間が長くなるので、歩きやすい靴を選びましょう。",
+          "花粉が気になる場合はマスクやメガネを用意してください。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "桜の見頃はいつですか？",
+        answer:
+          "例年3月下旬から4月中旬ですが、年によって異なります。韓国気象庁や観光公社の情報を旅行前に確認してください。",
+      },
+      {
+        question: "夜桜は見られますか？",
+        answer:
+          "ライトアップを実施する場所があります。実施期間・時間は年や施設によって変わるため、公式情報を確認してください。",
+      },
+    ],
+    related: ["seoul-autumn-guide", "korea-season-and-packing", "seoul-area-guide"],
+    tags: ["ソウル", "春", "桜", "服装"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
+  {
+    slug: "seoul-summer-guide",
+    title: "ソウルの夏ガイド｜暑さ・雨の時期の過ごし方",
+    description:
+      "ソウルの夏旅行に向けて、気温・梅雨・服装・室内中心の回り方をまとめます。暑さと雨を避けながら楽しむポイントを紹介します。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-kma", "ev-visitkorea"],
+    sections: [
+      {
+        heading: "暑さと梅雨",
+        paragraphs: [
+          "ソウルの夏は気温が高く湿度も上がります。6月下旬から7月にかけて梅雨の時期があり、急な雨に備えて折りたたみ傘があると便利です。",
+          "年によって梅雨入り・梅雨明けの時期が異なるため、出発前に天気予報を確認してください。",
+        ],
+      },
+      {
+        heading: "室内中心の回り方",
+        paragraphs: [
+          "暑さが厳しい日は、美術館・博物館・大型商業施設・カフェなどを組み合わせると無理なく過ごせます。",
+          "屋外の予定は朝か夕方に移し、日中の移動を短くすると疲れにくくなります。",
+        ],
+      },
+      {
+        heading: "服装と持ち物",
+        paragraphs: [
+          "通気性のよい服、帽子、日焼け止め、水筒を用意しましょう。室内は冷房が強いことがあるため、薄手の羽織りものもあると安心です。",
+          "雨の日は足元が濡れやすいので、乾きやすい靴を選んでください。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "梅雨はいつごろですか？",
+        answer:
+          "例年6月下旬から7月ですが、年によって異なります。韓国気象庁の情報を確認してください。",
+      },
+      {
+        question: "暑さ対策で気をつけることは？",
+        answer:
+          "こまめな水分補給と休憩を心がけてください。屋外の長時間滞在を避け、室内の予定を挟むと安心です。",
+      },
+    ],
+    related: ["korea-season-and-packing", "seoul-cafe-area-guide", "korea-travel-checklist"],
+    tags: ["ソウル", "夏", "梅雨", "服装"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
+  {
+    slug: "seoul-night-view-guide",
+    title: "ソウルの夜景ガイド｜展望スポットと帰りの注意点",
+    description:
+      "ソウルで夜景を楽しむためのスポットと移動の注意点をまとめます。展望台・川沿い・宮殿周辺の楽しみ方と、終電・タクシーの確認ポイントを紹介します。",
+    category: "seoul",
+    status: "published",
+    aiGenerated: false,
+    reviewedAt: PUBLISHED_AT,
+    publishedAt: PUBLISHED_AT,
+    updatedAt: UPDATED_AT,
+    evidenceIds: ["ev-visitkorea", "ev-seoulmetro"],
+    sections: [
+      {
+        heading: "夜景を楽しめる場所",
+        paragraphs: [
+          "展望台から街を見下ろす、川沿いを歩く、ライトアップされた宮殿周辺を散策するなど、選択肢があります。",
+          "営業時間・入場料・ライトアップの実施時間は施設や季節によって変わるため、公式情報を確認してください。",
+        ],
+      },
+      {
+        heading: "移動と帰り",
+        paragraphs: [
+          "夜景を見たあとは地下鉄の終電時刻に注意してください。終電を過ぎるとタクシー移動になります。",
+          "タクシーは配車アプリや駅前の乗り場を利用し、ぼったくりを避けるためメーターの有無を確認しましょう。",
+        ],
+      },
+      {
+        heading: "撮影と安全",
+        paragraphs: [
+          "三脚の使用やフラッシュは場所によって制限があります。案内表示に従ってください。",
+          "夜間は人通りの多い道を選び、貴重品の管理に気をつけてください。",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "夜景は何時ごろがきれいですか？",
+        answer:
+          "日没後から夜にかけてが見頃です。季節によって日没時刻が変わるため、訪問日の時間を確認してください。",
+      },
+      {
+        question: "1人でも夜景スポットに行けますか？",
+        answer:
+          "展望台や駅近くのスポットは1人でも行きやすいです。帰りの交通手段を先に確認しておくと安心です。",
+      },
+    ],
+    related: ["seoul-area-guide", "seoul-klook-experiences", "seoul-cafe-area-guide"],
+    tags: ["ソウル", "夜景", "展望台", "移動"],
+    hubPath: "/korea/travel/seoul",
+    imageAlt: null,
+  },
 ];
