@@ -1,6 +1,9 @@
-/korea/travel/esim /articles/korea-esim-wifi-guide 308
-/korea/travel/esim/ /articles/korea-esim-wifi-guide 308
-/korea/travel/airport-transport /articles/incheon-airport-to-seoul 308
-/korea/travel/airport-transport/ /articles/incheon-airport-to-seoul 308
-/methodology /editorial-policy 308
-/methodology/ /editorial-policy 308
+# 旧URL（総額比較サイト時代）から新サイトへの転送。
+# 転送先は trailingSlash: true の実URL（末尾スラッシュ付き）に揃え、
+# 308 → 308 のリダイレクト連鎖を作らない。
+/korea/travel/esim /articles/korea-esim-wifi-guide/ 308
+/korea/travel/esim/ /articles/korea-esim-wifi-guide/ 308
+/korea/travel/airport-transport /articles/incheon-airport-to-seoul/ 308
+/korea/travel/airport-transport/ /articles/incheon-airport-to-seoul/ 308
+/methodology /editorial-policy/ 308
+/methodology/ /editorial-policy/ 308

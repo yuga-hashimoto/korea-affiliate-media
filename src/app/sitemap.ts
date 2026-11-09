@@ -29,19 +29,30 @@ const STATIC_ROUTES: ReadonlyArray<{
   { path: "/media-kit", priority: 0.3, changeFrequency: "yearly" },
 ];
 
+/**
+ * 静的書き出しは `trailingSlash: true`（`/about/` 形式）で、
+ * ページ側の canonical も末尾スラッシュ付きになる。
+ * sitemap がスラッシュなしURLを指すと全URLが308転送になり、
+ * クロールの無駄・重複URLの原因になるため、必ず揃える。
+ */
+export function withTrailingSlash(path: string): string {
+  if (path === "/") return "/";
+  return `${path.replace(/\/+$/, "")}/`;
+}
+
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteUrl();
   const staticEntries = STATIC_ROUTES.map((route) => ({
-    url: `${base}${route.path}`,
+    url: `${base}${withTrailingSlash(route.path)}`,
     lastModified: new Date("2026-11-06T09:00:00.000Z"),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
 
   const articleEntries = publishedArticles.map((article) => ({
-    url: `${base}/articles/${article.slug}`,
+    url: `${base}${withTrailingSlash(`/articles/${article.slug}`)}`,
     lastModified: new Date(article.updatedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
