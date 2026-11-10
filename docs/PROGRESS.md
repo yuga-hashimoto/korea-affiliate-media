@@ -262,3 +262,11 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [ ] 残: GA4 `affiliate_click` とASP成果の突合（クリック→CVR）は未実装。GA4 Data APIのサービスアカウント設定後に検討。
 - 注: ダッシュボードはローカル専用。公開サイト（Cloudflare Pages）には含めない。売上と成果報酬、見込と確定を混同しない。
 - [x] 本番反映（2026-11-10）: Cloudflare Pages `main` へデプロイ（deployment `2c424841`）。伝播後に本番の `sitemap.xml` が48URL、新記事（`/articles/korea-season-guide/` 等）が200、統合元11URLが**1ホップの308**で統合先へ転送されることを確認。
+
+## 2026-11-10 — 提携状態データを実態に合わせて更新
+- きっかけ: 売上ダッシュボードの「提携状態」列で OLIVE YOUNG が「未申請」のまま（実際は成果リンク稼働中）と判明。
+- [x] `src/data/programs.ts`: OLIVE YOUNG を `approved`（Web/X・成果リンク発行済み）へ、Airalo を `pending`（Impact.comで申請送信・審査中）へ更新。Amazon・楽天はリンク発行と本番CTA反映を notes に記録し `allowedMedia` を `web` に。YesStyle はSubmit完了を確認できないため `unapplied` を維持し notes を更新。
+- [x] 変更は管理画面での確認済み事実と本ファイルの記録のみ。料率・承認日時など未確認の値は追加していない（`approvedAt` は null のまま）。
+- [x] `pnpm dashboard -- --demo` で「提携状態」列が `提携済` に追従することを確認。
+- [x] 検証: lint / typecheck / unit / build 成功。
+- [ ] 残: 楽天・Amazon の商品別料率、ValueCommerce（アソビュー！）のMyLink発行とプログラム登録。

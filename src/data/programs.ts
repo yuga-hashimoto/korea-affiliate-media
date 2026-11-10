@@ -1,23 +1,27 @@
 import type { AffiliateProgram } from "@/lib/domain";
 
 /**
- * 提携プログラムの状態。すべて未申請/未承認で、成果リンクは存在しない。
- * 承認後もリンク発行は広告主の管理画面/APIの仕様に従う（架空のタグを作らない）。
+ * 提携プログラムの状態。管理画面で確認した事実のみを記録し、
+ * 未確認の項目は「未確認」と書く。成果リンクは環境変数で管理し、
+ * 架空のタグ・URLは作らない。
  */
 const UPDATED_AT = "2026-11-06T09:00:00.000Z";
+/** 提携状況の記録更新（2026-11-10）。日付単位の記録。 */
+const REVIEWED_AT = "2026-11-10T00:00:00.000Z";
 
 export const programs: AffiliateProgram[] = [
   {
     id: "prog-airalo",
     merchantId: "airalo",
-    status: "unapplied",
+    status: "pending",
     allowedMedia: [],
     termsUrl: "https://partners.airalo.com/",
     approvedAt: null,
     linkTemplate: null,
     commissionNote: "未確認",
-    notes: "承認・媒体許可・報酬条件は未確認。",
-    updatedAt: UPDATED_AT,
+    notes:
+      "2026-11-07 Impact.comでメール認証・出版者プロフィール登録を完了し申請送信。審査中。ログイン後のパートナー画面遷移に問題があり、進捗確認は未完了。",
+    updatedAt: REVIEWED_AT,
   },
   {
     id: "prog-tripcom",
@@ -34,26 +38,28 @@ export const programs: AffiliateProgram[] = [
   {
     id: "prog-oliveyoung",
     merchantId: "oliveyoung",
-    status: "unapplied",
-    allowedMedia: [],
+    status: "approved",
+    allowedMedia: ["web", "x"],
     termsUrl: "https://global.oliveyoung.com/influencer/main",
     approvedAt: null,
     linkTemplate: null,
-    commissionNote: "未確認",
-    notes: "媒体許可（Web/X）と報酬条件は未確認。",
-    updatedAt: UPDATED_AT,
+    commissionNote: "未確認（管理画面で確認）",
+    notes:
+      "2026-11-08 インフルエンサー申請・リワードコード・成果リンクを発行しWeb CTAに反映。公式FAQでブログ等での利用可を確認。報酬条件は管理画面で確認（記録なし）。",
+    updatedAt: REVIEWED_AT,
   },
   {
     id: "prog-rakuten",
     merchantId: "rakuten",
     status: "approved",
-    allowedMedia: [],
+    allowedMedia: ["web"],
     termsUrl: "https://affiliate.rakuten.co.jp/",
     approvedAt: null,
     linkTemplate: null,
-    commissionNote: "未確認",
-    notes: "登録サイト・商品別料率は未確認。",
-    updatedAt: UPDATED_AT,
+    commissionNote: "未確認（管理画面で確認）",
+    notes:
+      "2026-11-08 楽天アフィリエイトで検索リンクを発行し、本番のコスメ記事CTAに反映（302→楽天検索を確認）。商品別料率は管理画面で確認（記録なし）。",
+    updatedAt: REVIEWED_AT,
   },
   {
     id: "prog-klook",
@@ -71,13 +77,14 @@ export const programs: AffiliateProgram[] = [
     id: "prog-amazon",
     merchantId: "amazon",
     status: "approved",
-    allowedMedia: [],
+    allowedMedia: ["web"],
     termsUrl: "https://affiliate.amazon.co.jp/",
     approvedAt: null,
     linkTemplate: null,
-    commissionNote: "未確認",
-    notes: "Amazonアソシエイトのサイト登録・価格表示条件は未確認。",
-    updatedAt: UPDATED_AT,
+    commissionNote: "未確認（商品カテゴリ別料率）",
+    notes:
+      "2026-11-08 Amazonアソシエイト（StoreID yuga0620-22）でタグ付き検索リンクを発行し、コスメ記事CTAに反映。価格・画像の表示/更新条件は規約で再確認。",
+    updatedAt: REVIEWED_AT,
   },
   {
     id: "prog-yesstyle",
@@ -88,8 +95,9 @@ export const programs: AffiliateProgram[] = [
     approvedAt: null,
     linkTemplate: null,
     commissionNote: "未確認",
-    notes: "Influencer プログラムの媒体可否は未確認。",
-    updatedAt: UPDATED_AT,
+    notes:
+      "2026-11-08 X OAuth連携とカスタムコード入力まで完了。Submit後に画面遷移せず、申請完了を確認できず（時間をおいて再試行）。",
+    updatedAt: REVIEWED_AT,
   },
   {
     id: "prog-qoo10",
