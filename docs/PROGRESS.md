@@ -301,3 +301,4 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [ ] 残: OLIVE YOUNGの管理画面レポート確認、Trip.com / Airalo の審査結果確認。注文明細CSV（注文単位）は未取込。
 - [x] ValueCommerce: アソビュー！のMyLinkを発行（`ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787523&pid=892744544`）。302→アソビュー！200を確認。
 - 注: アソビュー！は日本国内レジャー向けのため、韓国旅行記事への常設CTAは見送り。韓国向けはKKday/Trip.com/Agoda等を優先する。
+- [修正] ValueCommerceのアソビューMyLinkは発行できたが、サイト審査中は `valuecommerce.ne.jp/error/invalid_link.html` に転送され有効化されないことを確認。サイト審査完了後に再検証する。審査完了までは記事CTAに設置しない。
