@@ -299,3 +299,5 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] テスト: `tests/unit/asp-reports.test.ts` 3件、`tests/unit/dashboard.test.ts` 20件（unit計84件）。lint / typecheck / build 成功。
 - [x] ドキュメント: `docs/AFFILIATE_DASHBOARD.md` に `reports.json` の形式・帰属注意・確認手順を追記。
 - [ ] 残: OLIVE YOUNGの管理画面レポート確認、Trip.com / Airalo の審査結果確認。注文明細CSV（注文単位）は未取込。
+- [x] ValueCommerce: アソビュー！のMyLinkを発行（`ck.jp.ap.valuecommerce.com/servlet/referral?sid=3787523&pid=892744544`）。302→アソビュー！200を確認。
+- 注: アソビュー！は日本国内レジャー向けのため、韓国旅行記事への常設CTAは見送り。韓国向けはKKday/Trip.com/Agoda等を優先する。
