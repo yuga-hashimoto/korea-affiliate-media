@@ -27,6 +27,10 @@ import {
   type AspCurrency,
   type AspRow,
 } from "../src/lib/analytics/asp";
+import {
+  parseAspReports,
+  type AspReportSummary,
+} from "../src/lib/analytics/asp-reports";
 import { merchantList, programList } from "../src/data/index";
 import { dataDir } from "../src/lib/store";
 
@@ -37,6 +41,7 @@ const DEMO_CSV = "docs/examples/asp-conversions.example.csv";
 
 interface Options {
   input: string | null;
+  reports: string | null;
   since: string | null;
   until: string | null;
   demo: boolean;
@@ -47,6 +52,7 @@ interface Options {
 function parseArgs(argv: readonly string[]): Options {
   const options: Options = {
     input: null,
+    reports: null,
     since: null,
     until: null,
     demo: false,
@@ -61,6 +67,10 @@ function parseArgs(argv: readonly string[]): Options {
       case "--input":
       case "-i":
         options.input = argv[index + 1] ?? null;
+        index += 1;
+        break;
+      case "--reports":
+        options.reports = argv[index + 1] ?? null;
         index += 1;
         break;
       case "--since":
@@ -144,6 +154,36 @@ async function loadRows(
   return { rows, files, errors };
 }
 
+async function loadReports(input: string | null): Promise<{
+  summaries: AspReportSummary[];
+  errors: string[];
+}> {
+  const file = input ?? path.join(dataDir(), "asp", "reports.json");
+  const name = path.basename(file);
+  let raw: string;
+  try {
+    raw = await readFile(file, "utf8");
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+      return { summaries: [], errors: [] };
+    }
+    throw error;
+  }
+
+  let json: unknown;
+  try {
+    json = JSON.parse(raw);
+  } catch {
+    return { summaries: [], errors: [`${name}: JSONとして読み込めません`] };
+  }
+
+  const parsed = parseAspReports(json);
+  return {
+    summaries: parsed.reports,
+    errors: parsed.errors.map((message) => `${name}: ${message}`),
+  };
+}
+
 function filterByPeriod(
   rows: readonly AspRow[],
   since: string | null,
@@ -180,6 +220,7 @@ function renderMarkdown(data: DashboardData, outFile: string): string {
   lines.push(
     `- 取込: ${data.importedFiles.length}ファイル / ${data.rowCount}件（重複排除後）`,
   );
+  lines.push(`- ASP実測サマリ: ${data.summaries.length}件（管理画面で確認）`);
   lines.push(`- HTML: ${outFile}`);
   if (data.demo) lines.push("- **サンプルデータ（架空の数値）**");
   lines.push("");
@@ -236,6 +277,32 @@ function renderMarkdown(data: DashboardData, outFile: string): string {
   }
 
   lines.push("");
+  lines.push("## ASP管理画面の実測サマリ（集計値・明細CSVとは合算しない）");
+  if (data.summaries.length === 0) {
+    lines.push("- なし");
+  } else {
+    const money = (record: Partial<Record<AspCurrency, number>>): string =>
+      ASP_CURRENCIES.filter((currency) => record[currency] !== undefined)
+        .map((currency) => formatMoney(record[currency] ?? 0, currency))
+        .join(" / ") || "—";
+    for (const summary of data.summaries) {
+      const targets =
+        summary.programIds.length === 0
+          ? "ASP全体"
+          : summary.programIds.map((id) => data.programLabels[id] ?? id).join(" / ");
+      lines.push(
+        `- ${summary.provider}（${targets}）: 期間 ${summary.period.from}〜${
+          summary.period.to
+        } / 確認 ${summary.checkedAt} / クリック ${summary.clicks ?? "—"} / 確定報酬 ${money(
+          summary.confirmedCommission,
+        )} / 見込 ${money(summary.pendingCommission)} / 確定売上 ${money(
+          summary.confirmedSales,
+        )}${summary.note ? ` / ${summary.note}` : ""}`,
+      );
+    }
+  }
+
+  lines.push("");
   lines.push("## 未取込・注意");
   if (data.notImported.length === 0) {
     lines.push("- 提携済みで未取込のプログラムはありません。");
@@ -286,6 +353,11 @@ async function main(): Promise<void> {
     );
   }
 
+  const reports = await loadReports(options.reports);
+  for (const message of reports.errors) {
+    console.warn(`[dashboard] ${message}`);
+  }
+
   const generatedAt = new Date().toISOString();
   const data = buildDashboard({
     rows,
@@ -295,6 +367,8 @@ async function main(): Promise<void> {
     demo: options.demo,
     importedFiles: loaded.files,
     parseErrors: loaded.errors,
+    summaries: reports.summaries,
+    reportErrors: reports.errors,
   });
 
   const outDir = path.join(dataDir(), "reports");

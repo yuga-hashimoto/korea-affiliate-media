@@ -56,6 +56,42 @@ c-001,prog-klook,48000,1440,JPY,paid,2026-11-08T03:12:00.000Z,2026-11-09T01:00:0
 - 同じ `conversion_id` が複数ある場合は、状態の進んだ行（`paid` > `approved` > `pending` > `reversed` > `rejected`）を採用します。
 - 登録済みプログラムに無い `program_id` も金額を落とさず「未登録」として表示します。
 
+## ASP管理画面の実測サマリ（`var/asp/reports.json`）
+
+ASP管理画面の中には注文明細CSVを出せない/出しにくいものがあり、また明細CSVには
+「どのサイト経由か」が無いことが多いため、**管理画面で確認した集計値**を別枠で記録できます。
+
+`var/asp/reports.json`（Git管理外）:
+
+```json
+{
+  "checkedAt": "2026-11-10T00:30:00.000Z",
+  "reports": [
+    {
+      "id": "amazon-2026-11-08",
+      "provider": "Amazonアソシエイト",
+      "programIds": ["prog-amazon"],
+      "period": { "from": "2026-11-08", "to": "2026-11-09" },
+      "checkedAt": "2026-11-10T00:30:00.000Z",
+      "clicks": 4,
+      "confirmedCommission": { "JPY": 0 },
+      "pendingCommission": {},
+      "confirmedSales": {},
+      "note": "期間を当サイトのリンク稼働日以降に限定して確認",
+      "sourceUrl": "https://affiliate.amazon.co.jp/p/reporting/earnings"
+    }
+  ]
+}
+```
+
+- `provider`: ASP名 / `programIds`: 対象プログラム（ASP全体なら `[]`）/ `period`: レポートの対象期間
+- `clicks`: 管理画面のクリック数。取得できない場合は `null`（「0」と混同しない）
+- `confirmedCommission` / `pendingCommission` / `confirmedSales`: 通貨別（JPY/USD/KRW）
+- **明細CSVとは合算しません**（二重計上防止）。ページ上も別セクションで表示します。
+- 帰属の注意: 同一タグを他サイトでも使っている場合、Amazon等の成果は当サイト分と区別できません。
+  期間を当サイトのリンク稼働日以降に絞る・noteに前提を書く、の両方を行います。
+- 確認手順の例: 各ASP管理画面 → レポート → 期間をサイトのリンク稼働日以降に指定 → 数値を記録。
+
 ## ページに出す内容
 
 - 通貨別（JPY / USD / KRW）の **確定報酬・見込報酬・却下/返金・確定売上（GMV）・件数**

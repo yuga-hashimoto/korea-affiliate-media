@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { AffiliateProgram, Merchant } from "@/lib/domain";
 import type { AspRow } from "@/lib/analytics/asp";
+import type { AspReportSummary } from "@/lib/analytics/asp-reports";
 import {
   aggregateByProgram,
   buildDashboard,
@@ -320,5 +321,88 @@ describe("escapeHtml", () => {
     expect(escapeHtml('<a href="x">&\'')).toBe(
       "&lt;a href=&quot;x&quot;&gt;&amp;&#39;",
     );
+  });
+});
+
+const SUMMARIES: AspReportSummary[] = [
+  {
+    id: "amazon-2026-11-08",
+    provider: "Amazonアソシエイト",
+    programIds: ["prog-a"],
+    period: { from: "2026-11-08", to: "2026-11-09" },
+    checkedAt: "2026-11-10T00:30:00.000Z",
+    clicks: 4,
+    confirmedCommission: { JPY: 0 },
+    pendingCommission: {},
+    confirmedSales: { JPY: 0 },
+    note: "レポート（今週）で確認",
+    sourceUrl: null,
+  },
+  {
+    id: "a8-2026-11",
+    provider: "A8.net",
+    programIds: [],
+    period: { from: "2026-11-01", to: "2026-11-10" },
+    checkedAt: "2026-11-10T00:30:00.000Z",
+    clicks: null,
+    confirmedCommission: {},
+    pendingCommission: {},
+    confirmedSales: {},
+    note: "ASP全体で0件",
+    sourceUrl: null,
+  },
+];
+
+describe("ASP管理画面の実測サマリ", () => {
+  it("サマリ対象のプログラムは未取込一覧から外す", () => {
+    const data = buildDashboard({
+      rows: [],
+      programs: PROGRAMS,
+      merchants: MERCHANTS,
+      generatedAt: "2026-11-10T00:00:00.000Z",
+      summaries: SUMMARIES,
+    });
+    expect(data.summaries).toHaveLength(2);
+    expect(data.notImported.map((p) => p.programId)).toEqual(["prog-b"]);
+    expect(data.programLabels["prog-a"]).toBe("テスト商店A");
+    expect(data.programLabels["prog-b"]).toBe("テスト商店B");
+  });
+
+  it("実測サマリと合算しない旨を表示する", () => {
+    const data = buildDashboard({
+      rows: ROWS,
+      programs: PROGRAMS,
+      merchants: MERCHANTS,
+      generatedAt: "2026-11-10T00:00:00.000Z",
+      summaries: SUMMARIES,
+    });
+    const html = renderDashboardHtml(data);
+    expect(html).toContain("ASP管理画面の実測サマリ");
+    expect(html).toContain("Amazonアソシエイト");
+    expect(html).toContain("ASP全体");
+    expect(html).toContain("レポート（今週）で確認");
+    expect(html).toContain("二重計上防止");
+    expect(html).toContain(">4<");
+  });
+
+  it("実測サマリでもHTMLエスケープする", () => {
+    const html = renderDashboardHtml(
+      buildDashboard({
+        rows: [],
+        programs: PROGRAMS,
+        merchants: MERCHANTS,
+        generatedAt: "2026-11-10T00:00:00.000Z",
+        summaries: [
+          {
+            ...SUMMARIES[0]!,
+            provider: 'ASP <img src=x onerror="alert(1)">',
+            note: "<script>alert(1)</script>",
+          },
+        ],
+      }),
+    );
+    expect(html).not.toContain("<img src=x");
+    expect(html).toContain("&lt;img src=x");
+    expect(html).not.toContain("<script>alert(1)</script>");
   });
 });
