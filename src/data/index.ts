@@ -14,6 +14,7 @@ import { foodCafeArticles } from "@/content/food-cafe";
 import { shoppingArticles } from "@/content/shopping";
 import { prepareArticles } from "@/content/prepare";
 import { mergedArticles } from "@/content/merged";
+import { reviewArticles } from "@/content/review-articles";
 import {
   generatedPublishedArticles,
   generatedRecords,
@@ -48,6 +49,7 @@ const allArticles = [
   ...shoppingArticles,
   ...prepareArticles,
   ...mergedArticles,
+  ...reviewArticles,
   ...generatedPublishedArticles,
 ];
 export const articleList: Article[] = parseAll(ArticleSchema, allArticles, "articles");
