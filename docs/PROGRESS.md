@@ -357,4 +357,5 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] launchd `com.sougakuhikaku.dsh-content-writer` を登録（月・木 10:00 JST、`~/Library/LaunchAgents/`）。bootstrap 済み、`launchctl print` で登録確認。
 - [x] 動作確認: `dsh --profile content-writer headless` の応答テスト成功（zai ルート）。`ZAI_API_KEY` は環境変数→launchctl→`~/.dsh/.credentials.yaml` refs の順で解決するようラッパーに実装（秘密情報はGit管理外）。
 - [x] `pnpm lint` / `pnpm test`（unit 102件）成功。
+- [x] 2026-11-11 Content Writer手動ラン: topic `seoul-cafe-guide-2026` の記事下書きを生成（state=review, score=95, lint/test 102件/build 成功）。ログは `var/logs/content-writer-2026-11-11.md`。
 - [ ] 残: 初回の実運用ラン（次回月曜10:00 JST）で生成物・push の結果を確認する。トピック枯渇時は `pnpm jobs:audit` による既存記事更新にフォールバックする設計。
