@@ -67,3 +67,19 @@ pnpm jobs:weekly-report   # 週次
 2. `promotions/queue.json` の該当投稿を `paused` にする。
 3. 誤った記事は `content/generated/articles.json` から削除して再ビルド。
 4. 原因・影響・再発防止を `docs/PROGRESS.md` に記録する。
+
+## DSH Content Writer（週2回・ブラウザ調査つき記事執筆）
+
+launchd が週2回（月・木 10:00 JST）で `scripts/dsh-content-writer.sh` を起動し、
+DSH headless プロファイル `content-writer`（zai / glm-5.3-flash）が
+`scripts/content-writer-prompt.md` の手順で記事を1本生成して main にコミット・push する。
+
+- 手動実行: `bash scripts/dsh-content-writer.sh`（ログは `var/logs/`）
+- スケジュール: `~/Library/LaunchAgents/com.sougakuhikaku.dsh-content-writer.plist`
+  - 停止: `launchctl bootout gui/501/com.sougakuhikaku.dsh-content-writer`
+  - 開始: `launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.sougakuhikaku.dsh-content-writer.plist`
+- トピック: `content/user-requests.md` のリクエストを最優先、なければ `content/topics.json` の `queued`
+- 記事は `review` 状態で保存（自動公開なし）。公開は `docs/CONTENT_REVIEW_QUEUE.md` の人手ゲートで行う。
+- 画像: 既存 `public/images/` を優先し、追加する場合はライセンス確認済みのフリー素材のみ（出典は `docs/CREDITS.md`）。
+- ブラウザ調査に使ったタブはエージェントが終了時に閉じる。
+- 認証情報: `ZAI_API_KEY` は環境変数 → launchctl → `~/.dsh/.credentials.yaml` の refs の順に解決。Gitにはコミットしない。

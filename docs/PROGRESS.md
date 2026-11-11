@@ -349,3 +349,12 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [ ] 未達（手動が必要）: Search Console「インデックス登録をリクエスト」はUIのみでAPIがなく、この環境のChromeではGSC画面がTrusted Typesエラー（`This document requires 'TrustedHTML' assignment`）で反応せず自動化できなかった。GA4↔Search Consoleリンクも「新しいGA統合リンク」フローで「次へ」が有効化されず未完了。どちらも手動で実施する。
 - 注: GCPプロジェクトを1つ追加作成した（課金なし・読み取り専用SAのみ）。停止する場合はGA4のアクセス管理からSAを削除、または鍵を削除すれば、コマンドは「設定なし」で安全に停止する。
 - [x] 追加: 日次/週次レポート（`pnpm jobs:report` / `pnpm jobs:weekly-report`）にGA4のアクセス節を追加。未設定なら節を出さない／取得失敗なら「推測しません」と表示。`buildDailyReport` のテストを4件追加（unit 102件）。
+
+## 2026-11-11 — DSH Content Writer（週2回・zai glm-5.3-flash による記事自動執筆）
+- [x] DSH headless プロファイル `content-writer`（`~/.dsh/profiles/content-writer`、headless のコピー）を新設。既定モデルを zai / glm-5.3-flash に設定し web fetch を有効化。
+- [x] `scripts/content-writer-prompt.md`（執筆手順: user-requests 最優先 → topics.json → 調査・出典記録 → 画像 → review 状態で保存 → lint/test/build → main にコミット&push → ブラウザタブを閉じて終了）と `scripts/dsh-content-writer.sh`（起動ラッパー、ログは `var/logs/`）を追加。
+- [x] `content/user-requests.md` を新設（ユーザーが記事化してほしいテーマを書き込むと最優先で採用される）。
+- [x] launchd `com.sougakuhikaku.dsh-content-writer` を登録（月・木 10:00 JST、`~/Library/LaunchAgents/`）。bootstrap 済み、`launchctl print` で登録確認。
+- [x] 動作確認: `dsh --profile content-writer headless` の応答テスト成功（zai ルート）。`ZAI_API_KEY` は環境変数→launchctl→`~/.dsh/.credentials.yaml` refs の順で解決するようラッパーに実装（秘密情報はGit管理外）。
+- [x] `pnpm lint` / `pnpm test`（unit 102件）成功。
+- [ ] 残: 初回の実運用ラン（次回月曜10:00 JST）で生成物・push の結果を確認する。トピック枯渇時は `pnpm jobs:audit` による既存記事更新にフォールバックする設計。
