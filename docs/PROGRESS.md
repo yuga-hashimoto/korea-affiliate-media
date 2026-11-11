@@ -327,5 +327,7 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - 検証: lint成功 / typecheck成功 / unit 89件成功（+5） / 通常ビルド成功 / 静的エクスポート（`STATIC_EXPORT=true`）成功 / E2E 30件成功。
 - 検証（ジョブ再現）: `pnpm jobs:article-draft` で `[review] seoul-cafe-guide-2026 score=90` `[review] busan-food-2026 score=90` の2件が保存されることを確認。`jobs:social-draft` / `jobs:audit` / `jobs:report` も exit 0。ローカル生成物（`content/generated/articles.json`）はコミットせず元に戻した（本番はBotのPRで反映）。
 - 補足: `gh api repos/yuga-hashimoto/korea-affiliate-media/actions/secrets` は `total_count: 0`。`OPENROUTER_API_KEY` は未設定のため、夜間バッチはモック経路で動作する（記事・投稿の公開は行わない）。
-- [ ] 残: `.github/workflows/content-bot.yml` の `add-paths` に `data/generated/**` があるが、実際の下書きは `var/`（Git管理外）に保存されるため不一致。X投稿下書きをPRで回覧したい場合は保存先の設計変更が必要（今回はCI失敗と無関係のため未変更）。
-- [ ] 残: トピックを使い切ると生成物ゼロになり、`create-pull-request` ステップが「変更なし」で失敗する可能性がある。トピック補充の運用を別途決める。
+- [x] 追加の失敗（生成ステップ修正後に `workflow_dispatch` で判明）: `.github/workflows/content-bot.yml` の `add-paths` に存在しない `data/generated/**` があり、`git add` が `fatal: pathspec ... did not match any files` で落ちて「変更なし」となりPRが作られなかった。X投稿の下書きは `var/promotions`（`DATA_DIR`、Git管理外）に保存される設計のため、`add-paths` を `content/generated/**` のみに修正し、PR本文も実態（記事下書きのみ）に合わせた。
+- 再検証: `gh workflow run content-bot.yml --ref main` で 42952428469 を実行し、`Open PR` 以外の全ステップ成功を確認 → 上記修正を反映。
+- [x] トピックを使い切って生成物が0件になる場合に備え、`Detect generated changes` ステップで `content/generated` の差分有無を判定し、差分なしならPR作成ステップをスキップするようにした（「変更なし」で夜間バッチが赤くならない）。
+- [ ] 残: トピック在庫は12件で、1回2件生成のため約6日で枯渇する。枯渇後はPRが作られず静かに停止するので、トピック補充（`content/topics.json` への追記）の運用を決める必要がある。

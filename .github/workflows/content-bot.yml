@@ -57,17 +57,30 @@ jobs:
       - name: Daily report
         run: pnpm jobs:report
 
+      - name: Detect generated changes
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain -- content/generated)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::新しい下書きがないためPR作成をスキップします（トピックを使い切った場合は正常）。"
+          fi
+
       - name: Open PR with generated drafts
+        if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "chore(content): 自動生成した下書き"
           title: "content: AI生成の下書き（自動）"
           body: |
-            AIが生成した記事・X投稿の下書きです。
+            AIが生成した記事の下書きです。
             - 数値は検証済みデータとの照合に合格したものだけを含みます。
-            - 公開（記事のpublished化 / X投稿）はこのPRのレビュー後に別途行います。
+            - 公開（記事のpublished化）はこのPRのレビュー後に別途行います。
+            - X投稿の下書きは `var/promotions`（Git管理外）に保存されるため、このPRには含まれません。掲載する場合は人が内容を確認したうえで別途コミットします。
           branch: content-bot/drafts
+          # 生成物は content/generated/ のみ。存在しないパスを add-paths に入れると
+          # `git add` が fatal で落ち、PRが作られないため実際の出力先だけを指定する。
           add-paths: |
             content/generated/**
-            data/generated/**
           delete-branch: true
