@@ -313,3 +313,19 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - Search Console（サマリー）: ウェブ検索クリック **1回**（直近7日強）、インデックス登録 **17** / 未登録 **66**（11/9監査時点と同数）。「クロール済み - インデックス未登録」58ページは未解消（再クロール待ち）。
 - 解釈: 公開4日目で現在のボトルネックはPVではなく**インデックス**。11/10の記事再編（38→28）とサイトマップ再送信の効果判定は早くて11/17〜24頃。KPIはPVではなく「インデックス率・表示回数・平均掲載順位」で見る（`docs/09_KPI_MODEL.md` の方針どおり）。
 - [ ] 残: `GA4_PROPERTY_ID` + `GOOGLE_APPLICATION_CREDENTIALS` を設定して `pnpm analytics:ga4-pages` を有効化（現状は毎回ブラウザで手動確認）。GA4↔Search Consoleのリンク設定（GA4側にリンク推奨が出ている）。
+
+## 2026-11-11 — Content Bot（夜間バッチ）の失敗を修正
+- 症状: GitHub Actions の `Content Bot (AI drafting)` が 2026-11-08 / 11-09 / 11-10 / 11-11 の4回連続で失敗（最終成功は 11-07 00:48 UTC）。失敗箇所は `Generate AI drafts` ステップ。
+- 原因1: `content/topics.json` の `seoul-rainy-day-2026` で checklist の1項目が `"傘"`（1文字）になっており、`ArticleTopicSchema` の `min(2)` に違反。`readTopics()` が全体を `ZodError` で落としていた（混入は a1b140c、11-07 11:11 のコンテンツ拡充コミット）。
+- 原因2: 1件直した後に発覚。`OPENROUTER_API_KEY` 未設定時のモック下書き（`src/lib/ai/mock-provider.ts`）の段落2箇所が40文字未満で、`ArticleDraftSchema` の `paragraphs item min(40)` に違反。実LLMを経由しないため気づかれず、モック実行では毎回 `[error]` で0件保存になっていた。
+- 対策:
+  - [x] `content/topics.json`: `"傘"` → `"傘・雨具"`。
+  - [x] `src/lib/ai/mock-provider.ts`: 該当2段落を具体的な確認行動まで含む文に加筆（数値・事実の捏造は追加していない）。
+  - [x] `scripts/generate-article-drafts.ts`: `readTopics()` を `safeParse` の逐次検証に変更し、不正トピックだけを警告付きで除外して続行（1件の不備で全トピックの下書きが止まらない）。全件不正の場合のみ異常終了。
+  - [x] `tests/unit/topics.test.ts` 新規: `content/topics.json` のスキーマ適合・ID重複・出典ID実在をCI（`pnpm test`）で検証。修正前データで失敗することを確認済み。
+  - [x] `tests/unit/ai-articles.test.ts`: モック下書きを本番と同じ `parseDraft()` に通す回帰テストを追加（従来は `validateDraft()` のみで、スキーマ不整合を検出できなかった）。
+- 検証: lint成功 / typecheck成功 / unit 89件成功（+5） / 通常ビルド成功 / 静的エクスポート（`STATIC_EXPORT=true`）成功 / E2E 30件成功。
+- 検証（ジョブ再現）: `pnpm jobs:article-draft` で `[review] seoul-cafe-guide-2026 score=90` `[review] busan-food-2026 score=90` の2件が保存されることを確認。`jobs:social-draft` / `jobs:audit` / `jobs:report` も exit 0。ローカル生成物（`content/generated/articles.json`）はコミットせず元に戻した（本番はBotのPRで反映）。
+- 補足: `gh api repos/yuga-hashimoto/korea-affiliate-media/actions/secrets` は `total_count: 0`。`OPENROUTER_API_KEY` は未設定のため、夜間バッチはモック経路で動作する（記事・投稿の公開は行わない）。
+- [ ] 残: `.github/workflows/content-bot.yml` の `add-paths` に `data/generated/**` があるが、実際の下書きは `var/`（Git管理外）に保存されるため不一致。X投稿下書きをPRで回覧したい場合は保存先の設計変更が必要（今回はCI失敗と無関係のため未変更）。
+- [ ] 残: トピックを使い切ると生成物ゼロになり、`create-pull-request` ステップが「変更なし」で失敗する可能性がある。トピック補充の運用を別途決める。

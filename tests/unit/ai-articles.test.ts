@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { mockArticleDraft } from "@/lib/ai/mock-provider";
 import {
   draftToArticle,
+  parseDraft,
   validateDraft,
 } from "@/lib/ai/articles";
 import type { ArticleTopic } from "@/lib/ai/topics";
@@ -19,6 +20,13 @@ const topic: ArticleTopic = {
 };
 
 const topicEvidence = evidence.filter((e) => topic.evidenceIds.includes(e.id));
+
+describe("parseDraft", () => {
+  it("モック下書きはスキーマ検証を通る（本番と同じ経路）", () => {
+    const draft = mockArticleDraft(topic);
+    expect(() => parseDraft(draft)).not.toThrow();
+  });
+});
 
 describe("validateDraft", () => {
   it("モック下書きは品質基準を満たす", () => {

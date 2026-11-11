@@ -43,10 +43,38 @@ interface GeneratedRecord {
   article: Article;
 }
 
+/**
+ * トピック定義を読み込む。
+ *
+ * 1件の定義不備でバッチ全体が落ちると下書きが止まるため、不正なトピックだけを
+ * 警告付きで除外して続行する（不備自体は `tests/unit/topics.test.ts` がCIで検出する）。
+ */
 async function readTopics(): Promise<ArticleTopic[]> {
   const raw = await readFile(TOPICS_PATH, "utf8");
-  const parsed = JSON.parse(raw) as { topics: unknown[] };
-  return parsed.topics.map((topic) => ArticleTopicSchema.parse(topic));
+  const parsed = JSON.parse(raw) as { topics?: unknown[] };
+  const entries = Array.isArray(parsed.topics) ? parsed.topics : [];
+
+  const topics: ArticleTopic[] = [];
+  for (const [index, entry] of entries.entries()) {
+    const result = ArticleTopicSchema.safeParse(entry);
+    if (result.success) {
+      topics.push(result.data);
+      continue;
+    }
+    const id =
+      typeof entry === "object" && entry !== null && "id" in entry
+        ? String((entry as { id: unknown }).id)
+        : `index:${index}`;
+    const detail = result.error.issues
+      .map((issue) => `${issue.path.join(".") || "(root)"}: ${issue.message}`)
+      .join(" / ");
+    console.warn(`[warn] トピック ${id} の定義が不正なため除外しました: ${detail}`);
+  }
+
+  if (entries.length > 0 && topics.length === 0) {
+    throw new Error("content/topics.json に有効なトピックがありません");
+  }
+  return topics;
 }
 
 async function readGenerated(): Promise<GeneratedRecord[]> {
