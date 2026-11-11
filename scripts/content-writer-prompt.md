@@ -12,7 +12,7 @@
 ## 手順
 1. **トピック選定**
    - `content/user-requests.md` に未処理のリクエストがあれば最優先で採用する（処理したら `[x]` にする）。
-   - なければ `content/topics.json` の `status: queued` を1件選び `in_progress` に更新する。
+   - なければ `content/topics.json` の `status: queued` を1件選び、記事保存後に `used` に更新する（スキーマは `queued|used|blocked` のみ。`in_progress` は使えない）。
    - どちらも無い場合は、既存記事の鮮度監査（`pnpm jobs:audit`）で最も古い記事の更新を1件行う。
 2. **調査（ブラウザ操作を許可）**
    - 一次情報（韓国観光公社・空港・鉄道・事業者公式）をブラウザまたは web_fetch で確認する。
