@@ -348,3 +348,4 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] ドキュメント: `docs/ANALYTICS.md` を新設（構成・コマンド・数値の読み方・鍵のローテーション/停止手順）。README・`docs/09_KPI_MODEL.md`・`docs/08_IMPLEMENTATION_BACKLOG.md`・`.env.example` を更新。
 - [ ] 未達（手動が必要）: Search Console「インデックス登録をリクエスト」はUIのみでAPIがなく、この環境のChromeではGSC画面がTrusted Typesエラー（`This document requires 'TrustedHTML' assignment`）で反応せず自動化できなかった。GA4↔Search Consoleリンクも「新しいGA統合リンク」フローで「次へ」が有効化されず未完了。どちらも手動で実施する。
 - 注: GCPプロジェクトを1つ追加作成した（課金なし・読み取り専用SAのみ）。停止する場合はGA4のアクセス管理からSAを削除、または鍵を削除すれば、コマンドは「設定なし」で安全に停止する。
+- [x] 追加: 日次/週次レポート（`pnpm jobs:report` / `pnpm jobs:weekly-report`）にGA4のアクセス節を追加。未設定なら節を出さない／取得失敗なら「推測しません」と表示。`buildDailyReport` のテストを4件追加（unit 102件）。

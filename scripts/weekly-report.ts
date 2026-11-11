@@ -7,6 +7,7 @@ import path from "node:path";
 import { readJsonFile } from "../src/lib/store";
 import { buildDailyReport } from "../src/lib/analytics/report";
 import { parseAspCsv, summarizeConversions } from "../src/lib/analytics/asp";
+import { loadTrafficForReport } from "../src/lib/analytics/ga4";
 import { articleList, evidenceList } from "../src/data/index";
 import type { Promotion } from "../src/lib/domain";
 import { tokyoDayKey } from "../src/lib/dates";
@@ -38,19 +39,23 @@ async function main(): Promise<void> {
     (finding) => finding.severity !== "low",
   ).length;
 
+  // 直近7日のアクセス。GA4未設定なら undefined、失敗なら null。
+  const traffic = await loadTrafficForReport(7);
+
   const body = buildDailyReport({
     date: tokyoDayKey(now),
     title: "週次レポート（直近7日）",
     conversions,
     staleContent,
     pendingPromotions: promotions.filter((p) => p.status === "needs_review").length,
+    traffic,
   });
 
   const header = [
     "# 週次レポート（直近7日）",
     "",
     `- 対象期間: ${since.toISOString()} 〜 ${now.toISOString()}`,
-    "- 対象: ASP成果 / 品質指標",
+    "- 対象: アクセス（GA4）/ ASP成果 / 品質指標",
     "",
     "---",
     "",

@@ -44,3 +44,46 @@ describe("buildDailyReport", () => {
     expect(report).toContain("通貨が異なる成果は合算していません");
   });
 });
+
+describe("buildDailyReport のアクセス（GA4）セクション", () => {
+  const base = {
+    date: "2026-11-11",
+    conversions: null,
+    staleContent: 0,
+    pendingPromotions: 0,
+  } as const;
+
+  it("GA4未接続（traffic未指定）ならセクションを出さない", () => {
+    const report = buildDailyReport({ ...base });
+    expect(report).not.toContain("アクセス（GA4）");
+  });
+
+  it("取得失敗（traffic=null）は数値を出さず、推測しないと明記する", () => {
+    const report = buildDailyReport({ ...base, traffic: null });
+    expect(report).toContain("アクセス（GA4）");
+    expect(report).toContain("取得できませんでした");
+    expect(report).not.toContain("期間合計: PV");
+  });
+
+  it("日別の行から合計と日別内訳を出し、重複の注意を添える", () => {
+    const report = buildDailyReport({
+      ...base,
+      traffic: {
+        rows: [
+          { date: "2026-11-07", activeUsers: 4, views: 9, sessions: 6 },
+          { date: "2026-11-08", activeUsers: 5, views: 5, sessions: 5 },
+        ],
+      },
+    });
+    expect(report).toContain("期間合計: PV 14 / セッション 11 / 日別ユーザーの単純合計 9");
+    expect(report).toContain("11/07 4人/9PV");
+    expect(report).toContain("11/08 5人/5PV");
+    expect(report).toContain("一致しません");
+  });
+
+  it("データが空のときは0として断定しない", () => {
+    const report = buildDailyReport({ ...base, traffic: { rows: [] } });
+    expect(report).toContain("まだありません");
+    expect(report).not.toContain("PV 0");
+  });
+});

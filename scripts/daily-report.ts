@@ -6,6 +6,7 @@ import path from "node:path";
 import { readJsonFile } from "../src/lib/store";
 import { articleList, evidenceList } from "../src/data/index";
 import { parseAspCsv, summarizeConversions } from "../src/lib/analytics/asp";
+import { loadTrafficForReport } from "../src/lib/analytics/ga4";
 import { buildDailyReport } from "../src/lib/analytics/report";
 import { tokyoDayKey } from "../src/lib/dates";
 import { auditContent } from "../src/lib/content/audit";
@@ -45,11 +46,15 @@ async function main(): Promise<void> {
     (promotion) => promotion.status === "needs_review",
   ).length;
 
+  // 直近3日（当日を含む）のアクセス。GA4未設定なら undefined、失敗なら null。
+  const traffic = await loadTrafficForReport(3);
+
   const report = buildDailyReport({
     date: day,
     conversions,
     staleContent,
     pendingPromotions,
+    traffic,
   });
 
   const dir = path.join(

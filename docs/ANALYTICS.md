@@ -38,9 +38,12 @@ pnpm analytics:traffic -- --days 14        # 日別のユーザー/PV/セッシ�
 pnpm analytics:traffic -- --days 30 --json # JSONで出力
 pnpm analytics:traffic -- --days 14 --save # var/reports/ga4-traffic.{json,md} に保存
 pnpm analytics:ga4-pages -- --days 7       # ページ別の表示回数ランキング
+pnpm jobs:report                          # 日次レポート（GA4の直近3日を含む）
+pnpm jobs:weekly-report                   # 週次レポート（GA4の直近7日を含む）
 ```
 
 - npm scripts は `node --env-file-if-exists=.env.local --import tsx` で起動するため、`.env.local` を自動で読む。
+- GA4が未設定のときはレポートにアクセス欄自体が出ない。取得に失敗したときは「取得できませんでした（数値は推測しません）」と表示する。
 - 数値はGA4 Data APIの値をそのまま出す。取得できない場合は「まだデータがありません」等を表示し、0や確定値として扱わない。
 
 ## 3. 数値の読み方（誤読しやすい点）

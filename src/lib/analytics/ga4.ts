@@ -314,3 +314,28 @@ export function formatDailyTraffic(report: Ga4TrafficReport): string {
   );
   return `${lines.join("\n")}\n`;
 }
+
+/**
+ * 日次/週次レポート用に直近N日のアクセスを取得する。
+ *
+ * - GA4が未設定: `undefined`（レポートにセクションを出さない）
+ * - 取得に失敗: `null`（「数値は推測しません」と出す）
+ */
+export async function loadTrafficForReport(
+  days: number,
+): Promise<{ rows: Ga4DailyRow[] } | null | undefined> {
+  const config = ga4Config();
+  if (!config) return undefined;
+  try {
+    const report = await fetchGa4TrafficReport(config, {
+      start: `${days}daysAgo`,
+      end: "today",
+    });
+    return { rows: report.rows };
+  } catch (error) {
+    console.warn(
+      `[ga4] アクセス取得に失敗しました（数値は出しません）: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    return null;
+  }
+}
