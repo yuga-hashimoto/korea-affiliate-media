@@ -331,3 +331,8 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - 再検証: `gh workflow run content-bot.yml --ref main` で 42952428469 を実行し、`Open PR` 以外の全ステップ成功を確認 → 上記修正を反映。
 - [x] トピックを使い切って生成物が0件になる場合に備え、`Detect generated changes` ステップで `content/generated` の差分有無を判定し、差分なしならPR作成ステップをスキップするようにした（「変更なし」で夜間バッチが赤くならない）。
 - [ ] 残: トピック在庫は12件で、1回2件生成のため約6日で枯渇する。枯渇後はPRが作られず静かに停止するので、トピック補充（`content/topics.json` への追記）の運用を決める必要がある。
+- [x] 追加の失敗（`workflow_dispatch` 再実行で判明）: PR作成ステップが `GitHub Actions is not permitted to create or approve pull requests` で失敗。リポジトリ設定（Settings → Actions → General → Workflow permissions）の `can_approve_pull_request_reviews` が `false` だったため、`GITHUB_TOKEN` でPRを作れなかった。
+- [x] リポジトリ設定を `PUT /repos/yuga-hashimoto/korea-affiliate-media/actions/permissions/workflow`（`can_approve_pull_request_reviews: true` / `default_workflow_permissions: read` は据え置き）で変更。ワークフロー側は `permissions: contents: write, pull-requests: write` を明示しているため既定権限は read のまま維持。
+- 確認: `gh workflow run content-bot.yml --ref main` → 42952997243 が全ステップ成功し、PR #1（`content-bot/drafts`、`content/generated/articles.json` のみ、+138/-1）が自動作成された。
+- 確認: 本修正コミット `7f4942a` の main CI 42952872643 は verify / e2e とも成功。PR #1 の CI（42953054679）は初回 contributor 扱いで `action_required` となり、メンテナの承認後に verify / e2e 成功。
+- [ ] 残: Botが作るPRのCIは `action_required`（承認待ち）で止まるため、毎回メンテナの承認が必要（今回は手動承認した）。恒久対応するならPATをsecretに入れて `token:` に渡すか、PRのCIを必須にしない運用にする。
