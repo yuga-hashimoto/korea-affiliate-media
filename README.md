@@ -70,6 +70,7 @@ pnpm e2e                              # desktop + mobile 375px + axe
 | `SITE_INDEXING_ENABLED` | index許可 | noindex |
 | `NEXT_PUBLIC_SITE_URL` | canonical/OGPの基準URL | `http://localhost:3000` |
 | `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | GA4測定ID（公開値） | 計測タグを出力しない |
+| `GA4_PROPERTY_ID` / `GOOGLE_APPLICATION_CREDENTIALS` | GA4 Data API（読み取り専用）での数値取得 | 取得せず「スキップ」と表示（推測しない） |
 
 ## 自動化（AI記事・X投稿）
 
@@ -82,6 +83,8 @@ pnpm jobs:audit              # 記事・出典の鮮度監査（更新候補の�
 pnpm jobs:report             # 日次レポート（var/reports/）
 pnpm jobs:weekly-report      # 週次レポート
 pnpm dashboard               # ASP成果CSVを1ページに集約（ローカル専用・var/reports/）
+pnpm analytics:traffic -- --days 14   # GA4の日別アクセス推移（--save で var/reports/ に保存）
+pnpm analytics:ga4-pages -- --days 7  # GA4のページ別 表示回数
 ```
 
 - 生成物の公開は既定で停止しています（`CONTENT_AUTO_PUBLISH_ENABLED=false` / `SOCIAL_PUBLISH_ENABLED=false`）。
@@ -124,6 +127,7 @@ npx wrangler pages deploy out --project-name=sougakuhikaku --branch=preview
 | [AUTOMATION_RUNBOOK](docs/AUTOMATION_RUNBOOK.md) | 記事生成・X投稿の運用手順 |
 | [AFFILIATE_APPLICATION](docs/AFFILIATE_APPLICATION.md) | ASP登録の準備・手順・必要な情報 |
 | [AFFILIATE_LINKS_SETUP](docs/AFFILIATE_LINKS_SETUP.md) | 成果リンクの設定・デプロイ手順 |
+| [ANALYTICS](docs/ANALYTICS.md) | GA4/GSCの計測構成と数値の自動取得（`pnpm analytics:*`） |
 | [PREVIEW_DEPLOY](docs/PREVIEW_DEPLOY.md) | Preview環境のデプロイ手順 |
 | [CREDITS](docs/CREDITS.md) | 使用写真・フォントの出典とライセンス |
 | [PROGRESS](docs/PROGRESS.md) | 作業ログ、テスト結果、残課題 |

@@ -19,7 +19,8 @@
 - [x] TM-10 テスト/CI: unit 36件、E2E 32件（desktop/375px/axe）、lint/typecheck/build。
 - [x] TM-11 外部Previewデプロイ。→ Cloudflare Pages `preview.sougakuhikaku.pages.dev` に配信済み。
 - [x] TM-12 本番切替・旧サイト破棄。→ 2026-11-07 に Cloudflare Pages の既存プロジェクトへ配信し、ドメインを再利用。旧記事は404（ユーザー承認済み）。DNS変更なし。
-- [ ] TM-13 GA4/GSCの接続（測定ID・権限）。
+- [x] TM-13 GA4の接続（測定ID・権限）→ 2026-11-11: GA4 Data API用のサービスアカウント（閲覧者）を設定し `pnpm analytics:traffic` / `analytics:ga4-pages` で実データ取得を確認。手順は [ANALYTICS](ANALYTICS.md)。
+- [ ] TM-13b Search Console側の残作業: 「インデックス登録をリクエスト」（UIのみ・APIなし）とGA4↔GSCリンク。2026-11-11時点では自動操作できず手動。
 - [ ] TM-14 正式ブランド名の決定（暫定: 韓国旅行ノート）。
 - [ ] TM-15 釜山・済州・ソウルの記事拡充（公式情報の確認が取れたものから）。
 - [ ] TM-16 ASP申請・承認後の成果リンク実装（旅行・宿泊・体験）。

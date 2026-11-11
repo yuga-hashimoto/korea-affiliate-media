@@ -30,6 +30,20 @@ export interface Ga4PagesReport {
   range: { start: string; end: string };
 }
 
+export interface Ga4DailyRow {
+  /** GA4 の date ディメンションを YYYY-MM-DD にしたもの。 */
+  date: string;
+  /** その日にアクティブだったユーザー数（日別ユニーク。期間合計とは一致しない）。 */
+  activeUsers: number;
+  views: number;
+  sessions: number;
+}
+
+export interface Ga4TrafficReport {
+  rows: Ga4DailyRow[];
+  range: { start: string; end: string };
+}
+
 interface ServiceAccount {
   client_email: string;
   private_key: string;
@@ -134,10 +148,8 @@ export async function fetchGa4PagesReport(
   const token = await getAccessToken(account, new Date());
 
   const body = {
-    entity: { accountId: `properties/${config.propertyId}` },
     requests: [
       {
-        property: `properties/${config.propertyId}`,
         dateRanges: [{ startDate: options.start, endDate: options.end }],
         dimensions: [{ name: "pageTitle" }, { name: "pagePath" }],
         metrics: [{ name: "screenPageViews" }],
@@ -148,7 +160,7 @@ export async function fetchGa4PagesReport(
   };
 
   const res = await fetch(
-    `${REPORT_URL}:batchRunReports`,
+    `${REPORT_URL}/properties/${config.propertyId}:batchRunReports`,
     {
       method: "POST",
       headers: {
@@ -194,5 +206,111 @@ export function formatPagesRanking(report: Ga4PagesReport): string {
       `| ${index + 1} | ${row.pageTitle} | \`${row.pagePath}\` | ${row.views} |`,
     );
   });
+  return `${lines.join("\n")}\n`;
+}
+
+function toNumber(value: string | undefined): number {
+  const n = Number(value ?? "0");
+  return Number.isFinite(n) ? n : 0;
+}
+
+/** GA4 の date ディメンション（YYYYMMDD）を YYYY-MM-DD にする。 */
+export function formatGa4Date(raw: string): string {
+  return /^\d{8}$/.test(raw)
+    ? `${raw.slice(0, 4)}-${raw.slice(4, 6)}-${raw.slice(6, 8)}`
+    : raw;
+}
+
+/** batchRunReports（date × activeUsers/screenPageViews/sessions）の行を整形する。 */
+export function rowsToDailyRows(rowset: BatchRunReportsRows[]): Ga4DailyRow[] {
+  return rowset
+    .map((row) => ({
+      date: formatGa4Date(row.dimensionValues?.[0]?.value ?? "(unknown)"),
+      activeUsers: toNumber(row.metricValues?.[0]?.value),
+      views: toNumber(row.metricValues?.[1]?.value),
+      sessions: toNumber(row.metricValues?.[2]?.value),
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date));
+}
+
+/** 日別のアクセス推移（ユーザー/PV/セッション）を取得する。 */
+export async function fetchGa4TrafficReport(
+  config: Ga4Config,
+  options: { start: string; end: string },
+): Promise<Ga4TrafficReport> {
+  const account = await loadServiceAccount(config.credentialsPath);
+  const token = await getAccessToken(account, new Date());
+
+  const body = {
+    requests: [
+      {
+        dateRanges: [{ startDate: options.start, endDate: options.end }],
+        dimensions: [{ name: "date" }],
+        metrics: [
+          { name: "activeUsers" },
+          { name: "screenPageViews" },
+          { name: "sessions" },
+        ],
+        orderBys: [{ dimension: { dimensionName: "date" } }],
+        limit: 100,
+      },
+    ],
+  };
+
+  const res = await fetch(
+    `${REPORT_URL}/properties/${config.propertyId}:batchRunReports`,
+    {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  );
+  if (!res.ok) {
+    const detail = await res.text().catch(() => "");
+    throw new Error(
+      `GA4 レポート取得に失敗しました（HTTP ${res.status}）${detail ? `: ${detail.slice(0, 300)}` : ""}`,
+    );
+  }
+  const data = (await res.json()) as {
+    reports?: { rows?: BatchRunReportsRows[] }[];
+  };
+  const rows = data.reports?.[0]?.rows ?? [];
+  return {
+    rows: rowsToDailyRows(rows),
+    range: { start: options.start, end: options.end },
+  };
+}
+
+/** 日別推移をMarkdownにする。日別ユーザーの合計は期間ユニークと一致しない旨を明記する。 */
+export function formatDailyTraffic(report: Ga4TrafficReport): string {
+  const lines: string[] = [];
+  lines.push(`# 日別アクセス推移（GA4）`);
+  lines.push("");
+  lines.push(`- 期間: ${report.range.start} 〜 ${report.range.end}`);
+  lines.push("- 数値はGA4 Data APIの値そのもの。推測による補完はしていません。");
+  lines.push("");
+  if (report.rows.length === 0) {
+    lines.push("まだデータがありません（測定開始直後は反映まで最大24時間ほどかかります）。");
+    return `${lines.join("\n")}\n`;
+  }
+  const totalViews = report.rows.reduce((sum, row) => sum + row.views, 0);
+  const totalSessions = report.rows.reduce((sum, row) => sum + row.sessions, 0);
+  const totalUsersPerDay = report.rows.reduce((sum, row) => sum + row.activeUsers, 0);
+  lines.push(
+    `- 期間合計: PV **${totalViews}** / セッション **${totalSessions}** / 日別ユーザーの単純合計 **${totalUsersPerDay}**`,
+  );
+  lines.push("");
+  lines.push("| 日付 | ユーザー（日別） | PV | セッション |");
+  lines.push("| --- | --- | --- | --- |");
+  report.rows.forEach((row) => {
+    lines.push(`| ${row.date} | ${row.activeUsers} | ${row.views} | ${row.sessions} |`);
+  });
+  lines.push("");
+  lines.push(
+    "> 日別の「ユーザー」はその日にアクティブだった人数。同じ人が複数日に来ると重複して数えられるため、期間合計のユニークユーザー数とは一致しません。",
+  );
   return `${lines.join("\n")}\n`;
 }

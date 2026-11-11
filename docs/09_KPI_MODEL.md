@@ -5,6 +5,7 @@
 ## 定義
 - 最終目標: ASP確定報酬月300,000円（経費/税引前）。見込報酬やクリック単価ではない。
 - 検証指標: Search Consoleの自然検索クリック、GA4の訪問/ランディング、外部クリック、承認成果数、1訪問あたりの確定報酬 `EPV`、記事更新工数、月間経費。
+- 取得方法: GA4の数値は `pnpm analytics:traffic`（日別）/ `pnpm analytics:ga4-pages`（ページ別）で取得する。設定と読み方の注意は [ANALYTICS](ANALYTICS.md)。
 - `Revenue = Σ(Approved conversions × Approved commission per conversion)`
 - `Traffic needed = Target approved commission / EPV`
 - `EPV = Outbound click rate × Advertiser CVR × Approved commission per conversion × Approval rate`

@@ -336,3 +336,15 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - 確認: `gh workflow run content-bot.yml --ref main` → 42952997243 が全ステップ成功し、PR #1（`content-bot/drafts`、`content/generated/articles.json` のみ、+138/-1）が自動作成された。
 - 確認: 本修正コミット `7f4942a` の main CI 42952872643 は verify / e2e とも成功。PR #1 の CI（42953054679）は初回 contributor 扱いで `action_required` となり、メンテナの承認後に verify / e2e 成功。
 - [ ] 残: Botが作るPRのCIは `action_required`（承認待ち）で止まるため、毎回メンテナの承認が必要（今回は手動承認した）。恒久対応するならPATをsecretに入れて `token:` に渡すか、PRのCIを必須にしない運用にする。
+
+## 2026-11-11 — GA4 Data APIの接続と「日別アクセス推移」の自動取得
+- 目的: 「最近のアクセスはどうか」を毎回ブラウザ管理画面で見なくても、コマンドで実数（日別）を取得できるようにする。
+- [x] GA4 Data API用の**読み取り専用**サービスアカウントを新規GCPプロジェクト `korea-travel-analytics-x0qpka` に作成（API: `analyticsdata.googleapis.com` を有効化）。GA4プロパティ `563135187` の「プロパティのアクセス管理」で**閲覧者**として追加。
+- [x] 鍵JSONは `var/secrets/ga4-reader.json`（`var/` はGit管理外）。`.env.local` に `GA4_PROPERTY_ID=563135187` と `GOOGLE_APPLICATION_CREDENTIALS` を設定。
+- [x] バグ修正（実接続で判明）: `src/lib/analytics/ga4.ts` のレポート取得URLが `.../v1beta:batchRunReports` で404だった。正しくは `/v1beta/properties/{propertyId}:batchRunReports`（プロパティIDはパス）。bodyの `property` / `entity` も不要なので削除。
+- [x] 追加: 日別推移（`activeUsers` / `screenPageViews` / `sessions`）の取得とMarkdown整形（`fetchGa4TrafficReport` / `formatDailyTraffic`）、`scripts/ga4-traffic.ts`、`pnpm analytics:traffic -- --days N [--json] [--save]`。npm scriptsは `node --env-file-if-exists=.env.local --import tsx` に変更し `.env.local` を自動で読むようにした。
+- [x] 実測（2026-11-11 12:30 JST、GA4の11/4〜11/11）: 日別は 11/7 4人/9PV、11/8 5人/5PV、11/9 2人/4PV、11/10 3人/5PV、11/11 1人/1PV（当日途中）。期間合計 **PV 24 / セッション 17** で**横ばい**。表示回数の大半はトップページで、記事本文は数PVのみ。
+- [x] テスト: `tests/unit/ga4.test.ts` を16件に拡充（未設定時の安全停止、日別行の整形、リクエストURLに `properties/{id}` を含むこと、bodyに `property`/`entity` を含まないこと、日別合計の注意書き）。unit 98件 / lint / typecheck / 静的ビルド 成功。
+- [x] ドキュメント: `docs/ANALYTICS.md` を新設（構成・コマンド・数値の読み方・鍵のローテーション/停止手順）。README・`docs/09_KPI_MODEL.md`・`docs/08_IMPLEMENTATION_BACKLOG.md`・`.env.example` を更新。
+- [ ] 未達（手動が必要）: Search Console「インデックス登録をリクエスト」はUIのみでAPIがなく、この環境のChromeではGSC画面がTrusted Typesエラー（`This document requires 'TrustedHTML' assignment`）で反応せず自動化できなかった。GA4↔Search Consoleリンクも「新しいGA統合リンク」フローで「次へ」が有効化されず未完了。どちらも手動で実施する。
+- 注: GCPプロジェクトを1つ追加作成した（課金なし・読み取り専用SAのみ）。停止する場合はGA4のアクセス管理からSAを削除、または鍵を削除すれば、コマンドは「設定なし」で安全に停止する。
