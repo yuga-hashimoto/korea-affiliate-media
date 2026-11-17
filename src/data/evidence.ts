@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-dongmun",
+    "https://english.visitkorea.or.kr/svc/contents/contentsView.do?dataSetId=233&menuSn=977&vcontsId=91650",
+    "official_page",
+    "韓国観光公社公式（英語）「Dongmun Traditional Market」。1945年8月の解放直後に開設、1954年3月の火災後に現在地へ移転、隣接する東門魚市場とともに済州を代表する常設市場。農畜産物・果物・衣類・海鮮・薬草・穀物などを扱い、名物はタチウオの刺身、サムハプ（エイ・豚肉・キムチ）とアワビの内臓入りご飯、トッカルビとアワビ。住所は済州市観徳路14キル20、営業時間07:00〜21:00（店により異なる）、年中無休（店により異なる）、駐車場・トイレあり（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-gukje",
     "https://english.visitkorea.or.kr/svc/whereToGo/locIntrdn/rgnContentsView.do?menuSn=351&vcontsId=90815",
     "official_page",
