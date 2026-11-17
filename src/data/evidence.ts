@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitseoul-namsan",
+    "https://english.visitseoul.net/attractions--/NamsanPark/ENP003631",
+    "official_page",
+    "ソウル市公式観光（英語）「Namsan Park」（2018-01-12公開、2026-10-19編集）。南山公園はソウル中心部の最大の市民公園で、長忠・芸場・会賢・漢南の4地区に分かれる。入場無料。園内にNソウルタワー展望台、南山ケーブルカー（10:00〜23:00）、安重根義士記念館（3〜10月10:00〜18:00、11〜2月10:00〜17:00）、子ども森林体験場など（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitseoul-eungbongsan",
     "https://english.visitseoul.net/nature/EungbongsanMountainNightView/ENP038786",
     "official_page",
