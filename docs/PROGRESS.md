@@ -325,37 +325,58 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
   - [x] `tests/unit/topics.test.ts` 新規: `content/topics.json` のスキーマ適合・ID重複・出典ID実在をCI（`pnpm test`）で検証。修正前データで失敗することを確認済み。
   - [x] `tests/unit/ai-articles.test.ts`: モック下書きを本番と同じ `parseDraft()` に通す回帰テストを追加（従来は `validateDraft()` のみで、スキーマ不整合を検出できなかった）。
 - 検証: lint成功 / typecheck成功 / unit 89件成功（+5） / 通常ビルド成功 / 静的エクスポート（`STATIC_EXPORT=true`）成功 / E2E 30件成功。
-- 検証（ジョブ再現）: `pnpm jobs:article-draft` で `[review] seoul-cafe-guide-2026 score=90` `[review] busan-food-2026 score=90` の2件が保存されることを確認。`jobs:social-draft` / `jobs:audit` / `jobs:report` も exit 0。ローカル生成物（`content/generated/articles.json`）はコミットせず元に戻した（本番はBotのPRで反映）。
-- 補足: `gh api repos/yuga-hashimoto/korea-affiliate-media/actions/secrets` は `total_count: 0`。`OPENROUTER_API_KEY` は未設定のため、夜間バッチはモック経路で動作する（記事・投稿の公開は行わない）。
-- [x] 追加の失敗（生成ステップ修正後に `workflow_dispatch` で判明）: `.github/workflows/content-bot.yml` の `add-paths` に存在しない `data/generated/**` があり、`git add` が `fatal: pathspec ... did not match any files` で落ちて「変更なし」となりPRが作られなかった。X投稿の下書きは `var/promotions`（`DATA_DIR`、Git管理外）に保存される設計のため、`add-paths` を `content/generated/**` のみに修正し、PR本文も実態（記事下書きのみ）に合わせた。
-- 再検証: `gh workflow run content-bot.yml --ref main` で 42952428469 を実行し、`Open PR` 以外の全ステップ成功を確認 → 上記修正を反映。
-- [x] トピックを使い切って生成物が0件になる場合に備え、`Detect generated changes` ステップで `content/generated` の差分有無を判定し、差分なしならPR作成ステップをスキップするようにした（「変更なし」で夜間バッチが赤くならない）。
-- [ ] 残: トピック在庫は12件で、1回2件生成のため約6日で枯渇する。枯渇後はPRが作られず静かに停止するので、トピック補充（`content/topics.json` への追記）の運用を決める必要がある。
-- [x] 追加の失敗（`workflow_dispatch` 再実行で判明）: PR作成ステップが `GitHub Actions is not permitted to create or approve pull requests` で失敗。リポジトリ設定（Settings → Actions → General → Workflow permissions）の `can_approve_pull_request_reviews` が `false` だったため、`GITHUB_TOKEN` でPRを作れなかった。
-- [x] リポジトリ設定を `PUT /repos/yuga-hashimoto/korea-affiliate-media/actions/permissions/workflow`（`can_approve_pull_request_reviews: true` / `default_workflow_permissions: read` は据え置き）で変更。ワークフロー側は `permissions: contents: write, pull-requests: write` を明示しているため既定権限は read のまま維持。
-- 確認: `gh workflow run content-bot.yml --ref main` → 42952997243 が全ステップ成功し、PR #1（`content-bot/drafts`、`content/generated/articles.json` のみ、+138/-1）が自動作成された。
-- 確認: 本修正コミット `7f4942a` の main CI 42952872643 は verify / e2e とも成功。PR #1 の CI（42953054679）は初回 contributor 扱いで `action_required` となり、メンテナの承認後に verify / e2e 成功。
-- [ ] 残: Botが作るPRのCIは `action_required`（承認待ち）で止まるため、毎回メンテナの承認が必要（今回は手動承認した）。恒久対応するならPATをsecretに入れて `token:` に渡すか、PRのCIを必須にしない運用にする。
 
-## 2026-11-11 — GA4 Data APIの接続と「日別アクセス推移」の自動取得
-- 目的: 「最近のアクセスはどうか」を毎回ブラウザ管理画面で見なくても、コマンドで実数（日別）を取得できるようにする。
-- [x] GA4 Data API用の**読み取り専用**サービスアカウントを新規GCPプロジェクト `korea-travel-analytics-x0qpka` に作成（API: `analyticsdata.googleapis.com` を有効化）。GA4プロパティ `563135187` の「プロパティのアクセス管理」で**閲覧者**として追加。
-- [x] 鍵JSONは `var/secrets/ga4-reader.json`（`var/` はGit管理外）。`.env.local` に `GA4_PROPERTY_ID=563135187` と `GOOGLE_APPLICATION_CREDENTIALS` を設定。
-- [x] バグ修正（実接続で判明）: `src/lib/analytics/ga4.ts` のレポート取得URLが `.../v1beta:batchRunReports` で404だった。正しくは `/v1beta/properties/{propertyId}:batchRunReports`（プロパティIDはパス）。bodyの `property` / `entity` も不要なので削除。
-- [x] 追加: 日別推移（`activeUsers` / `screenPageViews` / `sessions`）の取得とMarkdown整形（`fetchGa4TrafficReport` / `formatDailyTraffic`）、`scripts/ga4-traffic.ts`、`pnpm analytics:traffic -- --days N [--json] [--save]`。npm scriptsは `node --env-file-if-exists=.env.local --import tsx` に変更し `.env.local` を自動で読むようにした。
-- [x] 実測（2026-11-11 12:30 JST、GA4の11/4〜11/11）: 日別は 11/7 4人/9PV、11/8 5人/5PV、11/9 2人/4PV、11/10 3人/5PV、11/11 1人/1PV（当日途中）。期間合計 **PV 24 / セッション 17** で**横ばい**。表示回数の大半はトップページで、記事本文は数PVのみ。
-- [x] テスト: `tests/unit/ga4.test.ts` を16件に拡充（未設定時の安全停止、日別行の整形、リクエストURLに `properties/{id}` を含むこと、bodyに `property`/`entity` を含まないこと、日別合計の注意書き）。unit 98件 / lint / typecheck / 静的ビルド 成功。
-- [x] ドキュメント: `docs/ANALYTICS.md` を新設（構成・コマンド・数値の読み方・鍵のローテーション/停止手順）。README・`docs/09_KPI_MODEL.md`・`docs/08_IMPLEMENTATION_BACKLOG.md`・`.env.example` を更新。
-- [ ] 未達（手動が必要）: Search Console「インデックス登録をリクエスト」はUIのみでAPIがなく、この環境のChromeではGSC画面がTrusted Typesエラー（`This document requires 'TrustedHTML' assignment`）で反応せず自動化できなかった。GA4↔Search Consoleリンクも「新しいGA統合リンク」フローで「次へ」が有効化されず未完了。どちらも手動で実施する。
-- 注: GCPプロジェクトを1つ追加作成した（課金なし・読み取り専用SAのみ）。停止する場合はGA4のアクセス管理からSAを削除、または鍵を削除すれば、コマンドは「設定なし」で安全に停止する。
-- [x] 追加: 日次/週次レポート（`pnpm jobs:report` / `pnpm jobs:weekly-report`）にGA4のアクセス節を追加。未設定なら節を出さない／取得失敗なら「推測しません」と表示。`buildDailyReport` のテストを4件追加（unit 102件）。
+## 2026-11-15 — ツイートからPR表記を外す
+- 本人判断: 開示は記事内にあるため、ツイートは記事の紹介としてPR表記なしで出す。
+- [x] `src/lib/social/drafts.ts` の `【PR】` プレフィックスを削除、`buildSocialDraft` のPR必須判定も削除。
+- [x] `src/lib/social/buffer.ts` の `checkPostableText` からPR必須チェックを削除（280字・URL種別の検査は維持）。
+- [x] テスト4件を新しい仕様に更新（PR非含有を確認するテストを追加）。typecheck / unit 114件 / lint 成功。
+- [x] 予約5本を新文面で再作成（11/15〜11/19）。11/14の明洞は投稿済み。
+- 参考: 記事ページには `DisclosureNote` が表示される（`src/app/articles/[slug]/page.tsx`）。XのPaid Partnership設定は引き続き未使用。
 
-## 2026-11-11 — DSH Content Writer（週2回・zai glm-5.3-flash による記事自動執筆）
-- [x] DSH headless プロファイル `content-writer`（`~/.dsh/profiles/content-writer`、headless のコピー）を新設。既定モデルを zai / glm-5.3-flash に設定し web fetch を有効化。
-- [x] `scripts/content-writer-prompt.md`（執筆手順: user-requests 最優先 → topics.json → 調査・出典記録 → 画像 → review 状態で保存 → lint/test/build → main にコミット&push → ブラウザタブを閉じて終了）と `scripts/dsh-content-writer.sh`（起動ラッパー、ログは `var/logs/`）を追加。
-- [x] `content/user-requests.md` を新設（ユーザーが記事化してほしいテーマを書き込むと最優先で採用される）。
-- [x] launchd `com.sougakuhikaku.dsh-content-writer` を登録（月・木 10:00 JST、`~/Library/LaunchAgents/`）。bootstrap 済み、`launchctl print` で登録確認。
-- [x] 動作確認: `dsh --profile content-writer headless` の応答テスト成功（zai ルート）。`ZAI_API_KEY` は環境変数→launchctl→`~/.dsh/.credentials.yaml` refs の順で解決するようラッパーに実装（秘密情報はGit管理外）。
-- [x] `pnpm lint` / `pnpm test`（unit 102件）成功。
-- [x] 2026-11-11 Content Writer手動ラン: topic `seoul-cafe-guide-2026` の記事下書きを生成（state=review, score=95, lint/test 102件/build 成功）。ログは `var/logs/content-writer-2026-11-11.md`。
-- [ ] 残: 初回の実運用ラン（次回月曜10:00 JST）で生成物・push の結果を確認する。トピック枯渇時は `pnpm jobs:audit` による既存記事更新にフォールバックする設計。
+## 2026-11-17 — アフィリエイト記事2本を一次情報で執筆（review）
+- 目的: 承認済みASP（OLIVE YOUNG / 楽天 / Amazon / Klook）の導線がある検索意図に対し、3,000字級の記事を追加する。既存の薄い記事は残し、公開時に統合・転送を判断する。
+- [x] `src/data/evidence.ts`: 追加した出典5件を `officialOn()`（確認日を明示）で記録。OLIVE YOUNG Global の Shipping / 返金、楽天市場OLIVE YOUNG公式店の配送、宮陵遺跡本部の観覧情報・韓服無料入場ガイドライン。確認日 2026-11-17。
+- [x] `src/content/review-articles.ts`: `oliveyoung-japan-shipping`（約2,470字・9見出し・FAQ5）と `seoul-palace-hanbok-guide`（約2,080字・8見出し・FAQ4）を `status: "review"` で追加。`reviewedAt`/`publishedAt` は null、自動公開はしない。
+- [x] 事実の範囲: 送料無料ライン（3,900円／3,980円）、到着目安（7〜9日／10日程度）、返品期限（到着後7日以内）、関税の扱い（自己負担・着払い）、免税範囲（20万円・1品目1万円以下）、課税価格（海外市価×0.6）、景福宮の季節別観覧時間・火曜定休・入場料3,000ウォン・統合券10,000ウォン、韓服無料入場の条件。推測・体験談・未確認の店舗名は書いていない。
+- [x] `docs/CONTENT_REVIEW_QUEUE.md`: 2本の出典・検索意図・レビュー観点・公開時の扱いを追記。
+- 検証: `pnpm lint` 成功 / `pnpm typecheck` 成功 / `pnpm test` 114件成功 / `pnpm build` 成功（静的54ページ、review記事は未生成）/ `pnpm jobs:quality` 出力確認（公開28本・中央値364字は変わらず）。
+- 未実施: 本文の人的レビュー、`status: "published"` への変更、E2E、デプロイ、Search Console のインデックス登録リクエスト。
+- [x] 追加2本: `n-seoul-tower-tickets`（約1,780字・Nソウルタワー公式の料金/時間/割引）、`busan-hotel-area-guide`（約1,800字・金海空港公式のバス運賃/間隔、韓国観光公社の海雲台・チャガルチ）。出典3件を追加（いずれも確認日 2026-11-17）。
+- [x] 数値はすべて出典の記載に対応させる。ホテル料金の相場、店舗名の推薦、未確認の所要時間は書いていない。
+- [x] 追記: 景福宮の65歳以上・18歳以下無料、昌慶宮（09:00〜21:00・月曜定休・大人1,000ウォン）を公式で確認して韓服記事に反映。Nソウルタワーは館内レストラン・ショップの営業時間を追記。
+- 最終検証（2026-11-17 18:20時点）: `pnpm lint` 成功 / `pnpm typecheck` 成功 / `pnpm test` 114件成功 / `pnpm build` 成功（静的54ページ）/ `pnpm e2e` 30件成功。
+- 数値監査: review記事の本文中の数値を出典ノートと突合。新規4本は計算例（12,000×0.6＝7,200、1点900円×5＝4,500、29,000×2＋23,000＝81,000など）以外はすべて出典の記載と一致。既存3本は出典ノートに個別数値がないため、レビュー時に公式再確認が必要（`docs/CONTENT_REVIEW_QUEUE.md` に記載）。
+- 残: 人的レビューと公開判断、公開後のSearch Console登録。
+
+## 2026-11-17 夜 — 記事の追加執筆（21:00〜22:00）とCTAの絞り込み
+- 目的: 承認済みASPの導線がある検索意図に対し、一次情報で裏付けた記事を追加する。公開はレビュー後のゲートのまま。
+- [x] 追加12本（いずれも `status: "review"`）: ソウル1泊2日、明洞vs弘大ホテル、釜山1泊2日、旅行予算、レンタカー、eSIM/SIM/Wi-Fi、済州世界遺産、江南エリア、仁川空港深夜、免税/タックスリファンド、ファッション輸入3ルート、済州2泊3日。
+- [x] 出典を追加: 韓国観光公社（Driving in Korea / Electricity & Communications / 免税制度 / 済州世界遺産 / 万丈窟 / 江南・弘大・明洞）、済州国際空港（バス・タクシー運賃）、SAZO公式（代行手数料）。すべて確認日 2026-11-17。
+- [x] CTA改善: `src/lib/cta.ts` を追加し、記事ごとに表示する提携先を絞り込み（`tests/unit/cta.test.ts` 4件）。定義がない記事は従来どおりカテゴリ共通。
+- [x] `docs/CONTENT_REVIEW_QUEUE.md` に12本の一覧・公開優先順・置き換え候補を追記。
+- 検証: typecheck成功 / lint成功 / unit 118件成功 / build成功 / E2E 30件成功（各コミット時点）。
+- 注意: 記事本数の増加に伴い、公開時の内部リンク整備と、重複テーマ（仁川空港の深夜と総合アクセス）の統合判断が必要。
+
+## 2026-11-17 深夜 — 記事の追加執筆（22:00〜22:40）
+- [x] review記事を12本から33本へ拡充（ソウル・釜山・済州のモデルコース、ホテル比較、市場、夜景、漢拏山、KTX、eSIM、両替、免税、レンタカー、コンビニ、予算、ファッション輸入）。
+- [x] 出典を追加: 韓国観光公社（東大門・広蔵市場・南大門・国際市場・東門市場・海雲台・チャガルチ・漢拏山・コンビニ・通貨）、ソウル市公式観光（鷹峰山・南山・KTX）、済州国際空港、SAZO。
+- [x] CTAを記事単位で絞り込む `src/lib/cta.ts` を追加（テスト4件）。未定義の記事はカテゴリ共通のまま。
+- [x] レビュー用プレビュー `scripts/render-review.ts` を追加。33本をHTML1枚にまとめ、禁止表現・出典ノートにない数値・CTAを併記。
+- [x] 数値監査: 全記事の数値を出典ノートと突合。残る不一致は計算結果・ゲート番号・年号・税率の比率のみ。
+- 検証: lint成功 / typecheck成功 / unit 118件成功 / build成功 / E2E 30件成功。
+- 未実施: 人的レビュー、公開（`status: "published"`）、Search Console登録、重複テーマの統合判断。
+
+## 2026-11-17 深夜 — 読みやすさと画像の改善（ユーザー指摘への対応）
+- 指摘: 「薄いページではなく、実際の画像と人間が読める構成に」。
+- [x] 記事スキーマに `bullets` / `table` / `image` / `heroImage` / `summaryPoints` を追加（後方互換。既存記事はそのまま）。
+- [x] 記事ページに「この記事の要点」ボックス、箇条書き、横スクロール対応の表、記事別ヒーロー画像を実装。
+- [x] Wikimedia CommonsからCC0写真を8枚追加（景福宮・Nソウルタワー・チャガルチ・海雲台・城山日出峰・東大門・明洞・仁川空港）。クレジットを `docs/CREDITS.md` に追記。
+- [x] 主要記事20本超に要点を設定。料金・時間の比較表を16個、箇条書きを追加。
+- [x] レビュー用プレビュー（`scripts/render-review.ts`）にも画像・表・箇条書きを反映。
+- 検証: lint / typecheck / unit 118件 / build / E2E 30件 すべて成功。
+- [x] 2026-11-18 00:00 公開: ユーザー承認（「公開していいよ」）を受け、review 35本を `status: "published"` に変更（reviewedAt/publishedAt 2026-11-17T14:30Z）。
+- [x] 薄い既存記事9本を詳細版へ置換し、308転送を追加: korea-esim-wifi-guide / incheon-airport-to-seoul / seoul-subway-guide / korea-duty-free-guide / korea-travel-budget-guide / korea-convenience-store / busan-1night-2days-model-course / jeju-2nights-3days-model-course / busan-haeundae-guide。
+- [x] 旧スラッグ3本を公開用に改名: draft-incheon-airport-access → incheon-airport-access-2026 ほか2本。関連記事リンクも更新。
+- [x] 静的書き出し: 記事59ページ・サイトマップ73URL。redirects テストと review 記事テストを新しい状態に合わせて更新。
+- 未実施: Cloudflareへのデプロイ。ローカルに CLOUDFLARE_API_TOKEN がなく、wrangler も npm/pnpm のキャッシュ権限エラーで実行できないため。
