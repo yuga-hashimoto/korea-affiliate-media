@@ -247,6 +247,7 @@ export const seoulArticles: Article[] = [
   },
   {
     slug: "seoul-klook-experiences",
+    summaryPoints: ["人気商品は早めの予約が安心", "当日予約は空きがあれば可能", "キャンセル条件は商品ごとに違う", "日本語サポートの有無を確認"],
     title: "ソウルで予約できる体験の選び方｜Klook活用ガイド",
     description:
       "ソウル旅行で事前予約したい体験（空港送迎・展望台・宮殿・テーマパークなど）の選び方と、予約前の確認事項をまとめます。",

@@ -109,6 +109,7 @@ export const busanJejuArticles: Article[] = [
   },
   {
     slug: "busan-jeju-access",
+    summaryPoints: ["釜山〜済州は飛行機が基本", "空港への移動時間を確保する", "荷物の預け入れ条件を確認", "天候による欠航に備える"],
     title: "ソウルから釜山・済州への行き方｜KTX・飛行機・フェリー",
     description:
       "ソウルから釜山・済州島への移動手段を比較。KTX・国内線・フェリーの所要時間と予約の注意点、荷物と空港アクセスを整理します。",

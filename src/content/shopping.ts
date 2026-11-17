@@ -6,6 +6,7 @@ const PUBLISHED_AT = "2026-11-06T09:00:00.000Z";
 export const shoppingArticles: Article[] = [
   {
     slug: "korea-cosmetics-shopping-guide",
+    summaryPoints: ["免税店と路面店で価格が違う", "試供品は店員に確認する", "返品は未開封が原則", "日本持ち帰りは免税範囲に注意"],
     title: "韓国コスメの買い物ガイド｜店舗と通販の使い分け",
     description:
       "韓国コスメを旅行中に買うときの基礎知識。店舗と通販の違い、テスターの使い方、免税・返品条件、持ち帰りの注意点をまとめます。",
@@ -58,6 +59,7 @@ export const shoppingArticles: Article[] = [
   },
   {
     slug: "oliveyoung-guide",
+    summaryPoints: ["人気商品は売り切れることがある", "免税手続きはパスポートが必要", "日本への配送は別記事で比較", "返品条件は購入時に確認"],
     title: "OLIVE YOUNGの使い方｜初めての店内と商品選び",
     description:
       "韓国のドラッグストア・コスメ店OLIVE YOUNGの使い方を紹介。店内の見方、セール表示、会員・免税、混雑を避ける時間帯をまとめます。",
