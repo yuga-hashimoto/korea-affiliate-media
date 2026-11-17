@@ -237,6 +237,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-driving",
+    "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=480&vcontsId=140664",
+    "official_page",
+    "韓国観光公社公式（英語）「Driving in Korea」。国際運転免許証（IDP）または相互認証された外国免許で入国日から最大1年間運転可、大手レンタカー会社は21歳以上・運転経験1年以上などの条件を設ける場合がある、必要書類はIDPとパスポート、保険は対人・対物が基本で自車保険はオプションの場合がある、左ハンドル・右側通行、距離はkm・速度はkm/h、ハイパスレーン注意。最終更新2026-10-08（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-gimhae-airport-access",
     "https://www.airport.co.kr/gimhaejpn/cms/frCon/index.do?MENU_ID=130",
     "official_page",
