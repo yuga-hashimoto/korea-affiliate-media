@@ -43,6 +43,41 @@ const ARTICLE_IMAGES: Partial<
     alt: "韓国の食堂の料理",
     credit: "Syced / CC0",
   },
+  cafe: {
+    src: "/images/korean-food.jpg",
+    alt: "韓国のカフェと食事",
+    credit: "Syced / CC0",
+  },
+  shopping: {
+    src: "/images/seoul.jpg",
+    alt: "ソウルの買い物エリア",
+    credit: "lumoplank / CC0",
+  },
+  beauty: {
+    src: "/images/seoul.jpg",
+    alt: "ソウルのコスメショップ街",
+    credit: "lumoplank / CC0",
+  },
+  fashion: {
+    src: "/images/seoul.jpg",
+    alt: "ソウルのファッション街",
+    credit: "lumoplank / CC0",
+  },
+  hotel: {
+    src: "/images/hero-seoul.jpg",
+    alt: "ソウルの街と宿泊エリア",
+    credit: "lumoplank / CC0",
+  },
+  transport: {
+    src: "/images/hero-seoul.jpg",
+    alt: "ソウルの交通",
+    credit: "lumoplank / CC0",
+  },
+  prepare: {
+    src: "/images/hero-seoul.jpg",
+    alt: "韓国旅行の準備",
+    credit: "lumoplank / CC0",
+  },
 };
 
 export const dynamicParams = false;
@@ -175,22 +210,26 @@ export default async function ArticlePage({
             {article.reviewedAt ? ` ・ レビュー: ${formatJstDate(article.reviewedAt)}` : ""}
           </p>
 
-          {ARTICLE_IMAGES[article.category] ? (
-            <figure className="mt-6 overflow-hidden rounded-3xl">
-              <div className="relative aspect-[16/9]">
-                <Image
-                  src={ARTICLE_IMAGES[article.category]!.src}
-                  alt={ARTICLE_IMAGES[article.category]!.alt}
-                  fill
-                  sizes="(min-width: 768px) 768px, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="mt-1.5 text-right text-[10px] text-slate-600">
-                Photo: {ARTICLE_IMAGES[article.category]!.credit}
-              </figcaption>
-            </figure>
-          ) : null}
+          {(() => {
+            const hero = article.heroImage ?? ARTICLE_IMAGES[article.category];
+            if (!hero) return null;
+            return (
+              <figure className="mt-6 overflow-hidden rounded-3xl">
+                <div className="relative aspect-[16/9]">
+                  <Image
+                    src={hero.src}
+                    alt={hero.alt}
+                    fill
+                    sizes="(min-width: 768px) 768px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="mt-1.5 text-right text-[10px] text-slate-600">
+                  Photo: {hero.credit}
+                </figcaption>
+              </figure>
+            );
+          })()}
 
           <DisclosureNote />
 
@@ -201,6 +240,76 @@ export default async function ArticlePage({
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
                 ))}
+                {section.bullets && section.bullets.length > 0 ? (
+                  <ul className="my-4 list-disc space-y-2 pl-5">
+                    {section.bullets.map((item) => (
+                      <li key={item.slice(0, 24)} className="leading-7">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {section.image ? (
+                  <figure className="my-6 overflow-hidden rounded-2xl">
+                    <div className="relative aspect-[16/9]">
+                      <Image
+                        src={section.image.src}
+                        alt={section.image.alt}
+                        fill
+                        sizes="(min-width: 768px) 768px, 100vw"
+                        className="object-cover"
+                      />
+                    </div>
+                    <figcaption className="mt-1 text-right text-[10px] text-slate-600">
+                      Photo: {section.image.credit}
+                    </figcaption>
+                  </figure>
+                ) : null}
+                {section.table ? (
+                  <div className="my-6 overflow-x-auto">
+                    <table className="w-full border-collapse text-sm">
+                      {section.table.caption ? (
+                        <caption className="mb-2 text-left text-xs text-slate-600">
+                          {section.table.caption}
+                        </caption>
+                      ) : null}
+                      <thead>
+                        <tr>
+                          {section.table.head.map((cell) => (
+                            <th
+                              key={cell}
+                              scope="col"
+                              className="border-b-2 border-ink px-3 py-2 text-left font-bold"
+                            >
+                              {cell}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map((row) => (
+                          <tr key={row.join("|")}>
+                            {row.map((cell, index) =>
+                              index === 0 ? (
+                                <th
+                                  key={cell}
+                                  scope="row"
+                                  className="border-b border-slate-200 px-3 py-2 text-left font-semibold"
+                                >
+                                  {cell}
+                                </th>
+                              ) : (
+                                <td key={cell} className="border-b border-slate-200 px-3 py-2">
+                                  {cell}
+                                </td>
+                              ),
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : null}
               </section>
             ))}
           </div>

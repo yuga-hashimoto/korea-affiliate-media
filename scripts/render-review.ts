@@ -63,11 +63,21 @@ function renderArticle(article: (typeof articleList)[number]): string {
     .join("");
 
   const sections = article.sections
-    .map(
-      (section) => `<section><h3>${esc(section.heading)}</h3>${section.paragraphs
+    .map((section) => {
+      const bullets =
+        section.bullets && section.bullets.length > 0
+          ? `<ul>${section.bullets.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>`
+          : "";
+      const image = section.image
+        ? `<figure><img src="${esc(section.image.src)}" alt="${esc(section.image.alt)}" style="max-width:100%;border-radius:8px" /><figcaption class="note">Photo: ${esc(section.image.credit)}</figcaption></figure>`
+        : "";
+      const table = section.table
+        ? `<table>${section.table.caption ? `<caption>${esc(section.table.caption)}</caption>` : ""}<thead><tr>${section.table.head.map((cell) => `<th>${esc(cell)}</th>`).join("")}</tr></thead><tbody>${section.table.rows.map((row) => `<tr>${row.map((cell) => `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody></table>`
+        : "";
+      return `<section><h3>${esc(section.heading)}</h3>${section.paragraphs
         .map((paragraph) => `<p>${esc(paragraph)}</p>`)
-        .join("")}</section>`,
-    )
+        .join("")}${bullets}${table}${image}</section>`;
+    })
     .join("");
 
   const faq = article.faq
@@ -88,6 +98,7 @@ function renderArticle(article: (typeof articleList)[number]): string {
     <p>出典ノートにない数値: ${missing.length === 0 ? "なし" : esc(missing.join(", "))}</p>
     <p>CTA: ${cta ? esc(cta.join(", ")) : "カテゴリ共通"}</p>
   </div>
+  ${article.heroImage ? `<figure><img src="${esc(article.heroImage.src)}" alt="${esc(article.heroImage.alt)}" style="max-width:100%;border-radius:8px" /><figcaption class="note">Photo: ${esc(article.heroImage.credit)}</figcaption></figure>` : ""}
   ${sections}
   <section><h3>FAQ</h3><dl>${faq}</dl></section>
   <section><h3>出典</h3><ul class="evidence">${evidenceRows}</ul></section>

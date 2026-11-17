@@ -93,9 +93,32 @@ export const ArticleStatusSchema = z.enum([
   "retired",
 ]);
 
+export const ArticleTableSchema = z.object({
+  caption: z.string().default(""),
+  head: z.array(z.string().min(1)).min(2),
+  rows: z.array(z.array(z.string().min(1)).min(2)).min(1),
+});
+export type ArticleTable = z.infer<typeof ArticleTableSchema>;
+
+/** 記事で使う画像。許諾済み（CC0等）のものだけを指定する。 */
+export const ArticleImageSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+  credit: z.string().min(1),
+});
+export type ArticleImage = z.infer<typeof ArticleImageSchema>;
+
+/**
+ * 本文の1セクション。
+ * 文章だけだと読みづらいため、箇条書き・表・画像を任意で持てるようにしている
+ * （既存記事は paragraphs だけなので後方互換）。
+ */
 export const ArticleSectionSchema = z.object({
   heading: z.string().min(1),
   paragraphs: z.array(z.string().min(1)).min(1),
+  bullets: z.array(z.string().min(1)).optional(),
+  table: ArticleTableSchema.nullable().optional(),
+  image: ArticleImageSchema.nullable().optional(),
 });
 
 export const ArticleSchema = z.object({
@@ -120,6 +143,8 @@ export const ArticleSchema = z.object({
   hubPath: z.string().nullable().default(null),
   /** アイキャッチ画像を使う場合のalt。画像は許諾済みのみ。 */
   imageAlt: z.string().nullable().default(null),
+  /** 記事ごとのアイキャッチ画像（未指定ならカテゴリ既定の画像を使う）。 */
+  heroImage: ArticleImageSchema.nullable().optional(),
 });
 export type Article = z.infer<typeof ArticleSchema>;
 

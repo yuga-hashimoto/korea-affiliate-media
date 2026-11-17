@@ -10,6 +10,14 @@ CC0 のため表示義務はありませんが、出典を記録します。
 | 釜山（市街） | `public/images/busan.jpg` | Hoil Ryu ckhi | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Busan_Tower_cityscape_(Unsplash).jpg) |
 | 済州（海岸） | `public/images/jeju.jpg` | lumoplank | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Beaches_of_Jeju_-_JejuBeaches2458.jpg) |
 | グルメ | `public/images/korean-food.jpg` | Syced | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Korean_food_at_Tteokbokki_restaurant_in_Shin-Okubo.jpg) |
+| 古宮（景福宮） | `public/images/gyeongbokgung.jpg` | Brady Bellini | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gyeongbokgung(palace)_Geunjeongjeon(hall).jpg) |
+| Nソウルタワー | `public/images/nseoultower.jpg` | travel oriented | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Seongsu_Bridge_and_N_Seoul_Tower.jpg) |
+| チャガルチ市場 | `public/images/jagalchi.jpg` | Bernard Gagnon | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Jagalchi_Market_01.jpg) |
+| 海雲台 | `public/images/haeundae.jpg` | lumoplank | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Haeundae,_Busan_-_Haeundae2740.jpg) |
+| 城山日出峰 | `public/images/seongsan.jpg` | Bernard Gagnon | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Seongsan_Ilchulbong_03.jpg) |
+| 東大門 | `public/images/dongdaemun.jpg` | 장길산 | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Dongdaemun-Seoul-jp.png) |
+| 明洞 | `public/images/myeongdong.jpg` | SKTakek | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Myeongdong-7gil-2023.jpg) |
+| 仁川国際空港 | `public/images/incheonairport.jpg` | Choikwangmo25 | CC0 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2025-10-22_06.09.10_Incheon_Airport_Regional_Customs.jpg) |
 
 ## 利用ルール
 - 画像はトリミング・リサイズのみ行い、内容の改変はしていません。
