@@ -237,6 +237,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-sazo-forwarding",
+    "https://sazo.shop/about/forwarding",
+    "official_page",
+    "SAZO公式（日本語）購入代行・転送サービスの案内。代行手数料は0円（代行手数料に限る）、日本への配送は佐川急便、韓国国内決済のみ・海外配送非対応のサイトでも購入できると案内、アプリ/LINE追加で送料クーポンの案内あり（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-dutyfree",
     "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140928",
     "official_page",
