@@ -43,6 +43,26 @@ function officialAt(
   };
 }
 
+/** 確認日を明示して記録する（2026-11-17以降の再確認分）。 */
+function officialOn(
+  id: string,
+  sourceUrl: string,
+  sourceType: SourceEvidence["sourceType"],
+  note: string,
+  checkedAt: string,
+): SourceEvidence {
+  return {
+    id,
+    sourceUrl,
+    sourceType,
+    accessPermitted: "unknown",
+    checkedAt,
+    observedTextHash: null,
+    note,
+    reviewStatus: "verified",
+  };
+}
+
 export const evidence: SourceEvidence[] = [
   official(
     "ev-visitkorea",
@@ -187,5 +207,40 @@ export const evidence: SourceEvidence[] = [
     "https://www.customs.go.kr/english/cm/cntnts/cntntsView.do?mi=10803&cntntsId=5504",
     "public_regulation",
     "韓国関税庁公式（英語）。出国時のタックスリファンド手続きを確認（2026-11-10確認）。",
+  ),
+  officialOn(
+    "ev-oy-global-shipping",
+    "https://global.oliveyoung.com/foot-info/footer-contents?foterMenuSeq=10",
+    "official_page",
+    "OLIVE YOUNG Global公式（英語）。日本への配送はお届け目安7〜9日、3,900円以上で送料無料、商品価格・送料に関税を含まないことを確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-oy-global-policy",
+    "https://global.oliveyoung.com/foot-info/footer-contents?foterMenuSeq=11",
+    "official_page",
+    "OLIVE YOUNG Global公式（英語）。返金は5〜10営業日、出荷準備中は変更・キャンセル不可、関税は受け取り人負担であることを確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-rakuten-oliveyoung-shipping",
+    "https://www.rakuten.co.jp/oliveyoung/info2.html",
+    "official_page",
+    "楽天市場 OLIVE YOUNG公式店の配送・支払い案内。送料は0〜3,979円が500円、3,980円以上が0円、お届けまで10日程度、通関時の関税・輸入消費税は着払い、返品は到着後7日以内の連絡、キャンセルは入金完了・配送準備中のみ（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-royal-palaces",
+    "https://royal.khs.go.kr/JPN/contents/J702000000.do",
+    "official_page",
+    "国家遺産庁 宮陵遺跡本部公式（日本語）。景福宮の観覧時間（3〜5月・9〜10月 09:00-18:00、6〜8月 09:00-18:30、11〜2月 09:00-17:00）、毎週火曜定休、大人3,000ウォン、4大宮殿及び宗廟統合観覧券10,000ウォンを確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-royal-hanbok",
+    "https://royal.khs.go.kr/JPN/contents/J701000000.do",
+    "official_page",
+    "国家遺産庁 宮陵遺跡本部公式（日本語）。韓服着用者の無料入場ガイドライン。景福宮・昌徳宮・徳寿宮・昌慶宮・宗廟が対象、上衣（チョゴリ）と下衣（チマまたはパジ）の両方着用が基本、トゥルマギのみ・ジーンズにチョゴリは不可（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
   ),
 ];
