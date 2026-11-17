@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-gukje",
+    "https://english.visitkorea.or.kr/svc/whereToGo/locIntrdn/rgnContentsView.do?menuSn=351&vcontsId=90815",
+    "official_page",
+    "韓国観光公社公式（英語）「Gukje Market Food Street」。釜山の伝統市場のなかでも有名な食べ歩き通りで60年以上の歴史、ビビムダンミョン（辛い春雨）・チュンムキンパ・トッポッキ・ミルミョン・テジクッパ・スンデ・パッピンスなどの名物、住所は釜山広域市中区中区路36、駐車場なし、営業時間は店により異なる、第1・第3日曜定休、問い合わせ+82-51-245-7389、1330観光案内（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-namdaemun",
     "https://english.visitkorea.or.kr/enu/SH/SH_EN_7_4.jsp?cid=708361",
     "official_page",
