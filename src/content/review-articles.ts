@@ -12,6 +12,7 @@ import type { Article } from "@/lib/domain";
 export const reviewArticles: Article[] = [
   {
     slug: "draft-incheon-airport-access",
+    summaryPoints: ["直通43分・13,000ウォン", "一般59分・4,750ウォン", "深夜は夜間バスかタクシー", "ターミナル間は6分・1,050ウォン"],
     title:
       "仁川空港からソウル市内への行き方｜AREX・空港バス・タクシーの料金と所要時間",
     description:
@@ -134,6 +135,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "draft-seoul-subway-fares",
+    summaryPoints: ["交通カードが1回用より100ウォン安い", "1回用は保証金500ウォン", "乗り換えは改札内で可能", "終電時刻を事前に確認"],
     title:
       "ソウル地下鉄の運賃と乗り方｜基本料金・交通カード・乗り換えの仕組み",
     description:
@@ -240,6 +242,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "draft-korea-customs-handcarry",
+    summaryPoints: ["免税は20万円・1品目1万円", "課税価格は海外市価×0.6", "タックスリファンドは3か月以内", "肉・果物は検疫に注意"],
     title:
       "韓国旅行の持ち帰りガイド｜税関の免税範囲とタックスリファンド手続き",
     description:
@@ -2102,6 +2105,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-duty-free-howto",
+    heroImage: { src: "/images/myeongdong.jpg", alt: "ソウルの免税店・買い物エリア", credit: "SKTakek / CC0（Wikimedia Commons）" },
     summaryPoints: ["Duty Free・Tax Refund・即時還付の3種類", "事後免税は1回15,000ウォン以上", "未開封・3か月以内の出国が条件", "仁川空港の還付は保安検査の後"],
     title: "韓国の免税と税金還付の使い分け｜Duty Free・Tax Refund・即時還付",
     description:
@@ -2793,6 +2797,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "namdaemun-market-guide",
+    heroImage: { src: "/images/myeongdong.jpg", alt: "ソウル・南大門市場周辺の街並み", credit: "SKTakek / CC0（Wikimedia Commons）" },
     summaryPoints: ["1964年開場の最大級の伝統市場", "約17,000品目を扱う", "深夜23:00〜04:00は卸売", "日曜定休"],
     title: "南大門市場の歩き方｜昼の買い物と深夜の卸売、日曜の注意",
     description:
@@ -3336,6 +3341,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "hallasan-hiking-guide",
+    summaryPoints: ["標高約1,950m・入場無料", "日帰り登頂が可能", "天候変化が激しく装備が必要", "駐車場6か所・二輪500ウォン"],
     title: "漢拏山の登山ガイド｜コースの選び方と装備、注意点",
     description:
       "済州島の漢拏山を日帰りで登るための準備を、標高とコースの概要、天候の注意、入場料と駐車場、装備の考え方で整理。初めてでも無理なく登るための判断基準を公式情報つきでまとめます。",
@@ -4011,6 +4017,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "namsan-park-walking-guide",
+    summaryPoints: ["公園は無料、展望台は有料", "ケーブルカーは10:00〜23:00", "展望台は29,000ウォン", "安重根記念館は無料で見学可"],
     heroImage: { src: "/images/nseoultower.jpg", alt: "南山とNソウルタワー", credit: "travel oriented / CC0（Wikimedia Commons）" },
     title: "南山公園の歩き方｜ケーブルカー・展望台・散策の注意",
     description:
@@ -4296,6 +4303,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "jeju-airport-transfer-guide",
+    summaryPoints: ["済州市庁まで9,000ウォン", "城山邑まで45,000ウォン", "リムジンバスは06:00〜22:40", "深夜はタクシーが現実的"],
     title: "済州空港から市内・主要エリアへの移動｜バスとタクシーの料金",
     description:
       "済州国際空港から済州市内、涯月、中文、城山方面への移動を、リムジンバスの運行、タクシーの運賃目安、レンタカーの準備で整理。到着時刻別の選び方もまとめます。",
