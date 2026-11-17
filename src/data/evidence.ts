@@ -237,6 +237,20 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-jeju-unesco",
+    "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=139895",
+    "official_page",
+    "韓国観光公社公式。済州火山島と溶岩洞窟が2007年に世界自然遺産に登録、ハルラサンは標高1,947mで360のオルム（火山丘）を持つ、城山日出峰は海底火山の噴火で形成され日出の名所、万丈窟などの溶岩洞窟群の説明を確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-visitkorea-manjanggul",
+    "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=111352&menuSn=351",
+    "official_page",
+    "韓国観光公社公式。万丈窟の利用時間09:00〜18:00（入場締め切り17:00）、住所（済州市旧左邑万丈窟路182）、駐車場あり・駐車料金無料を確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-communications",
     "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140041",
     "official_page",
