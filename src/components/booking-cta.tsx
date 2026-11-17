@@ -1,5 +1,6 @@
 import type { Category } from "@/lib/domain";
 import { resolveOutbound } from "@/lib/affiliate";
+import { pickCtaTargets } from "@/lib/cta";
 import { TrackedOutboundLink } from "./tracked-outbound-link";
 
 interface CtaTarget {
@@ -75,8 +76,9 @@ export function BookingCta({
   category: Category;
   articleSlug: string;
 }) {
-  const targets = CTAS[category];
-  if (!targets || targets.length === 0) return null;
+  const categoryTargets = CTAS[category];
+  if (!categoryTargets || categoryTargets.length === 0) return null;
+  const targets = pickCtaTargets(categoryTargets, articleSlug);
 
   const links = targets.map((target) => ({
     ...target,
