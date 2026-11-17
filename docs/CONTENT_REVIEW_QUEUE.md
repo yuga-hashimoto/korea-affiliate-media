@@ -113,3 +113,39 @@
 - [ ] 送料無料ライン・観覧時間・料金は変更されやすい。公開直前に再確認する。
 - [ ] 「1品目1万円以下は原則免税」は税関の原則であり、品目・数量によって扱いが変わる点が本文に書かれているか。
 - [ ] 韓服無料入場の条件（上下揃え）を、断定しすぎず現地判定であることに触れているか。
+
+## 2026-11-17 夜間バッチ（8〜19本目）
+
+21:00〜22:00に追加した12本。すべて `status: "review"`、出典は確認日 2026-11-17。
+
+| # | slug | カテゴリ | 本文 | 狙う検索意図 | 公開時の扱い |
+|---|---|---|---|---|---|
+| 8 | `seoul-1night-2days-plan` | seoul | 1,879字 | ソウル 1泊2日 モデルコース | 新規。`seoul-model-courses` から内部リンク |
+| 9 | `seoul-myeongdong-vs-hongdae-hotel` | hotel | 1,600字 | 明洞 弘大 ホテル | 新規。`seoul-hotel-area-guide` からリンク |
+| 10 | `busan-1night-2days-plan` | busan | 1,589字 | 釜山 1泊2日 | `busan-1night-2days-model-course` の置き換え候補 |
+| 11 | `korea-travel-budget-howto` | prepare | 1,906字 | 韓国旅行 予算 | `korea-travel-budget-guide` の置き換え候補 |
+| 12 | `korea-rental-car-guide` | jeju | 約1,800字 | 韓国 レンタカー 国際免許 | 新規 |
+| 13 | `korea-esim-sim-wifi-howto` | prepare | 約1,700字 | 韓国 eSIM 購入 | `korea-esim-wifi-guide` の置き換え候補 |
+| 14 | `jeju-unesco-nature-guide` | jeju | 約1,750字 | 済州 世界遺産 | 新規 |
+| 15 | `seoul-gangnam-area-guide` | seoul | 約1,700字 | 江南 ホテル | 新規 |
+| 16 | `incheon-airport-late-night` | transport | 1,519字 | 仁川空港 深夜 タクシー | `draft-incheon-airport-access` と主題が重なる。公開時に統合か片方に絞る |
+| 17 | `korea-duty-free-howto` | shopping | 約1,850字 | 韓国 免税 やり方 | `draft-korea-customs-handcarry` と役割分担（免税手続き／持ち帰り） |
+| 18 | `korea-fashion-import-routes` | fashion | 2,040字 | 韓国ファッション 通販 | 新規。SAZO（提携承認済み）の導線あり |
+| 19 | `jeju-2nights-3days-plan` | jeju | 1,632字 | 済州 2泊3日 | `jeju-2nights-3days-model-course` の置き換え候補 |
+
+### 公開の優先順（案）
+
+1. `oliveyoung-japan-shipping`（送料・関税の検索意図が強く、OLIVE YOUNGが承認済み）
+2. `seoul-palace-hanbok-guide`（韓服無料入場は独自性が高い）
+3. `n-seoul-tower-tickets`（料金の検索意図が明確）
+4. `korea-duty-free-howto`（手続きの実務需要）
+5. `korea-esim-sim-wifi-howto`（渡航前の需要）
+6. `korea-rental-car-guide`（免許・保険の実務需要）
+7. `seoul-1night-2days-plan` / `jeju-2nights-3days-plan`（モデルコース）
+8. 残りは内部リンクを整えてから順次
+
+### CTAの絞り込み
+
+- `src/lib/cta.ts` の `ARTICLE_CTA_PROGRAMS` で、記事ごとに表示する提携先を指定した（化粧品記事にハーブピーリングを出さない等）。
+- 定義がない記事はカテゴリ共通CTAをそのまま使う。定義が候補と一致しない場合も空にせず共通へ戻す。
+- テスト: `tests/unit/cta.test.ts`（4件）。
