@@ -379,4 +379,7 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 薄い既存記事9本を詳細版へ置換し、308転送を追加: korea-esim-wifi-guide / incheon-airport-to-seoul / seoul-subway-guide / korea-duty-free-guide / korea-travel-budget-guide / korea-convenience-store / busan-1night-2days-model-course / jeju-2nights-3days-model-course / busan-haeundae-guide。
 - [x] 旧スラッグ3本を公開用に改名: draft-incheon-airport-access → incheon-airport-access-2026 ほか2本。関連記事リンクも更新。
 - [x] 静的書き出し: 記事59ページ・サイトマップ73URL。redirects テストと review 記事テストを新しい状態に合わせて更新。
-- 未実施: Cloudflareへのデプロイ。ローカルに CLOUDFLARE_API_TOKEN がなく、wrangler も npm/pnpm のキャッシュ権限エラーで実行できないため。
+- [x] 2026-11-18 00:05 デプロイ完了: ユーザーがブラウザでWranglerのOAuthを承認。`HOME=/tmp/wrangler-home` でログインし直し（既定の設定ディレクトリが書き込み不可だったため）、`wrangler pages deploy out --project-name=sougakuhikaku --branch=main` を実行。
+  - デプロイURL: https://c54ead04.sougakuhikaku.pages.dev
+  - 本番確認: 新記事200 / 旧URL→新URL 308 / sitemap 73URL / robots許可 / noindexなし / PRバッジと rel="sponsored nofollow noopener noreferrer" を確認。
+- 未実施: Search Consoleのインデックス登録リクエスト（認証情報が必要）。
