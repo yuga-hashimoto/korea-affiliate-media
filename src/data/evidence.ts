@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitseoul-eungbongsan",
+    "https://english.visitseoul.net/nature/EungbongsanMountainNightView/ENP038786",
+    "official_page",
+    "ソウル市公式観光（英語）「Eungbongsan Mountain Night View」。城東区金湖洞の鷹峰山八閣亭は24時間・年中無休・入場無料、漢江・ロッテワールドタワー・清渓山・冠岳山を一望でき、ソウル市内の夜景スポットとして紹介。住所は城東区獨笑堂路362、京義中央線 鷹峰駅1番出口から約886m、障がい者対応トイレあり。近隣に鷹峰岩クライミングパーク（110m）、金南市場（580m）、聖水洞の韓国茶カフェ（920m）（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-money",
     "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140040",
     "official_page",
