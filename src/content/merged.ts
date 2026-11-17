@@ -9,6 +9,7 @@ import type { Article } from "@/lib/domain";
 export const mergedArticles: Article[] = [
   {
     "slug": "korea-season-guide",
+    "summaryPoints": ["春と秋は歩きやすい", "夏は暑さと雨に注意", "冬は防寒が必要", "桜・紅葉は時期が読めない"],
     "title": "韓国旅行の季節ガイド｜春・夏・秋・冬の気候と服装",
     "description": "韓国旅行の季節ごとの気候・服装・雨や寒さの対策を、春・夏・秋・冬に分けてまとめます。ソウル・釜山・済州の気温差と、時期別の持ち物の目安も紹介します。",
     "category": "prepare",
@@ -164,6 +165,7 @@ export const mergedArticles: Article[] = [
   },
   {
     "slug": "seoul-model-courses",
+    "summaryPoints": ["1泊2日は明洞中心", "2泊3日はエリアを分ける", "移動時間を先に確保する", "定休日を先に確認する"],
     "title": "ソウルモデルコース｜2泊3日・3泊4日の回り方",
     "description": "初めてのソウル旅行向けに、2泊3日と3泊4日のモデルコースをまとめます。到着日・2日目・最終日の動き方と、移動時間や食事の組み立て方を紹介します。",
     "category": "seoul",
@@ -250,6 +252,7 @@ export const mergedArticles: Article[] = [
   },
   {
     "slug": "seoul-cafe-guide",
+    "summaryPoints": ["エリアごとにカフェの性格が違う", "人気店は待ち時間がある", "電源・Wi-Fiは店ごとに異なる", "注文はカウンターが基本"],
     "title": "ソウルカフェガイド｜エリア別の楽しみ方と注文のコツ",
     "description": "ソウルのカフェ文化と、弘大・三清洞・江南などのエリア別の楽しみ方、注文の流れ、サイズや氷の伝え方、スイーツの選び方をまとめます。",
     "category": "cafe",
@@ -387,6 +390,7 @@ export const mergedArticles: Article[] = [
   },
   {
     "slug": "korea-night-view-guide",
+    "summaryPoints": ["南山は定番の夜景スポット", "漢江沿いも見晴らしがよい", "鷹峰山は無料で入れる", "夜道は明るい道を選ぶ"],
     "title": "韓国の夜景ガイド｜ソウル・釜山の展望スポットと帰りの注意",
     "description": "ソウルと釜山で夜景を楽しむためのスポットの選び方、移動の注意点、終電とタクシーの使い分け、撮影時のマナーをまとめます。",
     "category": "seoul",
