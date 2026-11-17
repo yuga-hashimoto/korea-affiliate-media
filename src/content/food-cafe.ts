@@ -6,6 +6,7 @@ const PUBLISHED_AT = "2026-11-06T09:00:00.000Z";
 export const foodCafeArticles: Article[] = [
   {
     slug: "seoul-food-guide",
+    summaryPoints: ["写真付きメニューが多い", "指差しで注文できる", "屋台は現金のみの場合あり", "取り皿を使って取り分ける"],
     title: "ソウルの食堂・屋台入門｜初めてでも注文しやすい店の選び方",
     description:
       "初めてのソウルで食堂や屋台を楽しむための基本。メニューの見方、注文の流れ、現金とカードの使い分け、食事のマナーをまとめます。",

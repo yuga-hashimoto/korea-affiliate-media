@@ -110,6 +110,7 @@ export const shoppingArticles: Article[] = [
   },
   {
     slug: "korea-fashion-shopping-guide",
+    summaryPoints: ["サイズは実寸で確認する", "試着可否と返品条件をレジで確認", "タグを切ると返品不可の場合あり", "海外通販は返送料が購入者負担"],
     title: "韓国ファッションの買い物ガイド｜サイズと返品の注意点",
     description:
       "韓国でファッションを買うときの基礎。サイズ表記の違い、試着の可否、返品条件、日本への持ち帰りと関税の注意点をまとめます。",
