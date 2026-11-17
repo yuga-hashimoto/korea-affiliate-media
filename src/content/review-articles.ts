@@ -349,6 +349,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "oliveyoung-japan-shipping",
+    summaryPoints: ["Globalは3,900円以上で送料無料・7〜9日", "楽天公式店は3,980円以上で送料無料・10日程度", "関税はどちらも受け取り人負担", "1品目1万円以下は原則免税"],
     title:
       "OLIVE YOUNGで日本に買う｜Global公式と楽天公式店の送料・関税・届く日数",
     description:
@@ -492,6 +493,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-palace-hanbok-guide",
+    summaryPoints: ["韓服着用なら景福宮など5施設が無料（上下揃えが条件）", "景福宮は大人3,000ウォン・火曜定休", "昌慶宮は1,000ウォン・月曜定休", "統合観覧券10,000ウォンは韓服の日なら不要"],
     heroImage: { src: "/images/gyeongbokgung.jpg", alt: "景福宮の宫殿と池", credit: "Brady Bellini / CC0（Wikimedia Commons）" },
     title: "ソウルの古宮と韓服｜無料入場の条件・料金・観覧時間",
     description:
@@ -627,6 +629,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "n-seoul-tower-tickets",
+    summaryPoints: ["大人29,000ウォン・小人23,000ウォン", "平日10:00〜22:30／週末・祝日10:00〜23:00", "最終入場は閉場30分前", "65歳以上は小人と同額、36か月未満は無料"],
     heroImage: { src: "/images/nseoultower.jpg", alt: "Nソウルタワーとソウルの夜景", credit: "travel oriented / CC0（Wikimedia Commons）" },
     title: "Nソウルタワー展望台の料金・営業時間｜当日券と事前予約の使い分け",
     description:
@@ -760,6 +763,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "busan-hotel-area-guide",
+    summaryPoints: ["海雲台は空港バス9,500ウォン", "南浦洞方面は西面経由6,000ウォン", "市場は日曜定休に注意", "予約前にキャンセル条件を確認"],
     heroImage: { src: "/images/haeundae.jpg", alt: "海雲台の海岸とホテル街", credit: "lumoplank / CC0（Wikimedia Commons）" },
     title: "釜山のホテルは海雲台と南浦洞どちらに泊まる？空港からの移動と違い",
     description:
@@ -1298,6 +1302,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-travel-budget-howto",
+    summaryPoints: ["固定費は交通＋入場料で41,500〜58,000ウォン", "変動費は宿泊・食費・買い物", "免税は20万円・1品目1万円", "予備費は全体の1割を目安に"],
     title: "韓国旅行の予算の立て方｜固定費と変動費を分けて計算する",
     description:
       "韓国旅行の予算を、自分で計算できる形に整理します。空港鉄道・入場料などの固定費は公式の実額を使い、宿泊・食費・買い物は条件を決めて見積もる方法を紹介。免税範囲と課税の注意もまとめます。",
@@ -1563,6 +1568,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-esim-sim-wifi-howto",
+    summaryPoints: ["eSIMは端末の対応確認が必須", "物理SIMは空港・コンビニで買える", "Wi-Fiは複数人で共有するなら有利", "電圧は220V・プラグは2穴の丸型"],
     title: "韓国旅行の通信手段｜eSIM・SIMカード・Wi-Fiをどう選ぶか",
     description:
       "韓国旅行の通信手段を、eSIM・物理SIM（USIM）・Wi-Fiルーターの3つに分けて整理。購入できる場所、設定方法、端末の対応確認、電源プラグの注意を韓国観光公社の公式情報つきでまとめます。",
@@ -2089,6 +2095,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-duty-free-howto",
+    summaryPoints: ["Duty Free・Tax Refund・即時還付の3種類", "事後免税は1回15,000ウォン以上", "未開封・3か月以内の出国が条件", "仁川空港の還付は保安検査の後"],
     title: "韓国の免税と税金還付の使い分け｜Duty Free・Tax Refund・即時還付",
     description:
       "韓国の買い物で迷いやすい、免税店（Duty Free）・事後免税（Tax Refund）・即時還付（Tax Free）の違いを整理。15,000ウォン以上の条件、未開封・3か月以内などのルール、仁川空港の還付カウンターとKIOSKの場所まで公式情報つきでまとめます。",
@@ -4124,6 +4131,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-busan-ktx-guide",
+    summaryPoints: ["ソウル〜釜山は2時間18分", "月〜木は43,000〜53,700ウォン", "金〜日・祝日は46,500〜57,700ウォン", "乗車60日前から予約できる"],
     title: "ソウルから釜山へ｜KTXの料金・所要時間と高速バスの違い",
     description:
       "ソウルから釜山への移動を、KTXと高速バスで比較。KTXの所要時間2時間18分と曜日別の運賃、60日前からの予約方法、高速バスの料金とターミナル、どちらを選ぶかの基準を公式情報つきでまとめます。",

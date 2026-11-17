@@ -233,6 +233,17 @@ export default async function ArticlePage({
 
           <DisclosureNote />
 
+          {article.summaryPoints && article.summaryPoints.length > 0 ? (
+            <section className="mt-6 rounded-2xl border-2 border-ink bg-butter/40 p-5">
+              <h2 className="text-sm font-black tracking-wide">この記事の要点</h2>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7">
+                {article.summaryPoints.map((point) => (
+                  <li key={point.slice(0, 20)}>{point}</li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
           <div className="prose-jp mt-9">
             {article.sections.map((section) => (
               <section key={section.heading}>

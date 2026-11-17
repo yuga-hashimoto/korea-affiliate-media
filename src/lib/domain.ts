@@ -145,6 +145,8 @@ export const ArticleSchema = z.object({
   imageAlt: z.string().nullable().default(null),
   /** 記事ごとのアイキャッチ画像（未指定ならカテゴリ既定の画像を使う）。 */
   heroImage: ArticleImageSchema.nullable().optional(),
+  /** 冒頭に表示する要点（3〜4個）。長い本文を読む前の要約に使う。 */
+  summaryPoints: z.array(z.string().min(1)).max(5).optional(),
 });
 export type Article = z.infer<typeof ArticleSchema>;
 
