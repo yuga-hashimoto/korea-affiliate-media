@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-cvs",
+    "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=194464",
+    "official_page",
+    "韓国観光公社公式（英語）「Keeping Up with the Convenience Stores in Korea」（2024-04-12公開、本文は2023年9月執筆）。7-Elevenは1989年に韓国初のコンビニとして開業、GS25は弁当とPB、CUは2022年時点で店舗数最多・「Giant」シリーズ、emart24は「Minsaeng」PBを40品目以上販売。1+1や割引などのプロモーション、大容量弁当ラーメン・辛い鶏味ラーメン・ハニークッキー・クロワッサン・ケーキ・コーヒーなどが人気（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-hallasan",
     "https://japanese.visitkorea.or.kr/svc/contents/contentsViewCid.do?cmsCid=331332",
     "official_page",
