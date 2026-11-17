@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-namdaemun",
+    "https://english.visitkorea.or.kr/enu/SH/SH_EN_7_4.jsp?cid=708361",
+    "official_page",
+    "韓国観光公社公式（英語）「Namdaemun Market」。1964年開場、韓国最大級の伝統市場で約17,000品目（衣類・日用品・眼鏡・台所用品・玩具・帽子・人参・輸入品など）、深夜23:00〜04:00は卸売市場として全国の小売業者で賑わう、日曜定休、住所はソウル市中区南大門市場4キル21、カード可、駐車場あり、1330観光案内（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-gwangjang",
     "https://english.visitkorea.or.kr/svc/whereToGo/locIntrdn/rgnContentsView.do?vcontsId=106345",
     "official_page",
