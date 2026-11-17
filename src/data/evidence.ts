@@ -237,6 +237,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-communications",
+    "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140041",
+    "official_page",
+    "韓国観光公社公式（英語）「Electricity & Communications」。韓国の電圧は220V/60Hzで2穴の丸型プラグ、仁川・金浦・金海・済州の主要空港にKT/SKT/LG U+のローミングセンターがありSIM購入・Wi-Fiレンタル・スマホレンタルが可能、USIMは空港・コンビニ（CU/GS25/7-Eleven/Emart24）・オンライン事前購入、eSIMはオンライン購入後にQRコードで設定し端末対応の確認が必要（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-driving",
     "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=480&vcontsId=140664",
     "official_page",
