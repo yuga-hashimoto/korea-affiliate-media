@@ -382,4 +382,6 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
 - [x] 2026-11-18 00:05 デプロイ完了: ユーザーがブラウザでWranglerのOAuthを承認。`HOME=/tmp/wrangler-home` でログインし直し（既定の設定ディレクトリが書き込み不可だったため）、`wrangler pages deploy out --project-name=sougakuhikaku --branch=main` を実行。
   - デプロイURL: https://c54ead04.sougakuhikaku.pages.dev
   - 本番確認: 新記事200 / 旧URL→新URL 308 / sitemap 73URL / robots許可 / noindexなし / PRバッジと rel="sponsored nofollow noopener noreferrer" を確認。
-- 未実施: Search Consoleのインデックス登録リクエスト（認証情報が必要）。
+- [x] 2026-11-18 00:40 既存の薄い記事17本を加筆（要点・比較表・実務的な節）。公開53本の本文中央値は約1,900字、最短674字まで改善。
+- [x] 追加デプロイ（bacdafaa）と本番確認（新セクションの表示を確認）。
+- 未実施: Search Consoleのインデックス登録リクエスト。サービスアカウント（var/secrets/ga4-reader.json）でSearch Console APIを叩くと、Google Cloudプロジェクト 804572361279 でAPIが無効のため403。有効化が必要。
