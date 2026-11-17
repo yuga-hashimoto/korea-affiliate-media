@@ -237,6 +237,20 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-dongdaemun",
+    "https://english.visitkorea.or.kr/enu/SH/whereToShop/whereToShop.jsp?action=about&cid=995824",
+    "official_page",
+    "韓国観光公社公式（英語）「Dongdaemun Market」。1905年に始まり1970年代に繊維産業の中心へ、1990年代後半にCerestar・Migliore・Designer's Club・Doosan Towerなどのモールが登場、夜は卸売で全国からバイヤーが集まる、個人も小売価格で購入可、両替・案内所あり。東大門歴史文化公園駅14番出口前の観光案内センターは09:00〜22:00（英語・日本語・中国語）、ロッカーは4時間ごと（12時間以降は12時間ごと）に課金、T-Money・カード・現金可（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-visitkorea-gwangjang",
+    "https://english.visitkorea.or.kr/svc/whereToGo/locIntrdn/rgnContentsView.do?vcontsId=106345",
+    "official_page",
+    "韓国観光公社公式（英語）「Gwangjang Market」。韓国初の常設市場で、食品街は東門・北2門・南1門側につながる。営業時間は一般09:00〜18:00、食品街09:00〜23:00、日曜定休（食品街は年中無休）、住所はソウル市鍾路区昌慶宮路88、駐車場は鍾路4街の鍾廟駐車場、カード可、1330観光案内（韓国語・英語・日本語・中国語）（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-jeju-airport-transport",
     "https://airport.co.kr/jejueng/cms/frCon/index.do?MENU_ID=90",
     "official_page",
