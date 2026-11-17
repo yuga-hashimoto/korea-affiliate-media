@@ -2,15 +2,15 @@ import { describe, expect, it } from "vitest";
 import { articleList, evidenceList, publishedArticles } from "@/data";
 import { reviewArticles } from "@/content/review-articles";
 
-describe("レビュー待ち記事", () => {
-  it("review 状態で保存され、公開記事には含まれない（自動公開しない）", () => {
+describe("レビュー済み記事（review-articles.ts）", () => {
+  it("レビュー日時が記録され、公開記事に含まれている", () => {
     const publishedSlugs = new Set(publishedArticles.map((a) => a.slug));
     expect(reviewArticles.length).toBeGreaterThan(0);
     for (const article of reviewArticles) {
-      expect(article.status, article.slug).toBe("review");
+      expect(article.status, article.slug).toBe("published");
       expect(article.aiGenerated, article.slug).toBe(true);
-      expect(article.reviewedAt, article.slug).toBeNull();
-      expect(publishedSlugs.has(article.slug), article.slug).toBe(false);
+      expect(article.reviewedAt, article.slug).not.toBeNull();
+      expect(publishedSlugs.has(article.slug), article.slug).toBe(true);
     }
   });
 

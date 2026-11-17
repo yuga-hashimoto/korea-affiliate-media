@@ -236,7 +236,7 @@ export const mergedArticles: Article[] = [
     "related": [
       "myeongdong-guide",
       "hongdae-guide",
-      "seoul-subway-guide"
+      "seoul-subway-fares-2026"
     ],
     "tags": [
       "ソウル",
@@ -455,7 +455,7 @@ export const mergedArticles: Article[] = [
     ],
     "related": [
       "seoul-area-guide",
-      "busan-haeundae-guide",
+      "haeundae-area-walking-guide",
       "seoul-klook-experiences"
     ],
     "tags": [
@@ -473,7 +473,7 @@ export const mergedArticles: Article[] = [
     "title": "仁川空港からソウル市内への行き方｜鉄道・バス・タクシーの選び方",
     "description": "仁川空港からソウル市内への移動手段を、空港鉄道（AREX）・空港バス・タクシーの3つに分けて比較。事前予約の可否、荷物が多い場合の選び方、深夜到着時の注意点をまとめます。",
     "category": "transport",
-    "status": "published",
+    "status": "retired",
     "aiGenerated": false,
     "reviewedAt": "2026-11-06T09:00:00.000Z",
     "publishedAt": "2026-11-06T09:00:00.000Z",
@@ -545,8 +545,8 @@ export const mergedArticles: Article[] = [
       }
     ],
     "related": [
-      "seoul-subway-guide",
-      "korea-esim-wifi-guide",
+      "seoul-subway-fares-2026",
+      "korea-esim-sim-wifi-howto",
       "seoul-hotel-area-guide"
     ],
     "tags": [

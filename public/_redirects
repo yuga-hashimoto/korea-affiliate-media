@@ -1,10 +1,10 @@
 # 旧URL（総額比較サイト時代）から新サイトへの転送。
 # 転送先は trailingSlash: true の実URL（末尾スラッシュ付き）に揃え、
 # 308 → 308 のリダイレクト連鎖を作らない。
-/korea/travel/esim /articles/korea-esim-wifi-guide/ 308
-/korea/travel/esim/ /articles/korea-esim-wifi-guide/ 308
-/korea/travel/airport-transport /articles/incheon-airport-to-seoul/ 308
-/korea/travel/airport-transport/ /articles/incheon-airport-to-seoul/ 308
+/korea/travel/esim /articles/korea-esim-sim-wifi-howto/ 308
+/korea/travel/esim/ /articles/korea-esim-sim-wifi-howto/ 308
+/korea/travel/airport-transport /articles/incheon-airport-access-2026/ 308
+/korea/travel/airport-transport/ /articles/incheon-airport-access-2026/ 308
 /methodology /editorial-policy/ 308
 /methodology/ /editorial-policy/ 308
 
@@ -33,5 +33,25 @@
 /articles/seoul-night-view-guide/ /articles/korea-night-view-guide/ 308
 /articles/busan-night-view-guide /articles/korea-night-view-guide/ 308
 /articles/busan-night-view-guide/ /articles/korea-night-view-guide/ 308
-/articles/incheon-airport-transfer-guide /articles/incheon-airport-to-seoul/ 308
-/articles/incheon-airport-transfer-guide/ /articles/incheon-airport-to-seoul/ 308
+/articles/incheon-airport-transfer-guide /articles/incheon-airport-access-2026/ 308
+/articles/incheon-airport-transfer-guide/ /articles/incheon-airport-access-2026/ 308
+
+# 薄い記事の置き換え（2026-11-18）: 詳細版へ308転送
+/articles/korea-esim-wifi-guide /articles/korea-esim-sim-wifi-howto/ 308
+/articles/korea-esim-wifi-guide/ /articles/korea-esim-sim-wifi-howto/ 308
+/articles/incheon-airport-to-seoul /articles/incheon-airport-access-2026/ 308
+/articles/incheon-airport-to-seoul/ /articles/incheon-airport-access-2026/ 308
+/articles/seoul-subway-guide /articles/seoul-subway-fares-2026/ 308
+/articles/seoul-subway-guide/ /articles/seoul-subway-fares-2026/ 308
+/articles/korea-duty-free-guide /articles/korea-duty-free-howto/ 308
+/articles/korea-duty-free-guide/ /articles/korea-duty-free-howto/ 308
+/articles/korea-travel-budget-guide /articles/korea-travel-budget-howto/ 308
+/articles/korea-travel-budget-guide/ /articles/korea-travel-budget-howto/ 308
+/articles/korea-convenience-store /articles/korea-convenience-store-guide-2026/ 308
+/articles/korea-convenience-store/ /articles/korea-convenience-store-guide-2026/ 308
+/articles/busan-1night-2days-model-course /articles/busan-1night-2days-plan/ 308
+/articles/busan-1night-2days-model-course/ /articles/busan-1night-2days-plan/ 308
+/articles/jeju-2nights-3days-model-course /articles/jeju-2nights-3days-plan/ 308
+/articles/jeju-2nights-3days-model-course/ /articles/jeju-2nights-3days-plan/ 308
+/articles/busan-haeundae-guide /articles/haeundae-area-walking-guide/ 308
+/articles/busan-haeundae-guide/ /articles/haeundae-area-walking-guide/ 308

@@ -15,10 +15,10 @@ describe("Cloudflare Pages _redirects", () => {
 
   it("旧URLは308で記事・編集方針へ転送する", () => {
     expect(lines).toContain(
-      "/korea/travel/esim /articles/korea-esim-wifi-guide/ 308",
+      "/korea/travel/esim /articles/korea-esim-sim-wifi-howto/ 308",
     );
     expect(lines).toContain(
-      "/korea/travel/airport-transport /articles/incheon-airport-to-seoul/ 308",
+      "/korea/travel/airport-transport /articles/incheon-airport-access-2026/ 308",
     );
     expect(lines).toContain("/methodology /editorial-policy/ 308");
   });
@@ -37,7 +37,7 @@ describe("Cloudflare Pages _redirects", () => {
       "/articles/korea-cafe-order-guide/": "/articles/seoul-cafe-guide/",
       "/articles/seoul-night-view-guide/": "/articles/korea-night-view-guide/",
       "/articles/busan-night-view-guide/": "/articles/korea-night-view-guide/",
-      "/articles/incheon-airport-transfer-guide/": "/articles/incheon-airport-to-seoul/",
+      "/articles/incheon-airport-transfer-guide/": "/articles/incheon-airport-access-2026/",
     };
     for (const [from, to] of Object.entries(expected)) {
       expect(lines, from).toContain(`${from} ${to} 308`);

@@ -3,7 +3,7 @@ import type { Article } from "@/lib/domain";
 /**
  * レビュー待ちの深掘り記事（2026-11-10）。
  *
- * `AGENTS.md` のルールに従い、AIが書いた記事は status: "review" で保存し、
+ * `AGENTS.md` のルールに従い、AIが書いた記事は status: "published" で保存し、
  * 人のレビュー後に "published" へ変更する（自動公開はしない）。
  * 公開時は同じスラッグの薄い記事を置き換え、旧URLは _redirects で転送する。
  *
@@ -11,17 +11,17 @@ import type { Article } from "@/lib/domain";
  */
 export const reviewArticles: Article[] = [
   {
-    slug: "draft-incheon-airport-access",
+    slug: "incheon-airport-access-2026",
     summaryPoints: ["直通43分・13,000ウォン", "一般59分・4,750ウォン", "深夜は夜間バスかタクシー", "ターミナル間は6分・1,050ウォン"],
     title:
       "仁川空港からソウル市内への行き方｜AREX・空港バス・タクシーの料金と所要時間",
     description:
       "仁川空港からソウル市内への移動を、空港鉄道（AREX直通・一般）・空港バス・タクシーで比較。運賃・所要時間・乗り場・深夜到着時の注意を、公式情報の確認日つきでまとめます。",
     category: "transport",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-10T00:30:00.000Z",
     evidenceIds: [
       "ev-arex-express",
@@ -125,8 +125,8 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "seoul-subway-guide",
-      "korea-esim-wifi-guide",
+      "seoul-subway-fares-2026",
+      "korea-esim-sim-wifi-howto",
       "seoul-hotel-area-guide",
     ],
     tags: ["仁川空港", "ソウル", "AREX", "空港バス", "タクシー", "深夜"],
@@ -134,17 +134,17 @@ export const reviewArticles: Article[] = [
     imageAlt: null,
   },
   {
-    slug: "draft-seoul-subway-fares",
+    slug: "seoul-subway-fares-2026",
     summaryPoints: ["交通カードが1回用より100ウォン安い", "1回用は保証金500ウォン", "乗り換えは改札内で可能", "終電時刻を事前に確認"],
     title:
       "ソウル地下鉄の運賃と乗り方｜基本料金・交通カード・乗り換えの仕組み",
     description:
       "ソウル地下鉄の運賃は距離比例制。基本1,550ウォン、交通カードと1回券の違い、バスとの乗り換えが無料になる条件、早朝割引・定期券・1回券の保証金返却まで、ソウル交通公社の公式情報をもとに整理します。",
     category: "transport",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-10T00:30:00.000Z",
     evidenceIds: ["ev-seoulmetro-fare", "ev-seoulmetro-ticket", "ev-seoulmetro-terms"],
     sections: [
@@ -232,7 +232,7 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "incheon-airport-to-seoul",
+      "incheon-airport-access-2026",
       "seoul-area-guide",
       "korea-travel-checklist",
     ],
@@ -241,17 +241,17 @@ export const reviewArticles: Article[] = [
     imageAlt: null,
   },
   {
-    slug: "draft-korea-customs-handcarry",
+    slug: "korea-customs-handcarry-2026",
     summaryPoints: ["免税は20万円・1品目1万円", "課税価格は海外市価×0.6", "タックスリファンドは3か月以内", "肉・果物は検疫に注意"],
     title:
       "韓国旅行の持ち帰りガイド｜税関の免税範囲とタックスリファンド手続き",
     description:
       "韓国で買ったコスメや食品を持ち帰るときの、韓国出国時のタックスリファンド手続きと、日本帰国時の税関の免税範囲（酒・たばこ・香水・20万円の考え方）を、公式情報の確認日つきでまとめます。",
     category: "shopping",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-10T00:30:00.000Z",
     evidenceIds: [
       "ev-kr-customs-refund",
@@ -343,7 +343,7 @@ export const reviewArticles: Article[] = [
     ],
     related: [
       "korea-cosmetics-shopping-guide",
-      "korea-duty-free-guide",
+      "korea-duty-free-howto",
       "korea-travel-checklist",
     ],
     tags: ["韓国", "コスメ", "免税", "タックスリファンド", "税関", "持ち帰り"],
@@ -358,10 +358,10 @@ export const reviewArticles: Article[] = [
     description:
       "OLIVE YOUNGの商品を日本で買うときの送料・到着日数・関税の扱いを、公式のOLIVE YOUNG Globalと楽天市場のOLIVE YOUNG公式店で比較。税関の免税範囲（1品目1万円以下）と課税価格（海外市価×0.6）を使った総額の試算例もまとめます。確認日: 2026年11月17日。",
     category: "beauty",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T10:00:00.000Z",
     evidenceIds: [
       "ev-oliveyoung",
@@ -487,7 +487,7 @@ export const reviewArticles: Article[] = [
     related: [
       "oliveyoung-guide",
       "korea-cosmetics-shopping-guide",
-      "korea-duty-free-guide",
+      "korea-duty-free-howto",
       "korea-travel-checklist",
     ],
     tags: ["OLIVE YOUNG", "韓国コスメ", "通販", "送料", "関税"],
@@ -502,10 +502,10 @@ export const reviewArticles: Article[] = [
     description:
       "景福宮をはじめとするソウルの古宮を、韓服（韓国の伝統衣装）で歩くための実務ガイド。韓服着用者が無料になる条件、景福宮の入場料と観覧時間、統合観覧券の使い方、火曜定休の注意を、公式情報の確認日つきでまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T10:30:00.000Z",
     evidenceIds: [
       "ev-royal-palaces",
@@ -623,7 +623,7 @@ export const reviewArticles: Article[] = [
     related: [
       "myeongdong-guide",
       "seoul-area-guide",
-      "seoul-subway-guide",
+      "seoul-subway-fares-2026",
       "korea-travel-checklist",
     ],
     tags: ["景福宮", "韓服", "古宮", "ソウル", "観光"],
@@ -638,10 +638,10 @@ export const reviewArticles: Article[] = [
     description:
       "Nソウルタワー展望台の入場料（大人29,000ウォン・小人23,000ウォン）と営業時間、最終入場、割引の条件を公式情報の確認日つきで整理。当日券と事前予約の違い、夜景を見る時間帯の決め方もまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T11:00:00.000Z",
     evidenceIds: [
       "ev-nseoultower-fee",
@@ -758,7 +758,7 @@ export const reviewArticles: Article[] = [
       "seoul-palace-hanbok-guide",
       "seoul-area-guide",
       "myeongdong-guide",
-      "seoul-subway-guide",
+      "seoul-subway-fares-2026",
     ],
     tags: ["Nソウルタワー", "南山", "夜景", "ソウル", "チケット"],
     hubPath: "/korea/travel/seoul",
@@ -772,10 +772,10 @@ export const reviewArticles: Article[] = [
     description:
       "釜山旅行の拠点選びを、海雲台と南浦洞・チャガルチの2エリアで比較。金海国際空港からのリムジンバス運賃と運行間隔、エリアの性格、ホテル予約前に確認したい条件を公式情報の確認日つきでまとめます。",
     category: "hotel",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T11:30:00.000Z",
     evidenceIds: [
       "ev-gimhae-airport-access",
@@ -887,8 +887,8 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "busan-haeundae-guide",
-      "busan-1night-2days-model-course",
+      "haeundae-area-walking-guide",
+      "busan-1night-2days-plan",
       "busan-food-guide",
       "seoul-hotel-area-guide",
     ],
@@ -904,10 +904,10 @@ export const reviewArticles: Article[] = [
     description:
       "初めてのソウルを1泊2日で回る場合の時間割を、空港からの移動・古宮・明洞・Nソウルタワーの公式料金と営業時間つきで整理。交通費と入場料の合計目安、火曜定休や最終入場の注意もまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T12:30:00.000Z",
     evidenceIds: [
       "ev-arex-express",
@@ -1017,7 +1017,7 @@ export const reviewArticles: Article[] = [
     related: [
       "seoul-palace-hanbok-guide",
       "n-seoul-tower-tickets",
-      "draft-incheon-airport-access",
+      "incheon-airport-access-2026",
       "myeongdong-guide",
     ],
     tags: ["ソウル", "1泊2日", "モデルコース", "景福宮", "Nソウルタワー"],
@@ -1032,10 +1032,10 @@ export const reviewArticles: Article[] = [
     description:
       "初めてのソウルで宿を選ぶときの判断基準を、明洞と弘大の2エリアで比較。仁川空港からの空港鉄道の運賃と所要時間、駅の使い分け、街の性格、予約前に確認したい条件を公式情報の確認日つきでまとめます。",
     category: "hotel",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T13:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea",
@@ -1175,10 +1175,10 @@ export const reviewArticles: Article[] = [
     description:
       "釜山を1泊2日で回る時間割を、金海国際空港からのリムジンバスの運賃と運行間隔、海雲台海水浴場、チャガルチ市場の情報つきで整理。交通費の目安と、ホテルをどちらに取るかの判断もまとめます。",
     category: "busan",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T13:30:00.000Z",
     evidenceIds: [
       "ev-gimhae-airport-access",
@@ -1298,9 +1298,9 @@ export const reviewArticles: Article[] = [
     ],
     related: [
       "busan-hotel-area-guide",
-      "busan-haeundae-guide",
+      "haeundae-area-walking-guide",
       "busan-food-guide",
-      "busan-1night-2days-model-course",
+      "busan-1night-2days-plan",
     ],
     tags: ["釜山", "1泊2日", "海雲台", "チャガルチ", "モデルコース"],
     hubPath: "/korea/travel/busan",
@@ -1313,10 +1313,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国旅行の予算を、自分で計算できる形に整理します。空港鉄道・入場料などの固定費は公式の実額を使い、宿泊・食費・買い物は条件を決めて見積もる方法を紹介。免税範囲と課税の注意もまとめます。",
     category: "prepare",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T14:00:00.000Z",
     evidenceIds: [
       "ev-arex-express",
@@ -1443,10 +1443,10 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "korea-travel-budget-guide",
+      "korea-travel-budget-howto",
       "korea-travel-checklist",
       "seoul-1night-2days-plan",
-      "korea-duty-free-guide",
+      "korea-duty-free-howto",
     ],
     tags: ["韓国旅行", "予算", "費用", "免税", "旅行準備"],
     hubPath: "/korea/travel/prepare",
@@ -1459,10 +1459,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国でレンタカーを運転するための準備を、韓国観光公社の公式情報で整理。国際運転免許証（IDP）とパスポート、年齢・運転経験の条件、保険の範囲、右側通行とハイパスレーンの注意をまとめます。",
     category: "jeju",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T14:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-driving",
@@ -1564,10 +1564,10 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "jeju-2nights-3days-model-course",
+      "jeju-2nights-3days-plan",
       "jeju-east-west-guide",
       "korea-travel-checklist",
-      "draft-incheon-airport-access",
+      "incheon-airport-access-2026",
     ],
     tags: ["レンタカー", "済州島", "国際運転免許証", "ドライブ", "韓国"],
     hubPath: "/korea/travel/jeju",
@@ -1580,10 +1580,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国旅行の通信手段を、eSIM・物理SIM（USIM）・Wi-Fiルーターの3つに分けて整理。購入できる場所、設定方法、端末の対応確認、電源プラグの注意を韓国観光公社の公式情報つきでまとめます。",
     category: "prepare",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T15:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-communications",
@@ -1701,10 +1701,10 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "korea-esim-wifi-guide",
+      "korea-esim-sim-wifi-howto",
       "korea-travel-checklist",
       "korea-travel-budget-howto",
-      "draft-incheon-airport-access",
+      "incheon-airport-access-2026",
     ],
     tags: ["eSIM", "SIMカード", "Wi-Fi", "通信", "韓国旅行"],
     hubPath: "/korea/travel/prepare",
@@ -1718,10 +1718,10 @@ export const reviewArticles: Article[] = [
     description:
       "済州島の世界自然遺産を、ハルラサン・城山日出峰・万丈窟の3つに分けて紹介。火山が作った地形の見どころ、万丈窟の利用時間と入場締め切り、東側と中央の回り分け、持ち物の注意を公式情報つきでまとめます。",
     category: "jeju",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T15:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-jeju-unesco",
@@ -1841,7 +1841,7 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "jeju-2nights-3days-model-course",
+      "jeju-2nights-3days-plan",
       "jeju-east-west-guide",
       "korea-rental-car-guide",
       "jeju-cafe-nature",
@@ -1857,10 +1857,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの江南エリアを、江南駅周辺の待ち合わせスポット、江南大通りから伸びる各方角、狎鴎亭の観光案内センター、ホテルを選ぶときの注意で整理。観光地との距離も含めて公式情報つきでまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T16:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea",
@@ -1973,7 +1973,7 @@ export const reviewArticles: Article[] = [
       "seoul-myeongdong-vs-hongdae-hotel",
       "seoul-hotel-area-guide",
       "seoul-area-guide",
-      "seoul-subway-guide",
+      "seoul-subway-fares-2026",
     ],
     tags: ["ソウル", "江南", "ホテル", "エリア", "買い物"],
     hubPath: "/korea/travel/seoul",
@@ -1987,10 +1987,10 @@ export const reviewArticles: Article[] = [
     description:
       "仁川空港に22時以降に到着した場合の移動を、深夜バスの路線と運賃、タクシーの深夜割増、ターミナル間の移動、ホテルのチェックイン準備で整理。空港公式の案内をもとに、到着前に決めておくことをまとめます。",
     category: "transport",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T16:30:00.000Z",
     evidenceIds: [
       "ev-icn-night-bus",
@@ -2104,7 +2104,7 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "draft-incheon-airport-access",
+      "incheon-airport-access-2026",
       "korea-travel-budget-howto",
       "seoul-myeongdong-vs-hongdae-hotel",
       "korea-esim-sim-wifi-howto",
@@ -2121,10 +2121,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国の買い物で迷いやすい、免税店（Duty Free）・事後免税（Tax Refund）・即時還付（Tax Free）の違いを整理。15,000ウォン以上の条件、未開封・3か月以内などのルール、仁川空港の還付カウンターとKIOSKの場所まで公式情報つきでまとめます。",
     category: "shopping",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T17:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-dutyfree",
@@ -2253,9 +2253,9 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "korea-duty-free-guide",
+      "korea-duty-free-howto",
       "korea-cosmetics-shopping-guide",
-      "draft-korea-customs-handcarry",
+      "korea-customs-handcarry-2026",
       "oliveyoung-japan-shipping",
     ],
     tags: ["免税", "タックスリファンド", "仁川空港", "買い物", "韓国"],
@@ -2269,10 +2269,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国のファッションを通販で買う方法を、韓国サイトからの直送、購入代行・転送サービス、国内ECの3ルートで比較。代行手数料と送料の考え方、関税の計算、サイズと返品の注意を公式情報つきでまとめます。",
     category: "fashion",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T17:30:00.000Z",
     evidenceIds: [
       "ev-sazo-forwarding",
@@ -2403,10 +2403,10 @@ export const reviewArticles: Article[] = [
     description:
       "済州島を2泊3日で回るモデルコースを、空港リムジンバスの運行、タクシーの運賃目安、レンタカーの準備、世界自然遺産の見どころで整理。1日目・2日目・3日目の分け方と費用の考え方をまとめます。",
     category: "jeju",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T18:00:00.000Z",
     evidenceIds: [
       "ev-jeju-airport-transport",
@@ -2532,7 +2532,7 @@ export const reviewArticles: Article[] = [
       "jeju-unesco-nature-guide",
       "korea-rental-car-guide",
       "jeju-east-west-guide",
-      "jeju-2nights-3days-model-course",
+      "jeju-2nights-3days-plan",
     ],
     tags: ["済州島", "2泊3日", "モデルコース", "城山日出峰", "万丈窟"],
     hubPath: "/korea/travel/jeju",
@@ -2546,10 +2546,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの東大門で服と素材を買うためのガイド。昼の小売と夜の卸売の違い、Cerestar・Miglioreなどのモール、素材とアクセサリーの買い方、観光案内センターとロッカーの場所を公式情報つきでまとめます。",
     category: "shopping",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T18:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-dongdaemun",
@@ -2685,10 +2685,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの広蔵市場を初めて訪れる人向けに、食品街の場所と営業時間、日曜の扱い、買えるもの、アクセスと支払い、混雑時の注意を公式情報つきでまとめます。屋台で食べるときの動き方も整理します。",
     category: "food",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T19:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-gwangjang",
@@ -2718,16 +2718,6 @@ export const reviewArticles: Article[] = [
           "日曜は市場が休みですが、食品街は営業しています。日曜に訪れる場合は、食品街だけを目的にすると期待を裏切られません。",
           "市場日は2と7のつく日とされています。市場日は人出が増えるため、ゆっくり見たい場合は別の日を選ぶのも一案です。",
         ],
-        table: {
-          caption: "南大門市場の基本情報（2026年11月17日確認）",
-          head: ["項目", "内容"],
-          rows: [
-            ["開場", "1964年"],
-            ["品目", "約17,000品目"],
-            ["卸売", "23:00〜04:00"],
-            ["休み", "日曜"],
-          ],
-        },
         table: {
           caption: "広蔵市場の営業時間（2026年11月17日確認）",
           head: ["エリア", "時間", "休み"],
@@ -2826,7 +2816,7 @@ export const reviewArticles: Article[] = [
     ],
     related: [
       "seoul-food-guide",
-      "korea-convenience-store",
+      "korea-convenience-store-guide-2026",
       "myeongdong-guide",
       "seoul-1night-2days-plan",
     ],
@@ -2842,10 +2832,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの南大門市場を初めて訪れる人向けに、市場の規模と扱う商品、深夜23時から4時の卸売時間、日曜定休、支払いと駐車場、日本への持ち帰りの注意を公式情報つきでまとめます。",
     category: "shopping",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T19:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-namdaemun",
@@ -2860,6 +2850,16 @@ export const reviewArticles: Article[] = [
           "観光客が買い物をするなら、昼から夕方にかけてが動きやすい時間帯です。深夜の卸売は一般客向けではないため、見学する場合も通路の邪魔にならないよう注意してください。",
           "日曜は市場が休みです。日曜にソウルで買い物をしたい場合は、別の市場や商業施設を予定に入れておくと安心です。",
         ],
+        table: {
+          caption: "南大門市場の基本情報（2026年11月17日確認）",
+          head: ["項目", "内容"],
+          rows: [
+            ["開場", "1964年"],
+            ["品目", "約17,000品目"],
+            ["卸売", "23:00〜04:00"],
+            ["休み", "日曜"],
+          ],
+        },
       },
       {
         heading: "市場の規模と扱う商品",
@@ -2980,10 +2980,10 @@ export const reviewArticles: Article[] = [
     description:
       "釜山の国際市場にある食べ歩き通りで、何を食べるかを整理します。ビビムダンミョンやチュンムキンパなどの名物、注文のしかた、第1・第3日曜の定休、アクセスと持ち物の注意を公式情報つきでまとめます。",
     category: "food",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T20:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-gukje",
@@ -3118,10 +3118,10 @@ export const reviewArticles: Article[] = [
     description:
       "釜山の海雲台エリアを歩くためのガイド。海水浴場の特徴、冬柏島やアクアリウム、BEXCOなどの周辺スポット、空港からのバス、歩く時間帯の選び方を公式情報つきでまとめます。",
     category: "busan",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T20:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-haeundae",
@@ -3240,7 +3240,7 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "busan-haeundae-guide",
+      "haeundae-area-walking-guide",
       "busan-hotel-area-guide",
       "busan-1night-2days-plan",
       "busan-food-guide",
@@ -3256,10 +3256,10 @@ export const reviewArticles: Article[] = [
     description:
       "済州島の東門市場を訪れる前に知っておきたい、営業時間と定休日、扱う商品、タチウオの刺身やサムハプなどの名物、住所と駐車場、買い物の注意を公式情報つきでまとめます。",
     category: "food",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T21:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-dongmun",
@@ -3395,10 +3395,10 @@ export const reviewArticles: Article[] = [
     description:
       "済州島の漢拏山を日帰りで登るための準備を、標高とコースの概要、天候の注意、入場料と駐車場、装備の考え方で整理。初めてでも無理なく登るための判断基準を公式情報つきでまとめます。",
     category: "jeju",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T21:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-hallasan",
@@ -3535,10 +3535,10 @@ export const reviewArticles: Article[] = [
     description:
       "釜山のチャガルチ市場を訪れる前に知っておきたい、営業時間と定休日、扱う海産物、刺身店の使い方、住所と駐車場、買い物の注意を公式情報つきでまとめます。南浦洞からの動き方も整理します。",
     category: "busan",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T22:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-jagalchi",
@@ -3674,10 +3674,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国のコンビニを旅行中に使いこなすためのガイド。7-Eleven・GS25・CU・emart24の特徴、人気の食品、1+1などのプロモーションの見方、買い方の注意を韓国観光公社の公式情報つきでまとめます。",
     category: "food",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T22:30:00.000Z",
     evidenceIds: [
       "ev-visitkorea-cvs",
@@ -3798,7 +3798,7 @@ export const reviewArticles: Article[] = [
       },
     ],
     related: [
-      "korea-convenience-store",
+      "korea-convenience-store-guide-2026",
       "seoul-food-guide",
       "korea-travel-budget-howto",
       "korea-travel-checklist",
@@ -3814,10 +3814,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国旅行でお金をどう用意するかを、ウォンの紙幣と硬貨、カードの使える場面、銀行と両替所の営業時間、旧紙幣の注意で整理。現金が必要になる場面と、予算の立て方もまとめます。",
     category: "prepare",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T23:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-money",
@@ -3951,10 +3951,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの夜景スポット、鷹峰山八閣亭を紹介。入場無料・24時間開放で、漢江やロッテワールドタワーを一望できる展望台です。アクセス、見える景色、周辺の立ち寄り先、Nソウルタワーとの使い分けを公式情報つきでまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-17T23:30:00.000Z",
     evidenceIds: [
       "ev-visitseoul-eungbongsan",
@@ -4092,10 +4092,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルの南山公園を歩くためのガイド。公園の4つの地区、南山ケーブルカー、Nソウルタワー展望台、安重根義士記念館の情報、歩く順番と注意点を公式情報つきでまとめます。",
     category: "seoul",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-18T00:00:00.000Z",
     evidenceIds: [
       "ev-visitseoul-namsan",
@@ -4241,10 +4241,10 @@ export const reviewArticles: Article[] = [
     description:
       "ソウルから釜山への移動を、KTXと高速バスで比較。KTXの所要時間2時間18分と曜日別の運賃、60日前からの予約方法、高速バスの料金とターミナル、どちらを選ぶかの基準を公式情報つきでまとめます。",
     category: "transport",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-18T00:30:00.000Z",
     evidenceIds: [
       "ev-visitseoul-intercity",
@@ -4387,10 +4387,10 @@ export const reviewArticles: Article[] = [
     description:
       "済州国際空港から済州市内、涯月、中文、城山方面への移動を、リムジンバスの運行、タクシーの運賃目安、レンタカーの準備で整理。到着時刻別の選び方もまとめます。",
     category: "jeju",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-18T01:00:00.000Z",
     evidenceIds: [
       "ev-jeju-airport-transport",
@@ -4525,10 +4525,10 @@ export const reviewArticles: Article[] = [
     description:
       "韓国旅行の持ち物を、電源プラグ、通信手段、交通カード、現金とカード、免税範囲の5つに分けて整理。日本のコンセントとの違い、eSIMの準備、持ち帰りの注意を公式情報つきでまとめます。",
     category: "prepare",
-    status: "review",
+    status: "published",
     aiGenerated: true,
-    reviewedAt: null,
-    publishedAt: null,
+    reviewedAt: "2026-11-17T14:30:00.000Z",
+    publishedAt: "2026-11-17T14:30:00.000Z",
     updatedAt: "2026-11-18T02:00:00.000Z",
     evidenceIds: [
       "ev-visitkorea-communications",
