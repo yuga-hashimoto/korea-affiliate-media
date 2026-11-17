@@ -237,6 +237,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-jeju-airport-transport",
+    "https://airport.co.kr/jejueng/cms/frCon/index.do?MENU_ID=90",
+    "official_page",
+    "済州国際空港公式（英語）公共交通。リムジンバスは空港→西帰浦KALホテルが始発06:00・最終22:40・運行間隔16〜40分で距離比例の運賃、タクシーは済州市庁30分9,000ウォン/16,200ウォン（デラックス）、涯月邑55分25,000/45,000、ハルラサン60分30,000/54,000、中文観光団地80分35,000/63,000、城山邑100分45,000/81,000の目安（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-sazo-forwarding",
     "https://sazo.shop/about/forwarding",
     "official_page",
