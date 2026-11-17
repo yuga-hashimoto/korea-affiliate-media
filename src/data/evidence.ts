@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-money",
+    "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140040",
+    "official_page",
+    "韓国観光公社公式（英語）「Korean Currency & Exchange Info」。通貨はウォンで紙幣は50,000/10,000/5,000/1,000ウォン、硬貨は500/100/50/10ウォン、主要ホテル・百貨店・一般店でVisa/MasterCard/American Expressなどが使えるが一部店舗では未対応の場合あり、両替は銀行（平日09:00〜16:00）または公認両替所、韓国郵便局銀行は09:00〜16:30、旧紙幣は両替できない場合がある（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-cvs",
     "https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=194464",
     "official_page",
