@@ -244,6 +244,20 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-hallasan",
+    "https://japanese.visitkorea.or.kr/svc/contents/contentsViewCid.do?cmsCid=331332",
+    "official_page",
+    "韓国観光公社公式「ハルラサン（済州島国家地质公园）」。標高は約1,950m、1970年に国立公園指定、登山コースは10km以内で日帰り登頂が可能、天候変化が激しく風が強いため十分な装備が必要、入場料無料・年中無休、住所は済州市1100路2070-61、駐車場6か所（二輪車500ウォン）、観音寺地区キャンプ場は1泊3,000/4,500/6,000ウォン、シャワー600/400/300ウォン（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
+    "ev-visitkorea-jagalchi",
+    "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=459&vcontsId=70134",
+    "official_page",
+    "韓国観光公社公式「釜山 チャガルチ市場」。営業時間5:00〜22:00、第1・3火曜日休み、住所は釜山広域市中区チャガルチ海岸路52、水産物・干物・刺身センター、駐車場あり、問い合わせ+82-51-245-2594（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-dongmun",
     "https://english.visitkorea.or.kr/svc/contents/contentsView.do?dataSetId=233&menuSn=977&vcontsId=91650",
     "official_page",
