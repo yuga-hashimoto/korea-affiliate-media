@@ -895,6 +895,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-1night-2days-plan",
+    summaryPoints: ["空港→ソウル駅は直通43分・13,000ウォン", "一般列車は59分・4,750ウォン", "景福宮は火曜定休・大人3,000ウォン", "Nソウルタワーは29,000ウォン・最終入場は閉場30分前"],
     heroImage: { src: "/images/myeongdong.jpg", alt: "明洞の街並み", credit: "SKTakek / CC0（Wikimedia Commons）" },
     title: "ソウル1泊2日モデルコース｜初めてでも回れる時間割と料金の目安",
     description:
@@ -1022,6 +1023,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-myeongdong-vs-hongdae-hotel",
+    summaryPoints: ["明洞はソウル駅経由で4,750ウォン", "弘大は乗り換えなしで4,650ウォン", "買い物中心なら明洞、カフェなら弘大", "予約前にキャンセル条件と税を確認"],
     heroImage: { src: "/images/myeongdong.jpg", alt: "明洞の通り", credit: "SKTakek / CC0（Wikimedia Commons）" },
     title: "ソウルのホテルは明洞と弘大どちらに泊まる？空港アクセスと街の違い",
     description:
@@ -1164,6 +1166,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "busan-1night-2days-plan",
+    summaryPoints: ["海雲台行きバスは9,500ウォン", "西面・釜田行きは6,000ウォン", "1日目を海雲台、2日目を南浦洞に", "市場は日曜定休に注意"],
     heroImage: { src: "/images/haeundae.jpg", alt: "釜山・海雲台の海辺", credit: "lumoplank / CC0（Wikimedia Commons）" },
     title: "釜山1泊2日モデルコース｜海雲台と南浦洞を空港バスで回る",
     description:
@@ -1448,6 +1451,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-rental-car-guide",
+    summaryPoints: ["国際運転免許証とパスポートが必要", "入国日から最大1年間運転できる", "21歳以上などの条件は会社ごとに確認", "右側通行・ハイパスレーンに注意"],
     title: "韓国でレンタカーを借りる｜国際運転免許証・保険・走行の注意",
     description:
       "韓国でレンタカーを運転するための準備を、韓国観光公社の公式情報で整理。国際運転免許証（IDP）とパスポート、年齢・運転経験の条件、保険の範囲、右側通行とハイパスレーンの注意をまとめます。",
@@ -1705,6 +1709,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "jeju-unesco-nature-guide",
+    summaryPoints: ["火山島と溶岩洞窟は2007年に世界自然遺産", "ハルラサンは約1,950m", "万丈窟は09:00〜18:00・入場17:00まで", "東側と中央で日を分ける"],
     heroImage: { src: "/images/seongsan.jpg", alt: "城山日出峰", credit: "Bernard Gagnon / CC0（Wikimedia Commons）" },
     title: "済州島の世界自然遺産｜ハルラサン・城山日出峰・万丈窟の回り方",
     description:
@@ -1844,6 +1849,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-gangnam-area-guide",
+    summaryPoints: ["江南駅は待ち合わせの定番", "狎鴎亭駅6番出口から観光案内センター", "古宮へは漢江を渡る移動", "ホテルは出口番号まで確認"],
     title: "ソウル江南エリアの歩き方｜待ち合わせ・買い物・ホテルの選び方",
     description:
       "ソウルの江南エリアを、江南駅周辺の待ち合わせスポット、江南大通りから伸びる各方角、狎鴎亭の観光案内センター、ホテルを選ぶときの注意で整理。観光地との距離も含めて公式情報つきでまとめます。",
@@ -1972,6 +1978,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "incheon-airport-late-night",
+    summaryPoints: ["22時以降は深夜バスかタクシー", "深夜バスは10,000〜18,000ウォン", "タクシーは23時〜2時が40%増", "ターミナル間は約6分・1,050ウォン"],
     heroImage: { src: "/images/incheonairport.jpg", alt: "仁川国際空港のターミナル", credit: "Choikwangmo25 / CC0（Wikimedia Commons）" },
     title: "仁川空港に深夜到着したときの移動｜深夜バスとタクシーの料金",
     description:
@@ -2243,6 +2250,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-fashion-import-routes",
+    summaryPoints: ["直送・購入代行・国内ECの3ルート", "SAZOは代行手数料0円", "関税は20万円・1品目1万円", "返品条件を購入前に確認"],
     title: "韓国ファッションを日本で買う｜直送・購入代行・国内ECの使い分け",
     description:
       "韓国のファッションを通販で買う方法を、韓国サイトからの直送、購入代行・転送サービス、国内ECの3ルートで比較。代行手数料と送料の考え方、関税の計算、サイズと返品の注意を公式情報つきでまとめます。",
@@ -2375,6 +2383,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "jeju-2nights-3days-plan",
+    summaryPoints: ["空港→済州市庁は9,000ウォン", "城山邑までは45,000ウォン", "万丈窟は17:00まで入場", "東側と西側で日を分ける"],
     heroImage: { src: "/images/seongsan.jpg", alt: "済州島・城山日出峰", credit: "Bernard Gagnon / CC0（Wikimedia Commons）" },
     title: "済州島2泊3日モデルコース｜空港からの移動と東側・西側の回り方",
     description:
@@ -2506,6 +2515,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "dongdaemun-shopping-guide",
+    summaryPoints: ["昼は小売、夜は卸売", "個人も小売価格で買える", "ロッカーは4時間ごとに課金", "市場は日曜定休"],
     heroImage: { src: "/images/dongdaemun.jpg", alt: "東大門の市場とショッピング街", credit: "장길산 / CC0（Wikimedia Commons）" },
     title: "東大門の買い物ガイド｜昼の小売と夜の卸売、モールの使い分け",
     description:
@@ -2645,6 +2655,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "gwangjang-market-guide",
+    summaryPoints: ["食品街は東門・北2門・南1門側", "食品街は09:00〜23:00・年中無休", "一般店は09:00〜18:00・日曜休み", "カード可だが現金もあると安心"],
     title: "広蔵市場の歩き方｜屋台の営業時間と買い物の注意",
     description:
       "ソウルの広蔵市場を初めて訪れる人向けに、食品街の場所と営業時間、日曜の扱い、買えるもの、アクセスと支払い、混雑時の注意を公式情報つきでまとめます。屋台で食べるときの動き方も整理します。",
@@ -2782,6 +2793,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "namdaemun-market-guide",
+    summaryPoints: ["1964年開場の最大級の伝統市場", "約17,000品目を扱う", "深夜23:00〜04:00は卸売", "日曜定休"],
     title: "南大門市場の歩き方｜昼の買い物と深夜の卸売、日曜の注意",
     description:
       "ソウルの南大門市場を初めて訪れる人向けに、市場の規模と扱う商品、深夜23時から4時の卸売時間、日曜定休、支払いと駐車場、日本への持ち帰りの注意を公式情報つきでまとめます。",
@@ -2919,6 +2931,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "busan-gukje-market-food",
+    summaryPoints: ["ビビムダンミョンが名物", "第1・第3日曜定休", "駐車場なし", "南浦洞・チャガルチと組み合わせる"],
     title: "釜山の市場グルメ｜国際市場の食べ歩きと名物の選び方",
     description:
       "釜山の国際市場にある食べ歩き通りで、何を食べるかを整理します。ビビムダンミョンやチュンムキンパなどの名物、注文のしかた、第1・第3日曜の定休、アクセスと持ち物の注意を公式情報つきでまとめます。",
@@ -3055,6 +3068,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "haeundae-area-walking-guide",
+    summaryPoints: ["ビーチと冬柏島を軸に歩く", "空港バスは9,500ウォン", "アクアリウム・BEXCOは雨天に便利", "夏は混雑、冬は防寒"],
     heroImage: { src: "/images/haeundae.jpg", alt: "海雲台ビーチ", credit: "lumoplank / CC0（Wikimedia Commons）" },
     title: "海雲台の歩き方｜ビーチと冬柏島、周辺施設の回り方",
     description:
@@ -3193,6 +3207,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "jeju-dongmun-market-guide",
+    summaryPoints: ["07:00〜21:00・年中無休", "タチウオの刺身が名物", "駐車場とトイレあり", "魚市場が隣接"],
     title: "済州島の東門市場｜営業時間と名物、買い物の注意",
     description:
       "済州島の東門市場を訪れる前に知っておきたい、営業時間と定休日、扱う商品、タチウオの刺身やサムハプなどの名物、住所と駐車場、買い物の注意を公式情報つきでまとめます。",
@@ -3459,6 +3474,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "jagalchi-market-guide",
+    summaryPoints: ["05:00〜22:00", "第1・第3火曜休み", "刺身店と持ち込み調理がある", "駐車場あり"],
     heroImage: { src: "/images/jagalchi.jpg", alt: "チャガルチ市場の店先", credit: "Bernard Gagnon / CC0（Wikimedia Commons）" },
     title: "チャガルチ市場の歩き方｜営業時間と海鮮の買い方",
     description:
@@ -3588,6 +3604,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-convenience-store-guide-2026",
+    summaryPoints: ["7-Eleven・GS25・CU・emart24", "1+1などのプロモーション", "朝食の調達に向く", "電子レンジの有無を確認"],
     title: "韓国コンビニの使い方｜ブランドの違いと1+1の見方",
     description:
       "韓国のコンビニを旅行中に使いこなすためのガイド。7-Eleven・GS25・CU・emart24の特徴、人気の食品、1+1などのプロモーションの見方、買い方の注意を韓国観光公社の公式情報つきでまとめます。",
@@ -3717,6 +3734,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-money-payment-guide",
+    summaryPoints: ["カード中心＋少額の現金", "銀行は平日09:00〜16:00", "郵便局銀行は09:00〜16:30", "旧紙幣は両替できない場合あり"],
     title: "韓国旅行のお金｜両替・カード・現金の使い分け",
     description:
       "韓国旅行でお金をどう用意するかを、ウォンの紙幣と硬貨、カードの使える場面、銀行と両替所の営業時間、旧紙幣の注意で整理。現金が必要になる場面と、予算の立て方もまとめます。",
@@ -3853,6 +3871,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "seoul-eungbongsan-night-view",
+    summaryPoints: ["入場無料・24時間開放", "漢江とロッテワールドタワーを一望", "鷹峰駅1番出口から約886m", "夜道はライトを用意"],
     title: "ソウルの夜景｜鷹峰山八閣亭の歩き方と無料で見える景色",
     description:
       "ソウルの夜景スポット、鷹峰山八閣亭を紹介。入場無料・24時間開放で、漢江やロッテワールドタワーを一望できる展望台です。アクセス、見える景色、周辺の立ち寄り先、Nソウルタワーとの使い分けを公式情報つきでまとめます。",
@@ -4414,6 +4433,7 @@ export const reviewArticles: Article[] = [
   },
   {
     slug: "korea-packing-checklist-2026",
+    summaryPoints: ["電源は220V・2穴の丸型", "eSIMは端末の対応確認が必要", "交通カードがあると移動が楽", "免税は20万円・1品目1万円"],
     title: "韓国旅行の持ち物チェックリスト｜電源・通信・支払いの準備",
     description:
       "韓国旅行の持ち物を、電源プラグ、通信手段、交通カード、現金とカード、免税範囲の5つに分けて整理。日本のコンセントとの違い、eSIMの準備、持ち帰りの注意を公式情報つきでまとめます。",
