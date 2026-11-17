@@ -237,6 +237,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitkorea-dutyfree",
+    "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=140928",
+    "official_page",
+    "韓国観光公社公式（日本語）「免税制度と税金還付」。Duty Free／Tax Refund（事後免税）／Tax Free（即時還付）の違い、事後免税の条件（1回15,000ウォン以上・未開封未使用・購入日から3か月以内の出国・滞在6か月未満の外国人等）、空港と市内還付カウンターの使い分け（市内は600万ウォン以下の領収書）、仁川空港の還付カウンター・KIOSKの場所を確認（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitkorea-jeju-unesco",
     "https://japanese.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=139895",
     "official_page",
