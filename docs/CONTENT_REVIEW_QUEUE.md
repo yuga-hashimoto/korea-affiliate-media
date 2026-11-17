@@ -149,3 +149,17 @@
 - `src/lib/cta.ts` の `ARTICLE_CTA_PROGRAMS` で、記事ごとに表示する提携先を指定した（化粧品記事にハーブピーリングを出さない等）。
 - 定義がない記事はカテゴリ共通CTAをそのまま使う。定義が候補と一致しない場合も空にせず共通へ戻す。
 - テスト: `tests/unit/cta.test.ts`（4件）。
+
+### 追加5本（20〜24本目・22:00〜22:10）
+
+| # | slug | カテゴリ | 本文 | 検索意図 | 出典 |
+|---|---|---|---|---|---|
+| 20 | `dongdaemun-shopping-guide` | shopping | 1,742字 | 東大門 買い物 | 韓国観光公社 Dongdaemun Market |
+| 21 | `gwangjang-market-guide` | food | 1,668字 | 広蔵市場 屋台 時間 | 韓国観光公社 Gwangjang Market |
+| 22 | `namdaemun-market-guide` | shopping | 1,867字 | 南大門市場 営業時間 | 韓国観光公社 Namdaemun Market |
+| 23 | `busan-gukje-market-food` | food | 1,827字 | 国際市場 食べ歩き | 韓国観光公社 Gukje Market Food Street |
+| 24 | `haeundae-area-walking-guide` | busan | 1,928字 | 海雲台 観光 歩き方 | 韓国観光公社 海雲台・金海空港 |
+
+- 20〜23は市場系。食品街の営業時間・定休日・支払い・駐車場の事実を出典ノートに記録した。
+- 24は海雲台の観光動線。ホテル比較（`busan-hotel-area-guide`）とは役割を分け、エリア内の歩き方に限定した。
+- 追加5本の本文は1,600〜1,900字。公開時は内部リンク（市場→免税、海雲台→ホテル）を追加する。
