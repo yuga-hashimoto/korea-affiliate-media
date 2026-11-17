@@ -244,6 +244,13 @@ export const evidence: SourceEvidence[] = [
     "2026-11-17T09:00:00.000Z",
   ),
   officialOn(
+    "ev-visitseoul-intercity",
+    "https://english.visitseoul.net/essential-Info-article/Intercity-Travel/ENN018812",
+    "official_page",
+    "ソウル市公式観光（英語）「Intercity Travel」。KTXは最高300km/hでソウル〜釜山は2時間18分、乗車券は60日前から駅・大型郵便局・旅行代理店・KTX公式サイトで購入可。京釜線 ソウル〜釜山の運賃は月〜木43,000〜53,700ウォン、金〜日・祝日46,500〜57,700ウォン。高速バスは運賃3,000〜35,000ウォン、高速ターミナル（地下鉄3・7・9号線）と東ソウルターミナル（2号線）から発着、多くは6:00〜2:00運行、3列シートのプレミアムと4列の一般を選択可（2026-11-17確認）。",
+    "2026-11-17T09:00:00.000Z",
+  ),
+  officialOn(
     "ev-visitseoul-namsan",
     "https://english.visitseoul.net/attractions--/NamsanPark/ENP003631",
     "official_page",
