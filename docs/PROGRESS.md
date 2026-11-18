@@ -384,4 +384,10 @@ AIエージェントは日時/タスクID/変更ファイル/テスト/ブロッ
   - 本番確認: 新記事200 / 旧URL→新URL 308 / sitemap 73URL / robots許可 / noindexなし / PRバッジと rel="sponsored nofollow noopener noreferrer" を確認。
 - [x] 2026-11-18 00:40 既存の薄い記事17本を加筆（要点・比較表・実務的な節）。公開53本の本文中央値は約1,900字、最短674字まで改善。
 - [x] 追加デプロイ（bacdafaa）と本番確認（新セクションの表示を確認）。
-- 未実施: Search Consoleのインデックス登録リクエスト。サービスアカウント（var/secrets/ga4-reader.json）でSearch Console APIを叩くと、Google Cloudプロジェクト 804572361279 でAPIが無効のため403。有効化が必要。
+- [x] 2026-11-18 14:15 Search Console API を復旧:
+  - Site Verification API を有効化（gcloud、プロジェクト 804572361279）。
+  - サービスアカウント `ga4-reader@korea-travel-analytics-x0qpka.iam.gserviceaccount.com` で所有権を検証（`public/googleec797e793828bf54.html` を配置）。
+  - Search Console API の `sites` に `https://sougakuhikaku.com/` を追加（siteOwner）。
+  - サイトマップ送信: 204。最終読み込み 2026-11-17T20:06Z、エラー0・警告0、検出73ページ。
+  - インデックス状況: 既存の `seoul-area-guide` は登録済み。新規の `korea-duty-free-howto` と `n-seoul-tower-tickets` は「検出済み・未登録」（公開直後の通常状態）。
+- 未実施: URL単位のインデックス登録リクエスト（管理画面から手動）。
