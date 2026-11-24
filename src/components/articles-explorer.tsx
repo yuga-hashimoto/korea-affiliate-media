@@ -68,7 +68,7 @@ export function ArticlesExplorer({ articles }: { articles: Article[] }) {
           event.preventDefault();
           updateParams({ q: query.trim() });
         }}
-        className="mb-4 flex max-w-xl gap-2"
+        className="mb-4 flex max-w-xl items-stretch gap-2"
       >
         <label htmlFor="q" className="sr-only">
           記事を検索
@@ -80,14 +80,14 @@ export function ArticlesExplorer({ articles }: { articles: Article[] }) {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="例: ソウル、カフェ、免税"
-          className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+          className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm"
         />
         {active !== "all" ? (
           <input type="hidden" name="category" value={active} />
         ) : null}
         <button
           type="submit"
-          className="rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-800"
+          className="shrink-0 whitespace-nowrap rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800"
         >
           検索
         </button>
@@ -113,7 +113,7 @@ export function ArticlesExplorer({ articles }: { articles: Article[] }) {
                 updateParams({ category: filter.key });
               }}
               aria-current={isActive ? "page" : undefined}
-              className={`rounded-full border px-3 py-1.5 text-xs font-semibold no-underline ${
+              className={`inline-flex min-h-9 items-center rounded-full border px-3.5 py-2 text-[13px] font-semibold no-underline ${
                 isActive
                   ? "border-brand-700 bg-brand-700 text-white"
                   : "border-slate-300 bg-white text-slate-700 hover:border-brand-400"

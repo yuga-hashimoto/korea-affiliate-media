@@ -29,14 +29,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40">
       <div className="bg-cobalt text-white">
-        <div className="container-page flex h-8 items-center justify-between text-[11px]">
-          <p className="font-bold tracking-wide">
+        <div className="container-page flex h-7 items-center justify-between gap-3 text-[10px] sm:h-8 sm:text-[11px]">
+          <p className="min-w-0 truncate font-bold tracking-wide">
             ソウル・釜山・済州の旅行ガイド
-            <span className="kr ml-2 text-[10px] font-semibold opacity-75">
+            <span className="kr ml-2 hidden text-[10px] font-semibold opacity-75 sm:inline">
               서울 · 부산 · 제주
             </span>
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex shrink-0 items-center gap-3 whitespace-nowrap sm:gap-4">
             <Link href="/korea/travel/prepare" className="font-bold no-underline hover:underline">
               旅の準備
             </Link>
@@ -46,21 +46,22 @@ export function SiteHeader() {
               rel="noopener noreferrer nofollow"
               className="no-underline hover:underline"
             >
-              X @bts_95_y
+              <span className="hidden sm:inline">X @bts_95_y</span>
+              <span className="sm:hidden">X</span>
             </a>
           </div>
         </div>
       </div>
 
       <div className="border-b-2 border-ink bg-cream/95 backdrop-blur">
-        <div className="container-page flex h-[4.5rem] items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-3 no-underline">
+        <div className="container-page flex h-14 items-center justify-between gap-3 sm:h-[4.5rem] sm:gap-4">
+          <Link href="/" className="flex min-w-0 items-center gap-2.5 no-underline sm:gap-3">
             <LogoMark />
-            <span className="flex flex-col leading-tight">
-              <span className="text-[1.05rem] font-black tracking-tight text-ink">
+            <span className="flex min-w-0 flex-col leading-tight">
+              <span className="truncate text-[0.98rem] font-black tracking-tight text-ink sm:text-[1.05rem]">
                 韓国旅行ノート
               </span>
-              <span className="kr text-[10px] font-bold tracking-[0.14em] text-cobalt">
+              <span className="kr text-[9px] font-bold tracking-[0.14em] text-cobalt sm:text-[10px]">
                 한국여행노트
               </span>
             </span>
@@ -87,7 +88,7 @@ export function SiteHeader() {
           </nav>
 
           <details className="relative lg:hidden">
-            <summary className="flex cursor-pointer list-none items-center gap-2 rounded-full border-2 border-ink bg-butter px-4 py-2 text-sm font-black text-ink">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center gap-1.5 rounded-full border-2 border-ink bg-butter px-3 py-2 text-[13px] font-black text-ink sm:gap-2 sm:px-4 sm:text-sm">
               <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" aria-hidden="true">
                 <path d="M4 7h16M4 12h16M4 17h10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
               </svg>

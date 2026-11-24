@@ -1,7 +1,7 @@
 export function DisclosureNote({ compact = false }: { compact?: boolean }) {
   return (
     <p
-      className={`rounded-2xl border border-[#efdfd3] bg-paper px-4 py-3 text-xs leading-6 text-slate-600 ${
+      className={`rounded-2xl border border-[#efdfd3] bg-paper px-3 py-2.5 text-[11px] leading-5 text-slate-600 sm:px-4 sm:py-3 sm:text-xs sm:leading-6 ${
         compact ? "" : "mt-4"
       }`}
     >

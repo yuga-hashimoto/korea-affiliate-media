@@ -202,9 +202,9 @@ export default async function ArticlePage({
             </Link>
             {article.aiGenerated ? <Badge tone="slate">AI生成（レビュー済み）</Badge> : null}
           </div>
-          <h1 className="mt-4 text-3xl leading-tight sm:text-4xl">{article.title}</h1>
-          <p className="mt-4 text-sm leading-7 text-slate-600">{article.description}</p>
-          <p className="mt-3 text-xs text-slate-600">
+          <h1 className="mt-3 text-[1.6rem] leading-[1.35] sm:mt-4 sm:text-4xl">{article.title}</h1>
+          <p className="mt-3 text-[13px] leading-6 text-slate-600 sm:mt-4 sm:text-sm sm:leading-7">{article.description}</p>
+          <p className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-slate-600 sm:text-xs">
             公開: {article.publishedAt ? formatJstDate(article.publishedAt) : "未公開"}
             {" ・ "}更新: {formatJstDate(article.updatedAt)}
             {article.reviewedAt ? ` ・ レビュー: ${formatJstDate(article.reviewedAt)}` : ""}
@@ -234,7 +234,7 @@ export default async function ArticlePage({
           <DisclosureNote />
 
           {article.summaryPoints && article.summaryPoints.length > 0 ? (
-            <section className="mt-6 rounded-2xl border-2 border-ink bg-butter/40 p-5">
+            <section className="mt-5 rounded-2xl border-2 border-ink bg-butter/40 p-4 sm:mt-6 sm:p-5">
               <h2 className="text-sm font-black tracking-wide">この記事の要点</h2>
               <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-7">
                 {article.summaryPoints.map((point) => (
@@ -244,9 +244,29 @@ export default async function ArticlePage({
             </section>
           ) : null}
 
-          <div className="prose-jp mt-9">
-            {article.sections.map((section) => (
-              <section key={section.heading}>
+          {article.sections.length > 1 ? (
+            <details className="mt-4 rounded-2xl border-2 border-ink/10 bg-white p-4 sm:hidden">
+              <summary className="cursor-pointer text-sm font-black">
+                目次（{article.sections.length}項目）
+              </summary>
+              <ol className="mt-3 space-y-2 text-sm">
+                {article.sections.map((s, i) => (
+                  <li key={s.heading}>
+                    <a
+                      href={"#sec-" + i}
+                      className="text-slate-700 underline decoration-slate-300 underline-offset-2"
+                    >
+                      {s.heading}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          ) : null}
+
+          <div className="prose-jp mt-7 sm:mt-9">
+            {article.sections.map((section, index) => (
+              <section key={section.heading} id={"sec-" + index} className="scroll-mt-24">
                 <h2>{section.heading}</h2>
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph.slice(0, 24)}>{paragraph}</p>
@@ -277,48 +297,70 @@ export default async function ArticlePage({
                   </figure>
                 ) : null}
                 {section.table ? (
-                  <div className="my-6 overflow-x-auto">
-                    <table className="w-full border-collapse text-sm">
-                      {section.table.caption ? (
-                        <caption className="mb-2 text-left text-xs text-slate-600">
-                          {section.table.caption}
-                        </caption>
-                      ) : null}
-                      <thead>
-                        <tr>
-                          {section.table.head.map((cell) => (
-                            <th
-                              key={cell}
-                              scope="col"
-                              className="border-b-2 border-ink px-3 py-2 text-left font-bold"
-                            >
-                              {cell}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {section.table.rows.map((row) => (
-                          <tr key={row.join("|")}>
-                            {row.map((cell, index) =>
-                              index === 0 ? (
-                                <th
-                                  key={cell}
-                                  scope="row"
-                                  className="border-b border-slate-200 px-3 py-2 text-left font-semibold"
-                                >
-                                  {cell}
-                                </th>
-                              ) : (
-                                <td key={cell} className="border-b border-slate-200 px-3 py-2">
-                                  {cell}
-                                </td>
-                              ),
-                            )}
+                  <div className="my-6">
+                    {section.table.caption ? (
+                      <p className="mb-2 text-left text-xs text-slate-600">
+                        {section.table.caption}
+                      </p>
+                    ) : null}
+                    <div className="hidden overflow-x-auto sm:block">
+                      <table className="w-full border-collapse text-sm">
+                        <thead>
+                          <tr>
+                            {section.table.head.map((cell) => (
+                              <th
+                                key={cell}
+                                scope="col"
+                                className="border-b-2 border-ink px-3 py-2 text-left font-bold"
+                              >
+                                {cell}
+                              </th>
+                            ))}
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody>
+                          {section.table.rows.map((row) => (
+                            <tr key={row.join("|")}>
+                              {row.map((cell, index) =>
+                                index === 0 ? (
+                                  <th
+                                    key={cell}
+                                    scope="row"
+                                    className="border-b border-slate-200 px-3 py-2 text-left font-semibold"
+                                  >
+                                    {cell}
+                                  </th>
+                                ) : (
+                                  <td key={cell} className="border-b border-slate-200 px-3 py-2">
+                                    {cell}
+                                  </td>
+                                ),
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="space-y-3 sm:hidden">
+                      {section.table.rows.map((row) => (
+                        <div
+                          key={row.join("|")}
+                          className="rounded-xl border-2 border-ink/10 bg-white p-3"
+                        >
+                          <p className="text-[13px] font-black text-ink">{row[0]}</p>
+                          <dl className="mt-2 space-y-1.5">
+                            {row.slice(1).map((cell, cellIndex) => (
+                              <div key={cell} className="flex gap-3 text-[12px] leading-5">
+                                <dt className="w-24 shrink-0 break-words font-bold text-slate-500">
+                                  {section.table!.head[cellIndex + 1] ?? ""}
+                                </dt>
+                                <dd className="min-w-0 flex-1 text-slate-700">{cell}</dd>
+                              </div>
+                            ))}
+                          </dl>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ) : null}
               </section>

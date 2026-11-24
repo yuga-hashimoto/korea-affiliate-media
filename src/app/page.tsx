@@ -68,7 +68,7 @@ export default function HomePage() {
   const featured = getPublishedArticle("seoul-food-guide");
   const subFeatures = [
     getPublishedArticle("seoul-model-courses"),
-    getPublishedArticle("busan-1night-2days-model-course"),
+    getPublishedArticle("busan-1night-2days-plan"),
   ].filter((article): article is NonNullable<typeof article> => Boolean(article));
 
   return (
@@ -95,7 +95,7 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative isolate min-h-[560px] overflow-hidden sm:min-h-[640px]">
+      <section className="relative isolate min-h-[520px] overflow-hidden sm:min-h-[640px]">
         <Image
           src="/images/hero-seoul.jpg"
           alt="漢江から望むソウルの街並み"
@@ -120,7 +120,7 @@ export default function HomePage() {
           KOREA TRAVEL NOTE
         </span>
 
-        <div className="container-page relative flex min-h-[560px] flex-col justify-end pb-24 pt-20 sm:min-h-[640px] sm:pb-28">
+        <div className="container-page relative flex min-h-[520px] flex-col justify-end pb-16 pt-12 sm:min-h-[640px] sm:pb-28 sm:pt-20">
           <span className="sticker w-fit -rotate-3 bg-sun text-ink">
             <span>週末はソウル</span>
             <span className="kr text-[9px] font-bold text-ink/75">주말엔 서울</span>

@@ -13,7 +13,7 @@ export function ArticleCard({ article }: { article: Article }) {
           <span className="kr ml-1 text-[10px] font-bold text-ink/75">{meta.kr}</span>
         </span>
         {article.aiGenerated ? (
-          <span className="text-[10px] font-semibold text-slate-600">AI下書き</span>
+          <span className="text-[10px] font-semibold text-slate-600">AI生成</span>
         ) : null}
       </div>
       <h2 className="mt-3 text-[1.05rem] font-bold leading-7">

@@ -30,8 +30,8 @@ export function PageHeader({
             sizes="100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/50 to-ink/10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent" />
         </div>
         <div className="absolute inset-0">
           <div className="container-page flex h-full flex-col justify-end pb-8 sm:pb-10">
@@ -48,7 +48,7 @@ export function PageHeader({
                 {title}
               </h1>
             </div>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-cream/85 sm:text-base">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-cream/90 sm:text-base">
               {lead}
             </p>
             {meta ? <div className="mt-3 text-xs text-cream/60">{meta}</div> : null}
