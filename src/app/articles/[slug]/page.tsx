@@ -196,7 +196,7 @@ export default async function ArticlePage({
         <article className="mx-auto max-w-3xl">
           <div className="flex flex-wrap gap-2">
             <Link href={meta.href} className="no-underline">
-              <span className="rounded-full bg-brand-50 px-3 py-1 text-[11px] font-bold text-brand-700">
+              <span className="inline-flex min-h-9 items-center rounded-full bg-brand-50 px-4 text-[11px] font-bold text-brand-700">
                 {meta.label}
               </span>
             </Link>
@@ -246,7 +246,7 @@ export default async function ArticlePage({
 
           {article.sections.length > 1 ? (
             <details className="mt-4 rounded-2xl border-2 border-ink/10 bg-white p-4 sm:hidden">
-              <summary className="cursor-pointer text-sm font-black">
+              <summary className="flex min-h-11 cursor-pointer items-center text-sm font-black">
                 目次（{article.sections.length}項目）
               </summary>
               <ol className="mt-3 space-y-2 text-sm">
@@ -254,7 +254,7 @@ export default async function ArticlePage({
                   <li key={s.heading}>
                     <a
                       href={"#sec-" + i}
-                      className="text-slate-700 underline decoration-slate-300 underline-offset-2"
+                      className="block py-2.5 text-slate-700 underline decoration-slate-300 underline-offset-2"
                     >
                       {s.heading}
                     </a>
@@ -414,7 +414,7 @@ export default async function ArticlePage({
 
           {article.hubPath ? (
             <p className="mt-8 text-sm">
-              <Link href={article.hubPath} className="text-brand-700 underline">
+              <Link href={article.hubPath} className="inline-flex min-h-11 items-center text-brand-700 underline">
                 関連するガイドを見る →
               </Link>
             </p>
@@ -422,7 +422,7 @@ export default async function ArticlePage({
 
           <p className="mt-8 rounded-2xl border border-[#efdfd3] bg-[#FDF1E7] p-4 text-xs leading-6 text-slate-600">
             掲載内容に誤りや古い情報を見つけた場合は、
-            <Link href="/contact" className="text-brand-700 underline">
+            <Link href="/contact" className="inline-flex min-h-9 items-center text-brand-700 underline">
               お問い合わせ
             </Link>
             からご連絡ください。確認のうえ更新します。当サイトは現地取材・購入体験を装ったレビューを掲載しません。

@@ -10,7 +10,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
     <nav aria-label="パンくずリスト" className="mb-3 text-[11px] text-slate-600 sm:mb-4 sm:text-xs">
       <ol className="flex flex-wrap items-center gap-1">
         <li className="shrink-0">
-          <Link href="/" className="hover:text-brand-700">
+          <Link href="/" className="inline-flex min-h-9 items-center hover:text-brand-700">
             ホーム
           </Link>
         </li>
@@ -27,7 +27,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
                   {item.label}
                 </span>
               ) : (
-                <Link href={item.href} className="max-w-[7.5rem] truncate hover:text-brand-700">
+                <Link href={item.href} className="inline-flex min-h-9 max-w-[7.5rem] items-center truncate hover:text-brand-700">
                   {item.label}
                 </Link>
               )}

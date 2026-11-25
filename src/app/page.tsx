@@ -208,7 +208,7 @@ export default function HomePage() {
             </h2>
             <span className="mt-3 block h-1 w-12 bg-brand-600" aria-hidden="true" />
           </div>
-          <Link href="/korea/travel" className="text-sm font-black text-cobalt underline">
+          <Link href="/korea/travel" className="inline-flex min-h-11 items-center text-sm font-black text-cobalt underline">
             전체 보기
           </Link>
         </div>
@@ -403,7 +403,7 @@ export default function HomePage() {
                 cta: "グルメガイドを見る",
               },
             ].map((step, index) => (
-              <div key={step.title} className="card border-2 border-ink p-6 shadow-[4px_4px_0_var(--color-ink)]">
+              <div key={step.title} className="card relative border-2 border-ink p-6 shadow-[4px_4px_0_var(--color-ink)]">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-black text-brand-700">
                     {step.kr === "지역" ? "エリア" : step.kr === "준비" ? "準備" : "当日"}
@@ -413,7 +413,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="mt-3 text-lg font-black">{step.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">{step.body}</p>
-                <Link href={step.href} className="mt-4 inline-block text-xs font-black text-cobalt underline">
+                <Link href={step.href} className="mt-4 inline-flex min-h-11 items-center text-xs font-black text-cobalt underline after:absolute after:inset-0 after:content-['']">
                   {step.cta}
                 </Link>
               </div>
@@ -434,7 +434,7 @@ export default function HomePage() {
               新着記事
             </h2>
           </div>
-          <Link href="/articles" className="text-sm font-black text-cobalt underline">
+          <Link href="/articles" className="inline-flex min-h-11 items-center text-sm font-black text-cobalt underline">
             すべて見る
           </Link>
         </div>

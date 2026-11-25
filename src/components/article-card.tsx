@@ -6,7 +6,7 @@ import { formatJstDate } from "@/lib/dates";
 export function ArticleCard({ article }: { article: Article }) {
   const meta = CATEGORY_META[article.category];
   return (
-    <article className="card group flex h-full flex-col border-2 border-ink p-5 transition hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-ink)]">
+    <article className="card group relative flex h-full flex-col border-2 border-ink p-5 transition hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-ink)]">
       <div className="flex items-center justify-between gap-2">
         <span className="rounded-full border border-ink bg-butter px-3 py-1 text-[11px] font-black text-ink">
           {meta.short}
@@ -19,7 +19,7 @@ export function ArticleCard({ article }: { article: Article }) {
       <h2 className="mt-3 text-[1.05rem] font-bold leading-7">
         <Link
           href={`/articles/${article.slug}`}
-          className="text-ink no-underline group-hover:text-cobalt"
+          className="text-ink no-underline after:absolute after:inset-0 after:z-10 after:content-[''] group-hover:text-cobalt"
         >
           {article.title}
         </Link>

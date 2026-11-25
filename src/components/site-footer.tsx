@@ -40,7 +40,7 @@ export function SiteFooter() {
             <p className="mt-4 max-w-md text-xs leading-6 text-cream/60">
               本サイトはアフィリエイト広告を利用する場合があります。広告の有無は記事内容や紹介順の根拠ではありません。
               写真は CC0 の素材を使用しています（
-              <Link href="/credits" className="text-brand-200 underline">
+              <Link href="/credits" className="inline-flex min-h-6 items-center px-1 text-brand-200 underline">
                 クレジット
               </Link>
               ）。
@@ -65,7 +65,7 @@ export function SiteFooter() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-cream/80 no-underline hover:text-sun"
+                    className="flex min-h-11 items-center text-cream/80 no-underline hover:text-sun"
                   >
                     {link.label}
                   </Link>

@@ -29,7 +29,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40">
       <div className="bg-cobalt text-white">
-        <div className="container-page flex h-7 items-center justify-between gap-3 text-[10px] sm:h-8 sm:text-[11px]">
+        <div className="container-page flex h-9 items-center justify-between gap-3 text-[10px] sm:h-8 sm:text-[11px]">
           <p className="min-w-0 truncate font-bold tracking-wide">
             ソウル・釜山・済州の旅行ガイド
             <span className="kr ml-2 hidden text-[10px] font-semibold opacity-75 sm:inline">
@@ -37,14 +37,14 @@ export function SiteHeader() {
             </span>
           </p>
           <div className="flex shrink-0 items-center gap-3 whitespace-nowrap sm:gap-4">
-            <Link href="/korea/travel/prepare" className="font-bold no-underline hover:underline">
+            <Link href="/korea/travel/prepare" className="inline-flex min-h-9 items-center px-1 font-bold no-underline hover:underline">
               旅の準備
             </Link>
             <a
               href="https://x.com/bts_95_y"
               target="_blank"
               rel="noopener noreferrer nofollow"
-              className="no-underline hover:underline"
+              className="inline-flex min-h-9 min-w-9 items-center justify-center px-1 no-underline hover:underline"
             >
               <span className="hidden sm:inline">X @bts_95_y</span>
               <span className="sm:hidden">X</span>
